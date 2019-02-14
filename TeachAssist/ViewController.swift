@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  TeachAssist
 //
-//  Created by Ben Tran on 2019-02-01.
+//  Created by Ben Tran on 2019-02-14.
 //  Copyright © 2019 Ben Tran. All rights reserved.
 //
 
@@ -12,11 +12,19 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        let sr = SendRequest()
-        sr.SendJSON(url:"https://ta.yrdsb.ca/v4/students/json.php", parameters: ["student_number":"335525291","password":"6rx8836f"])
+        print("TEST")
+        // Do any additional setup after loading the view.
     }
+    
 
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
 
 }
-
