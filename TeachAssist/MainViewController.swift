@@ -14,7 +14,8 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         let sr = SendRequest()
-        sr.SendJSON(url:"https://ta.yrdsb.ca/v4/students/json.php", parameters: ["student_number":"335525291","password":"6rx8836f"])
+        sr.SendJSON(url:"https://ta.yrdsb.ca/v4/students/json.php", parameters: ["student_number":"your username here","password":"add your password here"])
+        self.navigationItem.title = "TeachAssist";
     }
 
 

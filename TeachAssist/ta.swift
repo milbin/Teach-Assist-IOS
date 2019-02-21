@@ -7,3 +7,17 @@
 //
 
 import Foundation
+
+class ta{
+    var sessionToken:String = ""
+    var studentID:String = ""
+    var username:String = ""
+    var password:String = ""
+    
+    
+    func getTaData(){
+        //TODO add crashlitics
+        let sr = SendRequest()
+        
+    }
+}
