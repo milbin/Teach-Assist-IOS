@@ -11,9 +11,9 @@
 		6E449D132204A26E00C0F0AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E449D122204A26E00C0F0AC /* AppDelegate.swift */; };
 		6E449D152204A26E00C0F0AC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E449D142204A26E00C0F0AC /* MainViewController.swift */; };
 		6E449D182204A26E00C0F0AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E449D162204A26E00C0F0AC /* Main.storyboard */; };
-		6E449D1A2204A27200C0F0AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E449D192204A27200C0F0AC /* Assets.xcassets */; };
 		6E449D282204A27200C0F0AC /* TeachAssistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E449D272204A27200C0F0AC /* TeachAssistTests.swift */; };
 		6E449D332204A27200C0F0AC /* TeachAssistUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E449D322204A27200C0F0AC /* TeachAssistUITests.swift */; };
+		6EDFB06422204DFE00640F87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6EDFB06322204DFD00640F87 /* Assets.xcassets */; };
 		6EE67E5E220DD8EE00010826 /* SendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE67E5D220DD8EE00010826 /* SendRequest.swift */; };
 		6EF07E042210E58D00FFBFF4 /* ta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF07E032210E58D00FFBFF4 /* ta.swift */; };
 		9080080941CEB4B9E0679128 /* Pods_TeachAssist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 279DDEDA5A9D53385E9A4939 /* Pods_TeachAssist.framework */; };
@@ -48,7 +48,6 @@
 		6E449D122204A26E00C0F0AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6E449D142204A26E00C0F0AC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		6E449D172204A26E00C0F0AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		6E449D192204A27200C0F0AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6E449D1E2204A27200C0F0AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6E449D232204A27200C0F0AC /* TeachAssistTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeachAssistTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E449D272204A27200C0F0AC /* TeachAssistTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachAssistTests.swift; sourceTree = "<group>"; };
@@ -56,6 +55,7 @@
 		6E449D2E2204A27200C0F0AC /* TeachAssistUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeachAssistUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E449D322204A27200C0F0AC /* TeachAssistUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachAssistUITests.swift; sourceTree = "<group>"; };
 		6E449D342204A27200C0F0AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6EDFB06322204DFD00640F87 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6EE67E5D220DD8EE00010826 /* SendRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendRequest.swift; sourceTree = "<group>"; };
 		6EF07E032210E58D00FFBFF4 /* ta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ta.swift; sourceTree = "<group>"; };
 		72683CD56F29FFDC96BB7991 /* Pods-TeachAssistTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeachAssistTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TeachAssistTests/Pods-TeachAssistTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -130,11 +130,11 @@
 		6E449D112204A26E00C0F0AC /* TeachAssist */ = {
 			isa = PBXGroup;
 			children = (
+				6EDFB06322204DFD00640F87 /* Assets.xcassets */,
 				EAF2A087221F607300A0BFE3 /* subclasses */,
 				6E449D122204A26E00C0F0AC /* AppDelegate.swift */,
 				EAF2A086221F565800A0BFE3 /* ViewControllers */,
 				6E449D162204A26E00C0F0AC /* Main.storyboard */,
-				6E449D192204A27200C0F0AC /* Assets.xcassets */,
 				6E449D1E2204A27200C0F0AC /* Info.plist */,
 				6EE67E5D220DD8EE00010826 /* SendRequest.swift */,
 				6EF07E032210E58D00FFBFF4 /* ta.swift */,
@@ -298,7 +298,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E449D1A2204A27200C0F0AC /* Assets.xcassets in Resources */,
+				6EDFB06422204DFE00640F87 /* Assets.xcassets in Resources */,
 				6E449D182204A26E00C0F0AC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
