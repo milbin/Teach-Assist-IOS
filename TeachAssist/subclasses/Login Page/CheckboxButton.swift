@@ -9,7 +9,7 @@
 import UIKit
 
 class CheckboxButton: UIButton {
-
+    
     var isChecked =  true
     
     override init(frame:CGRect){
@@ -20,7 +20,7 @@ class CheckboxButton: UIButton {
         super.init(coder:aDecoder)
         initButton()
     }
-
+    
     func initButton(){
         print("init")
         addTarget(self, action: #selector(CheckboxButton.buttonPressed), for: .touchUpInside)
