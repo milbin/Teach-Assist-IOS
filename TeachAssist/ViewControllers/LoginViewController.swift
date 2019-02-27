@@ -9,16 +9,18 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-
-    @IBOutlet weak var loginButton: LoginButton!
+    
+    
+    @IBOutlet weak var loginButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         loginButton.addTarget(self, action: #selector(LoginViewController.buttonPressed), for: .touchUpInside)
         // Do any additional setup after loading the view.
     }
+    
+    
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-
     @objc func buttonPressed(){
         print("Login")
         let Preferences = UserDefaults.standard

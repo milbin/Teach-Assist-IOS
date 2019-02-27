@@ -10,7 +10,6 @@
 		2264155591B47B567F7C19E6 /* Pods_TeachAssistUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E03EFDAB7F8CC488DDAD33 /* Pods_TeachAssistUITests.framework */; };
 		6E449D132204A26E00C0F0AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E449D122204A26E00C0F0AC /* AppDelegate.swift */; };
 		6E449D152204A26E00C0F0AC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E449D142204A26E00C0F0AC /* MainViewController.swift */; };
-		6E449D182204A26E00C0F0AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E449D162204A26E00C0F0AC /* Main.storyboard */; };
 		6E449D282204A27200C0F0AC /* TeachAssistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E449D272204A27200C0F0AC /* TeachAssistTests.swift */; };
 		6E449D332204A27200C0F0AC /* TeachAssistUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E449D322204A27200C0F0AC /* TeachAssistUITests.swift */; };
 		6EDFB06422204DFE00640F87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6EDFB06322204DFD00640F87 /* Assets.xcassets */; };
@@ -18,9 +17,10 @@
 		6EF07E042210E58D00FFBFF4 /* ta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF07E032210E58D00FFBFF4 /* ta.swift */; };
 		9080080941CEB4B9E0679128 /* Pods_TeachAssist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 279DDEDA5A9D53385E9A4939 /* Pods_TeachAssist.framework */; };
 		BC4167F8E911645E163D410A /* Pods_TeachAssistTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D0AA7174526032B25277DC9 /* Pods_TeachAssistTests.framework */; };
+		EA007A4622270D6A00AD7AFE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA007A4422270D6900AD7AFE /* Main.storyboard */; };
+		EA007A48222712ED00AD7AFE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA007A47222712ED00AD7AFE /* LoginViewController.swift */; };
 		EAB209232220E519000686B3 /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB209222220E519000686B3 /* LoginButton.swift */; };
 		EAB209262220E6B7000686B3 /* CheckboxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB209252220E6B7000686B3 /* CheckboxButton.swift */; };
-		EAF2A085221F565200A0BFE3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF2A084221F565200A0BFE3 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +48,6 @@
 		6E449D0F2204A26E00C0F0AC /* TeachAssist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeachAssist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E449D122204A26E00C0F0AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6E449D142204A26E00C0F0AC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		6E449D172204A26E00C0F0AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6E449D1E2204A27200C0F0AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6E449D232204A27200C0F0AC /* TeachAssistTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeachAssistTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E449D272204A27200C0F0AC /* TeachAssistTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachAssistTests.swift; sourceTree = "<group>"; };
@@ -64,9 +63,10 @@
 		88E03EFDAB7F8CC488DDAD33 /* Pods_TeachAssistUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeachAssistUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3C9B462BF6FBB984CAE1FCC /* Pods-TeachAssistTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeachAssistTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TeachAssistTests/Pods-TeachAssistTests.release.xcconfig"; sourceTree = "<group>"; };
 		BA3800C2F1869FD078491C2F /* Pods-TeachAssist.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeachAssist.release.xcconfig"; path = "Pods/Target Support Files/Pods-TeachAssist/Pods-TeachAssist.release.xcconfig"; sourceTree = "<group>"; };
+		EA007A4522270D6900AD7AFE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EA007A47222712ED00AD7AFE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EAB209222220E519000686B3 /* LoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
 		EAB209252220E6B7000686B3 /* CheckboxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxButton.swift; sourceTree = "<group>"; };
-		EAF2A084221F565200A0BFE3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,8 +136,8 @@
 				EAF2A087221F607300A0BFE3 /* subclasses */,
 				6E449D122204A26E00C0F0AC /* AppDelegate.swift */,
 				EAF2A086221F565800A0BFE3 /* ViewControllers */,
-				6E449D162204A26E00C0F0AC /* Main.storyboard */,
 				6E449D1E2204A27200C0F0AC /* Info.plist */,
+				EA007A4422270D6900AD7AFE /* Main.storyboard */,
 				6EE67E5D220DD8EE00010826 /* SendRequest.swift */,
 				6EF07E032210E58D00FFBFF4 /* ta.swift */,
 			);
@@ -188,7 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				6E449D142204A26E00C0F0AC /* MainViewController.swift */,
-				EAF2A084221F565200A0BFE3 /* LoginViewController.swift */,
+				EA007A47222712ED00AD7AFE /* LoginViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -309,8 +309,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA007A4622270D6A00AD7AFE /* Main.storyboard in Resources */,
 				6EDFB06422204DFE00640F87 /* Assets.xcassets in Resources */,
-				6E449D182204A26E00C0F0AC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,12 +426,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA007A48222712ED00AD7AFE /* LoginViewController.swift in Sources */,
 				6EF07E042210E58D00FFBFF4 /* ta.swift in Sources */,
 				EAB209262220E6B7000686B3 /* CheckboxButton.swift in Sources */,
 				6EE67E5E220DD8EE00010826 /* SendRequest.swift in Sources */,
 				EAB209232220E519000686B3 /* LoginButton.swift in Sources */,
 				6E449D152204A26E00C0F0AC /* MainViewController.swift in Sources */,
-				EAF2A085221F565200A0BFE3 /* LoginViewController.swift in Sources */,
 				6E449D132204A26E00C0F0AC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -468,10 +468,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		6E449D162204A26E00C0F0AC /* Main.storyboard */ = {
+		EA007A4422270D6900AD7AFE /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6E449D172204A26E00C0F0AC /* Base */,
+				EA007A4522270D6900AD7AFE /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

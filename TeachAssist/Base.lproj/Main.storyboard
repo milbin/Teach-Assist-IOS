@@ -101,10 +101,6 @@
                                 <state key="normal" title="Login">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <connections>
-                                    <outlet property="passwordTextField" destination="rcy-Bo-jhQ" id="vye-RW-GA4"/>
-                                    <outlet property="usernameTextField" destination="aap-9L-fGT" id="ZAo-1c-7hM"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -129,9 +125,9 @@
                         <viewLayoutGuide key="safeArea" id="iDD-ri-EoP"/>
                     </view>
                     <connections>
-                        <outlet property="loginButton" destination="fma-ZI-wm8" id="y5n-9p-P6W"/>
-                        <outlet property="passwordTextField" destination="rcy-Bo-jhQ" id="N7m-UU-gwN"/>
-                        <outlet property="usernameTextField" destination="aap-9L-fGT" id="KXW-m6-W0g"/>
+                        <outlet property="loginButton" destination="fma-ZI-wm8" id="e2D-XJ-AX9"/>
+                        <outlet property="passwordTextField" destination="rcy-Bo-jhQ" id="gUg-TO-mQu"/>
+                        <outlet property="usernameTextField" destination="aap-9L-fGT" id="u5P-3a-iUe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YNz-fy-MsT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -144,6 +140,6 @@
         <image name="checkbox-blank-outline" width="48" height="48"/>
         <image name="checkbox-marked" width="48" height="48"/>
         <image name="lock" width="48" height="48"/>
-        <image name="ta_logo_v3" width="365.25" height="365.25"/>
+        <image name="ta_logo_v3" width="487" height="487"/>
     </resources>
 </document>
