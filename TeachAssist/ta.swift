@@ -19,5 +19,10 @@ class ta{
         //TODO add crashlitics
         let sr = SendRequest()
         
+        func getTaData(){
+            var params = ["student_number":username, "password":password]
+            
+        }
+        
     }
 }
