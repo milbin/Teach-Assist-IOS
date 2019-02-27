@@ -17,8 +17,9 @@
 		6EF07E042210E58D00FFBFF4 /* ta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF07E032210E58D00FFBFF4 /* ta.swift */; };
 		9080080941CEB4B9E0679128 /* Pods_TeachAssist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 279DDEDA5A9D53385E9A4939 /* Pods_TeachAssist.framework */; };
 		BC4167F8E911645E163D410A /* Pods_TeachAssistTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D0AA7174526032B25277DC9 /* Pods_TeachAssistTests.framework */; };
-		EA007A4622270D6A00AD7AFE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA007A4422270D6900AD7AFE /* Main.storyboard */; };
+		EA007A4622270D6A00AD7AFE /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA007A4422270D6900AD7AFE /* Login.storyboard */; };
 		EA007A48222712ED00AD7AFE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA007A47222712ED00AD7AFE /* LoginViewController.swift */; };
+		EA007A4C2227175C00AD7AFE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA007A4B2227175C00AD7AFE /* Main.storyboard */; };
 		EAB209232220E519000686B3 /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB209222220E519000686B3 /* LoginButton.swift */; };
 		EAB209262220E6B7000686B3 /* CheckboxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB209252220E6B7000686B3 /* CheckboxButton.swift */; };
 /* End PBXBuildFile section */
@@ -63,8 +64,9 @@
 		88E03EFDAB7F8CC488DDAD33 /* Pods_TeachAssistUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeachAssistUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3C9B462BF6FBB984CAE1FCC /* Pods-TeachAssistTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeachAssistTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TeachAssistTests/Pods-TeachAssistTests.release.xcconfig"; sourceTree = "<group>"; };
 		BA3800C2F1869FD078491C2F /* Pods-TeachAssist.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeachAssist.release.xcconfig"; path = "Pods/Target Support Files/Pods-TeachAssist/Pods-TeachAssist.release.xcconfig"; sourceTree = "<group>"; };
-		EA007A4522270D6900AD7AFE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EA007A4522270D6900AD7AFE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
 		EA007A47222712ED00AD7AFE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		EA007A4B2227175C00AD7AFE /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		EAB209222220E519000686B3 /* LoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
 		EAB209252220E6B7000686B3 /* CheckboxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -133,11 +135,12 @@
 			isa = PBXGroup;
 			children = (
 				6EDFB06322204DFD00640F87 /* Assets.xcassets */,
-				EAF2A087221F607300A0BFE3 /* subclasses */,
 				6E449D122204A26E00C0F0AC /* AppDelegate.swift */,
+				EAF2A087221F607300A0BFE3 /* subclasses */,
 				EAF2A086221F565800A0BFE3 /* ViewControllers */,
 				6E449D1E2204A27200C0F0AC /* Info.plist */,
-				EA007A4422270D6900AD7AFE /* Main.storyboard */,
+				EA007A4422270D6900AD7AFE /* Login.storyboard */,
+				EA007A4B2227175C00AD7AFE /* Main.storyboard */,
 				6EE67E5D220DD8EE00010826 /* SendRequest.swift */,
 				6EF07E032210E58D00FFBFF4 /* ta.swift */,
 			);
@@ -309,7 +312,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA007A4622270D6A00AD7AFE /* Main.storyboard in Resources */,
+				EA007A4C2227175C00AD7AFE /* Main.storyboard in Resources */,
+				EA007A4622270D6A00AD7AFE /* Login.storyboard in Resources */,
 				6EDFB06422204DFE00640F87 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -468,12 +472,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		EA007A4422270D6900AD7AFE /* Main.storyboard */ = {
+		EA007A4422270D6900AD7AFE /* Login.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				EA007A4522270D6900AD7AFE /* Base */,
 			);
-			name = Main.storyboard;
+			name = Login.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

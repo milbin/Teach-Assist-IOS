@@ -36,11 +36,15 @@ class LoginViewController: UIViewController {
             
             Preferences.set(Username, forKey: KeyUsername)
             Preferences.set(Password, forKey: KeyPassword)
-            
             //  Save to disk
             Preferences.synchronize()
             print(Preferences.string(forKey: KeyUsername)!)
             print(Preferences.string(forKey: KeyPassword)!)
+            
+            //switch to main view
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "MainView") as UIViewController
+            present(vc, animated: true, completion: nil)
             
         }
         
