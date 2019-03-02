@@ -20,6 +20,8 @@
 		EA007A4622270D6A00AD7AFE /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA007A4422270D6900AD7AFE /* Login.storyboard */; };
 		EA007A48222712ED00AD7AFE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA007A47222712ED00AD7AFE /* LoginViewController.swift */; };
 		EA007A4C2227175C00AD7AFE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA007A4B2227175C00AD7AFE /* Main.storyboard */; };
+		EA2A93BC222A15D900C4100E /* CourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2A93BB222A15D900C4100E /* CourseViewController.swift */; };
+		EA2A93CA222A232000C4100E /* CircularProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2A93C9222A232000C4100E /* CircularProgressBar.swift */; };
 		EAB209232220E519000686B3 /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB209222220E519000686B3 /* LoginButton.swift */; };
 		EAB209262220E6B7000686B3 /* CheckboxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB209252220E6B7000686B3 /* CheckboxButton.swift */; };
 /* End PBXBuildFile section */
@@ -67,6 +69,8 @@
 		EA007A4522270D6900AD7AFE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
 		EA007A47222712ED00AD7AFE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EA007A4B2227175C00AD7AFE /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		EA2A93BB222A15D900C4100E /* CourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseViewController.swift; sourceTree = "<group>"; };
+		EA2A93C9222A232000C4100E /* CircularProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBar.swift; sourceTree = "<group>"; };
 		EAB209222220E519000686B3 /* LoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
 		EAB209252220E6B7000686B3 /* CheckboxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -178,6 +182,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		EA2A93B6222A089C00C4100E /* Main Page */ = {
+			isa = PBXGroup;
+			children = (
+				EA2A93C9222A232000C4100E /* CircularProgressBar.swift */,
+			);
+			path = "Main Page";
+			sourceTree = "<group>";
+		};
 		EAB209242220E51E000686B3 /* Login Page */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,6 +204,7 @@
 			children = (
 				6E449D142204A26E00C0F0AC /* MainViewController.swift */,
 				EA007A47222712ED00AD7AFE /* LoginViewController.swift */,
+				EA2A93BB222A15D900C4100E /* CourseViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -199,6 +212,7 @@
 		EAF2A087221F607300A0BFE3 /* subclasses */ = {
 			isa = PBXGroup;
 			children = (
+				EA2A93B6222A089C00C4100E /* Main Page */,
 				EAB209242220E51E000686B3 /* Login Page */,
 			);
 			path = subclasses;
@@ -409,18 +423,20 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-TeachAssist/Pods-TeachAssist-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-TeachAssist/Pods-TeachAssist-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/UICircularProgressRing/UICircularProgressRing.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UICircularProgressRing.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TeachAssist/Pods-TeachAssist-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TeachAssist/Pods-TeachAssist-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -432,9 +448,11 @@
 			files = (
 				EA007A48222712ED00AD7AFE /* LoginViewController.swift in Sources */,
 				6EF07E042210E58D00FFBFF4 /* ta.swift in Sources */,
+				EA2A93CA222A232000C4100E /* CircularProgressBar.swift in Sources */,
 				EAB209262220E6B7000686B3 /* CheckboxButton.swift in Sources */,
 				6EE67E5E220DD8EE00010826 /* SendRequest.swift in Sources */,
 				EAB209232220E519000686B3 /* LoginButton.swift in Sources */,
+				EA2A93BC222A15D900C4100E /* CourseViewController.swift in Sources */,
 				6E449D152204A26E00C0F0AC /* MainViewController.swift in Sources */,
 				6E449D132204A26E00C0F0AC /* AppDelegate.swift in Sources */,
 			);

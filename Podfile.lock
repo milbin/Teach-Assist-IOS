@@ -1,16 +1,20 @@
 PODS:
   - Alamofire (5.0.0-beta.2)
+  - UICircularProgressRing (6.0.1)
 
 DEPENDENCIES:
   - Alamofire (~> 5.0.0-beta.2)
+  - UICircularProgressRing
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - UICircularProgressRing
 
 SPEC CHECKSUMS:
   Alamofire: d1e5493588babe3e7b56ae29e8032942f4de09fe
+  UICircularProgressRing: c731c427f5304de4548f3563710ac610b7c3dd2e
 
-PODFILE CHECKSUM: 5410765f6e3f885c5d0edadd14c5b381e8c7b00f
+PODFILE CHECKSUM: 5f0d872dd46447ee4345d50427b55c4298bfc7f7
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.1
