@@ -22,13 +22,17 @@ class TA{
         let URL = "https://ta.yrdsb.ca/v4/students/json.php"
         let params = ["student_number":username, "password":password]
         sr.SendJSON(url:URL, parameters: params){resp in
-            finished(resp: resp!)
+            //useToken(resp: resp![0])
             
         }
-        func finished(resp:[Dictionary<String,String>]){
+        /*func useToken(resp:Dictionary<String,String>){
             print(resp)
-            
-        }
+            self.studentID = resp["student_id"]!
+            self.sessionToken = resp["sessionToken"]!
+            let params = ["student_id":self.studentID, "token":sessionToken, "subject_id":"0"]
+            sr.SendJSON(url: URL, parameters: params, completionHandler: <#T##([Dictionary<String, String>]?) -> ()#>)
+        }*/
+        print("IT WORKS")
             
         
         

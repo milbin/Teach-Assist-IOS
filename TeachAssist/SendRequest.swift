@@ -16,8 +16,25 @@ class SendRequest{
     func SendJSON(url:String, parameters:Dictionary<String, String>, completionHandler: @escaping ([Dictionary<String,String>]?) -> ()){
         print("sending request")
         let params = parameters
-
-        AF.request(url, method:.post, parameters:params, encoding:JSONEncoding.default)
+        let semaphore = DispatchSemaphore(value: 0)
+        var request = AF.request(url, method:.post, parameters:params, encoding:JSONEncoding.default)
+        var resp:[Dictionary<String,String>]?
+        
+        request.responseJSON(queue: DispatchQueue.global(qos: .default)) { response in
+            switch response.result {
+            case .success(let value):
+                print("REQUEST FINISHED")
+                resp = value as? [Dictionary<String,String>]
+                completionHandler(value as? [Dictionary<String,String>])
+            case .failure(let error):
+                print(error)
+                completionHandler(nil)
+            }
+            semaphore.signal()
+        }
+        _ = semaphore.wait(timeout: DispatchTime.distantFuture)
+        print(resp)
+            /*response
             .responseJSON{ response in
                 switch response.result {
                     case .success(let value):
@@ -27,7 +44,7 @@ class SendRequest{
                         print(error)
                         completionHandler(nil)
                 }
-        }
+        }*/
     }
 }
 
