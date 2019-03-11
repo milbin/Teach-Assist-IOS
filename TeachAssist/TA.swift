@@ -21,10 +21,7 @@ class TA{
         let sr = SendRequest()
         let URL = "https://ta.yrdsb.ca/v4/students/json.php"
         let params = ["student_number":username, "password":password]
-        sr.SendJSON(url:URL, parameters: params){resp in
-            //useToken(resp: resp![0])
-            
-        }
+        var resp = sr.SendJSON(url: URL, parameters: params)
         /*func useToken(resp:Dictionary<String,String>){
             print(resp)
             self.studentID = resp["student_id"]!
@@ -33,6 +30,7 @@ class TA{
             sr.SendJSON(url: URL, parameters: params, completionHandler: <#T##([Dictionary<String, String>]?) -> ()#>)
         }*/
         print("IT WORKS")
+        print(resp)
             
         
         

@@ -10,10 +10,7 @@ import Foundation
 import Alamofire
 
 class SendRequest{
-    var requestFinished = false
-    var resp:[Dictionary<String,String>]?
-    
-    func SendJSON(url:String, parameters:Dictionary<String, String>, completionHandler: @escaping ([Dictionary<String,String>]?) -> ()){
+    func SendJSON(url:String, parameters:Dictionary<String, String>)->Dictionary<String,String>?{
         print("sending request")
         let params = parameters
         let semaphore = DispatchSemaphore(value: 0)
@@ -25,15 +22,16 @@ class SendRequest{
             case .success(let value):
                 print("REQUEST FINISHED")
                 resp = value as? [Dictionary<String,String>]
-                completionHandler(value as? [Dictionary<String,String>])
+                //completionHandler(value as? [Dictionary<String,String>])
             case .failure(let error):
+                resp = nil
                 print(error)
-                completionHandler(nil)
+                //completionHandler(nil)
             }
             semaphore.signal()
         }
         _ = semaphore.wait(timeout: DispatchTime.distantFuture)
-        print(resp)
+        return resp![0]
             /*response
             .responseJSON{ response in
                 switch response.result {
