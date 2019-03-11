@@ -13,8 +13,8 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let sr = SendRequest()
-        sr.SendJSON(url:"https://ta.yrdsb.ca/v4/students/json.php", parameters: ["student_number":"your username here","password":"add your password here"])
+        let ta = TA()
+        ta.GetTaData(username:"335525291", password: "6rx8836f")
         self.navigationItem.title = "TeachAssist";
     }
 

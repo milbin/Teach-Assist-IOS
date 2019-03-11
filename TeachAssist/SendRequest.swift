@@ -10,15 +10,24 @@ import Foundation
 import Alamofire
 
 class SendRequest{
-    func SendJSON(url:String, parameters:Dictionary<String, String>){
+    var requestFinished = false
+    var resp:[Dictionary<String,String>]?
+    
+    func SendJSON(url:String, parameters:Dictionary<String, String>, completionHandler: @escaping ([Dictionary<String,String>]?) -> ()){
+        print("sending request")
         let params = parameters
-        AF.request(url, method:.post, parameters:params, encoding:JSONEncoding.default).responseJSON{ response in
-            if let result = response.result.value{
-               // let JSON = result as! NSDictionary
-                print(result)
-            }
+
+        AF.request(url, method:.post, parameters:params, encoding:JSONEncoding.default)
+            .responseJSON{ response in
+                switch response.result {
+                    case .success(let value):
+                        print("REQUEST FINISHED")
+                        completionHandler(value as? [Dictionary<String,String>])
+                    case .failure(let error):
+                        print(error)
+                        completionHandler(nil)
+                }
         }
-        
     }
 }
 
