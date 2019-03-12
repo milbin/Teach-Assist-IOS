@@ -14,23 +14,32 @@ class TA{
     var username:String = ""
     var password:String = ""
     
-    func GetTaData(username:String, password:String){
+    func GetTaData(username:String, password:String) -> Any?{
         //TODO add crashlitics
         self.username = username
         self.password = password
         let sr = SendRequest()
         let URL = "https://ta.yrdsb.ca/v4/students/json.php"
-        let params = ["student_number":username, "password":password]
-        var resp = sr.SendJSON(url: URL, parameters: params)
-        /*func useToken(resp:Dictionary<String,String>){
-            print(resp)
-            self.studentID = resp["student_id"]!
-            self.sessionToken = resp["sessionToken"]!
-            let params = ["student_id":self.studentID, "token":sessionToken, "subject_id":"0"]
-            sr.SendJSON(url: URL, parameters: params, completionHandler: <#T##([Dictionary<String, String>]?) -> ()#>)
-        }*/
-        print("IT WORKS")
+        var resp = sr.SendJSON(url: URL, parameters: ["student_number":username, "password":password])
         print(resp)
+        
+        //get main activity data
+        if resp == nil{
+            print("returned nil")
+            return nil
+        }
+        resp = resp!
+        self.studentID = resp!["student_id"] as! String
+        self.sessionToken = resp!["token"] as! String
+        print(self.sessionToken)
+        let params = ["token":sessionToken, "student_id":self.studentID]
+        var response = sr.SendJSON(url: URL, parameters: params)
+        print(response)
+        if response == nil{
+            return nil
+        }
+        response = response!
+        return response
             
         
         
