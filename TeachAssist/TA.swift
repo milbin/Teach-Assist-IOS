@@ -32,14 +32,35 @@ class TA{
         self.sessionToken = respToken!["token"] as! String
         print(self.sessionToken)
         let params = ["token":sessionToken, "student_id":self.studentID]
-        var resp = sr.SendJSON(url: URL, parameters: params)
-        print(resp)
+        var resp:[[String:[Dictionary<String,String>]]] = sr.SendJSON(url: URL, parameters: params)!["data"]! as! [[String : [Dictionary<String,String>]]]
         if resp == nil{
             return nil
         }
-        var response = resp!["subjects"]
+        var resp1 = resp[0]["subjects"]!
+        print(resp)
+        var response = [NSMutableDictionary]()
+        for course in resp1{
+            let dict = NSMutableDictionary()
+            for (key, value) in course{
+                dict[key] = value
+            }
+            response.append(dict)
+        }
         
-        sr.Send(url: "https://ta.yrdsb.ca/live/index.php?", parameters: ["subject_id":"0", "username":username, "password":password, "session_token": self.sessionToken, "student_id":self.studentID])
+        for var course in response{
+            let mark = course["mark"]! as! String
+            if mark.contains("Please see teacher for current status regarding achievement in the course"){
+                course["mark"] = "NA"
+            }else if mark.contains("Level"){
+                //TODO add a method to get the mark thingy
+            }else if mark.contains("%"){
+                course["mark"] = Double(mark.replacingOccurrences(of:"%", with:"").trimmingCharacters(in: .whitespacesAndNewlines))
+            }
+        }
+        print(response)
+        
+        var httpResp = sr.Send(url: "https://ta.yrdsb.ca/live/index.php?", parameters: ["subject_id":"0", "username":username, "password":password, "session_token": self.sessionToken, "student_id":self.studentID])
+        
         return nil
             
         

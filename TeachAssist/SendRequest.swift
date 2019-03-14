@@ -20,9 +20,7 @@ class SendRequest{
         AF.request(url, method:.post, parameters:params, encoding:JSONEncoding.default).responseJSON(queue: DispatchQueue.global(qos: .default)) { response in
             switch response.result {
             case .success(let value):
-                print(value)
                 resp = value as! [[String:Any]]
-                print(resp)
             case .failure(let error):
                 resp = nil
                 print(error)
