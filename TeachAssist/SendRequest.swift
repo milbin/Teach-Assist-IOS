@@ -36,6 +36,31 @@ class SendRequest{
         }
         return resp![0]
     }
+    
+    func Send(url:String, parameters:Dictionary<String, String>)->String?{
+        print("sending request")
+        let semaphore = DispatchSemaphore(value: 0)
+        //var request = AF.request(url, method:.post, parameters:params, encoding:JSONEncoding.default)
+        var resp:String?
+        
+        AF.request(url, method:.post, parameters:parameters).responseString(queue: DispatchQueue.global(qos: .default)) { response in
+            switch response.result {
+            case .success(let value):
+                print(value)
+                resp = value
+            case .failure(let error):
+                resp = nil
+                print(error)
+            }
+            semaphore.signal()
+        }
+        _ = semaphore.wait(timeout: DispatchTime.distantFuture)
+        print("REQUEST FINISHED")
+        if resp == nil{
+            return nil
+        }
+        return resp!
+    }
 }
 
 
