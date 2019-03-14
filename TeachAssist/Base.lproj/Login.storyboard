@@ -13,7 +13,7 @@
         <!--Login View Controller-->
         <scene sceneID="JGS-Tn-pTZ">
             <objects>
-                <viewController id="da3-f6-13K" customClass="LoginViewController" customModule="TeachAssist" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginView" id="da3-f6-13K" customClass="LoginViewController" customModule="TeachAssist" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="p7T-5f-e8f">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -17,6 +17,19 @@ class LoginViewController: UIViewController {
         loginButton.addTarget(self, action: #selector(LoginViewController.buttonPressed), for: .touchUpInside)
         // Do any additional setup after loading the view.
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(false)
+        let Preferences = UserDefaults.standard
+        var username = Preferences.string(forKey: "username")
+        var password = Preferences.string(forKey: "password")
+        print(username)
+        if(username != nil || password != nil || username != "" || password != ""){
+            //switch to main view
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "MainView") as UIViewController
+            present(vc, animated: true, completion: nil)
+        }
+    }
     
     
     @IBOutlet weak var usernameTextField: UITextField!
@@ -32,19 +45,24 @@ class LoginViewController: UIViewController {
             //TODO riase some error
             print("no username / password entered")
         }else{
-            //TODO check if username and password are valid
+            let ta = TA()
+            if ta.CheckCredentials(username: Username!, password: Password!){
             
-            Preferences.set(Username, forKey: KeyUsername)
-            Preferences.set(Password, forKey: KeyPassword)
-            //  Save to disk
-            Preferences.synchronize()
-            print(Preferences.string(forKey: KeyUsername)!)
-            print(Preferences.string(forKey: KeyPassword)!)
-            
-            //switch to main view
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "MainView") as UIViewController
-            present(vc, animated: true, completion: nil)
+                Preferences.set(Username!, forKey: KeyUsername)
+                Preferences.set(Password!, forKey: KeyPassword)
+                //  Save to disk
+                Preferences.synchronize()
+                print(Preferences.string(forKey: KeyUsername)!)
+                print(Preferences.string(forKey: KeyPassword)!)
+                
+                //switch to main view
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "MainView") as UIViewController
+                present(vc, animated: true, completion: nil)
+            }else{
+                //TODO show some dialog saying wrong user pass
+                print("WRONG USERNAME/PASSWORD")
+            }
             
         }
         

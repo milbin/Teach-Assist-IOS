@@ -44,7 +44,6 @@ class SendRequest{
         AF.request(url, method:.post, parameters:parameters).responseString(queue: DispatchQueue.global(qos: .default)) { response in
             switch response.result {
             case .success(let value):
-                print(value)
                 resp = value
             case .failure(let error):
                 resp = nil

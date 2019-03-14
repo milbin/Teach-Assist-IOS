@@ -14,18 +14,18 @@ class TA{
     var username:String = ""
     var password:String = ""
     
-    func GetTaData(username:String, password:String) -> Any?{
+    func GetTaData(username:String, password:String) -> [NSMutableDictionary]?{
         //TODO add crashlitics
         self.username = username
         self.password = password
         let sr = SendRequest()
         let URL = "https://ta.yrdsb.ca/v4/students/json.php"
         var respToken = sr.SendJSON(url: URL, parameters: ["student_number":username, "password":password])
-        print(respToken)
         
         //get main activity data
-        if respToken == nil{
-            print("returned nil")
+        if respToken == nil || respToken!["ERROR"] != nil{
+            print("connection or auth error")
+            print(respToken)
             return nil
         }
         self.studentID = respToken!["student_id"] as! String
@@ -37,7 +37,6 @@ class TA{
             return nil
         }
         var resp1 = resp[0]["subjects"]!
-        print(resp)
         var response = [NSMutableDictionary]()
         for course in resp1{
             let dict = NSMutableDictionary()
@@ -57,13 +56,46 @@ class TA{
                 course["mark"] = Double(mark.replacingOccurrences(of:"%", with:"").trimmingCharacters(in: .whitespacesAndNewlines))
             }
         }
-        print(response)
         
         var httpResp = sr.Send(url: "https://ta.yrdsb.ca/live/index.php?", parameters: ["subject_id":"0", "username":username, "password":password, "session_token": self.sessionToken, "student_id":self.studentID])
         
-        return nil
+        if httpResp != nil{
+            var courseNumber = 0
+            for i in httpResp!.components(separatedBy: "<td>"){
+                if(i.contains("current mark = ") || i.contains("Please see teacher for current status regarding achievement in the course")||i.contains("Click Here")||i.contains("Level")) {
+                    let Course_Name = i.components(separatedBy: ":")[1].components(separatedBy:"<br>")[0].trimmingCharacters(in: .whitespacesAndNewlines);
+                    let Room_Number = i.components(separatedBy: "rm. ")[1].components(separatedBy:"</td>")[0].trimmingCharacters(in: .whitespacesAndNewlines);
+                    response[courseNumber]["Room_Number"] = Room_Number
+                    response[courseNumber]["Course_Name"] = Course_Name
+                    courseNumber += 1
+                }
+                
+            }
+            print(response)
+        }
+        
+        return response
             
         
+        
+    }
+    
+    func CheckCredentials(username:String, password:String)-> Bool{
+        //TODO add crashlitics
+        let sr = SendRequest()
+        let URL = "https://ta.yrdsb.ca/v4/students/json.php"
+        var respToken = sr.SendJSON(url: URL, parameters: ["student_number":username, "password":password])
+        
+        //get main activity data
+        if respToken == nil{
+            print("returned nil")
+            return false
+        }
+        if respToken!["ERROR"] != nil{
+            return false
+        }else{
+            return true
+        }
         
     }
 }
