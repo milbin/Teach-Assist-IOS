@@ -17,28 +17,7 @@
                     <view key="view" contentMode="scaleToFill" id="LTq-if-LMk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="oZH-aS-odt">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </stackView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AEG-bV-Z8B" customClass="CircularProgressBar" customModule="TeachAssist" customModuleProvider="target">
-                                <rect key="frame" x="16" y="233" width="343" height="150"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="29S-Ba-abt"/>
-                                </constraints>
-                                <connections>
-                                    <segue destination="lsU-4V-awr" kind="embed" id="ewY-Zf-Hu5"/>
-                                </connections>
-                            </containerView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="AEG-bV-Z8B" firstAttribute="top" secondItem="LTq-if-LMk" secondAttribute="topMargin" constant="169" id="By0-NS-tWJ"/>
-                            <constraint firstItem="AEG-bV-Z8B" firstAttribute="centerX" secondItem="LTq-if-LMk" secondAttribute="centerX" id="GsH-gZ-XnE"/>
-                            <constraint firstItem="TZ8-zf-f5Z" firstAttribute="trailing" secondItem="AEG-bV-Z8B" secondAttribute="trailing" constant="16" id="KQw-Ek-WUq"/>
-                            <constraint firstItem="AEG-bV-Z8B" firstAttribute="leading" secondItem="TZ8-zf-f5Z" secondAttribute="leading" constant="16" id="fMe-9Y-sC8"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="TZ8-zf-f5Z"/>
                     </view>
                     <navigationItem key="navigationItem" id="j53-mi-QTy"/>
@@ -66,25 +45,26 @@
         <!--Course View Controller-->
         <scene sceneID="B7c-vx-Ehn">
             <objects>
-                <viewController id="lsU-4V-awr" customClass="CourseViewController" customModule="TeachAssist" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="mhH-Nv-hJ8">
-                        <rect key="frame" x="0.0" y="0.0" width="343" height="150"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yvH-ii-89D" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="CourseView" id="lsU-4V-awr" customClass="CourseViewController" customModule="TeachAssist" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="mhH-Nv-hJ8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Period 1:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bzk-4m-mIa">
-                                <rect key="frame" x="132.5" y="8" width="78" height="25.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Period 1:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bzk-4m-mIa">
+                                <rect key="frame" x="132.5" y="28" width="78" height="25.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Room 169" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qlH-Wj-W6H">
-                                <rect key="frame" x="141" y="35.5" width="61" height="16"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Room 169" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qlH-Wj-W6H">
+                                <rect key="frame" x="141" y="55.5" width="61" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Anthropology Sociology and Physiology" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="x0N-lA-pVa">
-                                <rect key="frame" x="220" y="54" width="112" height="88"/>
+                                <rect key="frame" x="220" y="74" width="112" height="585"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="112" id="oh4-yS-nQG"/>
@@ -93,17 +73,18 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AVI3M1-01" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lLw-1y-J04">
-                                <rect key="frame" x="241" y="28" width="79" height="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="AVI3M1-01" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lLw-1y-J04">
+                                <rect key="frame" x="241" y="48" width="79" height="18"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wj3-xm-idm" customClass="UICircularProgressRing" customModule="UICircularProgressRing">
-                                <rect key="frame" x="8" y="17" width="121" height="121"/>
+                                <rect key="frame" x="8" y="37" width="121" height="121"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="121" id="16f-ry-Ax4"/>
+                                    <constraint firstAttribute="width" constant="121" id="YfD-Wt-ymy"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="value">
@@ -150,9 +131,8 @@
                         <outlet property="progressRing" destination="wj3-xm-idm" id="JOG-mD-UGF"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yvH-ii-89D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="917.60000000000002" y="132.23388305847078"/>
+            <point key="canvasLocation" x="1015" y="133"/>
         </scene>
     </scenes>
 </document>

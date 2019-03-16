@@ -8,6 +8,7 @@ target 'TeachAssist' do
   # Pods for TeachAssist
   pod 'Alamofire', '~> 5.0.0-beta.2'
   pod 'UICircularProgressRing'
+  pod 'PureLayout', '~> 2.0.5'
 
   target 'TeachAssistTests' do
     inherit! :search_paths

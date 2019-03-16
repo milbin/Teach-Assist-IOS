@@ -22,12 +22,11 @@ class LoginViewController: UIViewController {
         let Preferences = UserDefaults.standard
         var username = Preferences.string(forKey: "username")
         var password = Preferences.string(forKey: "password")
-        print(username)
         if(username != nil || password != nil || username != "" || password != ""){
             //switch to main view
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "MainView") as UIViewController
-            present(vc, animated: true, completion: nil)
+            present(vc, animated: true, completion: nil) //TODO cahnge this to a seperate activity that checks
         }
     }
     

@@ -10,12 +10,28 @@ import UIKit
 
 class MainViewController: UIViewController {
 
+    var courseView: Course!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        let controller = storyboard!.instantiateViewController(withIdentifier: "CourseView")
+        addChild(controller)
+        controller.view.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(controller.view)
+        
+        NSLayoutConstraint.activate([
+            controller.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            controller.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            controller.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
+            controller.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10)
+            ])
+        
+        controller.didMove(toParent: self)
+        
         
     }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
@@ -33,11 +49,8 @@ class MainViewController: UIViewController {
         }
         ta.GetTaData(username: username!, password: password!)
         self.navigationItem.title = "TeachAssist";
-        
     }
     
-
-
 }
 
 
