@@ -42,6 +42,8 @@ class CourseView: UIView {
         
         // Adding custom subview on top of our view (over any custom drawing > see note below)
         addSubview(contentView!)
+        ProgressBar.font = UIFont.boldSystemFont(ofSize: 25.0)
+        ProgressBar.valueFormatter = UICircularProgressRingFormatter(showFloatingPoint:true, decimalPlaces:1)
     }
     
     func loadViewFromNib() -> UIView! {

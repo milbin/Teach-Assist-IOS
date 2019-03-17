@@ -20,19 +20,19 @@
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="350" height="150"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+        <view contentMode="center" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Period 1:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qhe-n4-cNj">
-                    <rect key="frame" x="136" y="10" width="78" height="26"/>
+                    <rect key="frame" x="148.5" y="10" width="78" height="26"/>
                     <fontDescription key="fontDescription" type="system" pointSize="21"/>
                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Anthropology Sociology and Physiology" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0oe-SZ-O4K">
-                    <rect key="frame" x="228" y="56" width="112" height="70"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <rect key="frame" x="240.5" y="56" width="112" height="70"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="70" id="FbB-4J-5mG"/>
                         <constraint firstAttribute="width" constant="112" id="dyK-KW-pKq"/>
@@ -42,14 +42,17 @@
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AVI3M1-01" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Bu-vs-iPh">
-                    <rect key="frame" x="245" y="30" width="79" height="18"/>
+                    <rect key="frame" x="257.5" y="30" width="91.5" height="18"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="18" id="0GD-j8-3wf"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="INy-at-mkD" customClass="UICircularProgressRing" customModule="UICircularProgressRing">
-                    <rect key="frame" x="7" y="14.5" width="121" height="121"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <rect key="frame" x="19.5" y="14.5" width="121" height="121"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="121" id="XuS-yg-0b4"/>
                         <constraint firstAttribute="width" constant="121" id="bmB-MZ-jE9"/>
@@ -78,32 +81,31 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Room 169" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jcK-SG-vMM">
-                    <rect key="frame" x="144.5" y="38" width="61" height="16"/>
+                    <rect key="frame" x="157" y="38" width="61" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="jcK-SG-vMM" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="4rs-ml-T4I"/>
-                <constraint firstItem="INy-at-mkD" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="7" id="5zZ-4l-CZS"/>
                 <constraint firstItem="Qhe-n4-cNj" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="E9B-HW-vlQ"/>
-                <constraint firstItem="INy-at-mkD" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="IDd-qR-qRY"/>
                 <constraint firstItem="8Bu-vs-iPh" firstAttribute="leading" secondItem="Qhe-n4-cNj" secondAttribute="trailing" constant="31" id="ZNB-a8-c0F"/>
                 <constraint firstItem="8Bu-vs-iPh" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="30" id="c5u-A7-qS2"/>
+                <constraint firstItem="INy-at-mkD" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="14.5" id="e4c-pj-8VT"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="INy-at-mkD" secondAttribute="bottom" constant="14.5" id="iGj-sK-6mP"/>
                 <constraint firstItem="0oe-SZ-O4K" firstAttribute="leading" secondItem="INy-at-mkD" secondAttribute="trailing" constant="100" id="j6B-83-BYW"/>
                 <constraint firstItem="0oe-SZ-O4K" firstAttribute="top" secondItem="8Bu-vs-iPh" secondAttribute="bottom" constant="8" id="n2W-dg-k44"/>
                 <constraint firstItem="jcK-SG-vMM" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="rma-oP-FR7"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="8Bu-vs-iPh" secondAttribute="trailing" constant="26" id="toY-6y-WUZ"/>
-                <constraint firstItem="Qhe-n4-cNj" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="vSK-1V-pcs"/>
-                <constraint firstItem="0oe-SZ-O4K" firstAttribute="top" secondItem="8Bu-vs-iPh" secondAttribute="bottom" constant="8" id="vWA-Aw-AZ0"/>
+                <constraint firstItem="Qhe-n4-cNj" firstAttribute="leading" secondItem="INy-at-mkD" secondAttribute="trailing" constant="8" id="v5c-rT-upO"/>
                 <constraint firstItem="Qhe-n4-cNj" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="w59-hW-bAs"/>
                 <constraint firstItem="jcK-SG-vMM" firstAttribute="top" secondItem="Qhe-n4-cNj" secondAttribute="bottom" constant="2" id="zNh-Mq-Vuy"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="56" y="48.575712143928037"/>
+            <point key="canvasLocation" x="55.200000000000003" y="-186.20689655172416"/>
         </view>
     </objects>
 </document>

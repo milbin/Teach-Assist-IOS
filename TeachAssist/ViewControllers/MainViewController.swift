@@ -10,6 +10,8 @@ import UIKit
 
 class MainViewController: UIViewController {
 
+    
+    
     @IBOutlet weak var StackView: UIStackView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,8 +30,31 @@ class MainViewController: UIViewController {
             
             controller.didMove(toParent: self)
         }*/
-        var courseView:UIView = CourseView(frame: self.StackView.bounds)
-        StackView.addSubview(courseView)
+        
+        var courseView = CourseView(frame: self.StackView.bounds)
+        courseView.frame.size.height = 150
+        courseView.ProgressBar.value = 69.5
+        courseView.layer.cornerRadius = 10
+        
+        
+        var courseView1 = CourseView(frame: self.StackView.bounds)
+        courseView1.frame.size.height = 150
+        courseView1.ProgressBar.value = 65.2
+        courseView1.layer.cornerRadius = 10
+        courseView1.backgroundColor = UIColor.blue
+        
+        var courseView2 = CourseView(frame: self.StackView.bounds)
+        courseView2.frame.size.height = 150
+        courseView2.ProgressBar.value = 99.1
+        courseView2.layer.cornerRadius = 10
+        courseView2.backgroundColor = UIColor.blue
+        
+        
+        
+        StackView.addArrangedSubview(courseView)
+        StackView.addArrangedSubview(courseView1)
+        StackView.addArrangedSubview(courseView2)
+        StackView.addArrangedSubview(courseView1)
         
         
     }
