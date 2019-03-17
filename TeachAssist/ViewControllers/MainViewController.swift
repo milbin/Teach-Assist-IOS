@@ -10,23 +10,26 @@ import UIKit
 
 class MainViewController: UIViewController {
 
+    @IBOutlet weak var StackView: UIStackView!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        let controller = storyboard!.instantiateViewController(withIdentifier: "CourseView")
-        addChild(controller)
-        controller.view.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(controller.view)
-        
-        NSLayoutConstraint.activate([
-            controller.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            controller.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-            controller.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
-            controller.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10)
-            ])
-        
-        controller.didMove(toParent: self)
+        /*for i in [1,2]{
+            let controller = storyboard!.instantiateViewController(withIdentifier: "CourseView")
+            controller.view.translatesAutoresizingMaskIntoConstraints = false
+            StackView.addSubview(controller.view)
+            
+            NSLayoutConstraint.activate([
+                controller.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+                controller.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+                controller.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
+                controller.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10)
+                ])
+            
+            controller.didMove(toParent: self)
+        }*/
+        var courseView:UIView = CourseView(frame: self.StackView.bounds)
+        StackView.addSubview(courseView)
         
         
     }
@@ -51,5 +54,4 @@ class MainViewController: UIViewController {
     }
     
 }
-
 

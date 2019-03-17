@@ -17,7 +17,6 @@ class CourseViewController: UIViewController {
         super.viewDidLoad()
         progressRing.font = UIFont.boldSystemFont(ofSize: 25.0)
         progressRing.value = 87.6
-        
         progressRing.valueFormatter = UICircularProgressRingFormatter(showFloatingPoint:true, decimalPlaces:1)
         
         // Do any additional setup after loading the view.

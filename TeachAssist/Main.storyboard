@@ -13,14 +13,23 @@
         <!--Main View Controller-->
         <scene sceneID="ulL-CM-dNA">
             <objects>
-                <viewController storyboardIdentifier="MainView" id="JI8-KS-h8B" customClass="MainViewController" customModule="TeachAssist" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="JI8-KS-h8B" customClass="MainViewController" customModule="TeachAssist" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LTq-if-LMk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="BF5-Kt-Fny">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="TZ8-zf-f5Z"/>
                     </view>
                     <navigationItem key="navigationItem" id="j53-mi-QTy"/>
+                    <connections>
+                        <outlet property="StackView" destination="BF5-Kt-Fny" id="C8n-aE-Tcg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IO9-xL-dT9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -29,7 +38,7 @@
         <!--Navigation Controller-->
         <scene sceneID="rov-sy-LHB">
             <objects>
-                <navigationController id="iTw-tJ-WJD" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MainView" id="iTw-tJ-WJD" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PKf-Zi-J22">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -45,42 +54,42 @@
         <!--Course View Controller-->
         <scene sceneID="B7c-vx-Ehn">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yvH-ii-89D" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="CourseView" id="lsU-4V-awr" customClass="CourseViewController" customModule="TeachAssist" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="mhH-Nv-hJ8">
+                    <view key="view" contentMode="scaleToFill" id="mhH-Nv-hJ8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Period 1:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bzk-4m-mIa">
-                                <rect key="frame" x="132.5" y="28" width="78" height="25.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Period 1:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bzk-4m-mIa">
+                                <rect key="frame" x="148.5" y="28" width="78" height="25.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Room 169" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qlH-Wj-W6H">
-                                <rect key="frame" x="141" y="55.5" width="61" height="16"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Room 169" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qlH-Wj-W6H">
+                                <rect key="frame" x="157" y="55.5" width="61" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Anthropology Sociology and Physiology" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="x0N-lA-pVa">
-                                <rect key="frame" x="220" y="74" width="112" height="585"/>
+                                <rect key="frame" x="247" y="74" width="112" height="70"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="JkA-wq-3c8"/>
                                     <constraint firstAttribute="width" constant="112" id="oh4-yS-nQG"/>
                                 </constraints>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="AVI3M1-01" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lLw-1y-J04">
-                                <rect key="frame" x="241" y="48" width="79" height="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AVI3M1-01" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lLw-1y-J04">
+                                <rect key="frame" x="257" y="48" width="79" height="18"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wj3-xm-idm" customClass="UICircularProgressRing" customModule="UICircularProgressRing">
-                                <rect key="frame" x="8" y="37" width="121" height="121"/>
+                                <rect key="frame" x="9" y="37" width="121" height="121"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="121" id="16f-ry-Ax4"/>
@@ -113,17 +122,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="bzk-4m-mIa" firstAttribute="centerX" secondItem="mhH-Nv-hJ8" secondAttribute="centerX" id="3A5-1K-GGc"/>
-                            <constraint firstAttribute="bottom" secondItem="x0N-lA-pVa" secondAttribute="bottom" constant="8" id="Aoc-Ev-R2j"/>
-                            <constraint firstAttribute="trailing" secondItem="x0N-lA-pVa" secondAttribute="trailing" constant="11" id="BZH-LH-QBT"/>
                             <constraint firstItem="wj3-xm-idm" firstAttribute="top" secondItem="urz-SE-gfW" secondAttribute="top" constant="17" id="O15-mu-hxf"/>
                             <constraint firstItem="bzk-4m-mIa" firstAttribute="top" secondItem="mhH-Nv-hJ8" secondAttribute="topMargin" constant="8" id="S6U-ab-Hku"/>
-                            <constraint firstItem="wj3-xm-idm" firstAttribute="leading" secondItem="urz-SE-gfW" secondAttribute="leading" constant="8" id="aJs-vF-2uC"/>
                             <constraint firstItem="lLw-1y-J04" firstAttribute="top" secondItem="mhH-Nv-hJ8" secondAttribute="topMargin" constant="28" id="j52-bL-1cH"/>
                             <constraint firstItem="x0N-lA-pVa" firstAttribute="top" secondItem="lLw-1y-J04" secondAttribute="bottom" constant="8" id="k0A-lV-yy0"/>
                             <constraint firstItem="qlH-Wj-W6H" firstAttribute="centerX" secondItem="mhH-Nv-hJ8" secondAttribute="centerX" id="nuB-kP-zwr"/>
+                            <constraint firstItem="x0N-lA-pVa" firstAttribute="leading" secondItem="wj3-xm-idm" secondAttribute="trailing" constant="117" id="o6e-4A-V1e"/>
                             <constraint firstItem="lLw-1y-J04" firstAttribute="leading" secondItem="bzk-4m-mIa" secondAttribute="trailing" constant="30.5" id="sZA-YM-8j2"/>
                             <constraint firstItem="qlH-Wj-W6H" firstAttribute="top" secondItem="bzk-4m-mIa" secondAttribute="bottom" constant="2" id="vii-Il-0aV"/>
-                            <constraint firstItem="x0N-lA-pVa" firstAttribute="leading" secondItem="wj3-xm-idm" secondAttribute="trailing" constant="91" id="ycJ-hc-EsD"/>
+                            <constraint firstItem="bzk-4m-mIa" firstAttribute="leading" secondItem="wj3-xm-idm" secondAttribute="trailing" constant="18.5" id="x00-pZ-TgV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="urz-SE-gfW"/>
                     </view>
@@ -131,6 +138,7 @@
                         <outlet property="progressRing" destination="wj3-xm-idm" id="JOG-mD-UGF"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yvH-ii-89D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1015" y="133"/>
         </scene>
