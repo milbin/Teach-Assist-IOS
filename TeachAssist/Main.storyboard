@@ -18,21 +18,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleAspectFit" ambiguous="YES" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="W3t-Uk-hkX">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TWk-b4-WHp">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                            </stackView>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="top" axis="vertical" distribution="fillEqually" alignment="center" spacing="5" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W3t-Uk-hkX">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="Jb6-3o-aCo"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="W3t-Uk-hkX" firstAttribute="top" secondItem="TWk-b4-WHp" secondAttribute="top" id="Aum-HJ-r5L"/>
+                                    <constraint firstAttribute="trailing" secondItem="W3t-Uk-hkX" secondAttribute="trailing" id="CTg-tn-8OF"/>
+                                    <constraint firstItem="W3t-Uk-hkX" firstAttribute="leading" secondItem="TWk-b4-WHp" secondAttribute="leading" id="KXx-XL-FvI"/>
+                                    <constraint firstAttribute="bottom" secondItem="W3t-Uk-hkX" secondAttribute="bottom" id="PWO-PS-9RQ"/>
+                                    <constraint firstItem="W3t-Uk-hkX" firstAttribute="width" secondItem="TWk-b4-WHp" secondAttribute="width" id="XHb-9I-adN"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="0.85183005140000001" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="W3t-Uk-hkX" firstAttribute="top" secondItem="TZ8-zf-f5Z" secondAttribute="top" id="CNc-j1-6JC"/>
-                            <constraint firstItem="W3t-Uk-hkX" firstAttribute="trailing" secondItem="TZ8-zf-f5Z" secondAttribute="trailing" id="TFT-J6-ZWe"/>
-                            <constraint firstItem="W3t-Uk-hkX" firstAttribute="leading" secondItem="TZ8-zf-f5Z" secondAttribute="leading" id="gwR-N9-ti8"/>
+                            <constraint firstItem="TWk-b4-WHp" firstAttribute="bottom" secondItem="oQE-1m-0dc" secondAttribute="bottom" id="57m-tA-3K9"/>
+                            <constraint firstItem="oQE-1m-0dc" firstAttribute="trailing" secondItem="TWk-b4-WHp" secondAttribute="trailing" id="80G-h4-0Cv"/>
+                            <constraint firstItem="TWk-b4-WHp" firstAttribute="leading" secondItem="oQE-1m-0dc" secondAttribute="leading" id="96r-Pj-71a"/>
+                            <constraint firstItem="TWk-b4-WHp" firstAttribute="top" secondItem="oQE-1m-0dc" secondAttribute="top" id="Q8b-kr-3Id"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="TZ8-zf-f5Z"/>
+                        <viewLayoutGuide key="safeArea" id="oQE-1m-0dc"/>
                     </view>
                     <navigationItem key="navigationItem" id="j53-mi-QTy"/>
                     <connections>
                         <outlet property="StackView" destination="W3t-Uk-hkX" id="ijQ-jj-RMY"/>
+                        <outlet property="StackViewHeight" destination="Jb6-3o-aCo" id="30t-72-ANe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IO9-xL-dT9" userLabel="First Responder" sceneMemberID="firstResponder"/>

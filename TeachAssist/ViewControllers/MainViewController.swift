@@ -13,38 +13,46 @@ class MainViewController: UIViewController {
 
     
     @IBOutlet weak var StackView: UIStackView!
+    @IBOutlet weak var StackViewHeight: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let topBarHeight = UIApplication.shared.statusBarFrame.size.height +
+            (self.navigationController?.navigationBar.frame.height ?? 0.0)
         
-        /*var StackView = UIStackView()
-        StackView.axis = .vertical
-        StackView.distribution = .equalSpacing
-        StackView.alignment = .center
-        StackView.spacing = 5
-        StackView.translatesAutoresizingMaskIntoConstraints = false
-        StackView.contentMode = .scaleAspectFit
-        view.addSubview(StackView)
-        
-        //autolayout the stack view - pin 30 up 20 left 20 right 30 down
-        let viewsDictionary = ["stackView":StackView]
-        let stackView_H = NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-20-[stackView]-20-|",  //horizontal constraint 20 points from left and right side
-            options: NSLayoutConstraint.FormatOptions(rawValue: 0),
-            metrics: nil,
-            views: viewsDictionary)
-        let stackView_V = NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-"+self.navigationItem.frame.height+"-[stackView]-1-|", //vertical constraint 30 points from top and bottom
-            options: NSLayoutConstraint.FormatOptions(rawValue:0),
-            metrics: nil,
-            views: viewsDictionary)
-        view.addConstraints(stackView_H)
-        view.addConstraints(stackView_V)*/
-        
-        var courseView = CourseView(frame: CGRect(x: 0, y: 0, width: 350, height: 150))
-        courseView.contentMode = .scaleAspectFit
+        for i in 0...10{
+        var courseView = CourseView(frame: CGRect(x: StackView.frame.origin.x, y: topBarHeight, width: 350, height: 150))
+        courseView.ProgressBar.value = 36.7
         StackView.addArrangedSubview(courseView)
+            
+        let rectShape = CAShapeLayer()
+        rectShape.bounds = courseView.frame
+        rectShape.position = courseView.center
+        rectShape.path = UIBezierPath(roundedRect: courseView.bounds, byRoundingCorners: [.bottomLeft , .bottomRight , .topLeft, .topRight], cornerRadii: CGSize(width: 20, height: 20)).cgPath
+        courseView.layer.mask = rectShape
         
+        StackViewHeight.constant = StackViewHeight.constant + 165
+        }
+        
+        
+        
+ 
+        /*
+        for i in 0...20 {
+            let greenView = UIView()
+            greenView.backgroundColor = .green
+            StackView.addArrangedSubview(greenView)
+            greenView.translatesAutoresizingMaskIntoConstraints = false
+            // Doesn't have intrinsic content size, so we have to provide the height at least
+            greenView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+            
+            // Label (has instrinsic content size)
+            let label = UILabel()
+            label.backgroundColor = .orange
+            label.text = "I'm label \(i)."
+            label.textAlignment = .center
+            StackView.addArrangedSubview(label)
+        }*/
 
         
         
