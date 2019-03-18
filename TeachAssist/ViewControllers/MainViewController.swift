@@ -9,52 +9,43 @@
 import UIKit
 
 class MainViewController: UIViewController {
+    var courseList = [CourseView]()
 
-    
     
     @IBOutlet weak var StackView: UIStackView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        /*for i in [1,2]{
-            let controller = storyboard!.instantiateViewController(withIdentifier: "CourseView")
-            controller.view.translatesAutoresizingMaskIntoConstraints = false
-            StackView.addSubview(controller.view)
-            
-            NSLayoutConstraint.activate([
-                controller.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-                controller.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-                controller.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
-                controller.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10)
-                ])
-            
-            controller.didMove(toParent: self)
-        }*/
-        
-        var courseView = CourseView(frame: self.StackView.bounds)
-        courseView.frame.size.height = 150
-        courseView.ProgressBar.value = 69.5
-        courseView.layer.cornerRadius = 10
         
         
-        var courseView1 = CourseView(frame: self.StackView.bounds)
-        courseView1.frame.size.height = 150
-        courseView1.ProgressBar.value = 65.2
-        courseView1.layer.cornerRadius = 10
-        courseView1.backgroundColor = UIColor.blue
+        /*var StackView = UIStackView()
+        StackView.axis = .vertical
+        StackView.distribution = .equalSpacing
+        StackView.alignment = .center
+        StackView.spacing = 5
+        StackView.translatesAutoresizingMaskIntoConstraints = false
+        StackView.contentMode = .scaleAspectFit
+        view.addSubview(StackView)
         
-        var courseView2 = CourseView(frame: self.StackView.bounds)
-        courseView2.frame.size.height = 150
-        courseView2.ProgressBar.value = 99.1
-        courseView2.layer.cornerRadius = 10
-        courseView2.backgroundColor = UIColor.blue
+        //autolayout the stack view - pin 30 up 20 left 20 right 30 down
+        let viewsDictionary = ["stackView":StackView]
+        let stackView_H = NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|-20-[stackView]-20-|",  //horizontal constraint 20 points from left and right side
+            options: NSLayoutConstraint.FormatOptions(rawValue: 0),
+            metrics: nil,
+            views: viewsDictionary)
+        let stackView_V = NSLayoutConstraint.constraints(
+            withVisualFormat: "V:|-"+self.navigationItem.frame.height+"-[stackView]-1-|", //vertical constraint 30 points from top and bottom
+            options: NSLayoutConstraint.FormatOptions(rawValue:0),
+            metrics: nil,
+            views: viewsDictionary)
+        view.addConstraints(stackView_H)
+        view.addConstraints(stackView_V)*/
         
-        
-        
+        var courseView = CourseView(frame: CGRect(x: 0, y: 0, width: 350, height: 150))
+        courseView.contentMode = .scaleAspectFit
         StackView.addArrangedSubview(courseView)
-        StackView.addArrangedSubview(courseView1)
-        StackView.addArrangedSubview(courseView2)
-        StackView.addArrangedSubview(courseView1)
+        
+
         
         
     }

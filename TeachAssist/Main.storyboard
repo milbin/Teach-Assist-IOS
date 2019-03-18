@@ -18,17 +18,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="nBS-wP-dtu">
+                            <stackView opaque="NO" contentMode="scaleAspectFit" ambiguous="YES" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="W3t-Uk-hkX">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="0.85183005140000001" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="W3t-Uk-hkX" firstAttribute="top" secondItem="TZ8-zf-f5Z" secondAttribute="top" id="CNc-j1-6JC"/>
+                            <constraint firstItem="W3t-Uk-hkX" firstAttribute="trailing" secondItem="TZ8-zf-f5Z" secondAttribute="trailing" id="TFT-J6-ZWe"/>
+                            <constraint firstItem="W3t-Uk-hkX" firstAttribute="leading" secondItem="TZ8-zf-f5Z" secondAttribute="leading" id="gwR-N9-ti8"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="TZ8-zf-f5Z"/>
                     </view>
                     <navigationItem key="navigationItem" id="j53-mi-QTy"/>
                     <connections>
-                        <outlet property="StackView" destination="nBS-wP-dtu" id="dfe-r2-IBb"/>
+                        <outlet property="StackView" destination="W3t-Uk-hkX" id="ijQ-jj-RMY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IO9-xL-dT9" userLabel="First Responder" sceneMemberID="firstResponder"/>

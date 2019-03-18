@@ -32,7 +32,7 @@
                 </label>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Anthropology Sociology and Physiology" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0oe-SZ-O4K">
                     <rect key="frame" x="240.5" y="56" width="112" height="70"/>
-                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="70" id="FbB-4J-5mG"/>
                         <constraint firstAttribute="width" constant="112" id="dyK-KW-pKq"/>
@@ -52,7 +52,7 @@
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="INy-at-mkD" customClass="UICircularProgressRing" customModule="UICircularProgressRing">
                     <rect key="frame" x="19.5" y="14.5" width="121" height="121"/>
-                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="121" id="XuS-yg-0b4"/>
                         <constraint firstAttribute="width" constant="121" id="bmB-MZ-jE9"/>
@@ -87,13 +87,16 @@
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.0"/>
             <constraints>
                 <constraint firstItem="jcK-SG-vMM" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="4rs-ml-T4I"/>
                 <constraint firstItem="Qhe-n4-cNj" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="E9B-HW-vlQ"/>
+                <constraint firstAttribute="bottom" secondItem="INy-at-mkD" secondAttribute="bottom" constant="14.5" id="NNH-jK-SXE"/>
                 <constraint firstItem="8Bu-vs-iPh" firstAttribute="leading" secondItem="Qhe-n4-cNj" secondAttribute="trailing" constant="31" id="ZNB-a8-c0F"/>
                 <constraint firstItem="8Bu-vs-iPh" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="30" id="c5u-A7-qS2"/>
                 <constraint firstItem="INy-at-mkD" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="14.5" id="e4c-pj-8VT"/>
+                <constraint firstItem="INy-at-mkD" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="14.5" id="fHT-5I-RrG"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="INy-at-mkD" secondAttribute="bottom" constant="14.5" id="iGj-sK-6mP"/>
                 <constraint firstItem="0oe-SZ-O4K" firstAttribute="leading" secondItem="INy-at-mkD" secondAttribute="trailing" constant="100" id="j6B-83-BYW"/>
                 <constraint firstItem="0oe-SZ-O4K" firstAttribute="top" secondItem="8Bu-vs-iPh" secondAttribute="bottom" constant="8" id="n2W-dg-k44"/>
@@ -104,6 +107,7 @@
                 <constraint firstItem="jcK-SG-vMM" firstAttribute="top" secondItem="Qhe-n4-cNj" secondAttribute="bottom" constant="2" id="zNh-Mq-Vuy"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <edgeInsets key="layoutMargins" top="10" left="10" bottom="10" right="10"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="55.200000000000003" y="-186.20689655172416"/>
         </view>
