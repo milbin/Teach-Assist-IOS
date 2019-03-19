@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UICircularProgressRing
 
 class MainViewController: UIViewController {
     var courseList = [CourseView]()
@@ -14,46 +15,11 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var StackView: UIStackView!
     @IBOutlet weak var StackViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var AverageBar: UICircularProgressRing!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let topBarHeight = UIApplication.shared.statusBarFrame.size.height +
-            (self.navigationController?.navigationBar.frame.height ?? 0.0)
-        
-        for i in 0...10{
-        var courseView = CourseView(frame: CGRect(x: StackView.frame.origin.x, y: topBarHeight, width: 350, height: 150))
-        courseView.ProgressBar.value = 36.7
-        StackView.addArrangedSubview(courseView)
-            
-        let rectShape = CAShapeLayer()
-        rectShape.bounds = courseView.frame
-        rectShape.position = courseView.center
-        rectShape.path = UIBezierPath(roundedRect: courseView.bounds, byRoundingCorners: [.bottomLeft , .bottomRight , .topLeft, .topRight], cornerRadii: CGSize(width: 20, height: 20)).cgPath
-        courseView.layer.mask = rectShape
-        
-        StackViewHeight.constant = StackViewHeight.constant + 165
-        }
-        
-        
-        
- 
-        /*
-        for i in 0...20 {
-            let greenView = UIView()
-            greenView.backgroundColor = .green
-            StackView.addArrangedSubview(greenView)
-            greenView.translatesAutoresizingMaskIntoConstraints = false
-            // Doesn't have intrinsic content size, so we have to provide the height at least
-            greenView.heightAnchor.constraint(equalToConstant: 100).isActive = true
-            
-            // Label (has instrinsic content size)
-            let label = UILabel()
-            label.backgroundColor = .orange
-            label.text = "I'm label \(i)."
-            label.textAlignment = .center
-            StackView.addArrangedSubview(label)
-        }*/
-
+        AverageBar.font = UIFont.boldSystemFont(ofSize: 25.0)
+        AverageBar.valueFormatter = UICircularProgressRingFormatter(showFloatingPoint:true, decimalPlaces:1)
         
         
     }
@@ -61,6 +27,8 @@ class MainViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+        
+        //get ta data
         let ta = TA()
         let Preferences = UserDefaults.standard
         var username = Preferences.string(forKey: "username")
@@ -73,8 +41,41 @@ class MainViewController: UIViewController {
             present(vc, animated: true, completion: nil)
             return
         }
-        ta.GetTaData(username: username!, password: password!)
-        self.navigationItem.title = "TeachAssist";
+        var response = ta.GetTaData(username: username!, password: password!) ?? nil
+        self.navigationItem.title = "Student: "+username!;
+        
+        //add courses to main view
+        if response == nil{
+            return //TODO raise network connecttion error
+        }
+        let topBarHeight = UIApplication.shared.statusBarFrame.size.height +
+            (self.navigationController?.navigationBar.frame.height ?? 0.0)
+        
+        for (i, course) in response!.enumerated(){
+            
+            var courseView = CourseView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width - 20, height: 160))
+            courseView.ProgressBar.value = course["mark"] as! CGFloat
+            courseView.PeriodNumber.text = "Period: \(i+1)"
+            if course["Room_Number"] != nil{
+                courseView.RoomNumber.text = "Room: \(course["Room_Number"]!)"
+            }
+            if course["course"] != nil{
+                courseView.CourseCode.text = (course["course"] as! String)
+            }
+            if course["Course_Name"] != nil{
+                courseView.CourseName.text = (course["Course_Name"] as! String)
+            }
+            StackView.addArrangedSubview(courseView)
+            
+            /*let rectShape = CAShapeLayer()
+            rectShape.bounds = courseView.frame
+            rectShape.position = courseView.center
+            rectShape.path = UIBezierPath(roundedRect: courseView.bounds, byRoundingCorners: [.bottomLeft , .bottomRight , .topLeft, .topRight], cornerRadii: CGSize(width: 20, height: 20)).cgPath
+            courseView.layer.mask = rectShape*/
+            
+            StackViewHeight.constant = StackViewHeight.constant + 175
+            
+        }
     }
     
 }

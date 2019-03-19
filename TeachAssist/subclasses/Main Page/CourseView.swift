@@ -12,6 +12,7 @@ import UICircularProgressRing
 @IBDesignable
 class CourseView: UIView {
 
+    @IBOutlet weak var PeriodNumber: UILabel!
     @IBOutlet weak var RoomNumber: UILabel!
     @IBOutlet weak var ProgressBar: UICircularProgressRing!
     @IBOutlet weak var CourseCode: UILabel!

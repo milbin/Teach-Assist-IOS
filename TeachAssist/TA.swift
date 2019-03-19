@@ -52,6 +52,7 @@ class TA{
                 course["mark"] = "NA"
             }else if mark.contains("Level"){
                 //TODO add a method to get the mark thingy
+                course["mark"] = 80.0
             }else if mark.contains("%"){
                 course["mark"] = Double(mark.replacingOccurrences(of:"%", with:"").trimmingCharacters(in: .whitespacesAndNewlines))
             }
