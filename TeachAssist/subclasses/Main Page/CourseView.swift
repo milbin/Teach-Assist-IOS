@@ -17,6 +17,8 @@ class CourseView: UIView {
     @IBOutlet weak var ProgressBar: UICircularProgressRing!
     @IBOutlet weak var CourseCode: UILabel!
     @IBOutlet weak var CourseName: UITextView!
+    @IBOutlet weak var CodeToSafe: NSLayoutConstraint!
+    @IBOutlet weak var PeriodToBar: NSLayoutConstraint!
     @IBOutlet var contentView: UIView!
     
     let nibName = "CourseView"

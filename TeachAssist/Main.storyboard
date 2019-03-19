@@ -21,14 +21,14 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TWk-b4-WHp">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="top" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" distribution="fillEqually" alignment="center" spacing="5" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W3t-Uk-hkX">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
+                                    <stackView opaque="NO" contentMode="top" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" distribution="fillEqually" spacing="5" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W3t-Uk-hkX">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gV7-5U-h3H">
-                                                <rect key="frame" x="67.5" y="0.0" width="240" height="175"/>
+                                                <rect key="frame" x="10" y="10" width="355" height="160"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Average" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RgN-Av-UF1">
-                                                        <rect key="frame" x="87" y="5" width="66" height="24"/>
+                                                        <rect key="frame" x="144.5" y="5" width="66" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="24" id="F9o-4s-frh"/>
                                                         </constraints>
@@ -37,8 +37,8 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wOf-za-rGo" customClass="UICircularProgressRing" customModule="UICircularProgressRing">
-                                                        <rect key="frame" x="59.5" y="34" width="121" height="121"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <rect key="frame" x="117" y="34" width="121" height="121"/>
+                                                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="121" id="8na-gN-Yzh"/>
                                                             <constraint firstAttribute="height" constant="121" id="WGs-xf-Wdq"/>
@@ -67,19 +67,20 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="wOf-za-rGo" secondAttribute="bottom" constant="20" id="5U0-Xp-Ao6"/>
                                                     <constraint firstItem="RgN-Av-UF1" firstAttribute="top" secondItem="gV7-5U-h3H" secondAttribute="top" constant="5" id="6qK-cG-80B"/>
                                                     <constraint firstItem="wOf-za-rGo" firstAttribute="top" secondItem="RgN-Av-UF1" secondAttribute="bottom" constant="5" id="YeW-0C-Iic"/>
                                                     <constraint firstItem="RgN-Av-UF1" firstAttribute="centerX" secondItem="gV7-5U-h3H" secondAttribute="centerX" id="nuf-Xe-s9S"/>
                                                     <constraint firstItem="wOf-za-rGo" firstAttribute="centerX" secondItem="gV7-5U-h3H" secondAttribute="centerX" id="w2J-Kx-AS7"/>
                                                 </constraints>
+                                                <directionalEdgeInsets key="directionalLayoutMargins" top="10" leading="10" bottom="10" trailing="10"/>
                                             </view>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="175" id="Jb6-3o-aCo"/>
+                                            <constraint firstAttribute="height" constant="180" id="Jb6-3o-aCo"/>
                                         </constraints>
+                                        <directionalEdgeInsets key="directionalLayoutMargins" top="10" leading="10" bottom="10" trailing="10"/>
                                     </stackView>
                                 </subviews>
                                 <constraints>

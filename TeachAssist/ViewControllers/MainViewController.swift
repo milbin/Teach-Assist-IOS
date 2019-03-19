@@ -53,7 +53,8 @@ class MainViewController: UIViewController {
         
         for (i, course) in response!.enumerated(){
             
-            var courseView = CourseView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width - 20, height: 160))
+            var courseView = CourseView(frame: CGRect(x: 0, y: 0, width: 415, height: 160))
+            
             courseView.ProgressBar.value = course["mark"] as! CGFloat
             courseView.PeriodNumber.text = "Period: \(i+1)"
             if course["Room_Number"] != nil{
@@ -65,6 +66,8 @@ class MainViewController: UIViewController {
             if course["Course_Name"] != nil{
                 courseView.CourseName.text = (course["Course_Name"] as! String)
             }
+            
+            
             StackView.addArrangedSubview(courseView)
             
             /*let rectShape = CAShapeLayer()
