@@ -7,12 +7,14 @@
 //
 
 import Foundation
+import HTMLString
 
 class TA{
     var sessionToken:String = ""
     var studentID:String = ""
     var username:String = ""
     var password:String = ""
+    var courses = [String]()
     
     func GetTaData(username:String, password:String) -> [NSMutableDictionary]?{
         //TODO add crashlitics
@@ -47,6 +49,11 @@ class TA{
         }
         
         for var course in response{
+            if course["subject_id"] != nil{
+                self.courses.append(course["subject_id"]! as! String)
+            }else{
+                self.courses.append("NA")
+            }
             let mark = course["mark"]! as! String
             if mark.contains("Please see teacher for current status regarding achievement in the course"){
                 course["mark"] = "NA"
@@ -64,7 +71,7 @@ class TA{
             var courseNumber = 0
             for i in httpResp!.components(separatedBy: "<td>"){
                 if(i.contains("current mark = ") || i.contains("Please see teacher for current status regarding achievement in the course")||i.contains("Click Here")||i.contains("Level")) {
-                    let Course_Name = i.components(separatedBy: ":")[1].components(separatedBy:"<br>")[0].trimmingCharacters(in: .whitespacesAndNewlines);
+                    let Course_Name = i.components(separatedBy: ":")[1].components(separatedBy:"<br>")[0].trimmingCharacters(in: .whitespacesAndNewlines).removingHTMLEntities;
                     let Room_Number = i.components(separatedBy: "rm. ")[1].components(separatedBy:"</td>")[0].trimmingCharacters(in: .whitespacesAndNewlines);
                     response[courseNumber]["Room_Number"] = Room_Number
                     response[courseNumber]["Course_Name"] = Course_Name
@@ -73,6 +80,7 @@ class TA{
                 
             }
             print(response)
+            GetMarks(subjectNumber: 1)
         }
         
         return response
@@ -97,6 +105,38 @@ class TA{
         }else{
             return true
         }
+        
+    }
+    
+    func GetMarks(subjectNumber:Int) -> [String:Any]?{
+        var sr = SendRequest()
+        var params = ["student_id": self.studentID, "token":self.sessionToken, "subject_id":courses[subjectNumber]]
+        var resp = sr.SendJSON(url: "https://ta.yrdsb.ca/v4/students/json.php", parameters: params)! as! [String : Any]
+        if resp == nil{
+            return nil
+        }
+        var assignments = ((resp["data"]! as! [String:Any])["assessment"]! as! [String:Any])["data"] as! [String:Any]
+
+        
+        
+        
+        return assignments
+    }
+    
+    func CalculateCourseAverage(subjectNumber:Int){
+        var marks = GetMarks(subjectNumber: subjectNumber)
+        var knowledge = 0.0
+        var thinking = 0.0
+        var communication = 0.0
+        var application = 0.0
+        
+        var totalWeightKnowledge = 0.0
+        var totalWeightThinking = 0.0
+        var totalWeightCommunication = 0.0
+        var totalWeightApplication = 0.0
+
+        var weights = marks!["categories"]
+    
         
     }
 }
