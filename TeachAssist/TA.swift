@@ -80,7 +80,8 @@ class TA{
                 
             }
             print(response)
-            GetMarks(subjectNumber: 1)
+            GetMarks(subjectNumber: 0)
+            CalculateCourseAverage(subjectNumber: 0)
         }
         
         return response
@@ -115,11 +116,8 @@ class TA{
         if resp == nil{
             return nil
         }
-        var assignments = ((resp["data"]! as! [String:Any])["assessment"]! as! [String:Any])["data"] as! [String:Any]
-
-        
-        
-        
+        var assignments = ((resp["data"]! as! [String:Any])["assessment"]! as! [String:Any])["data"] as! [String:AnyObject]
+        print(assignments)
         return assignments
     }
     
@@ -136,6 +134,39 @@ class TA{
         var totalWeightApplication = 0.0
 
         var weights = marks!["categories"]
+        
+        for (key, value) in marks!{
+            if key != "categories"{
+                var temp = value as! [String:Any]
+                temp["feedback"] = nil
+                temp["title"] = nil
+                var assignment = temp as! [String:[String:String]]
+                var markK = 0.0
+                var outOfK = 0.0
+                var weightK = -0.1
+                if assignment["K"] != nil && assignment["K"]!["mark"] != nil{
+                    markK = Double(assignment["K"]!["mark"]!)!
+                }else{
+                    weightK = 0.0;
+                }
+                if assignment["K"] != nil && assignment["K"]!["outOf"] != nil{
+                    outOfK = Double(assignment["K"]!["outOf"]!)!
+                }
+                if weightK == -0.1{
+                    if assignment["K"]!["weight"] != nil{
+                        weightK = Double(assignment["K"]!["weight"]!)!
+                    }
+                }
+                if outOfK != 0.0{
+                    knowledge += markK / outOfK * weightK;
+                    totalWeightKnowledge += weightK;
+                }
+
+
+            }
+        }
+        print(knowledge)
+        print(totalWeightKnowledge)
     
         
     }
