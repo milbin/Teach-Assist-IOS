@@ -66,10 +66,7 @@ class MainViewController: UIViewController {
             if course["Course_Name"] != nil{
                 courseView.CourseName.text = (course["Course_Name"] as! String)
             }
-            
-            
             StackView.addArrangedSubview(courseView)
-            
             /*let rectShape = CAShapeLayer()
             rectShape.bounds = courseView.frame
             rectShape.position = courseView.center
@@ -79,6 +76,8 @@ class MainViewController: UIViewController {
             StackViewHeight.constant = StackViewHeight.constant + 175
             
         }
+        AverageBar.value = CGFloat(ta.CalculateAverage(response: response!))
+        
     }
     
 }
