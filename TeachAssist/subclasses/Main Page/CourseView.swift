@@ -23,6 +23,7 @@ class CourseView: UIView {
     
     let nibName = "CourseView"
     
+    
         
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -47,6 +48,8 @@ class CourseView: UIView {
         addSubview(contentView!)
         ProgressBar.font = UIFont.boldSystemFont(ofSize: 25.0)
         ProgressBar.valueFormatter = UICircularProgressRingFormatter(showFloatingPoint:true, decimalPlaces:1)
+        self.layer.cornerRadius = 15;
+        self.layer.masksToBounds = true;
     }
     
     func loadViewFromNib() -> UIView! {

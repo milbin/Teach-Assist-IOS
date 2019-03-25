@@ -67,6 +67,7 @@ class MainViewController: UIViewController {
                 courseView.CourseName.text = (course["Course_Name"] as! String)
             }
             StackView.addArrangedSubview(courseView)
+            
             /*let rectShape = CAShapeLayer()
             rectShape.bounds = courseView.frame
             rectShape.position = courseView.center

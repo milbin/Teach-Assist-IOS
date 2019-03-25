@@ -22,7 +22,7 @@ class LoginViewController: UIViewController {
         let Preferences = UserDefaults.standard
         var username = Preferences.string(forKey: "username")
         var password = Preferences.string(forKey: "password")
-        if(username != nil || password != nil || username != "" || password != ""){
+        if(username != nil && password != nil && username != "" && password != ""){
             //switch to main view
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "MainView") as UIViewController
