@@ -54,8 +54,11 @@ class MainViewController: UIViewController {
         for (i, course) in response!.enumerated(){
             
             var courseView = CourseView(frame: CGRect(x: 0, y: 0, width: 415, height: 160))
-            
-            courseView.ProgressBar.value = course["mark"] as! CGFloat
+            if let mark = course["mark"] as? CGFloat{
+                courseView.ProgressBar.value = mark
+            }else{
+                courseView.ProgressBar.isHidden = true
+            }
             courseView.PeriodNumber.text = "Period: \(i+1)"
             if course["Room_Number"] != nil{
                 courseView.RoomNumber.text = "Room: \(course["Room_Number"]!)"

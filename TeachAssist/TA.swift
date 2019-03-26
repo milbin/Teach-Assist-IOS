@@ -82,8 +82,6 @@ class TA{
                 
             }
             print(response)
-            GetMarks(subjectNumber: 0)
-            CalculateCourseAverage(subjectNumber: 0)
         }
         
         return response
@@ -118,9 +116,17 @@ class TA{
         if resp == nil{
             return nil
         }
-        var assignments = ((resp["data"]! as! [String:Any])["assessment"]! as! [String:Any])["data"] as! [String:AnyObject]
-        print(assignments)
-        return assignments
+        print(resp)
+        if var assignments = ((resp["data"]! as! [String:Any])["assessment"]! as? [String:Any]){
+            assignments = assignments["data"] as! [String:Any]
+            print(assignments)
+            return assignments
+        }else{
+            return nil
+        }
+        
+        
+        
     }
     
     func CalculateAverage(response:[NSMutableDictionary]) -> Double{
