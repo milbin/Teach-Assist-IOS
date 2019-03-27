@@ -20,6 +20,7 @@ class CourseView: UIView {
     @IBOutlet weak var CodeToSafe: NSLayoutConstraint!
     @IBOutlet weak var PeriodToBar: NSLayoutConstraint!
     @IBOutlet var contentView: UIView!
+    @IBOutlet weak var NATextView: UITextView!
     
     let nibName = "CourseView"
     

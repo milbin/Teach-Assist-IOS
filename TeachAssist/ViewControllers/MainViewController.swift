@@ -58,6 +58,8 @@ class MainViewController: UIViewController {
                 courseView.ProgressBar.value = mark
             }else{
                 courseView.ProgressBar.isHidden = true
+                courseView.NATextView.isHidden = false
+                
             }
             courseView.PeriodNumber.text = "Period: \(i+1)"
             if course["Room_Number"] != nil{

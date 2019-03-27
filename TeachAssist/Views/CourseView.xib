@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="CourseCode" destination="8Bu-vs-iPh" id="QeE-Eg-amj"/>
                 <outlet property="CourseName" destination="0oe-SZ-O4K" id="XzC-zn-Xio"/>
+                <outlet property="NATextView" destination="NFE-2L-frj" id="484-x4-Ul8"/>
                 <outlet property="PeriodNumber" destination="Qhe-n4-cNj" id="rZ3-fD-0A3"/>
                 <outlet property="ProgressBar" destination="INy-at-mkD" id="rYo-eH-PsN"/>
                 <outlet property="RoomNumber" destination="jcK-SG-vMM" id="mV4-1p-ZSk"/>
@@ -34,7 +35,7 @@
                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Anthropology Sociology and Physiology" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0oe-SZ-O4K">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Anthropology Sociology and Physiology" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0oe-SZ-O4K">
                     <rect key="frame" x="258" y="56" width="112" height="70"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -94,11 +95,18 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
+                <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Please see teacher for current status regarding achievement in this course " textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NFE-2L-frj">
+                    <rect key="frame" x="0.0" y="35" width="139" height="91"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.0"/>
             <constraints>
                 <constraint firstItem="jcK-SG-vMM" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="4rs-ml-T4I"/>
+                <constraint firstItem="jcK-SG-vMM" firstAttribute="leading" relation="lessThanOrEqual" secondItem="INy-at-mkD" secondAttribute="trailing" constant="25.5" id="81M-fo-ccO"/>
                 <constraint firstItem="INy-at-mkD" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="5" id="9fo-UE-Nkp"/>
                 <constraint firstItem="Qhe-n4-cNj" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="E9B-HW-vlQ"/>
                 <constraint firstAttribute="bottom" secondItem="INy-at-mkD" secondAttribute="bottom" constant="14.5" id="NNH-jK-SXE"/>
@@ -120,5 +128,12 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="53.600000000000001" y="-186.20689655172416"/>
         </view>
+        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bsW-x2-6iS">
+            <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+            <nil key="textColor"/>
+            <nil key="highlightedColor"/>
+        </label>
     </objects>
 </document>
