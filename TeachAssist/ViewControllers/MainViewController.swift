@@ -105,8 +105,18 @@ class MainViewController: UIViewController {
     }
     
     
-    @objc func OnTrashButtonPress() {
-        print("Imageview Clicked")
+    @objc func OnTrashButtonPress(sender: UITapGestureRecognizer) {
+        print("Trashbutton Clicked")
+        print(sender)
+        let superView = sender.view?.superview
+        for course in courseList{
+            if course == superView{
+                print("found superview")
+                
+            }
+        }
+        superView?.isHidden = true
+        
     }
     
 }
