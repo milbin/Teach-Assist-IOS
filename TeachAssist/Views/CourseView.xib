@@ -18,6 +18,7 @@
                 <outlet property="PeriodNumber" destination="Qhe-n4-cNj" id="rZ3-fD-0A3"/>
                 <outlet property="ProgressBar" destination="INy-at-mkD" id="rYo-eH-PsN"/>
                 <outlet property="RoomNumber" destination="jcK-SG-vMM" id="mV4-1p-ZSk"/>
+                <outlet property="TrashButton" destination="3di-Jr-fRR" id="Zsf-Cr-lWP"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="Zcu-wP-Jrq"/>
             </connections>
         </placeholder>
@@ -101,21 +102,31 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1nA-J4-QqW">
+                    <rect key="frame" x="446" y="56" width="25" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <imageView hidden="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_action_delete" translatesAutoresizingMaskIntoConstraints="NO" id="3di-Jr-fRR">
+                    <rect key="frame" x="345" y="5" width="25" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="25" id="3G7-Hw-hQF"/>
+                        <constraint firstAttribute="width" constant="25" id="YgF-zf-UrN"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.0"/>
             <constraints>
+                <constraint firstItem="INy-at-mkD" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="49l-GE-vW7"/>
                 <constraint firstItem="jcK-SG-vMM" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="4rs-ml-T4I"/>
                 <constraint firstItem="jcK-SG-vMM" firstAttribute="leading" relation="lessThanOrEqual" secondItem="INy-at-mkD" secondAttribute="trailing" constant="25.5" id="81M-fo-ccO"/>
                 <constraint firstItem="INy-at-mkD" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="5" id="9fo-UE-Nkp"/>
                 <constraint firstItem="Qhe-n4-cNj" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="E9B-HW-vlQ"/>
-                <constraint firstAttribute="bottom" secondItem="INy-at-mkD" secondAttribute="bottom" constant="14.5" id="NNH-jK-SXE"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="3di-Jr-fRR" secondAttribute="trailing" constant="5" id="IFW-b6-OG6"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="0oe-SZ-O4K" secondAttribute="trailing" constant="5" id="PEb-Nc-1Yi"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="8Bu-vs-iPh" secondAttribute="trailing" constant="5" id="VUn-Xv-oG7"/>
+                <constraint firstItem="3di-Jr-fRR" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="5" id="Y20-Nj-epm"/>
                 <constraint firstItem="8Bu-vs-iPh" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="30" id="c5u-A7-qS2"/>
-                <constraint firstItem="INy-at-mkD" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="14.5" id="e4c-pj-8VT"/>
-                <constraint firstItem="INy-at-mkD" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="14.5" id="fHT-5I-RrG"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="INy-at-mkD" secondAttribute="bottom" constant="14.5" id="iGj-sK-6mP"/>
                 <constraint firstItem="Qhe-n4-cNj" firstAttribute="leading" relation="lessThanOrEqual" secondItem="INy-at-mkD" secondAttribute="trailing" constant="14" id="jwO-jb-MMa"/>
                 <constraint firstItem="0oe-SZ-O4K" firstAttribute="top" secondItem="8Bu-vs-iPh" secondAttribute="bottom" constant="8" id="n2W-dg-k44"/>
                 <constraint firstItem="8Bu-vs-iPh" firstAttribute="leading" relation="lessThanOrEqual" secondItem="jcK-SG-vMM" secondAttribute="trailing" constant="45.5" id="ozb-Dg-Qy8"/>
@@ -136,4 +147,7 @@
             <nil key="highlightedColor"/>
         </label>
     </objects>
+    <resources>
+        <image name="ic_action_delete" width="96" height="96"/>
+    </resources>
 </document>

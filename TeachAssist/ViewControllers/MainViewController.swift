@@ -11,16 +11,19 @@ import UICircularProgressRing
 
 class MainViewController: UIViewController {
     var courseList = [CourseView]()
-
+    var userIsEditing = false
+    var response:[NSMutableDictionary]? = nil
     
     @IBOutlet weak var StackView: UIStackView!
     @IBOutlet weak var StackViewHeight: NSLayoutConstraint!
     @IBOutlet weak var AverageBar: UICircularProgressRing!
+    @IBOutlet weak var EditButton: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
         AverageBar.font = UIFont.boldSystemFont(ofSize: 25.0)
         AverageBar.valueFormatter = UICircularProgressRingFormatter(showFloatingPoint:true, decimalPlaces:1)
-        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(OnEditButtonPress))//add edit button as the onClick method
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.white
         
     }
     
@@ -41,7 +44,7 @@ class MainViewController: UIViewController {
             present(vc, animated: true, completion: nil)
             return
         }
-        var response = ta.GetTaData(username: username!, password: password!) ?? nil
+        response = ta.GetTaData(username: username!, password: password!) ?? nil
         self.navigationItem.title = "Student: "+username!;
         
         //add courses to main view
@@ -72,18 +75,38 @@ class MainViewController: UIViewController {
                 courseView.CourseName.text = (course["Course_Name"] as! String)
             }
             StackView.addArrangedSubview(courseView)
+            let tap = UITapGestureRecognizer(target: self, action: #selector(OnTrashButtonPress))
+            courseView.TrashButton.addGestureRecognizer(tap)
+            courseList.append(courseView)
             
-            /*let rectShape = CAShapeLayer()
-            rectShape.bounds = courseView.frame
-            rectShape.position = courseView.center
-            rectShape.path = UIBezierPath(roundedRect: courseView.bounds, byRoundingCorners: [.bottomLeft , .bottomRight , .topLeft, .topRight], cornerRadii: CGSize(width: 20, height: 20)).cgPath
-            courseView.layer.mask = rectShape*/
             
             StackViewHeight.constant = StackViewHeight.constant + 175
             
         }
         AverageBar.value = CGFloat(ta.CalculateAverage(response: response!))
         
+        
+        
+    }
+    
+    @objc func OnEditButtonPress(sender: UIBarButtonItem){
+    print("edit Button pressed")
+        if userIsEditing{
+            userIsEditing = false
+            for course in courseList{
+                course.TrashButton.isHidden = true
+            }
+        }else{
+            userIsEditing = true
+            for course in courseList{
+                course.TrashButton.isHidden = false
+            }
+        }
+    }
+    
+    
+    @objc func OnTrashButtonPress() {
+        print("Imageview Clicked")
     }
     
 }
