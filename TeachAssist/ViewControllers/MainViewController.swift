@@ -45,7 +45,7 @@ class MainViewController: UIViewController {
             return
         }
         response = ta.GetTaData(username: username!, password: password!) ?? nil
-        self.navigationItem.title = "Student: "+username!;
+        self.navigationItem.title = "Student: "+username!
         
         //add courses to main view
         if response == nil{
@@ -74,11 +74,10 @@ class MainViewController: UIViewController {
             if course["Course_Name"] != nil{
                 courseView.CourseName.text = (course["Course_Name"] as! String)
             }
-            StackView.addArrangedSubview(courseView)
-            let tap = UITapGestureRecognizer(target: self, action: #selector(OnTrashButtonPress))
-            courseView.TrashButton.addGestureRecognizer(tap)
+            StackView.addArrangedSubview(courseView as UIView)
+            print(courseView as UIView)
+            courseView.TrashButton.addTarget(self, action: #selector(OnTrashButtonPress), for: .touchUpInside)
             courseList.append(courseView)
-            
             
             StackViewHeight.constant = StackViewHeight.constant + 175
             
@@ -105,19 +104,29 @@ class MainViewController: UIViewController {
     }
     
     
-    @objc func OnTrashButtonPress(sender: UITapGestureRecognizer) {
-        print("Trashbutton Clicked")
-        print(sender)
-        let superView = sender.view?.superview
-        for course in courseList{
-            if course == superView{
-                print("found superview")
-                
+    @objc func OnTrashButtonPress(sender: UIButton) {
+        print("Pressed Trash Button")
+        let view = sender.superview?.superview
+        var courseNumber = -1
+        for course in StackView.arrangedSubviews{
+            if view == course{
+                let ta = TA()
+                response!.remove(at: courseNumber)
+                AverageBar.value = CGFloat(ta.CalculateAverage(response: response!))
             }
+            courseNumber += 1
         }
-        superView?.isHidden = true
         
-    }
+        view?.isHidden = true
+        view?.removeFromSuperview()
+        StackView.layoutIfNeeded()
+        StackViewHeight.constant -= 175
+        
+        
+        
+        
+        }
+    
     
 }
 

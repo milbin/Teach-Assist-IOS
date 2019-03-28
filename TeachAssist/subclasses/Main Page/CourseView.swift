@@ -21,7 +21,8 @@ class CourseView: UIView {
     @IBOutlet weak var PeriodToBar: NSLayoutConstraint!
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var NATextView: UITextView!
-    @IBOutlet weak var TrashButton: UIImageView!
+    @IBOutlet weak var TrashButton: UIButton!
+    
     
     let nibName = "CourseView"
     
