@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import KYDrawerController
 
 class LoginViewController: UIViewController {
     
@@ -27,9 +28,8 @@ class LoginViewController: UIViewController {
         //password = ""
         if(username != nil && password != nil && username != "" && password != ""){
             //switch to main view
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "MainView") as UIViewController
-            present(vc, animated: true, completion: nil) //TODO cahnge this to a seperate activity that checks
+            
+            //present(vc, animated: true, completion: nil) //TODO cahnge this to a seperate activity that checks
         }
     }
     
@@ -57,10 +57,14 @@ class LoginViewController: UIViewController {
                 print(Preferences.string(forKey: KeyUsername)!)
                 print(Preferences.string(forKey: KeyPassword)!)
                 
-                //switch to main view
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let vc = storyboard.instantiateViewController(withIdentifier: "MainView") as UIViewController
-                present(vc, animated: true, completion: nil)
+                let mainViewController   = storyboard.instantiateViewController(withIdentifier: "MainView") as UIViewController
+                let drawerViewController = storyboard.instantiateViewController(withIdentifier: "DrawerView") as UIViewController
+                let drawerController     = KYDrawerController(drawerDirection: .left, drawerWidth: 300)
+                drawerController.mainViewController = mainViewController
+                drawerController.drawerViewController = drawerViewController
+                UIApplication.shared.keyWindow?.rootViewController = drawerController
+                UIApplication.shared.keyWindow?.makeKeyAndVisible()
             }else{
                 //TODO show some dialog saying wrong user pass
                 print("WRONG USERNAME/PASSWORD")

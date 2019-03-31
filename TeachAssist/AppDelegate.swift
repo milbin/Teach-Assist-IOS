@@ -17,7 +17,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        // Override point for customization after application launch.
+        let Preferences = UserDefaults.standard
+        var username = Preferences.string(forKey: "username")
+        var password = Preferences.string(forKey: "password")
+        //to logout
+        //username = ""
+        //password = ""
+        Preferences.synchronize()
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let mainViewController   = storyboard.instantiateViewController(withIdentifier: "MainView") as UIViewController
@@ -26,8 +32,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         drawerController.mainViewController = mainViewController
         drawerController.drawerViewController = drawerViewController
         
-        window?.rootViewController = drawerController
-        window?.makeKeyAndVisible()
+        if(username != nil && password != nil && username != "" && password != ""){ //if credentals are alredy stored go straight to main view
+            window?.rootViewController = drawerController
+            window?.makeKeyAndVisible()
+        }
         
         
         return true
