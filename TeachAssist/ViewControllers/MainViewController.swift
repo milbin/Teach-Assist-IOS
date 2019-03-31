@@ -14,6 +14,7 @@ class MainViewController: UIViewController {
     var courseList = [CourseView]()
     var userIsEditing = false
     var response:[NSMutableDictionary]? = nil
+    var hasViewStarted = false //this variable will check to make sure that the view hasnt started before so that courses arent re-added every time the nav drawer is triggered.
     
     @IBOutlet weak var StackView: UIStackView!
     @IBOutlet weak var StackViewHeight: NSLayoutConstraint!
@@ -33,7 +34,10 @@ class MainViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        
+        if hasViewStarted == true{
+            return
+        }
+        hasViewStarted = true
         //get ta data
         let ta = TA()
         let Preferences = UserDefaults.standard
