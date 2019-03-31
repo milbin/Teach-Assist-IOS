@@ -10,6 +10,7 @@ target 'TeachAssist' do
   pod 'UICircularProgressRing'
   pod 'PureLayout', '~> 2.0.5'
   pod 'HTMLString', '~> 4.0'
+  pod 'KYDrawerController'
 
   target 'TeachAssistTests' do
     inherit! :search_paths
