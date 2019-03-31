@@ -1,0 +1,6 @@
+framework module KYDrawerController {
+  umbrella header "KYDrawerController-umbrella.h"
+
+  export *
+  module * { export * }
+}

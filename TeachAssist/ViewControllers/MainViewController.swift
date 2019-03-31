@@ -24,6 +24,8 @@ class MainViewController: UIViewController {
         AverageBar.valueFormatter = UICircularProgressRingFormatter(showFloatingPoint:true, decimalPlaces:1)
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(OnEditButtonPress))//add edit button as the onClick method
         navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .pause, target: self, action: #selector(OnNavButtonPress))//add nav button as the onClick method
+        navigationItem.leftBarButtonItem?.tintColor = UIColor.white
         
     }
     
@@ -101,6 +103,11 @@ class MainViewController: UIViewController {
                 course.TrashButton.isHidden = false
             }
         }
+    }
+    
+    @objc func OnNavButtonPress(sender: UIBarButtonItem){
+        print("NAV Button pressed")
+    
     }
     
     
