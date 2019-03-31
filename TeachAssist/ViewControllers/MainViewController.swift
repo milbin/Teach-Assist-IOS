@@ -8,6 +8,7 @@
 
 import UIKit
 import UICircularProgressRing
+import KYDrawerController
 
 class MainViewController: UIViewController {
     var courseList = [CourseView]()
@@ -107,7 +108,9 @@ class MainViewController: UIViewController {
     
     @objc func OnNavButtonPress(sender: UIBarButtonItem){
         print("NAV Button pressed")
-    
+        if let drawerController = navigationController?.parent as? KYDrawerController {
+            drawerController.setDrawerState(.opened, animated: true)
+        }
     }
     
     

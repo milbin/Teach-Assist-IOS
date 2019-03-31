@@ -21,6 +21,7 @@
 		EA007A48222712ED00AD7AFE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA007A47222712ED00AD7AFE /* LoginViewController.swift */; };
 		EA007A4C2227175C00AD7AFE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA007A4B2227175C00AD7AFE /* Main.storyboard */; };
 		EA2A93BC222A15D900C4100E /* CourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2A93BB222A15D900C4100E /* CourseViewController.swift */; };
+		EA2BEE692251559200F085E2 /* DrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2BEE682251559200F085E2 /* DrawerViewController.swift */; };
 		EA3624AB223DD149009E392D /* CourseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA3624AA223DD149009E392D /* CourseView.xib */; };
 		EA3624AD223DD575009E392D /* CourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3624AC223DD575009E392D /* CourseView.swift */; };
 		EAB209232220E519000686B3 /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB209222220E519000686B3 /* LoginButton.swift */; };
@@ -71,6 +72,7 @@
 		EA007A47222712ED00AD7AFE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EA007A4B2227175C00AD7AFE /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		EA2A93BB222A15D900C4100E /* CourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseViewController.swift; sourceTree = "<group>"; };
+		EA2BEE682251559200F085E2 /* DrawerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerViewController.swift; sourceTree = "<group>"; };
 		EA3624AA223DD149009E392D /* CourseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseView.xib; sourceTree = "<group>"; };
 		EA3624AC223DD575009E392D /* CourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseView.swift; sourceTree = "<group>"; };
 		EAB209222220E519000686B3 /* LoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				6E449D142204A26E00C0F0AC /* MainViewController.swift */,
 				EA007A47222712ED00AD7AFE /* LoginViewController.swift */,
 				EA2A93BB222A15D900C4100E /* CourseViewController.swift */,
+				EA2BEE682251559200F085E2 /* DrawerViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -471,6 +474,7 @@
 				6EE67E5E220DD8EE00010826 /* SendRequest.swift in Sources */,
 				EAB209232220E519000686B3 /* LoginButton.swift in Sources */,
 				EA2A93BC222A15D900C4100E /* CourseViewController.swift in Sources */,
+				EA2BEE692251559200F085E2 /* DrawerViewController.swift in Sources */,
 				6E449D152204A26E00C0F0AC /* MainViewController.swift in Sources */,
 				6E449D132204A26E00C0F0AC /* AppDelegate.swift in Sources */,
 			);

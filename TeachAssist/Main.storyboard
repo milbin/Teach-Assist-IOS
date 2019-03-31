@@ -112,6 +112,21 @@
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
         </scene>
+        <!--Drawer View Controller-->
+        <scene sceneID="HY5-fy-a4x">
+            <objects>
+                <viewController storyboardIdentifier="DrawerView" id="YQr-jL-Hxe" customClass="DrawerViewController" customModule="TeachAssist" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SSE-l6-BNh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="odv-C7-WgD"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DR1-PC-nEs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1441" y="134"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="rov-sy-LHB">
             <objects>
@@ -131,7 +146,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wDT-jL-0cP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-639" y="134"/>
+            <point key="canvasLocation" x="-679" y="134"/>
         </scene>
     </scenes>
 </document>
