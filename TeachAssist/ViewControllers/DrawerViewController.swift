@@ -8,23 +8,32 @@
 
 import UIKit
 
-class DrawerViewController: UIViewController {
+class DrawerViewController: UITableViewController {
 
+    @IBOutlet weak var settingsCell: UITableViewCell!
+    var cells = ["settings":0, "logout":1, "bug report":2]
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        if indexPath.row == cells["logout"]{
+            print("Logging out")
+            let Preferences = UserDefaults.standard
+            Preferences.set("", forKey: "username")
+            Preferences.set("", forKey: "password")
+            //  Save to disk
+            Preferences.synchronize()
+            let storyboard = UIStoryboard(name: "Login", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "LoginView") as UIViewController
+            present(vc, animated: true, completion: nil)
+            
+        }
+    
     }
-    */
 
 }

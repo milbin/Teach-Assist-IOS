@@ -26,7 +26,7 @@ class MainViewController: UIViewController {
         AverageBar.valueFormatter = UICircularProgressRingFormatter(showFloatingPoint:true, decimalPlaces:1)
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(OnEditButtonPress))//add edit button as the onClick method
         navigationItem.rightBarButtonItem?.tintColor = UIColor.white
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .pause, target: self, action: #selector(OnNavButtonPress))//add nav button as the onClick method
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "HamburgerIcon"), style: .plain, target: self, action: #selector(OnNavButtonPress))//add nav button as the onClick method
         navigationItem.leftBarButtonItem?.tintColor = UIColor.white
         
     }

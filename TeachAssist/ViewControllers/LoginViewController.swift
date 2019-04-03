@@ -23,14 +23,6 @@ class LoginViewController: UIViewController {
         let Preferences = UserDefaults.standard
         var username = Preferences.string(forKey: "username")
         var password = Preferences.string(forKey: "password")
-        //to logout
-        //username = ""
-        //password = ""
-        if(username != nil && password != nil && username != "" && password != ""){
-            //switch to main view
-            
-            //present(vc, animated: true, completion: nil) //TODO cahnge this to a seperate activity that checks
-        }
     }
     
     
