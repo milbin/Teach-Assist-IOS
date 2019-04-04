@@ -60,7 +60,7 @@
                     <rect key="frame" x="269" y="30" width="101" height="18"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="18" id="0GD-j8-3wf"/>
-                        <constraint firstAttribute="width" constant="101" id="BEK-0I-Zvu"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="101" id="BEK-0I-Zvu"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                     <nil key="textColor"/>
@@ -71,7 +71,7 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="121" id="XuS-yg-0b4"/>
-                        <constraint firstAttribute="width" constant="121" id="bmB-MZ-jE9"/>
+                        <constraint firstAttribute="width" priority="750" constant="121" id="bmB-MZ-jE9"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="value">

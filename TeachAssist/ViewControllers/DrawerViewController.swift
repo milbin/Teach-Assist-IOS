@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import KYDrawerController
 
 class DrawerViewController: UITableViewController {
 
@@ -32,6 +33,9 @@ class DrawerViewController: UITableViewController {
             let vc = storyboard.instantiateViewController(withIdentifier: "LoginView") as UIViewController
             present(vc, animated: true, completion: nil)
             
+        } else if indexPath.row == cells["settings"]{
+            print("settings pressed")
+            self.performSegue(withIdentifier: "settingsSegue", sender: self)
         }
     
     }

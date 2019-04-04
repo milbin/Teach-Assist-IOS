@@ -45,7 +45,6 @@ class MainViewController: UIViewController {
         var password = Preferences.string(forKey: "password")
         if(username == nil || password == nil){
             //switch to login view
-            print("things")
             let storyboard = UIStoryboard(name: "Login", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "LoginView") as UIViewController
             present(vc, animated: true, completion: nil)
@@ -63,7 +62,7 @@ class MainViewController: UIViewController {
         
         for (i, course) in response!.enumerated(){
             
-            var courseView = CourseView(frame: CGRect(x: 0, y: 0, width: 415, height: 160))
+            var courseView = CourseView(frame: CGRect(x: 0, y: 0, width: 350, height: 160))
             if let mark = course["mark"] as? CGFloat{
                 courseView.ProgressBar.value = mark
             }else{
