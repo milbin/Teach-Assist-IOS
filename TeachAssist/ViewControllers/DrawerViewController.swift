@@ -35,9 +35,23 @@ class DrawerViewController: UITableViewController {
             
         } else if indexPath.row == cells["settings"]{
             print("settings pressed")
-            self.performSegue(withIdentifier: "settingsSegue", sender: self)
+            //self.performSegue(withIdentifier: "settingsSegue", sender: self)
+            print(self.parent)
+            if let drawerController = self.parent!.parent as? KYDrawerController {
+                drawerController.setDrawerState(.closed, animated: true)
+                print((drawerController.mainViewController as! UINavigationController).viewControllers)
+                (drawerController.mainViewController as! UINavigationController).viewControllers[0].performSegue(withIdentifier: "settingsSegue", sender: nil)
+            }
+            
+            
         }
     
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "HistorySegue" {
+            
+        }
     }
 
 }

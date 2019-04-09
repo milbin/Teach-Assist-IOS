@@ -20,12 +20,13 @@ class SettingsViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         self.navigationItem.title = "Settings"
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "back", style: .plain, target: self, action: #selector(OnBackButtonPress))
+        //print(self.navigationController!.viewControllers as [UIViewController])
         
     }
     
     @objc func OnBackButtonPress(sender: UIBarButtonItem){
         print("back Button pressed")
-        _ = navigationController?.popToRootViewController(animated: true)
+         _ = navigationController?.popViewController(animated: true)
     }
 
     // MARK: - Table view data source
