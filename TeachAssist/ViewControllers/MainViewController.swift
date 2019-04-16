@@ -94,6 +94,15 @@ class MainViewController: UIViewController {
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.destination is SettingsViewController
+        {
+            let vc = segue.destination as? SettingsViewController
+            vc?.response = response
+        }
+    }
+    
     @objc func OnEditButtonPress(sender: UIBarButtonItem){
     print("edit Button pressed")
         if userIsEditing{

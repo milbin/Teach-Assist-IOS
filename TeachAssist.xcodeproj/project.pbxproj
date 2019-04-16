@@ -26,6 +26,7 @@
 		EA3624AD223DD575009E392D /* CourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3624AC223DD575009E392D /* CourseView.swift */; };
 		EAB209232220E519000686B3 /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB209222220E519000686B3 /* LoginButton.swift */; };
 		EAB209262220E6B7000686B3 /* CheckboxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB209252220E6B7000686B3 /* CheckboxButton.swift */; };
+		EABD64C92265719C0029E464 /* SettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EABD64C82265719C0029E464 /* SettingsTableViewCell.xib */; };
 		EAC0318F22559F6600AF78DD /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC0318E22559F6600AF78DD /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +79,7 @@
 		EA3624AC223DD575009E392D /* CourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseView.swift; sourceTree = "<group>"; };
 		EAB209222220E519000686B3 /* LoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
 		EAB209252220E6B7000686B3 /* CheckboxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxButton.swift; sourceTree = "<group>"; };
+		EABD64C82265719C0029E464 /* SettingsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsTableViewCell.xib; sourceTree = "<group>"; };
 		EAC0318E22559F6600AF78DD /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -201,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				EA3624AA223DD149009E392D /* CourseView.xib */,
+				EABD64C82265719C0029E464 /* SettingsTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				EA007A4C2227175C00AD7AFE /* Main.storyboard in Resources */,
 				EA007A4622270D6A00AD7AFE /* Login.storyboard in Resources */,
 				6EDFB06422204DFE00640F87 /* Assets.xcassets in Resources */,
+				EABD64C92265719C0029E464 /* SettingsTableViewCell.xib in Resources */,
 				EA3624AB223DD149009E392D /* CourseView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

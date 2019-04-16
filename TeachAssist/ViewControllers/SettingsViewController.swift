@@ -9,6 +9,7 @@
 import UIKit
 
 class SettingsViewController: UITableViewController {
+    var response:[NSMutableDictionary]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,8 +20,8 @@ class SettingsViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         self.navigationItem.title = "Settings"
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "back", style: .plain, target: self, action: #selector(OnBackButtonPress))
-        //print(self.navigationController!.viewControllers as [UIViewController])
+        //self.navigationItem.leftBarButtonItem = 
+        print(self.navigationController!.viewControllers as [UIViewController])
         
     }
     
