@@ -138,7 +138,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <edgeInsets key="layoutMargins" top="10" left="10" bottom="10" right="10"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="53.600000000000001" y="-186.20689655172416"/>
+            <point key="canvasLocation" x="84" y="-189.80509745127438"/>
         </view>
         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bsW-x2-6iS">
             <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
