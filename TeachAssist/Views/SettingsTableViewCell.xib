@@ -30,7 +30,7 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yeL-wA-CBI" customClass="CheckboxButton" customModule="TeachAssist" customModuleProvider="target">
+                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yeL-wA-CBI">
                     <rect key="frame" x="325" y="26" width="22" height="22"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="22" id="IW9-6e-D2W"/>
@@ -49,11 +49,17 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
+                <outlet property="CheckBoxButton" destination="yeL-wA-CBI" id="Qlw-Ui-cH3"/>
                 <outlet property="Description" destination="h6K-BD-VrR" id="Nty-Ec-R6w"/>
                 <outlet property="Title" destination="RYl-HN-8Q3" id="fCd-CF-lJq"/>
             </connections>
             <point key="canvasLocation" x="138.40000000000001" y="-105.69715142428787"/>
         </view>
+        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="mJz-hp-PaO">
+            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <point key="canvasLocation" x="-394" y="-23"/>
+        </imageView>
     </objects>
     <resources>
         <image name="checkbox-blank-outline" width="48" height="48"/>

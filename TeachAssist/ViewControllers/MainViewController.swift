@@ -53,6 +53,15 @@ class MainViewController: UIViewController {
         response = ta.GetTaData(username: username!, password: password!) ?? nil
         self.navigationItem.title = "Student: "+username!
         
+        //add default preferences for notifications
+        for i in 0...response!.count{
+            let currentPreferenceExists = Preferences.object(forKey: "Course" + String(i))
+            if currentPreferenceExists == nil{ //if preference does not exist
+                Preferences.set(true, forKey: "Course" + String(i))
+            }
+        }
+        Preferences.synchronize()
+        
         //add courses to main view
         if response == nil{
             return //TODO raise network connecttion error

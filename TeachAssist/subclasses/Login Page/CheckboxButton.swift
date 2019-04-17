@@ -22,7 +22,6 @@ class CheckboxButton: UIButton {
     }
     
     func initButton(){
-        print("init")
         addTarget(self, action: #selector(CheckboxButton.buttonPressed), for: .touchUpInside)
         isSelected = true
         let imageSelected = UIImage(named: "checkbox-marked")
