@@ -15,7 +15,9 @@ class MainViewController: UIViewController {
     var userIsEditing = false
     var response:[NSMutableDictionary]? = nil
     var hasViewStarted = false //this variable will check to make sure that the view hasnt started before so that courses arent re-added every time the nav drawer is triggered.
+    var refreshControl:UIRefreshControl? = nil
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var StackView: UIStackView!
     @IBOutlet weak var StackViewHeight: NSLayoutConstraint!
     @IBOutlet weak var AverageBar: UICircularProgressRing!
@@ -37,6 +39,14 @@ class MainViewController: UIViewController {
         if hasViewStarted == true{
             return
         }
+        //setup refresh controller to allow main view to be refreshed
+        refreshControl = UIRefreshControl()
+        refreshControl!.addTarget(self,
+                                 action: #selector(OnRefresh),
+                                 for: .valueChanged)
+        scrollView.refreshControl = refreshControl
+        
+
         hasViewStarted = true
         //get ta data
         let ta = TA()
@@ -97,7 +107,7 @@ class MainViewController: UIViewController {
             StackViewHeight.constant = StackViewHeight.constant + 175
             
         }
-        AverageBar.value = CGFloat(ta.CalculateAverage(response: response!))
+        AverageBar.startProgress(to: CGFloat(ta.CalculateAverage(response: response!)), duration: 1.5)
         
         
         
@@ -157,6 +167,23 @@ class MainViewController: UIViewController {
         
         
         }
+    
+    @objc func OnRefresh() {
+        print("refreshed")
+        var courseNumber = -1
+        for view in StackView.arrangedSubviews{
+            if courseNumber >= 0{
+                view.isHidden = true
+                view.removeFromSuperview()
+                StackViewHeight.constant -= 175
+            }
+            courseNumber += 1
+        }
+        AverageBar.startProgress(to: 0.0, duration: 1)
+        hasViewStarted = false
+        viewDidAppear(true)
+        refreshControl!.endRefreshing()
+    }
     
     
 }

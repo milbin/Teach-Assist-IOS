@@ -107,6 +107,7 @@
                         <outlet property="AverageBar" destination="wOf-za-rGo" id="4Q1-jr-3t6"/>
                         <outlet property="StackView" destination="W3t-Uk-hkX" id="ijQ-jj-RMY"/>
                         <outlet property="StackViewHeight" destination="Jb6-3o-aCo" id="30t-72-ANe"/>
+                        <outlet property="scrollView" destination="TWk-b4-WHp" id="e43-XT-Dek"/>
                         <segue destination="hWi-X5-Suv" kind="show" identifier="settingsSegue" id="fjX-cp-wnP"/>
                     </connections>
                 </viewController>
