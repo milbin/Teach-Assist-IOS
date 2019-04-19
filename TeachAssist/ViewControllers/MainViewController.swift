@@ -103,6 +103,8 @@ class MainViewController: UIViewController {
             print(courseView as UIView)
             courseView.TrashButton.addTarget(self, action: #selector(OnTrashButtonPress), for: .touchUpInside)
             courseList.append(courseView)
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(OnCourseSelected))
+            courseView.addGestureRecognizer(tapGesture)
             
             StackViewHeight.constant = StackViewHeight.constant + 175
             
@@ -120,6 +122,9 @@ class MainViewController: UIViewController {
             let vc = segue.destination as? SettingsViewController
             vc?.response = response
         }
+        let backItem = UIBarButtonItem()
+        backItem.title = "Back"
+        navigationItem.backBarButtonItem = backItem // This will show in the next view controller being pushed
     }
     
     @objc func OnEditButtonPress(sender: UIBarButtonItem){
@@ -183,6 +188,22 @@ class MainViewController: UIViewController {
         hasViewStarted = false
         viewDidAppear(true)
         refreshControl!.endRefreshing()
+    }
+    
+    @objc func OnCourseSelected(gesture: UIGestureRecognizer){
+        UIView.animate(withDuration: 0.5, animations: {
+            gesture.view!.alpha = 0.65
+            gesture.view!.alpha = 1
+        })
+        var courseNumber = -1
+        for course in StackView.arrangedSubviews{
+            if gesture.view == course{
+                break
+            }
+            courseNumber += 1
+        }
+        performSegue(withIdentifier: "MarksViewSegue", sender: self)
+        print("SLECTED")
     }
     
     

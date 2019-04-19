@@ -9,10 +9,12 @@
 import UIKit
 import KYDrawerController
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
         loginButton.addTarget(self, action: #selector(LoginViewController.buttonPressed), for: .touchUpInside)
@@ -23,11 +25,15 @@ class LoginViewController: UIViewController {
         let Preferences = UserDefaults.standard
         var username = Preferences.string(forKey: "username")
         var password = Preferences.string(forKey: "password")
+        self.usernameTextField.delegate = self
+        self.passwordTextField.delegate = self
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
     
-    @IBOutlet weak var usernameTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
     @objc func buttonPressed(){
         print("Login")
         let Preferences = UserDefaults.standard

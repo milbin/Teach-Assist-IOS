@@ -109,6 +109,7 @@
                         <outlet property="StackViewHeight" destination="Jb6-3o-aCo" id="30t-72-ANe"/>
                         <outlet property="scrollView" destination="TWk-b4-WHp" id="e43-XT-Dek"/>
                         <segue destination="hWi-X5-Suv" kind="show" identifier="settingsSegue" id="fjX-cp-wnP"/>
+                        <segue destination="ola-uN-hGB" kind="show" identifier="MarksViewSegue" id="NMj-bV-sjR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IO9-xL-dT9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -302,6 +303,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="maC-vd-MFV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-393" y="913"/>
+        </scene>
+        <!--Marks View Controller-->
+        <scene sceneID="h1s-a1-Ww5">
+            <objects>
+                <tableViewController id="ola-uN-hGB" customClass="MarksViewController" customModule="TeachAssist" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Vkl-0F-ivY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="yck-Yd-mub">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yck-Yd-mub" id="EM3-0C-p2h">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ola-uN-hGB" id="sMW-Go-Hco"/>
+                            <outlet property="delegate" destination="ola-uN-hGB" id="w9E-iu-Cd4"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="GaE-vY-zov"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ESD-gv-0he" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1106" y="134"/>
         </scene>
     </scenes>
     <resources>
