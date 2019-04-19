@@ -117,11 +117,15 @@ class MainViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
-        if segue.destination is SettingsViewController
-        {
+        if segue.destination is SettingsViewController{
             let vc = segue.destination as? SettingsViewController
             vc?.response = response
+        }else if segue.destination is MarksViewController{
+            print("HERE")
+            let vc = segue.destination as? MarksViewController
+            vc?.response = response
         }
+        
         let backItem = UIBarButtonItem()
         backItem.title = "Back"
         navigationItem.backBarButtonItem = backItem // This will show in the next view controller being pushed
@@ -203,7 +207,6 @@ class MainViewController: UIViewController {
             courseNumber += 1
         }
         performSegue(withIdentifier: "MarksViewSegue", sender: self)
-        print("SLECTED")
     }
     
     

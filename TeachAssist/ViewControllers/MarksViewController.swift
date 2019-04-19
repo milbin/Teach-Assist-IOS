@@ -1,51 +1,87 @@
 import UIKit
+import UICircularProgressRing
 
-class MarksViewController: UITableViewController {
+class MarksViewController: UIViewController {
     var response:[NSMutableDictionary]?
+    var assignmentList = [AssignmentView]()
+    var userIsEditing = false
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var StackView: UIStackView!
+    @IBOutlet weak var StackViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var AverageBar: UICircularProgressRing!
     override func viewDidLoad() {
         super.viewDidLoad()
         print("MARKS VIEW")
+        AverageBar.font = UIFont.boldSystemFont(ofSize: 25.0)
+        AverageBar.valueFormatter = UICircularProgressRingFormatter(showFloatingPoint:true, decimalPlaces:1)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(OnEditButtonPress))//add edit button as the onClick method
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+        
         
         
     }
     
-    //number of cells in tableview
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
-    }
-    //set the height of the tableview header bc it adds more whitespace at the top
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat{
-        return 50
-    }
-    //set the height of tableview rows
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 75
-    }
-    //this method will load in the cells when the tableview is first created
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        /*let cell = Bundle.main.loadNibNamed("SettingsTableViewCell", owner: self, options: nil)?.first as! SettingsTableViewCell
-        cell.initCheckbox()
-        let Preferences = UserDefaults.standard
-        let currentPreferenceExists = Preferences.object(forKey: "Course" + String(indexPath.row))
-        if currentPreferenceExists != nil{ //preference does exist
-            let currentPreferenceValue = Preferences.bool(forKey: "Course" + String(indexPath.row))
-            cell.setCheckBoxButton(value: currentPreferenceValue)
+    override func viewDidAppear(_ animated: Bool) {
+        for (i, assignment) in response!.enumerated(){
+            
+            var assignmentView = AssignmentView(frame: CGRect(x: 0, y: 0, width: 350, height: 125))
+            
+            StackView.addArrangedSubview(assignmentView as UIView)
+            print(assignmentView as UIView)
+            //assignmentView.TrashButton.addTarget(self, action: #selector(OnTrashButtonPress), for: .touchUpInside)
+            //assignmentList.append(assignmentView)
+            //let tapGesture = UITapGestureRecognizer(target: self, action: #selector(OnAssignmentSelected))
+            //assignmentView.addGestureRecognizer(tapGesture)
+            
+            StackViewHeight.constant = StackViewHeight.constant + 145
+            
         }
-        let dict = response![indexPath.row]
-        
-        cell.Description.text = "Notification Toggle for: " + (dict["course"] as! String)
-        cell.Title.text = "Period " + String(indexPath.row + 1)*/
-        var cell = UITableViewCell()
-        
-        
-        return cell
+        AverageBar.startProgress(to: 95.4, duration: 1.5)
     }
-    //this is the onclick method for the tableview cells
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    
+    @objc func OnEditButtonPress(sender: UIBarButtonItem){
+        print("edit Button pressed")
+        if userIsEditing{
+            userIsEditing = false
+            for assignment in assignmentList{
+                assignment.TrashButton.isHidden = true
+            }
+        }else{
+            userIsEditing = true
+            for assignment in assignmentList{
+                assignment.TrashButton.isHidden = false
+            }
+        }
+    }
+    
+    @objc func OnTrashButtonPress(sender: UIButton) {
+        print("Pressed Trash Button")
+        let view = sender.superview?.superview
+        var assignmentNumber = -1
+        for assignment in StackView.arrangedSubviews{
+            if view == assignment{
+                let ta = TA()
+                response!.remove(at: assignmentNumber)
+                AverageBar.value = CGFloat(ta.CalculateAverage(response: response!))
+            }
+            assignmentNumber += 1
+        }
+        
+        view?.isHidden = true
+        view?.removeFromSuperview()
+        StackView.layoutIfNeeded()
+        StackViewHeight.constant -= 175
+        
+        
         
         
     }
+    
+    @objc func OnAssignmentSelected(gesture: UIGestureRecognizer){
+        //expand view
+    }
+    
     
     
     

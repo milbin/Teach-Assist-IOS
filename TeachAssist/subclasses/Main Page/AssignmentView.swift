@@ -1,30 +1,36 @@
 //
-//  CourseView.swift
+//  AssignmentView.swift
 //  TeachAssist
 //
-//  Created by hiep tran on 2019-03-16.
+//  Created by hiep tran on 2019-04-19.
 //  Copyright © 2019 Ben Tran. All rights reserved.
 //
 
 import UIKit
-import UICircularProgressRing
 
 @IBDesignable
-class CourseView: UIView {
-
-    @IBOutlet weak var PeriodNumber: UILabel!
-    @IBOutlet weak var RoomNumber: UILabel!
-    @IBOutlet weak var ProgressBar: UICircularProgressRing!
-    @IBOutlet weak var CourseCode: UILabel!
-    @IBOutlet weak var CourseName: UITextView!
+class AssignmentView: UIView {
+    
+    
     @IBOutlet var contentView: UIView!
-    @IBOutlet weak var NATextView: UITextView!
+    @IBOutlet weak var AssignmentTitle: UITextView!
     @IBOutlet weak var TrashButton: UIButton!
+    @IBOutlet weak var AssignmentMark: UILabel!
     
-
+    
+    @IBOutlet weak var ABar: UIView!
+    @IBOutlet weak var AMark: UILabel!
+    
+    @IBOutlet weak var CBar: UIView!
+    @IBOutlet weak var CMark: UILabel!
+    
+    @IBOutlet weak var TBar: UIView!
+    @IBOutlet weak var TMark: UILabel!
+    
+    @IBOutlet weak var KBar: UIView!
+    @IBOutlet weak var KMark: UILabel!
     
     
-        
     override init(frame: CGRect) {
         super.init(frame: frame)
         xibSetup()
@@ -46,8 +52,6 @@ class CourseView: UIView {
         
         // Adding custom subview on top of our view (over any custom drawing > see note below)
         addSubview(contentView!)
-        ProgressBar.font = UIFont.boldSystemFont(ofSize: 25.0)
-        ProgressBar.valueFormatter = UICircularProgressRingFormatter(showFloatingPoint:true, decimalPlaces:1)
         self.layer.cornerRadius = 15
         self.layer.masksToBounds = true
     }
@@ -55,10 +59,16 @@ class CourseView: UIView {
     func loadViewFromNib() -> UIView! {
         
         let bundle = Bundle(for: type(of: self))
-        let nib = UINib(nibName: "CourseView", bundle: bundle)
+        let nib = UINib(nibName: "AssignmentView", bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         
         return view
     }
-
+    
+    
+    
+    
+    
+    
 }
+
