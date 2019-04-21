@@ -2,7 +2,7 @@ import UIKit
 import UICircularProgressRing
 
 class MarksViewController: UIViewController {
-    var response:[NSMutableDictionary]?
+    var Mark:Double? = nil
     var assignmentList = [AssignmentView]()
     var userIsEditing = false
     
@@ -23,9 +23,9 @@ class MarksViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        for (i, assignment) in response!.enumerated(){
+        for i in 0...7{
             
-            var assignmentView = AssignmentView(frame: CGRect(x: 0, y: 0, width: 350, height: 125))
+            var assignmentView = AssignmentView(frame: CGRect(x: 0, y: 0, width: 350, height: 135))
             
             StackView.addArrangedSubview(assignmentView as UIView)
             print(assignmentView as UIView)
@@ -36,8 +36,9 @@ class MarksViewController: UIViewController {
             
             StackViewHeight.constant = StackViewHeight.constant + 145
             
+            
         }
-        AverageBar.startProgress(to: 95.4, duration: 1.5)
+        AverageBar.startProgress(to: CGFloat(Mark!), duration: 1.5)
     }
     
     @objc func OnEditButtonPress(sender: UIBarButtonItem){
@@ -62,8 +63,8 @@ class MarksViewController: UIViewController {
         for assignment in StackView.arrangedSubviews{
             if view == assignment{
                 let ta = TA()
-                response!.remove(at: assignmentNumber)
-                AverageBar.value = CGFloat(ta.CalculateAverage(response: response!))
+                //response!.remove(at: assignmentNumber)
+                //AverageBar.value = CGFloat(ta.CalculateAverage(response: response!))
             }
             assignmentNumber += 1
         }

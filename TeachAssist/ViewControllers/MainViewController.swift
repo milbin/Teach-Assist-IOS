@@ -17,6 +17,7 @@ class MainViewController: UIViewController {
     var hasViewStarted = false //this variable will check to make sure that the view hasnt started before so that courses arent re-added every time the nav drawer is triggered.
     var refreshControl:UIRefreshControl? = nil
     
+    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var StackView: UIStackView!
     @IBOutlet weak var StackViewHeight: NSLayoutConstraint!
@@ -106,7 +107,7 @@ class MainViewController: UIViewController {
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(OnCourseSelected))
             courseView.addGestureRecognizer(tapGesture)
             
-            StackViewHeight.constant = StackViewHeight.constant + 175
+            StackViewHeight.constant = StackViewHeight.constant + 170
             
         }
         AverageBar.startProgress(to: CGFloat(ta.CalculateAverage(response: response!)), duration: 1.5)
@@ -121,9 +122,11 @@ class MainViewController: UIViewController {
             let vc = segue.destination as? SettingsViewController
             vc?.response = response
         }else if segue.destination is MarksViewController{
-            print("HERE")
-            let vc = segue.destination as? MarksViewController
-            vc?.response = response
+            print(sender! as! Double)
+            if let mark = (sender! as? Double){
+                let vc = segue.destination as? MarksViewController
+                vc?.Mark = Double(mark)
+            }
         }
         
         let backItem = UIBarButtonItem()
@@ -206,8 +209,9 @@ class MainViewController: UIViewController {
             }
             courseNumber += 1
         }
-        performSegue(withIdentifier: "MarksViewSegue", sender: self)
+        performSegue(withIdentifier: "MarksViewSegue", sender: response![courseNumber]["mark"])
     }
+    
     
     
 }
