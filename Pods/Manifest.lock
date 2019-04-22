@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (5.0.0-beta.2)
+  - HTMLEntities (3.0.12)
   - HTMLString (4.0.2)
   - KYDrawerController (2.1.0)
   - PureLayout (2.0.6)
@@ -7,6 +8,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 5.0.0-beta.2)
+  - HTMLEntities (from `https://github.com/IBM-Swift/swift-html-entities.git`)
   - HTMLString (~> 4.0)
   - KYDrawerController
   - PureLayout (~> 2.0.5)
@@ -20,13 +22,23 @@ SPEC REPOS:
     - PureLayout
     - UICircularProgressRing
 
+EXTERNAL SOURCES:
+  HTMLEntities:
+    :git: https://github.com/IBM-Swift/swift-html-entities.git
+
+CHECKOUT OPTIONS:
+  HTMLEntities:
+    :commit: 544e7e0e404edeb239d4bb86e5cbe5929c0809bf
+    :git: https://github.com/IBM-Swift/swift-html-entities.git
+
 SPEC CHECKSUMS:
   Alamofire: d1e5493588babe3e7b56ae29e8032942f4de09fe
+  HTMLEntities: b195103df85a07c6174ed52435d30ae90085fa44
   HTMLString: d346ba551d1b7e687190c948ec0c2ddaf4057544
   KYDrawerController: baad0e63b09c0cb564bd48f0f7f70f45d9176ebc
   PureLayout: f25f0bb904d5ccfe6e31da3cb869185259f02e0d
   UICircularProgressRing: 2ef1293241b83d8020ede21a8fe3b3d859525730
 
-PODFILE CHECKSUM: de92fe06f2d904e9d81d03a35e2c5948c8477f55
+PODFILE CHECKSUM: 297d7bd6146e731b78653a411124c34e811da245
 
 COCOAPODS: 1.6.1

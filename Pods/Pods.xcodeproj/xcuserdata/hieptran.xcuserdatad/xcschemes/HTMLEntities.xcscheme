@@ -14,9 +14,9 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3855B4EBE20115839E138936DCDEA0FC"
-               BuildableName = "UICircularProgressRing.framework"
-               BlueprintName = "UICircularProgressRing"
+               BlueprintIdentifier = "32082C058FE12DF9025DCDA0D4F73F92"
+               BuildableName = "HTMLEntities.framework"
+               BlueprintName = "HTMLEntities"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

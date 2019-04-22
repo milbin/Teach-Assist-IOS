@@ -116,10 +116,27 @@ class TA{
         if resp == nil{
             return nil
         }
-        print(resp)
+        
         if var assignments = ((resp["data"]! as! [String:Any])["assessment"]! as? [String:Any]){
             assignments = assignments["data"] as! [String:Any]
-            print(assignments)
+            for assignment in assignments{
+                assignments[assignment.key] = assignment.value as! [String:Any]
+            }
+            for assignment in assignments{
+                
+                if assignment.key != "categories"{
+                    var value = assignment.value as! [String:Any]
+                    var feedback = value["feedback"] as? String
+                    if feedback == nil{
+                        feedback = ""
+                    }
+                    
+                    assignments[assignment.key] = value
+                }
+            }
+            
+            
+            
             return assignments
         }else{
             return nil

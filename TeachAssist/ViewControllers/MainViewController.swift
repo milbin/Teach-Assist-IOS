@@ -16,6 +16,7 @@ class MainViewController: UIViewController {
     var response:[NSMutableDictionary]? = nil
     var hasViewStarted = false //this variable will check to make sure that the view hasnt started before so that courses arent re-added every time the nav drawer is triggered.
     var refreshControl:UIRefreshControl? = nil
+    let ta = TA()
     
     
     @IBOutlet weak var scrollView: UIScrollView!
@@ -50,7 +51,7 @@ class MainViewController: UIViewController {
 
         hasViewStarted = true
         //get ta data
-        let ta = TA()
+        
         let Preferences = UserDefaults.standard
         var username = Preferences.string(forKey: "username")
         var password = Preferences.string(forKey: "password")
@@ -122,10 +123,12 @@ class MainViewController: UIViewController {
             let vc = segue.destination as? SettingsViewController
             vc?.response = response
         }else if segue.destination is MarksViewController{
-            print(sender! as! Double)
-            if let mark = (sender! as? Double){
-                let vc = segue.destination as? MarksViewController
-                vc?.Mark = Double(mark)
+            let vc = segue.destination as? MarksViewController
+            if let senderList = (sender! as? [Any]){
+                vc?.Mark = senderList[0] as! Double
+                vc?.courseNumber = Int(senderList[1] as! Int)
+                vc?.ta = ta
+                vc?.vcTitle = senderList[2] as? String
             }
         }
         
@@ -163,7 +166,6 @@ class MainViewController: UIViewController {
         var courseNumber = -1
         for course in StackView.arrangedSubviews{
             if view == course{
-                let ta = TA()
                 response!.remove(at: courseNumber)
                 AverageBar.value = CGFloat(ta.CalculateAverage(response: response!))
             }
@@ -209,7 +211,7 @@ class MainViewController: UIViewController {
             }
             courseNumber += 1
         }
-        performSegue(withIdentifier: "MarksViewSegue", sender: response![courseNumber]["mark"])
+        performSegue(withIdentifier: "MarksViewSegue", sender: [response![courseNumber]["mark"], Double(courseNumber), response![courseNumber]["course"]])
     }
     
     
