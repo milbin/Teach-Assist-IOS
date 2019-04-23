@@ -327,4 +327,69 @@ class TA{
     
         
     }
+    
+    func calculateAssignmentAverage(assignment:[String:[String:String]], weights:[String:Double]) -> String{
+        print(assignment)
+        var weightList = ["K" : weights["K"]!*10, "T" : weights["T"]!*10, "C" : weights["C"]!*10, "A" : weights["A"]!*10]
+        var markList = ["K" : 0.0, "T" : 0.0, "C" : 0.0, "A" : 0.0, "" : 0.0]
+        let categoryList = ["K", "T", "C", "A", ""]
+        
+        
+        for category in categoryList{
+            if category == ""{
+                if assignment[category] != nil{
+                    if assignment[category]!["mark"] != nil && assignment[category]!["mark"]! == "no mark" || assignment[category]!["mark"] == ""{
+                        return "No Mark"
+                    }
+                    if assignment[category]!["outOf"] != nil && assignment[category]!["outOf"]! != "0" && assignment[category]!["outOf"]! != "0.0" {
+                            markList[category] = round(10 * (Double(assignment[category]!["mark"]!)! / Double(assignment[category]!["outOf"]!)! * 100)) / 10
+                            return String(markList[category]!)
+                    }
+                }
+            }else{
+                if assignment[category] != nil{
+                    if assignment[category]!["mark"] != nil && assignment[category]!["mark"]! == "no mark" || assignment[category]!["mark"] == ""{
+                        return "No Mark"
+                    }
+                    if assignment[category]!["outOf"] != nil && assignment[category]!["outOf"]! != "0" && assignment[category]!["outOf"]! != "0.0" {
+                        if assignment[category]!["mark"] != nil{
+                            markList[category] = round(10 * (Double(assignment[category]!["mark"]!)! / Double(assignment[category]!["outOf"]!)! * 100)) / 10
+                        }else{
+                            weightList[category] = 0.0
+                        }
+                        
+                    }
+                    
+                }else{
+                    weightList[category] = 0.0
+                }
+            }
+            if markList[category] != nil && weightList[category] != nil{
+                markList[category] = markList[category]! * weightList[category]!
+            }
+            
+        }
+        
+        var average = (markList["K"]! + markList["T"]! + markList["C"]! + markList["A"]!)
+        print(markList)
+        average = average / (weightList["K"]! + weightList["T"]! + weightList["C"]! + weightList["A"]!)
+        print(weightList)
+        average = round(10 * average) / 10
+        
+        
+        if average == 0.0{
+            average = 0
+        }
+        if average == 100.0{
+            average = 100
+        }
+        print(average)
+        print("AVERAGE")
+        return String(average)
+        
+        
+        
+        
+        
+    }
 }

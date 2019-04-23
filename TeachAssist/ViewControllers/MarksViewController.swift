@@ -31,7 +31,6 @@ class MarksViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         let response = ta!.GetMarks(subjectNumber: courseNumber!)
-        print(response!)
         
         if response == nil{
             return //TODO riase some error dialog
@@ -140,8 +139,11 @@ class MarksViewController: UIViewController {
                 assignmentView.AMark.text = String(markList["A"]!)
                 assignmentView.ABarHeight.constant = CGFloat(markList["A"]!) * 0.6 + 15
             }
-            
-            
+            var average = (ta?.calculateAssignmentAverage(assignment: assignment, weights: response!["categories"]! as! [String:Double]))!
+            if average == "100.0"{
+                average = "100"
+            }
+            assignmentView.AssignmentMark.text =  average + "%"
             
             StackView.addArrangedSubview(assignmentView as UIView)
             assignmentView.TrashButton.addTarget(self, action: #selector(OnTrashButtonPress), for: .touchUpInside)
