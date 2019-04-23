@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TeachAssist/TA.swift"
-            timestampString = "577754507.365881"
+            timestampString = "577755275.312833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "381"
-            endingLineNumber = "381"
+            startingLineNumber = "376"
+            endingLineNumber = "376"
             landmarkName = "calculateAssignmentAverage(assignment:weights:)"
             landmarkType = "7">
          </BreakpointContent>

@@ -32,7 +32,6 @@ class TA{
         }
         self.studentID = respToken!["student_id"] as! String
         self.sessionToken = respToken!["token"] as! String
-        print(self.sessionToken)
         let params = ["token":sessionToken, "student_id":self.studentID]
         var resp:[[String:[Dictionary<String,String>]]] = sr.SendJSON(url: URL, parameters: params)!["data"]! as! [[String : [Dictionary<String,String>]]]
         if resp == nil{
@@ -162,10 +161,9 @@ class TA{
             }
             courseNum += 1
         }
-        print(Average)
-        print(courses)
+        
         Average = round(10 * (Average / courses)) / 10
-        print(Average)
+        
         return Average
     }
     
@@ -188,7 +186,7 @@ class TA{
         var totalWeightApplication = 0.0
 
         var weights = marks!["categories"] as! NSDictionary
-        print(weights)
+        
         
         for (key, value) in marks!{
             if key != "categories"{
@@ -284,7 +282,7 @@ class TA{
                 
             }
         }
-        print(weights["K"])
+        
         var Knowledge = weights["K"]! as! Double
         var Thinking = weights["T"]! as! Double
         var Communication = weights["C"]! as! Double
@@ -327,7 +325,6 @@ class TA{
         
         var Average = finalApplication + finalKnowledge + finalThinking + finalCommunication
         Average = Average / (Knowledge + Thinking + Communication + Application) * 100
-        print(Average)
         return round(Average*10) / 10 // will round to the tens position
 
     
@@ -335,7 +332,6 @@ class TA{
     }
     
     func calculateAssignmentAverage(assignment:[String:[String:String]], weights:[String:Double]) -> String{
-        print(assignment)
         var weightList = ["K" : weights["K"]!*10, "T" : weights["T"]!*10, "C" : weights["C"]!*10, "A" : weights["A"]!*10]
         var markList = ["K" : 0.0, "T" : 0.0, "C" : 0.0, "A" : 0.0, "" : 0.0]
         let categoryList = ["K", "T", "C", "A", ""]
@@ -377,9 +373,7 @@ class TA{
         }
         
         var average = (markList["K"]! + markList["T"]! + markList["C"]! + markList["A"]!)
-        print(markList)
         average = average / (weightList["K"]! + weightList["T"]! + weightList["C"]! + weightList["A"]!)
-        print(weightList)
         average = round(10 * average) / 10
         
         
@@ -389,8 +383,6 @@ class TA{
         if average == 100.0{
             average = 100
         }
-        print(average)
-        print("AVERAGE")
         return String(average)
         
         

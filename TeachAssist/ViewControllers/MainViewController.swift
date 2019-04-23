@@ -102,7 +102,7 @@ class MainViewController: UIViewController {
                 courseView.CourseName.text = (course["Course_Name"] as! String)
             }
             StackView.addArrangedSubview(courseView as UIView)
-            print(courseView as UIView)
+            
             courseView.TrashButton.addTarget(self, action: #selector(OnTrashButtonPress), for: .touchUpInside)
             courseList.append(courseView)
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(OnCourseSelected))
@@ -112,6 +112,10 @@ class MainViewController: UIViewController {
             
         }
         AverageBar.startProgress(to: CGFloat(ta.CalculateAverage(response: response!)), duration: 1.5)
+        
+        if refreshControl!.isRefreshing{
+            refreshControl!.endRefreshing()
+        }
         
         
         
@@ -175,7 +179,7 @@ class MainViewController: UIViewController {
         view?.isHidden = true
         view?.removeFromSuperview()
         StackView.layoutIfNeeded()
-        StackViewHeight.constant -= 175
+        StackViewHeight.constant -= 170
         
         
         
@@ -189,14 +193,14 @@ class MainViewController: UIViewController {
             if courseNumber >= 0{
                 view.isHidden = true
                 view.removeFromSuperview()
-                StackViewHeight.constant -= 175
+                StackViewHeight.constant -= 170
             }
             courseNumber += 1
         }
-        AverageBar.startProgress(to: 0.0, duration: 1)
+        AverageBar.startProgress(to: 0.0, duration: 0)
         hasViewStarted = false
         viewDidAppear(true)
-        refreshControl!.endRefreshing()
+        
     }
     
     @objc func OnCourseSelected(gesture: UIGestureRecognizer){

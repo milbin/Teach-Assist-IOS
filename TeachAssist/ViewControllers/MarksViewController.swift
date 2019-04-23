@@ -12,6 +12,7 @@ class MarksViewController: UIViewController {
     var response:[String:Any]? = nil
     var originalResponse:[String:Any]? = nil
     var removedAssignments:[UIView:Int] = [:]
+    var refreshControl:UIRefreshControl? = nil
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var StackView: UIStackView!
@@ -39,8 +40,15 @@ class MarksViewController: UIViewController {
         if response == nil{
             return //TODO riase some error dialog
         }
+        
+        //setup refresh controller to allow main view to be refreshed
+        refreshControl = UIRefreshControl()
+        refreshControl!.addTarget(self,
+                                  action: #selector(OnRefresh),
+                                  for: .valueChanged)
+        scrollView.refreshControl = refreshControl
+        
         for i in 0...(response!.count - 2){
-            print(i)
             var assignmentWithFeedbackAndTitle = response![String(i)]! as! [String:Any]
             var title = (assignmentWithFeedbackAndTitle["title"]! as! String).htmlUnescape()
             var feedback = (assignmentWithFeedbackAndTitle["feedback"] as? String)
@@ -167,6 +175,10 @@ class MarksViewController: UIViewController {
             }
             assignmentNumber += 1
         }
+        
+        if refreshControl!.isRefreshing{
+            refreshControl!.endRefreshing()
+        }
     }
     
     @objc func OnEditButtonPress(sender: UIBarButtonItem){
@@ -205,6 +217,26 @@ class MarksViewController: UIViewController {
     
     @objc func OnAssignmentSelected(gesture: UIGestureRecognizer){
         //expand view
+    }
+    
+    
+    
+    @objc func OnRefresh() {
+        print("refreshed")
+        var courseNumber = -1
+        for view in StackView.arrangedSubviews{
+            if courseNumber >= 0{
+                view.isHidden = true
+                view.removeFromSuperview()
+                StackViewHeight.constant -= 145
+                userIsEditing = false
+            }
+            courseNumber += 1
+        }
+        AverageBar.startProgress(to: 0.0, duration: 0)
+        //hasViewStarted = false
+        viewDidAppear(true)
+        
     }
     
     
