@@ -9,6 +9,9 @@ class MarksViewController: UIViewController {
     var courseNumber:Int? = nil
     var ta:TA? = nil
     var vcTitle:String? = nil
+    var response:[String:Any]? = nil
+    var originalResponse:[String:Any]? = nil
+    var removedAssignments:[UIView:Int] = [:]
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var StackView: UIStackView!
@@ -30,7 +33,8 @@ class MarksViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        let response = ta!.GetMarks(subjectNumber: courseNumber!)
+        response = ta!.GetMarks(subjectNumber: courseNumber!)
+        originalResponse = response!
         
         if response == nil{
             return //TODO riase some error dialog
@@ -156,6 +160,13 @@ class MarksViewController: UIViewController {
             
         }
         AverageBar.startProgress(to: CGFloat(Mark!), duration: 1.5)
+        var assignmentNumber = -1
+        for assignment in StackView.arrangedSubviews{
+            if assignmentNumber != -1{
+                removedAssignments[assignment] = assignmentNumber
+            }
+            assignmentNumber += 1
+        }
     }
     
     @objc func OnEditButtonPress(sender: UIBarButtonItem){
@@ -176,15 +187,12 @@ class MarksViewController: UIViewController {
     @objc func OnTrashButtonPress(sender: UIButton) {
         print("Pressed Trash Button")
         let view = sender.superview?.superview
-        var assignmentNumber = -1
-        for assignment in StackView.arrangedSubviews{
-            if view == assignment{
-                //response!.remove(at: assignmentNumber)
-                //AverageBar.value = CGFloat(ta.CalculateAverage(response: response!))
-            }
-            assignmentNumber += 1
-        }
         
+        
+        
+        
+        response![String(removedAssignments[view!]!)] = nil
+        AverageBar.value = CGFloat(ta!.CalculateCourseAverage(markParam: response!))
         view?.isHidden = true
         view?.removeFromSuperview()
         StackView.layoutIfNeeded()

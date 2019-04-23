@@ -169,8 +169,14 @@ class TA{
         return Average
     }
     
-    func CalculateCourseAverage(subjectNumber:Int) -> Double{
-        var marks = GetMarks(subjectNumber: subjectNumber)
+    func CalculateCourseAverage(subjectNumber:Int? = nil, markParam:[String:Any]? = nil) -> Double{
+        var marks:[String:Any]?
+        if markParam == nil{
+            marks = GetMarks(subjectNumber: subjectNumber!)
+        }else{
+            marks = markParam!
+        }
+        
         var knowledge = 0.0
         var thinking = 0.0
         var communication = 0.0
