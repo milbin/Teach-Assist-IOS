@@ -17,18 +17,23 @@ class AssignmentView: UIView {
     @IBOutlet weak var TrashButton: UIButton!
     @IBOutlet weak var AssignmentMark: UILabel!
     
-    
-    @IBOutlet weak var ABar: UIView!
-    @IBOutlet weak var AMark: UILabel!
-    
-    @IBOutlet weak var CBar: UIView!
-    @IBOutlet weak var CMark: UILabel!
+    @IBOutlet weak var KBar: UIView!
+    @IBOutlet weak var KMark: UILabel!
+    @IBOutlet weak var KBarHeight: NSLayoutConstraint!
     
     @IBOutlet weak var TBar: UIView!
     @IBOutlet weak var TMark: UILabel!
+    @IBOutlet weak var TBarHeight: NSLayoutConstraint!
     
-    @IBOutlet weak var KBar: UIView!
-    @IBOutlet weak var KMark: UILabel!
+    @IBOutlet weak var CBar: UIView!
+    @IBOutlet weak var CMark: UILabel!
+    @IBOutlet weak var CBarHeight: NSLayoutConstraint!
+    
+    @IBOutlet weak var ABar: UIView!
+    @IBOutlet weak var AMark: UILabel!
+    @IBOutlet weak var ABarHeight: NSLayoutConstraint!
+    
+    
     
     
     override init(frame: CGRect) {
