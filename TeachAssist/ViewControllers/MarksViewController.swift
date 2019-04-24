@@ -116,7 +116,7 @@ class MarksViewController: UIViewController {
                 assignmentView.KBar.backgroundColor = UIColor(red:0.91, green:0.12, blue:0.39, alpha:1.0) //teachassist themed pink
             }else{
                 assignmentView.KMark.text = String(markList["K"]!)
-                assignmentView.KBarHeight.constant = CGFloat(markList["K"]!) * 0.6 + 15
+                assignmentView.KBarHeight.constant = CGFloat(markList["K"]!) * 0.55 + 15
             }
             
             if markList["T"]! == 100.0{
@@ -127,7 +127,7 @@ class MarksViewController: UIViewController {
                 assignmentView.TBar.backgroundColor = UIColor(red:0.91, green:0.12, blue:0.39, alpha:1.0) //teachassist themed pink
             }else{
                 assignmentView.TMark.text = String(markList["T"]!)
-                assignmentView.TBarHeight.constant = CGFloat(markList["T"]!) * 0.6 + 15
+                assignmentView.TBarHeight.constant = CGFloat(markList["T"]!) * 0.55 + 15
             }
             
             if markList["C"]! == 100.0{
@@ -138,7 +138,7 @@ class MarksViewController: UIViewController {
                 assignmentView.CBar.backgroundColor = UIColor(red:0.91, green:0.12, blue:0.39, alpha:1.0) //teachassist themed pink
             }else{
                 assignmentView.CMark.text = String(markList["C"]!)
-                assignmentView.CBarHeight.constant = CGFloat(markList["C"]!) * 0.6 + 15
+                assignmentView.CBarHeight.constant = CGFloat(markList["C"]!) * 0.55 + 15
             }
             
             if markList["A"]! == 100.0{
@@ -149,7 +149,7 @@ class MarksViewController: UIViewController {
                 assignmentView.ABar.backgroundColor = UIColor(red:0.91, green:0.12, blue:0.39, alpha:1.0) //teachassist themed pink
             }else{
                 assignmentView.AMark.text = String(markList["A"]!)
-                assignmentView.ABarHeight.constant = CGFloat(markList["A"]!) * 0.6 + 15
+                assignmentView.ABarHeight.constant = CGFloat(markList["A"]!) * 0.55 + 15
             }
             var average = (ta?.calculateAssignmentAverage(assignment: assignment, weights: response!["categories"]! as! [String:Double]))!
             if average == "100.0"{
@@ -160,8 +160,8 @@ class MarksViewController: UIViewController {
             StackView.addArrangedSubview(assignmentView as UIView)
             assignmentView.TrashButton.addTarget(self, action: #selector(OnTrashButtonPress), for: .touchUpInside)
             assignmentList.append(assignmentView)
-            //let tapGesture = UITapGestureRecognizer(target: self, action: #selector(OnAssignmentSelected))
-            //assignmentView.addGestureRecognizer(tapGesture)
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(OnAssignmentSelected))
+            assignmentView.addGestureRecognizer(tapGesture)
             
             StackViewHeight.constant = StackViewHeight.constant + 145
             
@@ -175,7 +175,9 @@ class MarksViewController: UIViewController {
             }
             assignmentNumber += 1
         }
-        
+        print("STACKVIEW HEIGHT")
+        print(StackViewHeight.constant)
+        print(StackView.arrangedSubviews)
         if refreshControl!.isRefreshing{
             refreshControl!.endRefreshing()
         }
@@ -216,7 +218,10 @@ class MarksViewController: UIViewController {
     }
     
     @objc func OnAssignmentSelected(gesture: UIGestureRecognizer){
-        //expand view
+        let view = gesture.view!
+        StackViewHeight.constant += 100
+        view.frame.size.height = view.frame.size.height + 100
+        
     }
     
     
