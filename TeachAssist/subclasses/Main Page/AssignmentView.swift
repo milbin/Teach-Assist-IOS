@@ -38,6 +38,8 @@ class AssignmentView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.frame = frame
+        print(frame)
         xibSetup()
     }
     
@@ -53,12 +55,12 @@ class AssignmentView: UIView {
         contentView!.frame = bounds
         
         // Make the view stretch with containing view
-        //contentView!.autoresizingMask = [UIView.AutoresizingMask.flexibleWidth, UIView.AutoresizingMask.flexibleHeight]
+        //self.translatesAutoresizingMaskIntoConstraints = true
         
         // Adding custom subview on top of our view (over any custom drawing > see note below)
         addSubview(contentView!)
-        self.layer.cornerRadius = 15
-        self.layer.masksToBounds = true
+        contentView.layer.cornerRadius = 15
+        
         //KBar.layer.cornerRadius = 10
         //KBar.layer.masksToBounds = true
         
@@ -81,6 +83,8 @@ class AssignmentView: UIView {
         
         return view
     }
+    
+    
     
     
     

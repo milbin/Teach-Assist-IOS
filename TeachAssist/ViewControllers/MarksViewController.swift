@@ -70,7 +70,8 @@ class MarksViewController: UIViewController {
             
             
             
-            var assignmentView = AssignmentView(frame: CGRect(x: 0, y: 0, width: 350, height: 135))
+            var assignmentView = AssignmentView(frame: CGRect(x: 0, y: 0, width: 350, height: 129))
+            
             assignmentView.AssignmentTitle.text = title
             
             var markList = ["K" : 0.000000001, "T" : 0.000000001, "C" : 0.000000001, "A" : 0.000000001, "" : 0.000000001]
@@ -156,14 +157,16 @@ class MarksViewController: UIViewController {
                 average = "100"
             }
             assignmentView.AssignmentMark.text =  average + "%"
+            StackViewHeight.constant = StackViewHeight.constant + 135
             
             StackView.addArrangedSubview(assignmentView as UIView)
+            print(assignmentView.frame.height)
             assignmentView.TrashButton.addTarget(self, action: #selector(OnTrashButtonPress), for: .touchUpInside)
             assignmentList.append(assignmentView)
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(OnAssignmentSelected))
             assignmentView.addGestureRecognizer(tapGesture)
             
-            StackViewHeight.constant = StackViewHeight.constant + 145
+            
             
             
         }
@@ -175,16 +178,47 @@ class MarksViewController: UIViewController {
             }
             assignmentNumber += 1
         }
+        print(StackView.arrangedSubviews)
         print("STACKVIEW HEIGHT")
         print(StackViewHeight.constant)
         print(StackView.arrangedSubviews)
+        
         if refreshControl!.isRefreshing{
             refreshControl!.endRefreshing()
         }
     }
     
+    override func viewDidLayoutSubviews() {
+        scrollView.contentSize = CGSize(width: 375, height: StackViewHeight.constant + 135)
+        var count = 0
+        for assignment in StackView.arrangedSubviews{
+            if count != 0{
+                //print(assignment.frame.minY)
+                assignment.frame = CGRect(x: 10, y: assignment.frame.minY, width: 355, height: 129)
+                //print(assignment.frame)
+                
+            }
+            count += 1
+            
+        }
+        
+        
+    }
+    
     @objc func OnEditButtonPress(sender: UIBarButtonItem){
         print("edit Button pressed")
+        var count = 0
+        for assignment in StackView.arrangedSubviews{
+            if count != 0{
+                print(assignment.frame)
+                assignment.frame = CGRect(x: 10, y: assignment.frame.minY, width: 355, height: 129)
+                print(assignment.frame)
+                assignment.translatesAutoresizingMaskIntoConstraints = true
+            }
+            count += 1
+            
+        }
+        
         if userIsEditing{
             userIsEditing = false
             for assignment in assignmentList{
@@ -203,14 +237,27 @@ class MarksViewController: UIViewController {
         let view = sender.superview?.superview
         
         
-        
-        
+        var foundView = false
+        for assignment in StackView.arrangedSubviews{
+            
+            if assignment == view{
+                foundView = true
+                print("HERE")
+            }
+            if foundView{
+                assignment.frame = CGRect(x:10.0, y:assignment.frame.minY - 135, width:355.0, height:129.0)
+            }
+            print(assignment.frame)
+        }
         response![String(removedAssignments[view!]!)] = nil
         AverageBar.value = CGFloat(ta!.CalculateCourseAverage(markParam: response!))
         view?.isHidden = true
         view?.removeFromSuperview()
         StackView.layoutIfNeeded()
-        StackViewHeight.constant -= 145
+        StackViewHeight.constant -= 135
+        print(scrollView.contentSize)
+        
+        
         
         
         
@@ -221,6 +268,7 @@ class MarksViewController: UIViewController {
         let view = gesture.view!
         StackViewHeight.constant += 100
         view.frame.size.height = view.frame.size.height + 100
+        view.clipsToBounds = true
         
     }
     
@@ -233,7 +281,7 @@ class MarksViewController: UIViewController {
             if courseNumber >= 0{
                 view.isHidden = true
                 view.removeFromSuperview()
-                StackViewHeight.constant -= 145
+                StackViewHeight.constant -= 135
                 userIsEditing = false
             }
             courseNumber += 1

@@ -315,10 +315,10 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nqq-Tp-y36">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <subviews>
-                                    <stackView contentMode="top" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" distribution="fillEqually" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="Wbi-ua-Tav">
+                                    <stackView contentMode="top" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" distribution="equalSpacing" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wbi-ua-Tav">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="155"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="apU-Uu-CAA">
+                                            <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="apU-Uu-CAA">
                                                 <rect key="frame" x="10" y="10" width="355" height="135"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Average" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yeV-un-ily">
@@ -330,7 +330,7 @@
                                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aTd-IU-EAV" customClass="UICircularProgressRing" customModule="UICircularProgressRing">
+                                                    <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="aTd-IU-EAV" customClass="UICircularProgressRing" customModule="UICircularProgressRing">
                                                         <rect key="frame" x="120" y="20" width="115" height="115"/>
                                                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
@@ -391,7 +391,7 @@
                         <constraints>
                             <constraint firstItem="nqq-Tp-y36" firstAttribute="top" secondItem="E7A-nw-Jti" secondAttribute="top" id="53j-rG-3ta"/>
                             <constraint firstItem="E7A-nw-Jti" firstAttribute="trailing" secondItem="nqq-Tp-y36" secondAttribute="trailing" id="NMy-Vm-fRA"/>
-                            <constraint firstItem="nqq-Tp-y36" firstAttribute="bottom" secondItem="E7A-nw-Jti" secondAttribute="bottom" id="W5N-fY-LqP"/>
+                            <constraint firstItem="nqq-Tp-y36" firstAttribute="bottom" secondItem="E7A-nw-Jti" secondAttribute="bottom" id="cnb-74-m4c"/>
                             <constraint firstItem="nqq-Tp-y36" firstAttribute="leading" secondItem="E7A-nw-Jti" secondAttribute="leading" id="fhd-dw-tzd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="E7A-nw-Jti"/>
