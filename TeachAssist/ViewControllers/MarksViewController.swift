@@ -159,7 +159,7 @@ class MarksViewController: UIViewController {
             }
             assignmentView.AssignmentMark.text =  average + "%"
             StackViewHeight.constant = StackViewHeight.constant + 129
-            
+            print(StackViewHeight.constant)
             StackView.addArrangedSubview(assignmentView as UIView)
             assignmentView.TrashButton.addTarget(self, action: #selector(OnTrashButtonPress), for: .touchUpInside)
             assignmentList.append(assignmentView)
@@ -171,7 +171,7 @@ class MarksViewController: UIViewController {
             
         }
         AverageBar.startProgress(to: CGFloat(Mark!), duration: 1.5)
-        var assignmentNumber = -1
+        var assignmentNumber = 0
         for assignment in StackView.arrangedSubviews{
             removedAssignments[assignment] = assignmentNumber
             assignmentNumber += 1
@@ -183,14 +183,13 @@ class MarksViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        if hasViewBeenLayedOut == false{
+        if hasViewBeenLayedOut == false && response != nil{
             hasViewBeenLayedOut = true
-            scrollView.contentSize = CGSize(width: 375, height: StackViewHeight.constant)
-            var count = 0
+            print(StackViewHeight.constant)
+           StackView.frame = CGRect(x: StackView.frame.minX, y: StackView.frame.minY, width: StackView.frame.width, height: StackViewHeight.constant)
+            print(StackView.frame)
             for assignment in StackView.arrangedSubviews{
                 assignment.frame = CGRect(x: 10, y: assignment.frame.minY, width: 355, height: 129)
-                count += 1
-                
             }
         }
         
@@ -237,33 +236,35 @@ class MarksViewController: UIViewController {
             
             
         }*/
+        
         response![String(removedAssignments[view!]!)] = nil
         AverageBar.value = CGFloat(ta!.CalculateCourseAverage(markParam: response!))
         view?.isHidden = true
         view?.removeFromSuperview()
         
-        StackViewHeight.constant -= 129
-        scrollView.contentSize = CGSize(width: 375, height: StackViewHeight.constant - 129)
-        print(scrollView.contentSize)
+        StackViewHeight.constant -= 135
+        
         
         
         StackView.layoutIfNeeded()
         
         for assignment in StackView.arrangedSubviews{
-            print(assignment.frame)
+            //print(assignment.frame)
             assignment.frame = CGRect(x:10.0, y:assignment.frame.minY, width:355.0, height:129.0)
-            print(assignment.frame)
+            //print(assignment.frame)
             
         }
+        print(StackView.arrangedSubviews)
+        
         
         
     }
     
     @objc func OnAssignmentSelected(gesture: UIGestureRecognizer){
         let view = gesture.view!
-        StackViewHeight.constant += 100
-        view.frame.size.height = view.frame.size.height + 100
-        view.clipsToBounds = true
+        //StackViewHeight.constant += 100
+        //view.frame.size.height = view.frame.size.height + 100
+       //view.clipsToBounds = true
         
     }
     
@@ -271,19 +272,15 @@ class MarksViewController: UIViewController {
     
     @objc func OnRefresh() {
         print("refreshed")
-        var courseNumber = -1
         for view in StackView.arrangedSubviews{
-            if courseNumber >= 0{
-                view.isHidden = true
-                view.removeFromSuperview()
-                StackViewHeight.constant -= 129
-                userIsEditing = false
-            }
-            courseNumber += 1
+            view.isHidden = true
+            view.removeFromSuperview()
+            StackViewHeight.constant -= 129
         }
         AverageBar.startProgress(to: 0.0, duration: 0)
         //hasViewStarted = false
         viewDidAppear(true)
+        userIsEditing = false
         
     }
     
