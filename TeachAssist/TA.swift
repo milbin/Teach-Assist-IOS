@@ -115,7 +115,7 @@ class TA{
         if resp == nil{
             return nil
         }
-        
+        print(resp)
         if var assignments = ((resp["data"]! as! [String:Any])["assessment"]! as? [String:Any]){
             assignments = assignments["data"] as! [String:Any]
             for assignment in assignments{

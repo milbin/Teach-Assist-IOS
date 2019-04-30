@@ -381,7 +381,7 @@
                                 <constraints>
                                     <constraint firstItem="Wbi-ua-Tav" firstAttribute="width" secondItem="nqq-Tp-y36" secondAttribute="width" id="3OE-Pw-7tD"/>
                                     <constraint firstItem="Wbi-ua-Tav" firstAttribute="top" secondItem="apU-Uu-CAA" secondAttribute="bottom" id="6PK-q6-yGt"/>
-                                    <constraint firstAttribute="bottom" secondItem="Wbi-ua-Tav" secondAttribute="bottom" constant="165" id="Gsw-D8-buv"/>
+                                    <constraint firstAttribute="bottom" secondItem="Wbi-ua-Tav" secondAttribute="bottom" priority="250" constant="165" id="Gsw-D8-buv"/>
                                     <constraint firstItem="apU-Uu-CAA" firstAttribute="leading" secondItem="nqq-Tp-y36" secondAttribute="leading" constant="10" id="JEl-Nc-gts"/>
                                     <constraint firstAttribute="trailing" secondItem="apU-Uu-CAA" secondAttribute="trailing" constant="10" id="JmU-b1-pzB"/>
                                     <constraint firstItem="Wbi-ua-Tav" firstAttribute="leading" secondItem="nqq-Tp-y36" secondAttribute="leading" id="KV6-uJ-DKp"/>
@@ -405,6 +405,7 @@
                         <outlet property="StackView" destination="Wbi-ua-Tav" id="mcR-Hb-qaV"/>
                         <outlet property="StackViewHeight" destination="FGj-np-CzG" id="i9F-Sd-A0Z"/>
                         <outlet property="scrollView" destination="nqq-Tp-y36" id="3ZL-qY-FON"/>
+                        <outlet property="scrollViewBottom" destination="Gsw-D8-buv" id="VTg-Zy-YCc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mfb-DX-xXM" userLabel="First Responder" sceneMemberID="firstResponder"/>

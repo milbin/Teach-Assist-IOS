@@ -14,11 +14,13 @@ class MarksViewController: UIViewController {
     var removedAssignments:[UIView:Int] = [:]
     var refreshControl:UIRefreshControl? = nil
     var hasViewBeenLayedOut = false
+    var numOfremovedViews = 0
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var StackView: UIStackView!
     @IBOutlet weak var StackViewHeight: NSLayoutConstraint!
     @IBOutlet weak var AverageBar: UICircularProgressRing!
+    @IBOutlet weak var scrollViewBottom: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
         print("MARKS VIEW")
@@ -158,7 +160,7 @@ class MarksViewController: UIViewController {
                 average = "100"
             }
             assignmentView.AssignmentMark.text =  average + "%"
-            StackViewHeight.constant = StackViewHeight.constant + 129
+            StackViewHeight.constant = StackViewHeight.constant + 139
             print(StackViewHeight.constant)
             StackView.addArrangedSubview(assignmentView as UIView)
             assignmentView.TrashButton.addTarget(self, action: #selector(OnTrashButtonPress), for: .touchUpInside)
@@ -185,11 +187,18 @@ class MarksViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         if hasViewBeenLayedOut == false && response != nil{
             hasViewBeenLayedOut = true
+            StackView.addBackground(color: UIColor.red)
             print(StackViewHeight.constant)
-           StackView.frame = CGRect(x: StackView.frame.minX, y: StackView.frame.minY, width: StackView.frame.width, height: StackViewHeight.constant)
+            StackView.frame = CGRect(x: StackView.frame.minX, y: StackView.frame.minY, width: StackView.frame.width, height: StackViewHeight.constant)
+            StackView.bounds = CGRect(x: 0, y: 0, width: StackView.frame.width, height: StackViewHeight.constant)
             print(StackView.frame)
+            print(StackView.bounds)
+            StackView.clipsToBounds = true
+            
             for assignment in StackView.arrangedSubviews{
                 assignment.frame = CGRect(x: 10, y: assignment.frame.minY, width: 355, height: 129)
+                assignment.layoutMargins = UIEdgeInsets(top: 0.0, left: 8.0, bottom: 0.0, right: 8.0)
+                print(assignment.layoutMargins)
             }
         }
         
@@ -200,7 +209,7 @@ class MarksViewController: UIViewController {
         print("edit Button pressed")
         var count = 0
         for assignment in StackView.arrangedSubviews{
-            print(assignment.frame)
+            print(assignment.layoutMargins)
             assignment.frame = CGRect(x: 10, y: assignment.frame.minY, width: 355, height: 129)
             count += 1
             
@@ -242,11 +251,15 @@ class MarksViewController: UIViewController {
         view?.isHidden = true
         view?.removeFromSuperview()
         
-        StackViewHeight.constant -= 135
-        
-        
-        
+        StackViewHeight.constant -= 129
         StackView.layoutIfNeeded()
+        
+        numOfremovedViews += 1
+        print(numOfremovedViews)
+        print(StackView.frame)
+        print(StackView.bounds)
+        
+        
         
         for assignment in StackView.arrangedSubviews{
             //print(assignment.frame)
@@ -254,11 +267,19 @@ class MarksViewController: UIViewController {
             //print(assignment.frame)
             
         }
-        print(StackView.arrangedSubviews)
+        print(StackView.subviews)
+        let screenHeight = UIScreen.main.fixedCoordinateSpace.bounds.height
+        if screenHeight <= StackViewHeight.constant + 155{
+            //scrollViewBottom.constant = scrollViewBottom.constant - 129
+            
+        }
+        
         
         
         
     }
+    
+    
     
     @objc func OnAssignmentSelected(gesture: UIGestureRecognizer){
         let view = gesture.view!
@@ -288,4 +309,13 @@ class MarksViewController: UIViewController {
     
     
     
+}
+
+extension UIStackView {
+    func addBackground(color: UIColor) {
+        let subView = UIView(frame: bounds)
+        subView.backgroundColor = color
+        subView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        insertSubview(subView, at: 0)
+    }
 }
