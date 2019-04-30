@@ -84,6 +84,10 @@ class AssignmentView: UIView {
         return view
     }
     
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: 355, height: 129)
+    }
+    
     
     
     

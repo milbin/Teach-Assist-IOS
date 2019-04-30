@@ -188,17 +188,11 @@ class MarksViewController: UIViewController {
         if hasViewBeenLayedOut == false && response != nil{
             hasViewBeenLayedOut = true
             StackView.addBackground(color: UIColor.red)
-            print(StackViewHeight.constant)
-            StackView.frame = CGRect(x: StackView.frame.minX, y: StackView.frame.minY, width: StackView.frame.width, height: StackViewHeight.constant)
-            StackView.bounds = CGRect(x: 0, y: 0, width: StackView.frame.width, height: StackViewHeight.constant)
-            print(StackView.frame)
-            print(StackView.bounds)
-            StackView.clipsToBounds = true
             
             for assignment in StackView.arrangedSubviews{
-                assignment.frame = CGRect(x: 10, y: assignment.frame.minY, width: 355, height: 129)
-                assignment.layoutMargins = UIEdgeInsets(top: 0.0, left: 8.0, bottom: 0.0, right: 8.0)
-                print(assignment.layoutMargins)
+                assignment.invalidateIntrinsicContentSize()
+                assignment.layoutMargins.top = 5
+                assignment.layoutMargins.bottom = 5
             }
         }
         
@@ -208,12 +202,6 @@ class MarksViewController: UIViewController {
     @objc func OnEditButtonPress(sender: UIBarButtonItem){
         print("edit Button pressed")
         var count = 0
-        for assignment in StackView.arrangedSubviews{
-            print(assignment.layoutMargins)
-            assignment.frame = CGRect(x: 10, y: assignment.frame.minY, width: 355, height: 129)
-            count += 1
-            
-        }
         
         if userIsEditing{
             userIsEditing = false
@@ -232,50 +220,13 @@ class MarksViewController: UIViewController {
         print("Pressed Trash Button")
         let view = sender.superview?.superview
         
-        
-        /*var foundView = false
-        for assignment in StackView.arrangedSubviews{
-            if foundView{
-                //assignment.frame = CGRect(x:10.0, y:assignment.frame.minY - 129, width:355.0, height:129.0)
-            }
-            if assignment == view{
-                foundView = true
-
-            }
-            
-            
-        }*/
-        
         response![String(removedAssignments[view!]!)] = nil
         AverageBar.value = CGFloat(ta!.CalculateCourseAverage(markParam: response!))
         view?.isHidden = true
         view?.removeFromSuperview()
         
-        StackViewHeight.constant -= 129
-        StackView.layoutIfNeeded()
-        
-        numOfremovedViews += 1
-        print(numOfremovedViews)
-        print(StackView.frame)
-        print(StackView.bounds)
-        
-        
-        
-        for assignment in StackView.arrangedSubviews{
-            //print(assignment.frame)
-            assignment.frame = CGRect(x:10.0, y:assignment.frame.minY, width:355.0, height:129.0)
-            //print(assignment.frame)
-            
-        }
-        print(StackView.subviews)
-        let screenHeight = UIScreen.main.fixedCoordinateSpace.bounds.height
-        if screenHeight <= StackViewHeight.constant + 155{
-            //scrollViewBottom.constant = scrollViewBottom.constant - 129
-            
-        }
-        
-        
-        
+        StackViewHeight.constant -= 139
+        print(StackViewHeight.constant)
         
     }
     
@@ -296,10 +247,9 @@ class MarksViewController: UIViewController {
         for view in StackView.arrangedSubviews{
             view.isHidden = true
             view.removeFromSuperview()
-            StackViewHeight.constant -= 129
         }
+        StackViewHeight.constant = 0
         AverageBar.startProgress(to: 0.0, duration: 0)
-        //hasViewStarted = false
         viewDidAppear(true)
         userIsEditing = false
         
