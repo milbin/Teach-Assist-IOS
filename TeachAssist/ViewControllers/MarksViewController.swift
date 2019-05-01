@@ -124,6 +124,7 @@ class MarksViewController: UIViewController {
             UIView.animate(withDuration: 1, animations: {
             if markList["K"]! == 100.0{
                 assignmentView.KMark.text = "100"
+                assignmentView.KBarHeight.constant = 100 * 0.55 + 15
             }else if markList["K"]! == 0.000000001{
                 assignmentView.KMark.text = "NA"
                 assignmentView.KBarHeight.constant = 15
@@ -136,6 +137,7 @@ class MarksViewController: UIViewController {
             
             if markList["T"]! == 100.0{
                 assignmentView.TMark.text = "100"
+                assignmentView.TBarHeight.constant = 100 * 0.55 + 15
             }else if markList["T"]! == 0.000000001{
                 assignmentView.TMark.text = "NA"
                 assignmentView.TBarHeight.constant = 15
@@ -147,6 +149,7 @@ class MarksViewController: UIViewController {
             
             if markList["C"]! == 100.0{
                 assignmentView.CMark.text = "100"
+                assignmentView.CBarHeight.constant = 100 * 0.55 + 15
             }else if markList["C"]! == 0.000000001{
                 assignmentView.CMark.text = "NA"
                 assignmentView.CBarHeight.constant = 15
@@ -158,6 +161,7 @@ class MarksViewController: UIViewController {
             
             if markList["A"]! == 100.0{
                 assignmentView.AMark.text = "100"
+                assignmentView.ABarHeight.constant = 100 * 0.55 + 15
             }else if markList["A"]! == 0.000000001{
                 assignmentView.AMark.text = "NA"
                 assignmentView.ABarHeight.constant = 15
@@ -194,7 +198,7 @@ class MarksViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         if hasViewBeenLayedOut == false && response != nil{
             hasViewBeenLayedOut = true
-            StackView.addBackground(color: UIColor.red)
+            //StackView.addBackground(color: UIColor.red)
             
             for assignment in StackView.arrangedSubviews{
                 assignment.invalidateIntrinsicContentSize()
