@@ -112,6 +112,16 @@ class MarksViewController: UIViewController {
                     weightList[category] = 0.0
                 }
             }
+            
+            var average = (ta?.calculateAssignmentAverage(assignment: assignment, weights: response!["categories"]! as! [String:Double]))!
+            if average == "100.0"{
+                average = "100"
+            }
+            assignmentView.AssignmentMark.text =  average + "%"
+            StackViewHeight.constant = StackViewHeight.constant + 139
+            StackView.addArrangedSubview(assignmentView as UIView)
+            assignmentView.layoutIfNeeded()
+            UIView.animate(withDuration: 1, animations: {
             if markList["K"]! == 100.0{
                 assignmentView.KMark.text = "100"
             }else if markList["K"]! == 0.000000001{
@@ -121,6 +131,7 @@ class MarksViewController: UIViewController {
             }else{
                 assignmentView.KMark.text = String(markList["K"]!)
                 assignmentView.KBarHeight.constant = CGFloat(markList["K"]!) * 0.55 + 15
+                
             }
             
             if markList["T"]! == 100.0{
@@ -155,14 +166,10 @@ class MarksViewController: UIViewController {
                 assignmentView.AMark.text = String(markList["A"]!)
                 assignmentView.ABarHeight.constant = CGFloat(markList["A"]!) * 0.55 + 15
             }
-            var average = (ta?.calculateAssignmentAverage(assignment: assignment, weights: response!["categories"]! as! [String:Double]))!
-            if average == "100.0"{
-                average = "100"
-            }
-            assignmentView.AssignmentMark.text =  average + "%"
-            StackViewHeight.constant = StackViewHeight.constant + 139
-            print(StackViewHeight.constant)
-            StackView.addArrangedSubview(assignmentView as UIView)
+                assignmentView.layoutIfNeeded()
+            })
+            
+            
             assignmentView.TrashButton.addTarget(self, action: #selector(OnTrashButtonPress), for: .touchUpInside)
             assignmentList.append(assignmentView)
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(OnAssignmentSelected))
@@ -201,7 +208,6 @@ class MarksViewController: UIViewController {
     
     @objc func OnEditButtonPress(sender: UIBarButtonItem){
         print("edit Button pressed")
-        var count = 0
         
         if userIsEditing{
             userIsEditing = false
@@ -226,17 +232,26 @@ class MarksViewController: UIViewController {
         view?.removeFromSuperview()
         
         StackViewHeight.constant -= 139
-        print(StackViewHeight.constant)
         
     }
     
     
     
     @objc func OnAssignmentSelected(gesture: UIGestureRecognizer){
-        let view = gesture.view!
-        //StackViewHeight.constant += 100
-        //view.frame.size.height = view.frame.size.height + 100
-       //view.clipsToBounds = true
+        print("ASSIGNMENT SELECTED")
+        let view = gesture.view! as! AssignmentView
+        
+        if view.toggleState(newHeight: 229){
+            StackViewHeight.constant += 100
+        }else{
+            StackViewHeight.constant -= 100
+        }
+        
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            view.layoutIfNeeded()
+        })
+        
         
     }
     

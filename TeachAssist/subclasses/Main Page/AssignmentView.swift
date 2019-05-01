@@ -33,6 +33,9 @@ class AssignmentView: UIView {
     @IBOutlet weak var AMark: UILabel!
     @IBOutlet weak var ABarHeight: NSLayoutConstraint!
     
+    var height = 129
+    
+    
     
     
     
@@ -85,7 +88,33 @@ class AssignmentView: UIView {
     }
     
     override var intrinsicContentSize: CGSize {
-        return CGSize(width: 355, height: 129)
+        return CGSize(width: 355, height: height)
+    }
+    
+    func setHeight(){
+        
+    }
+    
+    func toggleState(newHeight:Int) -> Bool{
+        if height == 129{
+            height += newHeight
+            UIView.animate(withDuration: 0.5, animations: {
+                self.invalidateIntrinsicContentSize()
+                self.contentView.heightAnchor.constraint(equalToConstant: CGFloat(self.height))
+                self.contentView.frame = CGRect(x: self.contentView.frame.minX, y: self.contentView.frame.minY, width: self.contentView.frame.width, height: CGFloat(self.height))
+                
+            })
+            return true
+        }else{
+            height = 129
+            UIView.animate(withDuration: 0.5, animations: {
+                self.contentView.heightAnchor.constraint(equalToConstant: CGFloat(self.height))
+                self.contentView.frame = CGRect(x: self.contentView.frame.minX, y: self.contentView.frame.minY, width: self.contentView.frame.width, height: CGFloat(self.height))
+                
+            })
+            self.invalidateIntrinsicContentSize()
+            return false
+        }
     }
     
     
