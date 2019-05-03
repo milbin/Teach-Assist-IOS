@@ -47,6 +47,7 @@ class MainViewController: UIViewController {
                                  action: #selector(OnRefresh),
                                  for: .valueChanged)
         scrollView.refreshControl = refreshControl
+        StackView.addBackground(color: UIColor(red:0.94, green:0.94, blue:0.96, alpha:1.0))
         
 
         hasViewStarted = true
@@ -221,4 +222,6 @@ class MainViewController: UIViewController {
     
     
 }
+
+
 

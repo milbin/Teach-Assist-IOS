@@ -58,7 +58,7 @@ class MarksViewController: UIViewController {
             if feedback == nil{
                 feedback = ""
             }else{
-                feedback = feedback!.htmlUnescape()
+                feedback = feedback!.htmlUnescape().replacingOccurrences(of: "\n", with: "").replacingOccurrences(of: "\r", with: "")
             }
             assignmentWithFeedbackAndTitle.removeValue(forKey: "title")
             assignmentWithFeedbackAndTitle.removeValue(forKey: "feedback")
@@ -173,7 +173,12 @@ class MarksViewController: UIViewController {
                 assignmentView.layoutIfNeeded()
             })
             
+            assignmentView.KWeight.text = String(weightList["K"]!)
+            assignmentView.TWeight.text = String(weightList["T"]!)
+            assignmentView.CWeight.text = String(weightList["C"]!)
+            assignmentView.AWeight.text = String(weightList["A"]!)
             
+            assignmentView.feedback.text = "feedback: " + feedback!
             assignmentView.TrashButton.addTarget(self, action: #selector(OnTrashButtonPress), for: .touchUpInside)
             assignmentList.append(assignmentView)
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(OnAssignmentSelected))
@@ -198,7 +203,7 @@ class MarksViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         if hasViewBeenLayedOut == false && response != nil{
             hasViewBeenLayedOut = true
-            //StackView.addBackground(color: UIColor.red)
+            StackView.addBackground(color: UIColor(red:0.94, green:0.94, blue:0.96, alpha:1.0))
             
             for assignment in StackView.arrangedSubviews{
                 assignment.invalidateIntrinsicContentSize()
@@ -245,16 +250,83 @@ class MarksViewController: UIViewController {
         print("ASSIGNMENT SELECTED")
         let view = gesture.view! as! AssignmentView
         
-        if view.toggleState(newHeight: 229){
-            StackViewHeight.constant += 100
+        
+        if view.toggleState(newHeight: 259){
+            
+            view.centerBarConstraint.isActive = true
+            view.centerTextConstraint.isActive = true
+            view.centerAverageConstraint.isActive = true
+            view.centerCweightConstraint.isActive = true
+            view.feedback.isHidden = false
+            
+            view.KBarHeight.constant = view.KBarHeight.constant * 1.5
+            view.KBarWidth.constant = view.KBarWidth.constant * 1.5
+            view.KWeight.isHidden = false
+            view.KBarBottomMargin.constant = 20
+            view.KTrailing.constant = view.KTrailing.constant * 1.6
+            
+            view.TBarHeight.constant = view.TBarHeight.constant * 1.5
+            view.TBarWidth.constant = view.TBarWidth.constant * 1.5
+            view.TWeight.isHidden = false
+            view.TBarBottomMargin.constant = 20
+            view.TTrailing.constant = view.TTrailing.constant * 1.6
+            
+            view.CBarHeight.constant = view.CBarHeight.constant * 1.5
+            view.CBarWidth.constant = view.CBarWidth.constant * 1.5
+            view.CWeight.isHidden = false
+            view.CBarBottomMargin.constant = 20
+            view.CTrailing.constant = view.CTrailing.constant * 1.6
+            
+            view.ABarHeight.constant = view.ABarHeight.constant * 1.5
+            view.ABarWidth.constant = view.ABarWidth.constant * 1.5
+            view.AWeight.isHidden = false
+            view.ABarBottomMargin.constant = 20
+            UIView.animate(withDuration: 0.1, animations: {
+                view.layoutIfNeeded()
+            })
+            StackViewHeight.constant += 259
         }else{
-            StackViewHeight.constant -= 100
+            
+            view.centerBarConstraint.isActive = false
+            view.centerTextConstraint.isActive = false
+            view.centerAverageConstraint.isActive = false
+            view.feedback.isHidden = true
+            
+            view.KBarHeight.constant = view.KBarHeight.constant / 1.5
+            view.KBarWidth.constant = view.KBarWidth.constant / 1.5
+            view.KWeight.isHidden = true
+            view.KBarBottomMargin.constant = 10
+            view.KTrailing.constant = view.KTrailing.constant / 1.6
+            
+            view.TBarHeight.constant = view.TBarHeight.constant / 1.5
+            view.TBarWidth.constant = view.TBarWidth.constant / 1.5
+            view.TWeight.isHidden = true
+            view.TBarBottomMargin.constant = 10
+            view.TTrailing.constant = view.TTrailing.constant / 1.6
+            
+            view.CBarHeight.constant = view.CBarHeight.constant / 1.5
+            view.CBarWidth.constant = view.CBarWidth.constant / 1.5
+            view.CWeight.isHidden = true
+            view.CBarBottomMargin.constant = 10
+            view.CTrailing.constant = view.CTrailing.constant / 1.6
+            
+            view.ABarHeight.constant = view.ABarHeight.constant / 1.5
+            view.ABarWidth.constant = view.ABarWidth.constant / 1.5
+            view.AWeight.isHidden = true
+            view.ABarBottomMargin.constant = 10
+            UIView.animate(withDuration: 0.1, animations: {
+                view.layoutIfNeeded()
+                self.StackViewHeight.constant -= 259
+            }, completion: {(finished: Bool) in
+
+                
+            })
+            
         }
         
         
-        UIView.animate(withDuration: 0.5, animations: {
-            view.layoutIfNeeded()
-        })
+        
+        
         
         
     }
@@ -280,7 +352,7 @@ class MarksViewController: UIViewController {
     
 }
 
-extension UIStackView {
+extension UIStackView { //only way to have a non transparent stackview
     func addBackground(color: UIColor) {
         let subView = UIView(frame: bounds)
         subView.backgroundColor = color

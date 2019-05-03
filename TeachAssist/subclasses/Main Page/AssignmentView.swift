@@ -18,21 +18,41 @@ class AssignmentView: UIView {
     @IBOutlet weak var AssignmentMark: UILabel!
     
     @IBOutlet weak var KBar: UIView!
+    @IBOutlet weak var KBarWidth: NSLayoutConstraint!
+    @IBOutlet weak var KBarBottomMargin: NSLayoutConstraint!
     @IBOutlet weak var KMark: UILabel!
     @IBOutlet weak var KBarHeight: NSLayoutConstraint!
+    @IBOutlet weak var KWeight: UILabel!
+    @IBOutlet weak var KTrailing: NSLayoutConstraint!
     
     @IBOutlet weak var TBar: UIView!
+    @IBOutlet weak var TBarWidth: NSLayoutConstraint!
+    @IBOutlet weak var TBarBottomMargin: NSLayoutConstraint!
     @IBOutlet weak var TMark: UILabel!
     @IBOutlet weak var TBarHeight: NSLayoutConstraint!
+    @IBOutlet weak var TWeight: UILabel!
+    @IBOutlet weak var TTrailing: NSLayoutConstraint!
     
     @IBOutlet weak var CBar: UIView!
+    @IBOutlet weak var CBarWidth: NSLayoutConstraint!
+    @IBOutlet weak var CBarBottomMargin: NSLayoutConstraint!
     @IBOutlet weak var CMark: UILabel!
     @IBOutlet weak var CBarHeight: NSLayoutConstraint!
+    @IBOutlet weak var CWeight: UILabel!
+    @IBOutlet weak var CTrailing: NSLayoutConstraint!
     
     @IBOutlet weak var ABar: UIView!
+    @IBOutlet weak var ABarWidth: NSLayoutConstraint!
+    @IBOutlet weak var ABarBottomMargin: NSLayoutConstraint!
     @IBOutlet weak var AMark: UILabel!
     @IBOutlet weak var ABarHeight: NSLayoutConstraint!
+    @IBOutlet weak var AWeight: UILabel!
     
+    @IBOutlet weak var feedback: UITextView!
+    @IBOutlet weak var centerBarConstraint: NSLayoutConstraint!
+    @IBOutlet weak var centerTextConstraint: NSLayoutConstraint!
+    @IBOutlet weak var centerAverageConstraint: NSLayoutConstraint!
+    @IBOutlet weak var centerCweightConstraint: NSLayoutConstraint!
     var height = 129
     
     
@@ -42,7 +62,6 @@ class AssignmentView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.frame = frame
-        print(frame)
         xibSetup()
     }
     
@@ -91,14 +110,11 @@ class AssignmentView: UIView {
         return CGSize(width: 355, height: height)
     }
     
-    func setHeight(){
-        
-    }
     
     func toggleState(newHeight:Int) -> Bool{
         if height == 129{
             height += newHeight
-            UIView.animate(withDuration: 0.5, animations: {
+            UIView.animate(withDuration: 0.1, animations: {
                 self.invalidateIntrinsicContentSize()
                 self.contentView.heightAnchor.constraint(equalToConstant: CGFloat(self.height))
                 self.contentView.frame = CGRect(x: self.contentView.frame.minX, y: self.contentView.frame.minY, width: self.contentView.frame.width, height: CGFloat(self.height))
@@ -107,7 +123,7 @@ class AssignmentView: UIView {
             return true
         }else{
             height = 129
-            UIView.animate(withDuration: 0.5, animations: {
+            UIView.animate(withDuration: 0.1, animations: {
                 self.contentView.heightAnchor.constraint(equalToConstant: CGFloat(self.height))
                 self.contentView.frame = CGRect(x: self.contentView.frame.minX, y: self.contentView.frame.minY, width: self.contentView.frame.width, height: CGFloat(self.height))
                 
