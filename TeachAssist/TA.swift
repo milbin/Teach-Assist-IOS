@@ -331,6 +331,163 @@ class TA{
         
     }
     
+    
+    
+    func GetCategoryAndWeightsForCourse(marks:[String:Any]?) -> [Double]{
+        
+        var knowledge = 0.0
+        var thinking = 0.0
+        var communication = 0.0
+        var application = 0.0
+        
+        var totalWeightKnowledge = 0.0
+        var totalWeightThinking = 0.0
+        var totalWeightCommunication = 0.0
+        var totalWeightApplication = 0.0
+        
+        var weights = marks!["categories"] as! NSDictionary
+        
+        
+        for (key, value) in marks!{
+        if key != "categories"{
+        var temp = value as! [String:Any]
+        temp["feedback"] = nil
+        temp["title"] = nil
+        var assignment = temp as! [String:[String:String]]
+        
+        
+        var markK = 0.0
+        var outOfK = 0.0
+        var weightK = -0.1
+        if assignment["K"] != nil && assignment["K"]!["mark"] != nil{
+        markK = Double(assignment["K"]!["mark"]!)!
+        }else{
+        weightK = 0.0;
+        }
+        if assignment["K"] != nil && assignment["K"]!["outOf"] != nil{
+        outOfK = Double(assignment["K"]!["outOf"]!)!
+        }
+        if weightK == -0.1{
+        if assignment["K"]!["weight"] != nil{
+        weightK = Double(assignment["K"]!["weight"]!)!
+        }
+        }
+        if outOfK != 0.0{
+        knowledge += markK / outOfK * weightK;
+        totalWeightKnowledge += weightK;
+        }
+        
+        var markT = 0.0
+        var outOfT = 0.0
+        var weightT = -0.1
+        if assignment["T"] != nil && assignment["T"]!["mark"] != nil{
+        markT = Double(assignment["T"]!["mark"]!)!
+        }else{
+        weightT = 0.0;
+        }
+        if assignment["T"] != nil && assignment["T"]!["outOf"] != nil{
+        outOfT = Double(assignment["T"]!["outOf"]!)!
+        }
+        if weightT == -0.1{
+        if assignment["T"]!["weight"] != nil{
+        weightT = Double(assignment["T"]!["weight"]!)!
+        }
+        }
+        if outOfT != 0.0{
+        thinking += markT / outOfT * weightT;
+        totalWeightThinking += weightT;
+        }
+        
+        var markC = 0.0
+        var outOfC = 0.0
+        var weightC = -0.1
+        if assignment["C"] != nil && assignment["C"]!["mark"] != nil{
+        markC = Double(assignment["C"]!["mark"]!)!
+        }else{
+        weightC = 0.0;
+        }
+        if assignment["C"] != nil && assignment["C"]!["outOf"] != nil{
+        outOfC = Double(assignment["C"]!["outOf"]!)!
+        }
+        if weightC == -0.1{
+        if assignment["C"]!["weight"] != nil{
+        weightC = Double(assignment["C"]!["weight"]!)!
+        }
+        }
+        if outOfC != 0.0{
+        communication += markC / outOfC * weightC;
+        totalWeightCommunication += weightC;
+        }
+        
+        var markA = 0.0
+        var outOfA = 0.0
+        var weightA = -0.1
+        if assignment["A"] != nil && assignment["A"]!["mark"] != nil{
+        markA = Double(assignment["A"]!["mark"]!)!
+        }else{
+        weightA = 0.0;
+        }
+        if assignment["A"] != nil && assignment["A"]!["outOf"] != nil{
+        outOfA = Double(assignment["A"]!["outOf"]!)!
+        }
+        if weightA == -0.1{
+        if assignment["A"]!["weight"] != nil{
+        weightA = Double(assignment["A"]!["weight"]!)!
+        }
+        }
+        if outOfA != 0.0{
+        application += markA / outOfA * weightA;
+        totalWeightApplication += weightA;
+        }
+        
+        }
+        }
+        
+        var Knowledge = weights["K"]! as! Double
+        var Thinking = weights["T"]! as! Double
+        var Communication = weights["C"]! as! Double
+        var Application = weights["A"]! as! Double
+        
+        var finalKnowledge = 0.0
+        var finalThinking = 0.0
+        var finalCommunication = 0.0
+        var finalApplication = 0.0
+        
+        //omit category if there is no assignment in it
+        if totalWeightKnowledge != 0.0 {
+        finalKnowledge = knowledge / totalWeightKnowledge;
+        }else{
+        finalKnowledge = 0.0;
+        Knowledge = 0.0;
+        }
+        if totalWeightThinking != 0.0 {
+        finalThinking = thinking/totalWeightThinking;
+        }else{
+        finalThinking = 0.0;
+        Thinking = 0.0;
+        }
+        if totalWeightCommunication != 0.0 {
+        finalCommunication = communication/totalWeightCommunication;
+        }else{
+        finalCommunication = 0.0;
+        Communication = 0.0;
+        }
+        if totalWeightApplication != 0.0 {
+        finalApplication = application/totalWeightApplication;
+        }else{
+        finalApplication = 0.0;
+        Application = 0.0;
+        }
+        
+        
+        return [round(finalKnowledge*1000)/1000*100, round(finalThinking*1000)/1000*100, round(finalCommunication*1000)/1000*100, round(finalApplication*1000)/1000*100,
+                round(Knowledge*10)/10*100, round(Thinking*10)/10*100, round(Communication*10)/10*100, round(Application*10)/10*100]
+    
+    
+    
+    
+    }
+    
     func calculateAssignmentAverage(assignment:[String:[String:String]], weights:[String:Double]) -> String{
         var weightList = ["K" : weights["K"]!*10, "T" : weights["T"]!*10, "C" : weights["C"]!*10, "A" : weights["A"]!*10]
         var markList = ["K" : 0.0, "T" : 0.0, "C" : 0.0, "A" : 0.0, "" : 0.0]

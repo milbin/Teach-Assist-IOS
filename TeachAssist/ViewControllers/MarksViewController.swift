@@ -21,6 +21,32 @@ class MarksViewController: UIViewController {
     @IBOutlet weak var StackViewHeight: NSLayoutConstraint!
     @IBOutlet weak var AverageBar: UICircularProgressRing!
     @IBOutlet weak var scrollViewBottom: NSLayoutConstraint!
+    @IBOutlet weak var MarkBarView: UIView!
+    
+    @IBOutlet weak var KbarAverage: UIView!
+    @IBOutlet weak var KmarkAverage: UILabel!
+    @IBOutlet weak var KbarAverageHeight: NSLayoutConstraint!
+    @IBOutlet weak var KaverageWeight: UILabel!
+    
+    @IBOutlet weak var TbarAverage: UIView!
+    @IBOutlet weak var TmarkAverage: UILabel!
+    @IBOutlet weak var TbarAverageHeight: NSLayoutConstraint!
+    @IBOutlet weak var TaverageWeight: UILabel!
+    
+    @IBOutlet weak var CbarAverage: UIView!
+    @IBOutlet weak var CmarkAverage: UILabel!
+    @IBOutlet weak var CbarAverageHeight: NSLayoutConstraint!
+    @IBOutlet weak var CaverageWeight: UILabel!
+    
+    @IBOutlet weak var AbarAverage: UIView!
+    @IBOutlet weak var AmarkAverage: UILabel!
+    @IBOutlet weak var AbarAverageHeight: NSLayoutConstraint!
+    @IBOutlet weak var AaverageWeight: UILabel!
+    
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("MARKS VIEW")
@@ -37,6 +63,9 @@ class MarksViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
+        
+        
         response = ta!.GetMarks(subjectNumber: courseNumber!)
         originalResponse = response!
         
@@ -50,6 +79,7 @@ class MarksViewController: UIViewController {
                                   action: #selector(OnRefresh),
                                   for: .valueChanged)
         scrollView.refreshControl = refreshControl
+        UpdateMarkBars()
         
         for i in 0...(response!.count - 2){
             var assignmentWithFeedbackAndTitle = response![String(i)]! as! [String:Any]
@@ -239,6 +269,7 @@ class MarksViewController: UIViewController {
         AverageBar.value = CGFloat(ta!.CalculateCourseAverage(markParam: response!))
         view?.isHidden = true
         view?.removeFromSuperview()
+        UpdateMarkBars()
         
         StackViewHeight.constant -= 139
         
@@ -264,6 +295,7 @@ class MarksViewController: UIViewController {
             view.KWeight.isHidden = false
             view.KBarBottomMargin.constant = 20
             view.KTrailing.constant = view.KTrailing.constant * 1.6
+            
             
             view.TBarHeight.constant = view.TBarHeight.constant * 1.5
             view.TBarWidth.constant = view.TBarWidth.constant * 1.5
@@ -344,7 +376,72 @@ class MarksViewController: UIViewController {
         viewDidAppear(true)
         userIsEditing = false
         
+        KbarAverage.backgroundColor = UIColor(red:0.15, green:0.73, blue:0.22, alpha:1.0)
+        TbarAverage.backgroundColor = UIColor(red:0.15, green:0.73, blue:0.22, alpha:1.0)
+        CbarAverage.backgroundColor = UIColor(red:0.15, green:0.73, blue:0.22, alpha:1.0)
+        AbarAverage.backgroundColor = UIColor(red:0.15, green:0.73, blue:0.22, alpha:1.0)
+        
     }
+    
+    func UpdateMarkBars(){
+        let list = ta!.GetCategoryAndWeightsForCourse(marks: response!)
+        
+        KbarAverageHeight.constant = CGFloat(list[0] * 0.9 + 15)
+        TbarAverageHeight.constant = CGFloat(list[1] * 0.9 + 15)
+        CbarAverageHeight.constant = CGFloat(list[2] * 0.9 + 15)
+        AbarAverageHeight.constant = CGFloat(list[3] * 0.9 + 15)
+        
+        KbarAverage.layer.cornerRadius = 5
+        TbarAverage.layer.cornerRadius = 5
+        CbarAverage.layer.cornerRadius = 5
+        AbarAverage.layer.cornerRadius = 5
+        
+        KbarAverage.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        TbarAverage.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        CbarAverage.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        AbarAverage.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        
+        
+        if list[0] != 0{
+            KmarkAverage.text = String(round(list[0]*1000)/1000)
+        }else{
+            KmarkAverage.text = "NA"
+            KbarAverage.backgroundColor = UIColor(red:0.91, green:0.12, blue:0.39, alpha:1.0)
+        }
+        
+        if list[1] != 0{
+            TmarkAverage.text = String(round(list[1]*1000)/1000)
+        }else{
+            TmarkAverage.text = "NA"
+            TbarAverage.backgroundColor = UIColor(red:0.91, green:0.12, blue:0.39, alpha:1.0)
+        }
+        
+        if list[2] != 0{
+            CmarkAverage.text = String(round(list[2]*1000)/1000)
+        }else{
+            CmarkAverage.text = "NA"
+            CbarAverage.backgroundColor = UIColor(red:0.91, green:0.12, blue:0.39, alpha:1.0)
+        }
+        
+        if list[3] != 0{
+            AmarkAverage.text = String(round(list[3]*1000)/1000)
+        }else{
+            AmarkAverage.text = "NA"
+            AbarAverage.backgroundColor = UIColor(red:0.91, green:0.12, blue:0.39, alpha:1.0)
+        }
+        
+        
+        KaverageWeight.text = String(list[4])
+        TaverageWeight.text = String(list[5])
+        CaverageWeight.text = String(list[6])
+        AaverageWeight.text = String(list[7])
+        
+        UIView.animate(withDuration: 0.1, animations: {
+            self.MarkBarView.layoutIfNeeded()
+        })
+    }
+    
+    
     
     
     
