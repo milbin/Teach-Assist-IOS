@@ -9,6 +9,7 @@
 import UIKit
 import UICircularProgressRing
 import KYDrawerController
+import UserNotifications
 
 class MainViewController: UIViewController {
     var courseList = [CourseView]()
@@ -32,6 +33,38 @@ class MainViewController: UIViewController {
         navigationItem.rightBarButtonItem?.tintColor = UIColor.white
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "HamburgerIcon"), style: .plain, target: self, action: #selector(OnNavButtonPress))//add nav button as the onClick method
         navigationItem.leftBarButtonItem?.tintColor = UIColor.white
+        
+        
+        UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+            if settings.authorizationStatus != .authorized {
+                print("Notifications not allowed")
+            }
+        }
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Don't forget"
+        content.body = "Buy some milk"
+        content.sound = UNNotificationSound.default
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: true) // 15 minutes
+        
+        let identifier = "UYLLocalNotification"
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: { (error) in
+            if let error = error {
+                print("Something went wrong1")
+            }
+        })
+        var displayString = "Current Pending Notifications "
+        UNUserNotificationCenter.current().getPendingNotificationRequests {
+            (requests) in
+            displayString += "count:\(requests.count)\t"
+            for request in requests{
+                displayString += request.identifier + "\t"
+            }
+            print(displayString)
+        }
         
     }
     
@@ -154,6 +187,16 @@ class MainViewController: UIViewController {
             for course in courseList{
                 course.TrashButton.isHidden = false
             }
+        }
+        
+        var displayString = "Current Pending Notifications "
+        UNUserNotificationCenter.current().getPendingNotificationRequests {
+            (requests) in
+            displayString += "count:\(requests.count)\t"
+            for request in requests{
+                displayString += request.identifier + "\t"
+            }
+            print(displayString)
         }
     }
     

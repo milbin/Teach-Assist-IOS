@@ -8,6 +8,7 @@
 
 import UIKit
 import KYDrawerController
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,7 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        
+        
+        // check weather or not user is logged in and show the coresponding storyboard
         let Preferences = UserDefaults.standard
         var username = Preferences.string(forKey: "username")
         var password = Preferences.string(forKey: "password")
@@ -36,9 +40,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.rootViewController = drawerController
             window?.makeKeyAndVisible()
         }
-        
-        
+        //setup notificaitons
+        let options: UNAuthorizationOptions = [.alert, .sound];
+        UNUserNotificationCenter.current().requestAuthorization(options: options) { (granted, error) in
+            if !granted {
+                print("Something went wrong")
+            }else{
+                print("NOTIFICATION PERMISSION GRANTED")
+                UNUserNotificationCenter.current().getNotificationSettings{(settings) in
+                    print(settings)
+                    UIApplication.shared.registerForRemoteNotifications()
+                    
+                }
+            }
+        }
         return true
+    }
+    //This UIApplicationDelegate method gets called when iOS decides a background fetch can happen
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void){
+        print("HERE NOTIFICATIONS")
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -61,6 +81,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let tokenParts = deviceToken.map{ data-> String in
+            return String(format:"%02.2hhx", data)
+        }
+        let token = tokenParts.joined()
+        print("TOKEN: " + token)
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("FAILED TO REGISTER WITH REMOTE NOTIFICATIONS: \(error)")
     }
 
 

@@ -82,6 +82,7 @@
 		EA2BEE682251559200F085E2 /* DrawerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerViewController.swift; sourceTree = "<group>"; };
 		EA3624AA223DD149009E392D /* CourseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseView.xib; sourceTree = "<group>"; };
 		EA3624AC223DD575009E392D /* CourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseView.swift; sourceTree = "<group>"; };
+		EA649139228247790072E6C5 /* TeachAssist.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TeachAssist.entitlements; sourceTree = "<group>"; };
 		EA94D82E2272628F00C27FB6 /* updateStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = updateStackView.swift; sourceTree = "<group>"; };
 		EAB209222220E519000686B3 /* LoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
 		EAB209252220E6B7000686B3 /* CheckboxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxButton.swift; sourceTree = "<group>"; };
@@ -156,6 +157,7 @@
 		6E449D112204A26E00C0F0AC /* TeachAssist */ = {
 			isa = PBXGroup;
 			children = (
+				EA649139228247790072E6C5 /* TeachAssist.entitlements */,
 				EA3624A5223D924B009E392D /* Views */,
 				6EDFB06322204DFD00640F87 /* Assets.xcassets */,
 				6E449D122204A26E00C0F0AC /* AppDelegate.swift */,
@@ -333,6 +335,14 @@
 				TargetAttributes = {
 					6E449D0E2204A26E00C0F0AC = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					6E449D222204A27200C0F0AC = {
 						CreatedOnToolsVersion = 10.1;
@@ -682,6 +692,7 @@
 			baseConfigurationReference = 61D508545975C28BFFF72A94 /* Pods-TeachAssist.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TeachAssist/TeachAssist.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 763X9XATXX;
@@ -703,6 +714,7 @@
 			baseConfigurationReference = BA3800C2F1869FD078491C2F /* Pods-TeachAssist.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TeachAssist/TeachAssist.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 763X9XATXX;
