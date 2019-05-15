@@ -35,7 +35,7 @@ class MainViewController: UIViewController {
         navigationItem.leftBarButtonItem?.tintColor = UIColor.white
         
         
-        UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+        /*UNUserNotificationCenter.current().getNotificationSettings { (settings) in
             if settings.authorizationStatus != .authorized {
                 print("Notifications not allowed")
             }
@@ -64,7 +64,7 @@ class MainViewController: UIViewController {
                 displayString += request.identifier + "\t"
             }
             print(displayString)
-        }
+        }*/
         
     }
     

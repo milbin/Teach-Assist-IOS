@@ -57,7 +57,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AVI3M1-06" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="89" translatesAutoresizingMaskIntoConstraints="NO" id="8Bu-vs-iPh">
-                    <rect key="frame" x="269" y="30" width="101" height="18"/>
+                    <rect key="frame" x="258" y="30" width="112" height="18"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="18" id="0GD-j8-3wf"/>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="101" id="BEK-0I-Zvu"/>
@@ -124,6 +124,7 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="8Bu-vs-iPh" secondAttribute="trailing" constant="5" id="VUn-Xv-oG7"/>
                 <constraint firstItem="Z6R-8b-y9P" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="4" id="WFg-Bf-WBZ"/>
                 <constraint firstItem="8Bu-vs-iPh" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="30" id="c5u-A7-qS2"/>
+                <constraint firstItem="8Bu-vs-iPh" firstAttribute="centerX" secondItem="0oe-SZ-O4K" secondAttribute="centerX" id="htR-Iv-FaM"/>
                 <constraint firstItem="Qhe-n4-cNj" firstAttribute="leading" relation="lessThanOrEqual" secondItem="INy-at-mkD" secondAttribute="trailing" constant="14" id="jwO-jb-MMa"/>
                 <constraint firstItem="0oe-SZ-O4K" firstAttribute="top" secondItem="8Bu-vs-iPh" secondAttribute="bottom" constant="8" id="n2W-dg-k44"/>
                 <constraint firstItem="8Bu-vs-iPh" firstAttribute="leading" relation="lessThanOrEqual" secondItem="jcK-SG-vMM" secondAttribute="trailing" constant="45.5" id="ozb-Dg-Qy8"/>

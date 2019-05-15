@@ -43,6 +43,10 @@ class MarksViewController: UIViewController {
     @IBOutlet weak var AbarAverageHeight: NSLayoutConstraint!
     @IBOutlet weak var AaverageWeight: UILabel!
     
+    @IBOutlet weak var ObarAverage: UIView!
+    @IBOutlet weak var OmarkAverage: UILabel!
+    @IBOutlet weak var ObarAverageHeight: NSLayoutConstraint!
+    @IBOutlet weak var OaverageWeight: UILabel!
     
     
     
@@ -135,12 +139,12 @@ class MarksViewController: UIViewController {
                     if (assignment[category]!["outOf"] != nil && assignment[category]!["outOf"]! == "") || assignment[category]!["outOf"] == nil{
                         stringFractionList[category] = stringFractionList[category]! + "0"
                     }else{
-                        stringFractionList[category] = assignment[category]!["outOf"]!
+                        stringFractionList[category] = stringFractionList[category]! + assignment[category]!["outOf"]!
                     }
-                    
                 }else{
                     weightList[category] = 0.0
                 }
+                
             }
             
             var average = (ta?.calculateAssignmentAverage(assignment: assignment, weights: response!["categories"]! as! [String:Double]))!
@@ -152,54 +156,67 @@ class MarksViewController: UIViewController {
             StackView.addArrangedSubview(assignmentView as UIView)
             assignmentView.layoutIfNeeded()
             UIView.animate(withDuration: 1, animations: {
-            if markList["K"]! == 100.0{
-                assignmentView.KMark.text = "100"
-                assignmentView.KBarHeight.constant = 100 * 0.55 + 15
-            }else if markList["K"]! == 0.000000001{
-                assignmentView.KMark.text = "NA"
-                assignmentView.KBarHeight.constant = 15
-                assignmentView.KBar.backgroundColor = UIColor(red:0.91, green:0.12, blue:0.39, alpha:1.0) //teachassist themed pink
-            }else{
-                assignmentView.KMark.text = String(markList["K"]!)
-                assignmentView.KBarHeight.constant = CGFloat(markList["K"]!) * 0.55 + 15
+                if markList["K"]! == 100.0{
+                    assignmentView.KMark.text = "100"
+                    assignmentView.KBarHeight.constant = 100 * 0.55 + 15
+                }else if markList["K"]! == 0.000000001{
+                    assignmentView.KMark.text = "NA"
+                    assignmentView.KBarHeight.constant = 15
+                    assignmentView.KBar.backgroundColor = UIColor(red:0.91, green:0.12, blue:0.39, alpha:1.0) //teachassist themed pink
+                }else{
+                    assignmentView.KMark.text = String(markList["K"]!)
+                    assignmentView.KBarHeight.constant = CGFloat(markList["K"]!) * 0.55 + 15
+                    
+                }
                 
-            }
-            
-            if markList["T"]! == 100.0{
-                assignmentView.TMark.text = "100"
-                assignmentView.TBarHeight.constant = 100 * 0.55 + 15
-            }else if markList["T"]! == 0.000000001{
-                assignmentView.TMark.text = "NA"
-                assignmentView.TBarHeight.constant = 15
-                assignmentView.TBar.backgroundColor = UIColor(red:0.91, green:0.12, blue:0.39, alpha:1.0) //teachassist themed pink
-            }else{
-                assignmentView.TMark.text = String(markList["T"]!)
-                assignmentView.TBarHeight.constant = CGFloat(markList["T"]!) * 0.55 + 15
-            }
-            
-            if markList["C"]! == 100.0{
-                assignmentView.CMark.text = "100"
-                assignmentView.CBarHeight.constant = 100 * 0.55 + 15
-            }else if markList["C"]! == 0.000000001{
-                assignmentView.CMark.text = "NA"
-                assignmentView.CBarHeight.constant = 15
-                assignmentView.CBar.backgroundColor = UIColor(red:0.91, green:0.12, blue:0.39, alpha:1.0) //teachassist themed pink
-            }else{
-                assignmentView.CMark.text = String(markList["C"]!)
-                assignmentView.CBarHeight.constant = CGFloat(markList["C"]!) * 0.55 + 15
-            }
-            
-            if markList["A"]! == 100.0{
-                assignmentView.AMark.text = "100"
-                assignmentView.ABarHeight.constant = 100 * 0.55 + 15
-            }else if markList["A"]! == 0.000000001{
-                assignmentView.AMark.text = "NA"
-                assignmentView.ABarHeight.constant = 15
-                assignmentView.ABar.backgroundColor = UIColor(red:0.91, green:0.12, blue:0.39, alpha:1.0) //teachassist themed pink
-            }else{
-                assignmentView.AMark.text = String(markList["A"]!)
-                assignmentView.ABarHeight.constant = CGFloat(markList["A"]!) * 0.55 + 15
-            }
+                if markList["T"]! == 100.0{
+                    assignmentView.TMark.text = "100"
+                    assignmentView.TBarHeight.constant = 100 * 0.55 + 15
+                }else if markList["T"]! == 0.000000001{
+                    assignmentView.TMark.text = "NA"
+                    assignmentView.TBarHeight.constant = 15
+                    assignmentView.TBar.backgroundColor = UIColor(red:0.91, green:0.12, blue:0.39, alpha:1.0) //teachassist themed pink
+                }else{
+                    assignmentView.TMark.text = String(markList["T"]!)
+                    assignmentView.TBarHeight.constant = CGFloat(markList["T"]!) * 0.55 + 15
+                }
+                
+                if markList["C"]! == 100.0{
+                    assignmentView.CMark.text = "100"
+                    assignmentView.CBarHeight.constant = 100 * 0.55 + 15
+                }else if markList["C"]! == 0.000000001{
+                    assignmentView.CMark.text = "NA"
+                    assignmentView.CBarHeight.constant = 15
+                    assignmentView.CBar.backgroundColor = UIColor(red:0.91, green:0.12, blue:0.39, alpha:1.0) //teachassist themed pink
+                }else{
+                    assignmentView.CMark.text = String(markList["C"]!)
+                    assignmentView.CBarHeight.constant = CGFloat(markList["C"]!) * 0.55 + 15
+                }
+                
+                if markList["A"]! == 100.0{
+                    assignmentView.AMark.text = "100"
+                    assignmentView.ABarHeight.constant = 100 * 0.55 + 15
+                }else if markList["A"]! == 0.000000001{
+                    assignmentView.AMark.text = "NA"
+                    assignmentView.ABarHeight.constant = 15
+                    assignmentView.ABar.backgroundColor = UIColor(red:0.91, green:0.12, blue:0.39, alpha:1.0) //teachassist themed pink
+                }else{
+                    assignmentView.AMark.text = String(markList["A"]!)
+                    assignmentView.ABarHeight.constant = CGFloat(markList["A"]!) * 0.55 + 15
+                }
+
+                if markList[""]! == 100.0{
+                    assignmentView.OMark.text = "100"
+                    assignmentView.OBarHeight.constant = 100 * 0.55 + 15
+                }else if markList[""]! == 0.000000001{
+                    assignmentView.OMark.text = "NA"
+                    assignmentView.OBarHeight.constant = 15
+                    assignmentView.OBar.backgroundColor = UIColor(red:0.91, green:0.12, blue:0.39, alpha:1.0) //teachassist themed pink
+                }else{
+                    assignmentView.OMark.text = String(markList[""]!)
+                    assignmentView.OBarHeight.constant = CGFloat(markList[""]!) * 0.55 + 15
+                }
+
                 assignmentView.layoutIfNeeded()
             })
             
@@ -207,6 +224,13 @@ class MarksViewController: UIViewController {
             assignmentView.TWeight.text = String(weightList["T"]!)
             assignmentView.CWeight.text = String(weightList["C"]!)
             assignmentView.AWeight.text = String(weightList["A"]!)
+            assignmentView.OWeight.text = String(weightList[""]!)
+            
+            assignmentView.KFraction.text = stringFractionList["K"]
+            assignmentView.TFraction.text = stringFractionList["T"]
+            assignmentView.CFraction.text = stringFractionList["C"]
+            assignmentView.AFraction.text = stringFractionList["A"]
+            assignmentView.OFraction.text = stringFractionList["O"]
             
             assignmentView.feedback.text = "feedback: " + feedback!
             assignmentView.TrashButton.addTarget(self, action: #selector(OnTrashButtonPress), for: .touchUpInside)
@@ -284,43 +308,47 @@ class MarksViewController: UIViewController {
         
         if view.toggleState(newHeight: 259){
             
-            view.centerBarConstraint.isActive = true
-            view.centerTextConstraint.isActive = true
+            view.centerXConstraint.isActive = true
             view.centerAverageConstraint.isActive = true
-            view.centerCweightConstraint.isActive = true
             view.feedback.isHidden = false
             
             view.KBarHeight.constant = view.KBarHeight.constant * 1.5
             view.KBarWidth.constant = view.KBarWidth.constant * 1.5
             view.KWeight.isHidden = false
             view.KBarBottomMargin.constant = 20
-            view.KTrailing.constant = view.KTrailing.constant * 1.6
-            
+            view.KFraction.isHidden = false
             
             view.TBarHeight.constant = view.TBarHeight.constant * 1.5
             view.TBarWidth.constant = view.TBarWidth.constant * 1.5
             view.TWeight.isHidden = false
             view.TBarBottomMargin.constant = 20
-            view.TTrailing.constant = view.TTrailing.constant * 1.6
+            view.TFraction.isHidden = false
             
             view.CBarHeight.constant = view.CBarHeight.constant * 1.5
             view.CBarWidth.constant = view.CBarWidth.constant * 1.5
             view.CWeight.isHidden = false
             view.CBarBottomMargin.constant = 20
-            view.CTrailing.constant = view.CTrailing.constant * 1.6
+            view.CFraction.isHidden = false
             
             view.ABarHeight.constant = view.ABarHeight.constant * 1.5
             view.ABarWidth.constant = view.ABarWidth.constant * 1.5
             view.AWeight.isHidden = false
             view.ABarBottomMargin.constant = 20
+            view.AFraction.isHidden = false
+            
+            view.OBarHeight.constant = view.OBarHeight.constant * 1.5
+            view.OBarWidth.constant = view.OBarWidth.constant * 1.5
+            view.OWeight.isHidden = false
+            view.OBarBottomMargin.constant = 20
+            view.OFraction.isHidden = false
+            
             UIView.animate(withDuration: 0.1, animations: {
                 view.layoutIfNeeded()
             })
             StackViewHeight.constant += 259
         }else{
             
-            view.centerBarConstraint.isActive = false
-            view.centerTextConstraint.isActive = false
+            view.centerXConstraint.isActive = false
             view.centerAverageConstraint.isActive = false
             view.feedback.isHidden = true
             
@@ -328,24 +356,32 @@ class MarksViewController: UIViewController {
             view.KBarWidth.constant = view.KBarWidth.constant / 1.5
             view.KWeight.isHidden = true
             view.KBarBottomMargin.constant = 10
-            view.KTrailing.constant = view.KTrailing.constant / 1.6
+            view.KFraction.isHidden = true
             
             view.TBarHeight.constant = view.TBarHeight.constant / 1.5
             view.TBarWidth.constant = view.TBarWidth.constant / 1.5
             view.TWeight.isHidden = true
             view.TBarBottomMargin.constant = 10
-            view.TTrailing.constant = view.TTrailing.constant / 1.6
+            view.TFraction.isHidden = true
             
             view.CBarHeight.constant = view.CBarHeight.constant / 1.5
             view.CBarWidth.constant = view.CBarWidth.constant / 1.5
             view.CWeight.isHidden = true
             view.CBarBottomMargin.constant = 10
-            view.CTrailing.constant = view.CTrailing.constant / 1.6
+            view.CFraction.isHidden = true
             
             view.ABarHeight.constant = view.ABarHeight.constant / 1.5
             view.ABarWidth.constant = view.ABarWidth.constant / 1.5
             view.AWeight.isHidden = true
             view.ABarBottomMargin.constant = 10
+            view.AFraction.isHidden = true
+            
+            view.OBarHeight.constant = view.OBarHeight.constant / 1.5
+            view.OBarWidth.constant = view.OBarWidth.constant / 1.5
+            view.OWeight.isHidden = true
+            view.OBarBottomMargin.constant = 10
+            view.OFraction.isHidden = true
+            
             UIView.animate(withDuration: 0.1, animations: {
                 view.layoutIfNeeded()
                 self.StackViewHeight.constant -= 259
@@ -372,14 +408,11 @@ class MarksViewController: UIViewController {
             view.removeFromSuperview()
         }
         StackViewHeight.constant = 0
+        StackView.layoutIfNeeded()
         AverageBar.startProgress(to: 0.0, duration: 0)
         viewDidAppear(true)
         userIsEditing = false
-        
-        KbarAverage.backgroundColor = UIColor(red:0.15, green:0.73, blue:0.22, alpha:1.0)
-        TbarAverage.backgroundColor = UIColor(red:0.15, green:0.73, blue:0.22, alpha:1.0)
-        CbarAverage.backgroundColor = UIColor(red:0.15, green:0.73, blue:0.22, alpha:1.0)
-        AbarAverage.backgroundColor = UIColor(red:0.15, green:0.73, blue:0.22, alpha:1.0)
+        UpdateMarkBars()
         
     }
     
@@ -390,16 +423,19 @@ class MarksViewController: UIViewController {
         TbarAverageHeight.constant = CGFloat(list[1] * 0.9 + 15)
         CbarAverageHeight.constant = CGFloat(list[2] * 0.9 + 15)
         AbarAverageHeight.constant = CGFloat(list[3] * 0.9 + 15)
+        ObarAverageHeight.constant = CGFloat(list[4] * 0.9 + 15)
         
         KbarAverage.layer.cornerRadius = 5
         TbarAverage.layer.cornerRadius = 5
         CbarAverage.layer.cornerRadius = 5
         AbarAverage.layer.cornerRadius = 5
+        ObarAverage.layer.cornerRadius = 5
         
         KbarAverage.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         TbarAverage.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         CbarAverage.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         AbarAverage.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        ObarAverage.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         
         
         if list[0] != 0{
@@ -430,11 +466,19 @@ class MarksViewController: UIViewController {
             AbarAverage.backgroundColor = UIColor(red:0.91, green:0.12, blue:0.39, alpha:1.0)
         }
         
+        if list[4] != 0{
+            OmarkAverage.text = String(round(list[4]*1000)/1000)
+        }else{
+            OmarkAverage.text = "NA"
+            ObarAverage.backgroundColor = UIColor(red:0.91, green:0.12, blue:0.39, alpha:1.0)
+        }
         
-        KaverageWeight.text = String(list[4])
-        TaverageWeight.text = String(list[5])
-        CaverageWeight.text = String(list[6])
-        AaverageWeight.text = String(list[7])
+        
+        KaverageWeight.text = String(list[5])
+        TaverageWeight.text = String(list[6])
+        CaverageWeight.text = String(list[7])
+        AaverageWeight.text = String(list[8])
+        OaverageWeight.text = String(list[9])
         
         UIView.animate(withDuration: 0.1, animations: {
             self.MarkBarView.layoutIfNeeded()

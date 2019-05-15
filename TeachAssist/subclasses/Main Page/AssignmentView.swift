@@ -23,7 +23,8 @@ class AssignmentView: UIView {
     @IBOutlet weak var KMark: UILabel!
     @IBOutlet weak var KBarHeight: NSLayoutConstraint!
     @IBOutlet weak var KWeight: UILabel!
-    @IBOutlet weak var KTrailing: NSLayoutConstraint!
+    @IBOutlet weak var KFraction: UILabel!
+
     
     @IBOutlet weak var TBar: UIView!
     @IBOutlet weak var TBarWidth: NSLayoutConstraint!
@@ -31,7 +32,7 @@ class AssignmentView: UIView {
     @IBOutlet weak var TMark: UILabel!
     @IBOutlet weak var TBarHeight: NSLayoutConstraint!
     @IBOutlet weak var TWeight: UILabel!
-    @IBOutlet weak var TTrailing: NSLayoutConstraint!
+    @IBOutlet weak var TFraction: UILabel!
     
     @IBOutlet weak var CBar: UIView!
     @IBOutlet weak var CBarWidth: NSLayoutConstraint!
@@ -39,7 +40,7 @@ class AssignmentView: UIView {
     @IBOutlet weak var CMark: UILabel!
     @IBOutlet weak var CBarHeight: NSLayoutConstraint!
     @IBOutlet weak var CWeight: UILabel!
-    @IBOutlet weak var CTrailing: NSLayoutConstraint!
+    @IBOutlet weak var CFraction: UILabel!
     
     @IBOutlet weak var ABar: UIView!
     @IBOutlet weak var ABarWidth: NSLayoutConstraint!
@@ -47,12 +48,19 @@ class AssignmentView: UIView {
     @IBOutlet weak var AMark: UILabel!
     @IBOutlet weak var ABarHeight: NSLayoutConstraint!
     @IBOutlet weak var AWeight: UILabel!
+    @IBOutlet weak var AFraction: UILabel!
+    
+    @IBOutlet weak var OBar: UIView!
+    @IBOutlet weak var OBarWidth: NSLayoutConstraint!
+    @IBOutlet weak var OBarBottomMargin: NSLayoutConstraint!
+    @IBOutlet weak var OBarHeight: NSLayoutConstraint!
+    @IBOutlet weak var OMark: UILabel!
+    @IBOutlet weak var OWeight: UILabel!
+    @IBOutlet weak var OFraction: UILabel!
     
     @IBOutlet weak var feedback: UITextView!
-    @IBOutlet weak var centerBarConstraint: NSLayoutConstraint!
-    @IBOutlet weak var centerTextConstraint: NSLayoutConstraint!
     @IBOutlet weak var centerAverageConstraint: NSLayoutConstraint!
-    @IBOutlet weak var centerCweightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var centerXConstraint: NSLayoutConstraint!
     var height = 129
     
     
@@ -95,6 +103,8 @@ class AssignmentView: UIView {
         CBar.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         ABar.layer.cornerRadius = 5
         ABar.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        OBar.layer.cornerRadius = 5
+        OBar.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
     }
     
     func loadViewFromNib() -> UIView! {
