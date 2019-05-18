@@ -61,9 +61,7 @@ class TA{
                 //TODO add a method to get the mark thingy
                 course["mark"] = CalculateCourseAverage(subjectNumber: counter)
             }else if mark.contains("%"){
-                course["mark"] = CalculateCourseAverage(subjectNumber: counter)
-                print(CalculateCourseAverage(subjectNumber: counter))
-                //course["mark"] = Double(mark.replacingOccurrences(of:"%", with:"").trimmingCharacters(in: .whitespacesAndNewlines))
+                course["mark"] = Double(mark.replacingOccurrences(of:"%", with:"").trimmingCharacters(in: .whitespacesAndNewlines))
             }
             counter += 1
         }
@@ -113,12 +111,12 @@ class TA{
     func GetMarks(subjectNumber:Int) -> [String:Any]?{
         var sr = SendRequest()
         var params = ["student_id": self.studentID, "token":self.sessionToken, "subject_id":courses[subjectNumber]]
-        var resp = sr.SendJSON(url: "https://ta.yrdsb.ca/v4/students/json.php", parameters: params)! as! [String : Any]
+        var resp = sr.SendJSON(url: "https://ta.yrdsb.ca/v4/students/json.php", parameters: params)
         if resp == nil{
             return nil
         }
-        print(resp)
-        if var assignments = ((resp["data"]! as! [String:Any])["assessment"]! as? [String:Any]){
+        resp = resp! as! [String : Any]
+        if var assignments = ((resp!["data"]! as! [String:Any])["assessment"]! as? [String:Any]){
             assignments = assignments["data"] as! [String:Any]
             for assignment in assignments{
                 assignments[assignment.key] = assignment.value as! [String:Any]
@@ -560,7 +558,6 @@ class TA{
         //finalCommunication = finalCommunication*Communication
         //finalApplication = finalApplication*Application
         //finalOther = finalOther*Other
-        print(finalKnowledge)
         //round to the tens position
         var returnList = [round(finalKnowledge*1000)/10, round(finalThinking*1000)/10, round(finalCommunication*1000)/10, round(finalApplication*1000)/10, round(finalOther*1000)/10]
         for i in [round(Knowledge*1000)/10, round(Thinking*1000)/10, round(Communication*1000)/10, round(Application*1000)/10, round(Other*1000)/10]{

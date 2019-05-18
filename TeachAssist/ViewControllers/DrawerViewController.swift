@@ -27,6 +27,18 @@ class DrawerViewController: UITableViewController {
             let Preferences = UserDefaults.standard
             Preferences.set("", forKey: "username")
             Preferences.set("", forKey: "password")
+            let sr = SendRequest()
+            let dict = ["token":Preferences.string(forKey: "token")!,
+                        "auth":"taappyrdsb123!",
+                        "purpose":"delete",
+                        ]
+            let URL = "https://benjamintran.me/TeachassistAPI/"
+            if sr.SendJSON(url: URL, parameters: dict) == nil{
+                Preferences.set(true, forKey: "shouldUnregister")
+            }else{
+                Preferences.set(false, forKey: "shouldUnregister")
+            }
+            
             //  Save to disk
             Preferences.synchronize()
             let storyboard = UIStoryboard(name: "Login", bundle: nil)
@@ -43,7 +55,6 @@ class DrawerViewController: UITableViewController {
             
             
         }else if indexPath.row == cells["bug report"]{
-            print("HERE")
             let email = "TaAppYRDSB@gmail.com"
             if let url = URL(string: "mailto:\(email)") {
                 if #available(iOS 10.0, *) {

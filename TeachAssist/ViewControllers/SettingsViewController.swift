@@ -19,6 +19,9 @@ class SettingsViewController: UITableViewController {
     
     //number of cells in tableview
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if response == nil{
+            return 0
+        }
         return response!.count
     }
     //number of headers

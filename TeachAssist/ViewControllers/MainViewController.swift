@@ -98,6 +98,9 @@ class MainViewController: UIViewController {
         }
         response = ta.GetTaData(username: username!, password: password!) ?? nil
         self.navigationItem.title = "Student: "+username!
+        if response == nil{
+            return //TODO raise some error dialog
+        }
         
         //add default preferences for notifications
         for i in 0...response!.count{

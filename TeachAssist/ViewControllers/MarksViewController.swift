@@ -71,6 +71,9 @@ class MarksViewController: UIViewController {
         
         
         response = ta!.GetMarks(subjectNumber: courseNumber!)
+        if response == nil{
+            return
+        }
         originalResponse = response!
         
         if response == nil{

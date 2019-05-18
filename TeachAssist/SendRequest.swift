@@ -16,11 +16,18 @@ class SendRequest{
         let semaphore = DispatchSemaphore(value: 0)
         //var request = AF.request(url, method:.post, parameters:params, encoding:JSONEncoding.default)
         var resp:[[String:Any]]?
+        var notificationResp:[String:Any]?
         
         AF.request(url, method:.post, parameters:params, encoding:JSONEncoding.default).responseJSON(queue: DispatchQueue.global(qos: .default)) { response in
             switch response.result {
             case .success(let value):
-                resp = value as! [[String:Any]]
+                resp = value as? [[String:Any]]
+                if resp == nil{
+                    notificationResp = value as? [String:Any]
+                    if notificationResp == nil || notificationResp!["result"] == nil{
+                        notificationResp = nil
+                    }
+                }
             case .failure(let error):
                 resp = nil
                 print(error)
@@ -29,9 +36,13 @@ class SendRequest{
         }
         _ = semaphore.wait(timeout: DispatchTime.distantFuture)
         print("REQUEST FINISHED")
+        if notificationResp != nil{
+            return notificationResp
+        }
         if resp == nil{
             return nil
         }
+        
         return resp![0]
     }
     

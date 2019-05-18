@@ -54,6 +54,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 Preferences.synchronize()
                 print(Preferences.string(forKey: KeyUsername)!)
                 print(Preferences.string(forKey: KeyPassword)!)
+                let token = Preferences.string(forKey: "token")
+                
+                let sr = SendRequest()
+                let dict = ["username":Username!,
+                            "password":Password!,
+                            "platform":"IOS",
+                            "token":token!,
+                            "auth":"taappyrdsb123!",
+                            "purpose":"register",
+                            ]
+                let URL = "https://benjamintran.me/TeachassistAPI/"
+                print(sr.SendJSON(url: URL, parameters: dict))
                 
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let mainViewController   = storyboard.instantiateViewController(withIdentifier: "MainView") as UIViewController
