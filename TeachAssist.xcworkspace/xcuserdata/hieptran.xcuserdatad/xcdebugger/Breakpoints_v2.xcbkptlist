@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TeachAssist/ViewControllers/LoginViewController.swift"
-            timestampString = "579839411.072095"
+            timestampString = "579991890.396888"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "24"
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TeachAssist/TA.swift"
-            timestampString = "579839411.072185"
+            timestampString = "579991890.39744"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "606"
-            endingLineNumber = "606"
+            startingLineNumber = "605"
+            endingLineNumber = "605"
             landmarkName = "calculateAssignmentAverage(assignment:weights:)"
             landmarkType = "7">
          </BreakpointContent>

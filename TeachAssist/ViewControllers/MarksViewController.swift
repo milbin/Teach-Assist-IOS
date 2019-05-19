@@ -77,7 +77,12 @@ class MarksViewController: UIViewController {
         originalResponse = response!
         
         if response == nil{
-            return //TODO riase some error dialog
+            let alert = UIAlertController(title: "Error: Could not reach Teachassist", message: "Please check your internet connection and try again", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { (action:UIAlertAction!) in
+                self.OnRefresh()
+            }))
+            self.present(alert, animated: true)
+            return
         }
         
         //setup refresh controller to allow main view to be refreshed

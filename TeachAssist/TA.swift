@@ -58,7 +58,6 @@ class TA{
             if mark.contains("Please see teacher for current status regarding achievement in the course"){
                 course["mark"] = "NA"
             }else if mark.contains("Level") || mark.contains("Click"){
-                //TODO add a method to get the mark thingy
                 course["mark"] = CalculateCourseAverage(subjectNumber: counter)
             }else if mark.contains("%"){
                 course["mark"] = Double(mark.replacingOccurrences(of:"%", with:"").trimmingCharacters(in: .whitespacesAndNewlines))

@@ -35,50 +35,73 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func buttonPressed(){
-        print("Login")
+        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
+
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.style = UIActivityIndicatorView.Style.gray
+        loadingIndicator.startAnimating();
+
+        
+
+
         let Preferences = UserDefaults.standard
         let KeyUsername = "username"
         let KeyPassword = "password"
         let Username = usernameTextField.text
         let Password = passwordTextField.text
         if( Username == "" || Password == ""){
-            //TODO riase some error
-            print("no username / password entered")
-        }else{
-            let ta = TA()
-            if ta.CheckCredentials(username: Username!, password: Password!){
+            let alert = UIAlertController(title: "Error: Missing username or password", message: "Please enter a username and password and try again", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            self.present(alert, animated: true)
             
-                Preferences.set(Username!, forKey: KeyUsername)
-                Preferences.set(Password!, forKey: KeyPassword)
-                //  Save to disk
-                Preferences.synchronize()
-                print(Preferences.string(forKey: KeyUsername)!)
-                print(Preferences.string(forKey: KeyPassword)!)
-                let token = Preferences.string(forKey: "token")
+        }else{
+            alert.view.addSubview(loadingIndicator)
+            present(alert, animated: true, completion: {
+
+                let ta = TA()
+                if ta.CheckCredentials(username: Username!, password: Password!){
+                    
                 
-                let sr = SendRequest()
-                let dict = ["username":Username!,
-                            "password":Password!,
-                            "platform":"IOS",
-                            "token":token!,
-                            "auth":"taappyrdsb123!",
-                            "purpose":"register",
-                            ]
-                let URL = "https://benjamintran.me/TeachassistAPI/"
-                print(sr.SendJSON(url: URL, parameters: dict))
-                
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let mainViewController   = storyboard.instantiateViewController(withIdentifier: "MainView") as UIViewController
-                let drawerViewController = storyboard.instantiateViewController(withIdentifier: "DrawerView") as UIViewController
-                let drawerController     = KYDrawerController(drawerDirection: .left, drawerWidth: 300)
-                drawerController.mainViewController = mainViewController
-                drawerController.drawerViewController = drawerViewController
-                UIApplication.shared.keyWindow?.rootViewController = drawerController
-                UIApplication.shared.keyWindow?.makeKeyAndVisible()
-            }else{
-                //TODO show some dialog saying wrong user pass
-                print("WRONG USERNAME/PASSWORD")
-            }
+                    Preferences.set(Username!, forKey: KeyUsername)
+                    Preferences.set(Password!, forKey: KeyPassword)
+                    //  Save to disk
+                    Preferences.synchronize()
+                    print(Preferences.string(forKey: KeyUsername)!)
+                    print(Preferences.string(forKey: KeyPassword)!)
+                    let token = Preferences.string(forKey: "token")
+                    
+                    let sr = SendRequest()
+                    let dict = ["username":Username!,
+                                "password":Password!,
+                                "platform":"IOS",
+                                "token":token!,
+                                "auth":"taappyrdsb123!",
+                                "purpose":"register",
+                                ]
+                    let URL = "https://benjamintran.me/TeachassistAPI/"
+                    print(sr.SendJSON(url: URL, parameters: dict))
+                    
+                    self.dismiss(animated: false, completion: nil)
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let mainViewController   = storyboard.instantiateViewController(withIdentifier: "MainView") as UIViewController
+                    let drawerViewController = storyboard.instantiateViewController(withIdentifier: "DrawerView") as UIViewController
+                    let drawerController     = KYDrawerController(drawerDirection: .left, drawerWidth: 300)
+                    drawerController.mainViewController = mainViewController
+                    drawerController.drawerViewController = drawerViewController
+                    UIApplication.shared.keyWindow?.rootViewController = drawerController
+                    UIApplication.shared.keyWindow?.makeKeyAndVisible()
+                }else{
+                    self.dismiss(animated: false, completion: {
+                        let alert = UIAlertController(title: "Error: Invalid username or password", message: "Please check your internet connection and try again", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                        self.present(alert, animated: true)
+                        })
+                }
+
+
+                })
+            
             
         }
         

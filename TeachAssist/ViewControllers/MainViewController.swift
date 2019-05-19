@@ -34,37 +34,12 @@ class MainViewController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "HamburgerIcon"), style: .plain, target: self, action: #selector(OnNavButtonPress))//add nav button as the onClick method
         navigationItem.leftBarButtonItem?.tintColor = UIColor.white
         
-        
-        /*UNUserNotificationCenter.current().getNotificationSettings { (settings) in
-            if settings.authorizationStatus != .authorized {
-                print("Notifications not allowed")
-            }
-        }
-        
-        let content = UNMutableNotificationContent()
-        content.title = "Don't forget"
-        content.body = "Buy some milk"
-        content.sound = UNNotificationSound.default
-        
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: true) // 15 minutes
-        
-        let identifier = "UYLLocalNotification"
-        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
-        
-        UNUserNotificationCenter.current().add(request, withCompletionHandler: { (error) in
-            if let error = error {
-                print("Something went wrong1")
-            }
-        })
-        var displayString = "Current Pending Notifications "
-        UNUserNotificationCenter.current().getPendingNotificationRequests {
-            (requests) in
-            displayString += "count:\(requests.count)\t"
-            for request in requests{
-                displayString += request.identifier + "\t"
-            }
-            print(displayString)
-        }*/
+        //setup refresh controller to allow main view to be refreshed
+        refreshControl = UIRefreshControl()
+        refreshControl!.addTarget(self,
+                                  action: #selector(OnRefresh),
+                                  for: .valueChanged)
+        scrollView.refreshControl = refreshControl
         
     }
     
@@ -74,18 +49,12 @@ class MainViewController: UIViewController {
         if hasViewStarted == true{
             return
         }
-        //setup refresh controller to allow main view to be refreshed
-        refreshControl = UIRefreshControl()
-        refreshControl!.addTarget(self,
-                                 action: #selector(OnRefresh),
-                                 for: .valueChanged)
-        scrollView.refreshControl = refreshControl
+        
         StackView.addBackground(color: UIColor(red:0.94, green:0.94, blue:0.96, alpha:1.0))
         
 
         hasViewStarted = true
         //get ta data
-        
         let Preferences = UserDefaults.standard
         var username = Preferences.string(forKey: "username")
         var password = Preferences.string(forKey: "password")
@@ -99,7 +68,12 @@ class MainViewController: UIViewController {
         response = ta.GetTaData(username: username!, password: password!) ?? nil
         self.navigationItem.title = "Student: "+username!
         if response == nil{
-            return //TODO raise some error dialog
+            let alert = UIAlertController(title: "Error: Could not reach Teachassist", message: "Please check your internet connection and try again", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { (action:UIAlertAction!) in
+                self.OnRefresh()
+            }))
+            self.present(alert, animated: true)
+            return
         }
         
         //add default preferences for notifications
@@ -113,7 +87,12 @@ class MainViewController: UIViewController {
         
         //add courses to main view
         if response == nil{
-            return //TODO raise network connecttion error
+            let alert = UIAlertController(title: "Error: Could not reach Teachassist", message: "Please check your internet connection and try again", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { (action:UIAlertAction!) in
+                self.OnRefresh()
+            }))
+            self.present(alert, animated: true)
+            return
         }
         let topBarHeight = UIApplication.shared.statusBarFrame.size.height +
             (self.navigationController?.navigationBar.frame.height ?? 0.0)
@@ -148,11 +127,25 @@ class MainViewController: UIViewController {
             StackViewHeight.constant = StackViewHeight.constant + 170
             
         }
-        AverageBar.startProgress(to: CGFloat(ta.CalculateAverage(response: response!)), duration: 1.5)
         
         if refreshControl!.isRefreshing{
             refreshControl!.endRefreshing()
         }
+        
+        self.AverageBar.startProgress(to: 0.0, duration: 0.01, completion: {
+            self.AverageBar.startProgress(to: CGFloat(self.ta.CalculateAverage(response: self.response!)), duration: 1)
+            })
+
+        
+        UIView.animate(withDuration: 0.4, animations: {
+            self.StackView.layoutIfNeeded()
+        })
+            
+        
+        
+        
+        
+        
         
         
         
@@ -179,7 +172,7 @@ class MainViewController: UIViewController {
     }
     
     @objc func OnEditButtonPress(sender: UIBarButtonItem){
-    print("edit Button pressed")
+        print("edit Button pressed")
         if userIsEditing{
             userIsEditing = false
             for course in courseList{
@@ -235,6 +228,8 @@ class MainViewController: UIViewController {
     
     @objc func OnRefresh() {
         print("refreshed")
+        
+        
         var courseNumber = -1
         for view in StackView.arrangedSubviews{
             if courseNumber >= 0{
@@ -244,9 +239,9 @@ class MainViewController: UIViewController {
             }
             courseNumber += 1
         }
-        AverageBar.startProgress(to: 0.0, duration: 0)
         hasViewStarted = false
-        viewDidAppear(true)
+        StackView.layoutIfNeeded()
+        viewDidAppear(false)
         
     }
     
