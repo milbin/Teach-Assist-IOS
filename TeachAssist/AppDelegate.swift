@@ -52,7 +52,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let options: UNAuthorizationOptions = [.alert, .sound];
         UNUserNotificationCenter.current().requestAuthorization(options: options) { (granted, error) in
             if !granted {
-                print("Something went wrong")
+                print("Notifications weremnot correctly registered")
+                Preferences.set("false", forKey: "token")
+                Preferences.synchronize()
+                
             }else{
                 print("NOTIFICATION PERMISSION GRANTED")
                 UNUserNotificationCenter.current().getNotificationSettings{(settings) in
