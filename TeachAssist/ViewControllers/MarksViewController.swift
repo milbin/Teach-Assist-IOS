@@ -72,11 +72,6 @@ class MarksViewController: UIViewController {
         
         response = ta!.GetMarks(subjectNumber: courseNumber!)
         if response == nil{
-            return
-        }
-        originalResponse = response!
-        
-        if response == nil{
             let alert = UIAlertController(title: "Error: Could not reach Teachassist", message: "Please check your internet connection and try again", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { (action:UIAlertAction!) in
                 self.OnRefresh()
@@ -84,6 +79,9 @@ class MarksViewController: UIViewController {
             self.present(alert, animated: true)
             return
         }
+        originalResponse = response!
+        
+        print(response)
         
         //setup refresh controller to allow main view to be refreshed
         refreshControl = UIRefreshControl()
@@ -107,9 +105,12 @@ class MarksViewController: UIViewController {
             for category in assignmentWithFeedbackAndTitle{
                 var value = (category.value as! [String:String?])
                 if value["mark"]! == nil{
-                    value["mark"] = "0"
+                    assignmentWithFeedbackAndTitle[category.key] = nil
+                }else if value["outOf"]! == nil{
+                    assignmentWithFeedbackAndTitle[category.key] = nil
+                }else{
+                    assignmentWithFeedbackAndTitle[category.key] = value as! [String:String]
                 }
-                assignmentWithFeedbackAndTitle[category.key] = value as! [String:String]
             }
             var assignment = assignmentWithFeedbackAndTitle as! [String:[String:String]]
             
@@ -154,7 +155,7 @@ class MarksViewController: UIViewController {
                 }
                 
             }
-            
+            print(assignment)
             var average = (ta?.calculateAssignmentAverage(assignment: assignment, weights: response!["categories"]! as! [String:Double]))!
             if average == "100.0"{
                 average = "100"

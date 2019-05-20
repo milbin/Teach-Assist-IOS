@@ -576,6 +576,8 @@ class TA{
         var markList = ["K" : 0.0, "T" : 0.0, "C" : 0.0, "A" : 0.0, "" : 0.0]
         let categoryList = ["K", "T", "C", "A", ""]
         
+        print(assignment)
+        
         
         for category in categoryList{
             if assignment[category] != nil{
