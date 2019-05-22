@@ -1,5 +1,8 @@
 PODS:
   - Alamofire (5.0.0-beta.2)
+  - Crashlytics (3.12.0):
+    - Fabric (~> 1.9.0)
+  - Fabric (1.9.0)
   - HTMLEntities (3.0.12)
   - HTMLString (4.0.2)
   - KYDrawerController (2.1.0)
@@ -8,6 +11,8 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 5.0.0-beta.2)
+  - Crashlytics
+  - Fabric
   - HTMLEntities (from `https://github.com/IBM-Swift/swift-html-entities.git`)
   - HTMLString (~> 4.0)
   - KYDrawerController
@@ -17,6 +22,8 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - Crashlytics
+    - Fabric
     - HTMLString
     - KYDrawerController
     - PureLayout
@@ -33,12 +40,14 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: d1e5493588babe3e7b56ae29e8032942f4de09fe
+  Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
+  Fabric: f988e33c97f08930a413e08123064d2e5f68d655
   HTMLEntities: b195103df85a07c6174ed52435d30ae90085fa44
   HTMLString: d346ba551d1b7e687190c948ec0c2ddaf4057544
   KYDrawerController: baad0e63b09c0cb564bd48f0f7f70f45d9176ebc
   PureLayout: f25f0bb904d5ccfe6e31da3cb869185259f02e0d
   UICircularProgressRing: 2ef1293241b83d8020ede21a8fe3b3d859525730
 
-PODFILE CHECKSUM: 297d7bd6146e731b78653a411124c34e811da245
+PODFILE CHECKSUM: 11e0c1d1dbc0ffaddd9f48eef5fa6bb3218ee439
 
 COCOAPODS: 1.6.1

@@ -12,6 +12,8 @@ target 'TeachAssist' do
   pod 'HTMLString', '~> 4.0'
   pod 'KYDrawerController'
   pod 'HTMLEntities', :git => 'https://github.com/IBM-Swift/swift-html-entities.git'
+  pod 'Fabric'
+  pod 'Crashlytics'
 
   target 'TeachAssistTests' do
     inherit! :search_paths

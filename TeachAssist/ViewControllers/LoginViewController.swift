@@ -72,11 +72,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     let token = Preferences.string(forKey: "token")
                     if token != "false"{
                         let sr = SendRequest()
+                        let serverPassword = auth()
                         let dict = ["username":Username!,
                                     "password":Password!,
                                     "platform":"IOS",
                                     "token":token!,
-                                    "auth":"taappyrdsb123!",
+                                    "auth":serverPassword.getAuth(),
                                     "purpose":"register",
                                     ]
                         let URL = "https://benjamintran.me/TeachassistAPI/"

@@ -28,8 +28,9 @@ class DrawerViewController: UITableViewController {
             Preferences.set("", forKey: "username")
             Preferences.set("", forKey: "password")
             let sr = SendRequest()
+            let serverPassword = auth()
             let dict = ["token":Preferences.string(forKey: "token")!,
-                        "auth":"taappyrdsb123!",
+                        "auth":serverPassword.getAuth(),
                         "purpose":"delete",
                         ]
             let URL = "https://benjamintran.me/TeachassistAPI/"

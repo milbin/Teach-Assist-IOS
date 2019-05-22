@@ -9,6 +9,8 @@
 import UIKit
 import KYDrawerController
 import UserNotifications
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        //initialize fabric
+        Fabric.with([Crashlytics.self])
         
         
         
@@ -24,6 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let Preferences = UserDefaults.standard
         var username = Preferences.string(forKey: "username")
         var password = Preferences.string(forKey: "password")
+        //crashlytics
+        self.logUser(username: username!, password: password!)
+
         
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -38,8 +45,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.makeKeyAndVisible()
         }else if Preferences.bool(forKey: "shouldUnregister"){ //if there are no credentuals stored and the user has not been unregistered from the notification server
             let sr = SendRequest()
+            let serverPassword = auth()
             let dict = ["token":Preferences.string(forKey: "token")!,
-                        "auth":"taappyrdsb123!",
+                        "auth":serverPassword.getAuth(),
                         "purpose":"delete",
                         ]
             let URL = "https://benjamintran.me/TeachassistAPI/"
@@ -60,8 +68,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("NOTIFICATION PERMISSION GRANTED")
                 UNUserNotificationCenter.current().getNotificationSettings{(settings) in
                     print(settings)
-                    UIApplication.shared.registerForRemoteNotifications()
-                    
+                    DispatchQueue.main.async(execute: {
+                        UIApplication.shared.registerForRemoteNotifications()
+                    })
                 }
             }
         }
@@ -111,7 +120,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Preferences.set("simulator token", forKey: "token")
         Preferences.synchronize()
     }
+    
+    func logUser(username:String, password:String) {
+        // TODO: Use the current user's information
+        // You can call any combination of these three methods
+        Crashlytics.sharedInstance().setUserIdentifier(username)
+        Crashlytics.sharedInstance().setUserName(username)
+        //Crashlytics.sharedInstance().setValue(password, forKey: "password")
+        CLSLogv(password, getVaList(["password"]))
 
+    }
 
 }
 

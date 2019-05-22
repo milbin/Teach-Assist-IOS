@@ -172,6 +172,9 @@ class MainViewController: UIViewController {
     }
     
     @objc func OnEditButtonPress(sender: UIBarButtonItem){
+        let crashVar:String?
+        crashVar = nil
+        let _ = crashVar!
         print("edit Button pressed")
         if userIsEditing{
             userIsEditing = false
