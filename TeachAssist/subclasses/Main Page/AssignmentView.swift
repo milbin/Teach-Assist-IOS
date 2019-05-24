@@ -94,17 +94,14 @@ class AssignmentView: UIView {
         //KBar.layer.cornerRadius = 10
         //KBar.layer.masksToBounds = true
         
-        //round top 2 corners of each mark bar
-        KBar.layer.cornerRadius = 5
-        KBar.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        TBar.layer.cornerRadius = 5
-        TBar.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        CBar.layer.cornerRadius = 5
-        CBar.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        ABar.layer.cornerRadius = 5
-        ABar.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        OBar.layer.cornerRadius = 5
-        OBar.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        
+            
+        KBar.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
+        TBar.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
+        CBar.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
+        ABar.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
+        OBar.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
+    
     }
     
     func loadViewFromNib() -> UIView! {

@@ -28,8 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let Preferences = UserDefaults.standard
         var username = Preferences.string(forKey: "username")
         var password = Preferences.string(forKey: "password")
-        //crashlytics
-        self.logUser(username: username!, password: password!)
+        
 
         
         
@@ -43,6 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if(username != nil && password != nil && username != "" && password != ""){ //if credentals are alredy stored go straight to main view
             window?.rootViewController = drawerController
             window?.makeKeyAndVisible()
+            self.logUser(username: username!, password: password!)
         }else if Preferences.bool(forKey: "shouldUnregister"){ //if there are no credentuals stored and the user has not been unregistered from the notification server
             let sr = SendRequest()
             let serverPassword = auth()

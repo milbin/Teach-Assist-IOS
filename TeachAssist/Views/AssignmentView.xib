@@ -237,7 +237,6 @@
                 </label>
                 <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Feedback: " textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g5x-mT-K3y">
                     <rect key="frame" x="22.5" y="120" width="330" height="120"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="330" id="mcd-JU-ZiC"/>
                         <constraint firstAttribute="height" constant="120" id="nmT-Uu-bXu"/>

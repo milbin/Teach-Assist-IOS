@@ -10,6 +10,7 @@ import UIKit
 import UICircularProgressRing
 import KYDrawerController
 import UserNotifications
+import Crashlytics
 
 class MainViewController: UIViewController {
     var courseList = [CourseView]()
@@ -105,6 +106,7 @@ class MainViewController: UIViewController {
             }else{
                 courseView.ProgressBar.isHidden = true
                 courseView.NATextView.isHidden = false
+                courseView.isUserInteractionEnabled = false
                 
             }
             courseView.PeriodNumber.text = "Period: \(i+1)"
@@ -172,9 +174,6 @@ class MainViewController: UIViewController {
     }
     
     @objc func OnEditButtonPress(sender: UIBarButtonItem){
-        let crashVar:String?
-        crashVar = nil
-        let _ = crashVar!
         print("edit Button pressed")
         if userIsEditing{
             userIsEditing = false
@@ -186,17 +185,8 @@ class MainViewController: UIViewController {
             for course in courseList{
                 course.TrashButton.isHidden = false
             }
-        }
+        }       
         
-        var displayString = "Current Pending Notifications "
-        UNUserNotificationCenter.current().getPendingNotificationRequests {
-            (requests) in
-            displayString += "count:\(requests.count)\t"
-            for request in requests{
-                displayString += request.identifier + "\t"
-            }
-            print(displayString)
-        }
     }
     
     @objc func OnNavButtonPress(sender: UIBarButtonItem){
@@ -264,7 +254,34 @@ class MainViewController: UIViewController {
     }
     
     
+}
+
+extension UIView {
     
+    func roundCorners(_ corners: CACornerMask, radius: CGFloat) {
+        if #available(iOS 11, *) {
+            self.layer.cornerRadius = radius
+            self.layer.maskedCorners = corners
+        } else {
+            var cornerMask = UIRectCorner()
+            if(corners.contains(.layerMinXMinYCorner)){
+                cornerMask.insert(.topLeft)
+            }
+            if(corners.contains(.layerMaxXMinYCorner)){
+                cornerMask.insert(.topRight)
+            }
+            if(corners.contains(.layerMinXMaxYCorner)){
+                cornerMask.insert(.bottomLeft)
+            }
+            if(corners.contains(.layerMaxXMaxYCorner)){
+                cornerMask.insert(.bottomRight)
+            }
+            let path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: cornerMask, cornerRadii: CGSize(width: radius, height: radius))
+            let mask = CAShapeLayer()
+            mask.path = path.cgPath
+            self.layer.mask = mask
+        }
+    }
 }
 
 

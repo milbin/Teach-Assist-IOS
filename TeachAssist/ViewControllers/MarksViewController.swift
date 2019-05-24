@@ -104,9 +104,13 @@ class MarksViewController: UIViewController {
             assignmentWithFeedbackAndTitle.removeValue(forKey: "feedback")
             for category in assignmentWithFeedbackAndTitle{
                 var value = (category.value as! [String:String?])
-                if value["mark"]! == nil{
+                if value["mark"] == nil{
                     assignmentWithFeedbackAndTitle[category.key] = nil
-                }else if value["outOf"]! == nil{
+                }else if value["outOf"] == nil{
+                    assignmentWithFeedbackAndTitle[category.key] = nil
+                }else if value["weight"] == nil{
+                    assignmentWithFeedbackAndTitle[category.key] = nil
+                }else if (value as? [String:String]) == nil{
                     assignmentWithFeedbackAndTitle[category.key] = nil
                 }else{
                     assignmentWithFeedbackAndTitle[category.key] = value as! [String:String]
@@ -159,8 +163,11 @@ class MarksViewController: UIViewController {
             var average = (ta?.calculateAssignmentAverage(assignment: assignment, weights: response!["categories"]! as! [String:Double]))!
             if average == "100.0"{
                 average = "100"
+            }else if average == "nan"{
+                assignmentView.AssignmentMark.text = "No Mark"
+            }else{
+                assignmentView.AssignmentMark.text =  average + "%"
             }
-            assignmentView.AssignmentMark.text =  average + "%"
             StackViewHeight.constant = StackViewHeight.constant + 139
             StackView.addArrangedSubview(assignmentView as UIView)
             assignmentView.layoutIfNeeded()
@@ -251,7 +258,7 @@ class MarksViewController: UIViewController {
             
             
         }
-        AverageBar.startProgress(to: CGFloat(Mark!), duration: 1.5)
+        AverageBar.startProgress(to: CGFloat(Mark!), duration: 1.8)
         var assignmentNumber = 0
         for assignment in StackView.arrangedSubviews{
             removedAssignments[assignment] = assignmentNumber
@@ -315,38 +322,38 @@ class MarksViewController: UIViewController {
         let view = gesture.view! as! AssignmentView
         
         
-        if view.toggleState(newHeight: 259){
+        if view.toggleState(newHeight: 270){
             
             view.centerXConstraint.isActive = true
             view.centerAverageConstraint.isActive = true
             view.feedback.isHidden = false
             
-            view.KBarHeight.constant = view.KBarHeight.constant * 1.5
-            view.KBarWidth.constant = view.KBarWidth.constant * 1.5
+            view.KBarHeight.constant = view.KBarHeight.constant * 1.8
+            view.KBarWidth.constant = view.KBarWidth.constant * 1.8
             view.KWeight.isHidden = false
             view.KBarBottomMargin.constant = 20
             view.KFraction.isHidden = false
             
-            view.TBarHeight.constant = view.TBarHeight.constant * 1.5
-            view.TBarWidth.constant = view.TBarWidth.constant * 1.5
+            view.TBarHeight.constant = view.TBarHeight.constant * 1.8
+            view.TBarWidth.constant = view.TBarWidth.constant * 1.8
             view.TWeight.isHidden = false
             view.TBarBottomMargin.constant = 20
             view.TFraction.isHidden = false
             
-            view.CBarHeight.constant = view.CBarHeight.constant * 1.5
-            view.CBarWidth.constant = view.CBarWidth.constant * 1.5
+            view.CBarHeight.constant = view.CBarHeight.constant * 1.8
+            view.CBarWidth.constant = view.CBarWidth.constant * 1.8
             view.CWeight.isHidden = false
             view.CBarBottomMargin.constant = 20
             view.CFraction.isHidden = false
             
-            view.ABarHeight.constant = view.ABarHeight.constant * 1.5
-            view.ABarWidth.constant = view.ABarWidth.constant * 1.5
+            view.ABarHeight.constant = view.ABarHeight.constant * 1.8
+            view.ABarWidth.constant = view.ABarWidth.constant * 1.8
             view.AWeight.isHidden = false
             view.ABarBottomMargin.constant = 20
             view.AFraction.isHidden = false
             
-            view.OBarHeight.constant = view.OBarHeight.constant * 1.5
-            view.OBarWidth.constant = view.OBarWidth.constant * 1.5
+            view.OBarHeight.constant = view.OBarHeight.constant * 1.8
+            view.OBarWidth.constant = view.OBarWidth.constant * 1.8
             view.OWeight.isHidden = false
             view.OBarBottomMargin.constant = 20
             view.OFraction.isHidden = false
@@ -354,46 +361,46 @@ class MarksViewController: UIViewController {
             UIView.animate(withDuration: 0.1, animations: {
                 view.layoutIfNeeded()
             })
-            StackViewHeight.constant += 259
+            StackViewHeight.constant += 270
         }else{
             
             view.centerXConstraint.isActive = false
             view.centerAverageConstraint.isActive = false
             view.feedback.isHidden = true
             
-            view.KBarHeight.constant = view.KBarHeight.constant / 1.5
-            view.KBarWidth.constant = view.KBarWidth.constant / 1.5
+            view.KBarHeight.constant = view.KBarHeight.constant / 1.8
+            view.KBarWidth.constant = view.KBarWidth.constant / 1.8
             view.KWeight.isHidden = true
             view.KBarBottomMargin.constant = 10
             view.KFraction.isHidden = true
             
-            view.TBarHeight.constant = view.TBarHeight.constant / 1.5
-            view.TBarWidth.constant = view.TBarWidth.constant / 1.5
+            view.TBarHeight.constant = view.TBarHeight.constant / 1.8
+            view.TBarWidth.constant = view.TBarWidth.constant / 1.8
             view.TWeight.isHidden = true
             view.TBarBottomMargin.constant = 10
             view.TFraction.isHidden = true
             
-            view.CBarHeight.constant = view.CBarHeight.constant / 1.5
-            view.CBarWidth.constant = view.CBarWidth.constant / 1.5
+            view.CBarHeight.constant = view.CBarHeight.constant / 1.8
+            view.CBarWidth.constant = view.CBarWidth.constant / 1.8
             view.CWeight.isHidden = true
             view.CBarBottomMargin.constant = 10
             view.CFraction.isHidden = true
             
-            view.ABarHeight.constant = view.ABarHeight.constant / 1.5
-            view.ABarWidth.constant = view.ABarWidth.constant / 1.5
+            view.ABarHeight.constant = view.ABarHeight.constant / 1.8
+            view.ABarWidth.constant = view.ABarWidth.constant / 1.8
             view.AWeight.isHidden = true
             view.ABarBottomMargin.constant = 10
             view.AFraction.isHidden = true
             
-            view.OBarHeight.constant = view.OBarHeight.constant / 1.5
-            view.OBarWidth.constant = view.OBarWidth.constant / 1.5
+            view.OBarHeight.constant = view.OBarHeight.constant / 1.8
+            view.OBarWidth.constant = view.OBarWidth.constant / 1.8
             view.OWeight.isHidden = true
             view.OBarBottomMargin.constant = 10
             view.OFraction.isHidden = true
             
             UIView.animate(withDuration: 0.1, animations: {
                 view.layoutIfNeeded()
-                self.StackViewHeight.constant -= 259
+                self.StackViewHeight.constant -= 270
             }, completion: {(finished: Bool) in
 
                 
@@ -434,21 +441,21 @@ class MarksViewController: UIViewController {
         AbarAverageHeight.constant = CGFloat(list[3] * 0.9 + 15)
         ObarAverageHeight.constant = CGFloat(list[4] * 0.9 + 15)
         
-        KbarAverage.layer.cornerRadius = 5
-        TbarAverage.layer.cornerRadius = 5
-        CbarAverage.layer.cornerRadius = 5
-        AbarAverage.layer.cornerRadius = 5
-        ObarAverage.layer.cornerRadius = 5
         
-        KbarAverage.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        TbarAverage.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        CbarAverage.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        AbarAverage.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        ObarAverage.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+
+            
+        KbarAverage.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
+        TbarAverage.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
+        CbarAverage.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
+        AbarAverage.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
+        ObarAverage.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
+        
+      
         
         
         if list[0] != 0{
             KmarkAverage.text = String(round(list[0]*1000)/1000)
+            KbarAverage.backgroundColor = UIColor(red:0.15, green:0.73, blue:0.22, alpha:1.0)
         }else{
             KmarkAverage.text = "NA"
             KbarAverage.backgroundColor = UIColor(red:0.91, green:0.12, blue:0.39, alpha:1.0)
@@ -456,6 +463,7 @@ class MarksViewController: UIViewController {
         
         if list[1] != 0{
             TmarkAverage.text = String(round(list[1]*1000)/1000)
+            TbarAverage.backgroundColor = UIColor(red:0.15, green:0.73, blue:0.22, alpha:1.0)
         }else{
             TmarkAverage.text = "NA"
             TbarAverage.backgroundColor = UIColor(red:0.91, green:0.12, blue:0.39, alpha:1.0)
@@ -463,6 +471,7 @@ class MarksViewController: UIViewController {
         
         if list[2] != 0{
             CmarkAverage.text = String(round(list[2]*1000)/1000)
+            CbarAverage.backgroundColor = UIColor(red:0.15, green:0.73, blue:0.22, alpha:1.0)
         }else{
             CmarkAverage.text = "NA"
             CbarAverage.backgroundColor = UIColor(red:0.91, green:0.12, blue:0.39, alpha:1.0)
@@ -470,6 +479,7 @@ class MarksViewController: UIViewController {
         
         if list[3] != 0{
             AmarkAverage.text = String(round(list[3]*1000)/1000)
+            AbarAverage.backgroundColor = UIColor(red:0.15, green:0.73, blue:0.22, alpha:1.0)
         }else{
             AmarkAverage.text = "NA"
             AbarAverage.backgroundColor = UIColor(red:0.91, green:0.12, blue:0.39, alpha:1.0)
@@ -477,6 +487,7 @@ class MarksViewController: UIViewController {
         
         if list[4] != 0{
             OmarkAverage.text = String(round(list[4]*1000)/1000)
+            ObarAverage.backgroundColor = UIColor(red:0.15, green:0.73, blue:0.22, alpha:1.0)
         }else{
             OmarkAverage.text = "NA"
             ObarAverage.backgroundColor = UIColor(red:0.91, green:0.12, blue:0.39, alpha:1.0)

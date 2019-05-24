@@ -15,7 +15,9 @@
 		6EDFB06422204DFE00640F87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6EDFB06322204DFD00640F87 /* Assets.xcassets */; };
 		6EE67E5E220DD8EE00010826 /* SendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE67E5D220DD8EE00010826 /* SendRequest.swift */; };
 		6EF07E042210E58D00FFBFF4 /* TA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF07E032210E58D00FFBFF4 /* TA.swift */; };
-		9080080941CEB4B9E0679128 /* Pods_TeachAssist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 279DDEDA5A9D53385E9A4939 /* Pods_TeachAssist.framework */; };
+		87870DC1E3850E53CB84E905 /* Pods_TeachAssistTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA7B4FB32296042B00B79BC4 /* Pods_TeachAssistTests.framework */; };
+		9080080941CEB4B9E0679128 /* Pods_TeachAssist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 279DDEDA5A9D53385E9A4939 /* Pods_TeachAssist.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		961BB5DDEE657DE1E507ACF5 /* Pods_TeachAssistUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA7B4FB52296043100B79BC4 /* Pods_TeachAssistUITests.framework */; };
 		BC4167F8E911645E163D410A /* Pods_TeachAssistTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D0AA7174526032B25277DC9 /* Pods_TeachAssistTests.framework */; };
 		EA007A4622270D6A00AD7AFE /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA007A4422270D6900AD7AFE /* Login.storyboard */; };
 		EA007A48222712ED00AD7AFE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA007A47222712ED00AD7AFE /* LoginViewController.swift */; };
@@ -85,6 +87,14 @@
 		EA3624AC223DD575009E392D /* CourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseView.swift; sourceTree = "<group>"; };
 		EA4A34282294C2210092084B /* auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = auth.swift; sourceTree = "<group>"; };
 		EA649139228247790072E6C5 /* TeachAssist.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TeachAssist.entitlements; sourceTree = "<group>"; };
+		EA7B4FA72296008100B79BC4 /* KYDrawerController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KYDrawerController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA7B4FA92296012200B79BC4 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA7B4FAB2296012600B79BC4 /* UICircularProgressRing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UICircularProgressRing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA7B4FAD2296017600B79BC4 /* HTMLString.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = HTMLString.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA7B4FAF2296017A00B79BC4 /* HTMLEntities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = HTMLEntities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA7B4FB1229602A200B79BC4 /* PureLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PureLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA7B4FB32296042B00B79BC4 /* Pods_TeachAssistTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_TeachAssistTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA7B4FB52296043100B79BC4 /* Pods_TeachAssistUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_TeachAssistUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA94D82E2272628F00C27FB6 /* updateStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = updateStackView.swift; sourceTree = "<group>"; };
 		EAB209222220E519000686B3 /* LoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
 		EAB209252220E6B7000686B3 /* CheckboxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxButton.swift; sourceTree = "<group>"; };
@@ -110,6 +120,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC4167F8E911645E163D410A /* Pods_TeachAssistTests.framework in Frameworks */,
+				87870DC1E3850E53CB84E905 /* Pods_TeachAssistTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,6 +129,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2264155591B47B567F7C19E6 /* Pods_TeachAssistUITests.framework in Frameworks */,
+				961BB5DDEE657DE1E507ACF5 /* Pods_TeachAssistUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,6 +139,14 @@
 		4F9FC851004133565DB813E5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EA7B4FB52296043100B79BC4 /* Pods_TeachAssistUITests.framework */,
+				EA7B4FB32296042B00B79BC4 /* Pods_TeachAssistTests.framework */,
+				EA7B4FB1229602A200B79BC4 /* PureLayout.framework */,
+				EA7B4FAF2296017A00B79BC4 /* HTMLEntities.framework */,
+				EA7B4FAD2296017600B79BC4 /* HTMLString.framework */,
+				EA7B4FAB2296012600B79BC4 /* UICircularProgressRing.framework */,
+				EA7B4FA92296012200B79BC4 /* Alamofire.framework */,
+				EA7B4FA72296008100B79BC4 /* KYDrawerController.framework */,
 				279DDEDA5A9D53385E9A4939 /* Pods_TeachAssist.framework */,
 				7D0AA7174526032B25277DC9 /* Pods_TeachAssistTests.framework */,
 				88E03EFDAB7F8CC488DDAD33 /* Pods_TeachAssistUITests.framework */,
@@ -719,7 +739,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 763X9XATXX;
+				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = TeachAssist/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -741,7 +763,20 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 763X9XATXX;
+				ENABLE_BITCODE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/HTMLEntities\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/HTMLString\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/KYDrawerController\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/PureLayout\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/UICircularProgressRing\"",
+					"\"${PODS_ROOT}/Crashlytics/iOS\"",
+					"\"${PODS_ROOT}/Fabric/iOS\"",
+				);
 				INFOPLIST_FILE = TeachAssist/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
