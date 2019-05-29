@@ -33,11 +33,11 @@ class TA{
         self.studentID = respToken!["student_id"] as! String
         self.sessionToken = respToken!["token"] as! String
         let params = ["token":sessionToken, "student_id":self.studentID]
-        var resp:[[String:[Dictionary<String,String>]]] = sr.SendJSON(url: URL, parameters: params)!["data"]! as! [[String : [Dictionary<String,String>]]]
+        var resp:[[String:[Dictionary<String,String>]]]? = sr.SendJSON(url: URL, parameters: params)!["data"]! as? [[String : [Dictionary<String,String>]]]
         if resp == nil{
             return nil
         }
-        var resp1 = resp[0]["subjects"]!
+        var resp1 = resp![0]["subjects"]!
         var response = [NSMutableDictionary]()
         for course in resp1{
             let dict = NSMutableDictionary()
@@ -115,7 +115,7 @@ class TA{
             return nil
         }
         resp = resp! as! [String : Any]
-        if var assignments = ((resp!["data"]! as! [String:Any])["assessment"]! as? [String:Any]){
+        if var assignments = ((resp!["data"]! as? [String:Any])!["assessment"]! as? [String:Any]){
             assignments = assignments["data"] as! [String:Any]
             for assignment in assignments{
                 assignments[assignment.key] = assignment.value as! [String:Any]

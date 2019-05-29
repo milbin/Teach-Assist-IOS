@@ -69,8 +69,8 @@
                     <state key="normal" title="Button" image="ic_action_delete"/>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="95.3%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hHf-32-81c">
-                    <rect key="frame" x="10" y="45" width="178.5" height="72"/>
-                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="60"/>
+                    <rect key="frame" x="10" y="45" width="149.5" height="60"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="50"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -236,7 +236,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Feedback: " textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g5x-mT-K3y">
-                    <rect key="frame" x="22.5" y="120" width="330" height="120"/>
+                    <rect key="frame" x="22.5" y="108" width="330" height="120"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="330" id="mcd-JU-ZiC"/>
                         <constraint firstAttribute="height" constant="120" id="nmT-Uu-bXu"/>

@@ -130,8 +130,10 @@ class MarksViewController: UIViewController {
             let categoryList = ["K", "T", "C", "A", ""]
             
             for category in categoryList{
-                if assignment[category] != nil && assignment[category]!["mark"] != nil && assignment[category]!["mark"]! == "no mark"{
-                    markList[category] = 0.0
+                if assignment[category] != nil && assignment[category]!["mark"] != nil{
+                    if assignment[category]!["mark"]! == "no mark" || assignment[category]!["mark"]! == "No mark" || assignment[category]!["mark"]! == "No Mark"{
+                        markList[category] = 0.0
+                    }
                 }
             }
             for category in categoryList{
@@ -163,6 +165,7 @@ class MarksViewController: UIViewController {
             var average = (ta?.calculateAssignmentAverage(assignment: assignment, weights: response!["categories"]! as! [String:Double]))!
             if average == "100.0"{
                 average = "100"
+                assignmentView.AssignmentMark.text = "100%"
             }else if average == "nan"{
                 assignmentView.AssignmentMark.text = "No Mark"
             }else{
@@ -428,7 +431,7 @@ class MarksViewController: UIViewController {
         AverageBar.startProgress(to: 0.0, duration: 0)
         viewDidAppear(true)
         userIsEditing = false
-        UpdateMarkBars()
+        
         
     }
     
