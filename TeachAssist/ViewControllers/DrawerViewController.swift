@@ -34,11 +34,7 @@ class DrawerViewController: UITableViewController {
                         "purpose":"delete",
                         ]
             let URL = "https://benjamintran.me/TeachassistAPI/"
-            if sr.SendJSON(url: URL, parameters: dict) == nil{
-                Preferences.set(true, forKey: "shouldUnregister")
-            }else{
-                Preferences.set(false, forKey: "shouldUnregister")
-            }
+            sr.SendJSON(url: URL, parameters: dict)
             
             //  Save to disk
             Preferences.synchronize()

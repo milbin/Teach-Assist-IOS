@@ -43,16 +43,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.rootViewController = drawerController
             window?.makeKeyAndVisible()
             self.logUser(username: username!, password: password!)
-        }else if Preferences.bool(forKey: "shouldUnregister"){ //if there are no credentuals stored and the user has not been unregistered from the notification server
-            let sr = SendRequest()
-            let serverPassword = auth()
-            let dict = ["token":Preferences.string(forKey: "token")!,
-                        "auth":serverPassword.getAuth(),
-                        "purpose":"delete",
-                        ]
-            let URL = "https://benjamintran.me/TeachassistAPI/"
-            print(sr.SendJSON(url: URL, parameters: dict))
-            Preferences.set(false, forKey: "shouldUnregister")
         }
         
         Preferences.synchronize()
@@ -112,13 +102,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let Preferences = UserDefaults.standard
         Preferences.set(token, forKey: "token")
         Preferences.synchronize()
+        DispatchQueue.main.async(execute: {
+            let Preferences = UserDefaults.standard
+            let username = Preferences.string(forKey: "username")
+            let password = Preferences.string(forKey: "password")
+            if(username != nil && password != nil && username != "" && password != ""){
+                let sr = SendRequest()
+                            let serverPassword = auth()
+                            let dict = ["username":username!,
+                                        "password":password!,
+                                        "platform":"IOS",
+                                        "token":token,
+                                        "auth":serverPassword.getAuth(),
+                                        "purpose":"register",
+                                        ]
+                            let URL = "https://benjamintran.me/TeachassistAPI/"
+                            print(sr.SendJSON(url: URL, parameters: dict))
+                }
+            })
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print("FAILED TO REGISTER WITH REMOTE NOTIFICATIONS: \(error)")
-        let Preferences = UserDefaults.standard
-        Preferences.set("false", forKey: "token")
-        Preferences.synchronize()
+        
+        DispatchQueue.main.async(execute: {
+            let Preferences = UserDefaults.standard
+            if let token = Preferences.string(forKey: "token"){
+                let sr = SendRequest()
+                let serverPassword = auth()
+                let dict = ["token":token,
+                            "auth":serverPassword.getAuth(),
+                            "purpose":"delete",
+                            ]
+                let URL = "https://benjamintran.me/TeachassistAPI/"
+                print(sr.SendJSON(url: URL, parameters: dict))
+            }
+        })
+        
     }
     
     func logUser(username:String, password:String) {

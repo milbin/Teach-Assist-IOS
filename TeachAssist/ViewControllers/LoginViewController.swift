@@ -71,7 +71,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     print(Preferences.string(forKey: KeyUsername)!)
                     print(Preferences.string(forKey: KeyPassword)!)
                     let token = Preferences.string(forKey: "token")
-                    if token != "false" && token != nil{
+                    if token != nil{
                         let sr = SendRequest()
                         let serverPassword = auth()
                         let dict = ["username":Username!,
