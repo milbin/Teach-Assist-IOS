@@ -60,7 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let options: UNAuthorizationOptions = [.alert, .sound];
         UNUserNotificationCenter.current().requestAuthorization(options: options) { (granted, error) in
             if !granted {
-                print("Notifications weremnot correctly registered")
+                print("Notifications were not correctly registered")
                 Preferences.set("false", forKey: "token")
                 Preferences.synchronize()
                 
@@ -117,7 +117,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print("FAILED TO REGISTER WITH REMOTE NOTIFICATIONS: \(error)")
         let Preferences = UserDefaults.standard
-        Preferences.set("simulator token", forKey: "token")
+        Preferences.set("false", forKey: "token")
         Preferences.synchronize()
     }
     

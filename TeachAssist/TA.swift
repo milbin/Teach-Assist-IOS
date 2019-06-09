@@ -33,56 +33,56 @@ class TA{
         self.studentID = respToken!["student_id"] as! String
         self.sessionToken = respToken!["token"] as! String
         let params = ["token":sessionToken, "student_id":self.studentID]
-        var resp:[[String:[Dictionary<String,String>]]]? = sr.SendJSON(url: URL, parameters: params)!["data"]! as? [[String : [Dictionary<String,String>]]]
-        if resp == nil{
+        if let resp:[[String:[Dictionary<String,String>]]]? = sr.SendJSON(url: URL, parameters: params)!["data"]! as? [[String : [Dictionary<String,String>]]]{
+            var resp1 = resp![0]["subjects"]!
+            var response = [NSMutableDictionary]()
+            for course in resp1{
+                let dict = NSMutableDictionary()
+                for (key, value) in course{
+                    dict[key] = value
+                }
+                response.append(dict)
+            }
+            
+            var counter = 0
+            for var course in response{
+                if course["subject_id"] != nil{
+                    self.courses.append(course["subject_id"]! as! String)
+                }else{
+                    self.courses.append("NA")
+                }
+                let mark = course["mark"]! as! String
+                if mark.contains("Please see teacher for current status regarding achievement in the course"){
+                    course["mark"] = "NA"
+                }else if mark.contains("Level") || mark.contains("Click"){
+                    course["mark"] = CalculateCourseAverage(subjectNumber: counter)
+                }else if mark.contains("%"){
+                    course["mark"] = Double(mark.replacingOccurrences(of:"%", with:"").trimmingCharacters(in: .whitespacesAndNewlines))
+                }
+                counter += 1
+            }
+            
+            var httpResp = sr.Send(url: "https://ta.yrdsb.ca/live/index.php?", parameters: ["subject_id":"0", "username":username, "password":password, "session_token": self.sessionToken, "student_id":self.studentID])
+            
+            if httpResp != nil{
+                var courseNumber = 0
+                for i in httpResp!.components(separatedBy: "<td>"){
+                    if((i.contains("current mark = ") || i.contains("Please see teacher for current status regarding achievement in the course")||i.contains("Click Here")||i.contains("Level")||i.contains("Block")) && !i.contains("0000-00-00")) {
+                        let Course_Name = i.components(separatedBy: ":")[1].components(separatedBy:"<br>")[0].trimmingCharacters(in: .whitespacesAndNewlines).removingHTMLEntities;
+                        let Room_Number = i.components(separatedBy: "rm. ")[1].components(separatedBy:"</td>")[0].trimmingCharacters(in: .whitespacesAndNewlines);
+                        response[courseNumber]["Room_Number"] = Room_Number
+                        response[courseNumber]["Course_Name"] = Course_Name
+                        courseNumber += 1
+                    }
+                    
+                }
+                print(response)
+            }
+            
+            return response
+        }else{
             return nil
         }
-        var resp1 = resp![0]["subjects"]!
-        var response = [NSMutableDictionary]()
-        for course in resp1{
-            let dict = NSMutableDictionary()
-            for (key, value) in course{
-                dict[key] = value
-            }
-            response.append(dict)
-        }
-        
-        var counter = 0
-        for var course in response{
-            if course["subject_id"] != nil{
-                self.courses.append(course["subject_id"]! as! String)
-            }else{
-                self.courses.append("NA")
-            }
-            let mark = course["mark"]! as! String
-            if mark.contains("Please see teacher for current status regarding achievement in the course"){
-                course["mark"] = "NA"
-            }else if mark.contains("Level") || mark.contains("Click"){
-                course["mark"] = CalculateCourseAverage(subjectNumber: counter)
-            }else if mark.contains("%"){
-                course["mark"] = Double(mark.replacingOccurrences(of:"%", with:"").trimmingCharacters(in: .whitespacesAndNewlines))
-            }
-            counter += 1
-        }
-        
-        var httpResp = sr.Send(url: "https://ta.yrdsb.ca/live/index.php?", parameters: ["subject_id":"0", "username":username, "password":password, "session_token": self.sessionToken, "student_id":self.studentID])
-        
-        if httpResp != nil{
-            var courseNumber = 0
-            for i in httpResp!.components(separatedBy: "<td>"){
-                if((i.contains("current mark = ") || i.contains("Please see teacher for current status regarding achievement in the course")||i.contains("Click Here")||i.contains("Level")||i.contains("Block")) && !i.contains("0000-00-00")) {
-                    let Course_Name = i.components(separatedBy: ":")[1].components(separatedBy:"<br>")[0].trimmingCharacters(in: .whitespacesAndNewlines).removingHTMLEntities;
-                    let Room_Number = i.components(separatedBy: "rm. ")[1].components(separatedBy:"</td>")[0].trimmingCharacters(in: .whitespacesAndNewlines);
-                    response[courseNumber]["Room_Number"] = Room_Number
-                    response[courseNumber]["Course_Name"] = Course_Name
-                    courseNumber += 1
-                }
-                
-            }
-            print(response)
-        }
-        
-        return response
             
         
         
@@ -110,12 +110,13 @@ class TA{
     func GetMarks(subjectNumber:Int) -> [String:Any]?{
         var sr = SendRequest()
         var params = ["student_id": self.studentID, "token":self.sessionToken, "subject_id":courses[subjectNumber]]
-        var resp = sr.SendJSON(url: "https://ta.yrdsb.ca/v4/students/json.php", parameters: params)
-        if resp == nil{
+        var respCheck = sr.SendJSON(url: "https://ta.yrdsb.ca/v4/students/json.php", parameters: params)
+        if respCheck == nil{
             return nil
         }
-        resp = resp! as! [String : Any]
-        if var assignments = ((resp!["data"]! as? [String:Any])!["assessment"]! as? [String:Any]){
+        var resp = respCheck! as! [String : Any]
+        print(resp)
+        if var assignments = ((resp["data"]! as? [String:Any])!["assessment"]! as? [String:Any]){
             assignments = assignments["data"] as! [String:Any]
             for assignment in assignments{
                 assignments[assignment.key] = assignment.value as! [String:Any]
