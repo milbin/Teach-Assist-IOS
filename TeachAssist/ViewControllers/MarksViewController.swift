@@ -251,6 +251,12 @@ class MarksViewController: UIViewController {
             assignmentView.AFraction.text = stringFractionList["A"]
             assignmentView.OFraction.text = stringFractionList["O"]
             
+            assignmentView.KBar.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
+            assignmentView.TBar.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
+            assignmentView.CBar.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
+            assignmentView.ABar.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
+            assignmentView.OBar.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
+            
             assignmentView.feedback.text = "feedback: " + feedback!
             assignmentView.TrashButton.addTarget(self, action: #selector(OnTrashButtonPress), for: .touchUpInside)
             assignmentList.append(assignmentView)
@@ -363,6 +369,11 @@ class MarksViewController: UIViewController {
             
             UIView.animate(withDuration: 0.1, animations: {
                 view.layoutIfNeeded()
+                view.KBar.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
+                view.TBar.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
+                view.CBar.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
+                view.ABar.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
+                view.OBar.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
             })
             StackViewHeight.constant += 270
         }else{
@@ -403,6 +414,11 @@ class MarksViewController: UIViewController {
             
             UIView.animate(withDuration: 0.1, animations: {
                 view.layoutIfNeeded()
+                view.KBar.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
+                view.TBar.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
+                view.CBar.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
+                view.ABar.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
+                view.OBar.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
                 self.StackViewHeight.constant -= 270
             }, completion: {(finished: Bool) in
 
@@ -444,8 +460,6 @@ class MarksViewController: UIViewController {
         AbarAverageHeight.constant = CGFloat(list[3] * 0.9 + 15)
         ObarAverageHeight.constant = CGFloat(list[4] * 0.9 + 15)
         
-        
-
             
         KbarAverage.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
         TbarAverage.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
@@ -505,7 +519,13 @@ class MarksViewController: UIViewController {
         
         UIView.animate(withDuration: 0.1, animations: {
             self.MarkBarView.layoutIfNeeded()
+            self.KbarAverage.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
+            self.TbarAverage.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
+            self.CbarAverage.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
+            self.AbarAverage.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
+            self.ObarAverage.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
         })
+        
     }
     
     

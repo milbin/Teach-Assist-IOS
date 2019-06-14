@@ -113,10 +113,13 @@ class TA{
         var respCheck = sr.SendJSON(url: "https://ta.yrdsb.ca/v4/students/json.php", parameters: params)
         if respCheck == nil{
             return nil
+        }else if respCheck!["ERROR"] != nil{
+            print("INVALID TOKEN")
+            GetTaData(username: username, password: password)
         }
         var resp = respCheck! as! [String : Any]
         print(resp)
-        if var assignments = ((resp["data"]! as? [String:Any])!["assessment"]! as? [String:Any]){
+        if var assignments = ((resp["data"] as? [String:Any])?["assessment"] as? [String:Any]){
             assignments = assignments["data"] as! [String:Any]
             for assignment in assignments{
                 assignments[assignment.key] = assignment.value as! [String:Any]
@@ -523,7 +526,7 @@ class TA{
                     }
                 }
                 if outOfO != 0.0 && weightO != 0.0{
-                    application += markO / outOfO * weightO;
+                    other += markO / outOfO * weightO;
                     totalWeightOther += weightO;
                 }
                 
