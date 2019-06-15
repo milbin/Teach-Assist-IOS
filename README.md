@@ -15,7 +15,8 @@ Note: This app may contain bugs or may not work entirely for some users. If that
 
 
 
-
+# Download
+Avaliable now on the App Store
 <p align="center">
   <a href="https://apps.apple.com/us/app/teachassist-yrdsb/id1462828920?ls=1">
     <img src="./Images/Download_on_the_App_Store_Badge.png" />
@@ -23,21 +24,11 @@ Note: This app may contain bugs or may not work entirely for some users. If that
 </p>
 
 # Screenshots
-
- <div class="row">
-  <div class="column">
-    <img src="./Images/Screenshot1.jpg" width=160 height=284>
-  </div>
-  <div class="column">
-    <img src="./Images/Screenshot2.jpg" width=160 height=284>
-  </div>
-  <div class="column">
-    <img src="./Images/Screenshot3.jpg" width=160 height=284>
-  </div>
-  <div class="column">
-    <img src="./Images/Screenshot4.jpg" width=160 height=284>
-  </div>
-  <div class="column">
-    <img src="./Images/Screenshot5.jpg" width=160 height=284>
-  </div>
+<div style="display:flex;">
+  <img src="./Images/Screenshot1.jpg" width=160 height=284>
+  <img src="./Images/Screenshot2.jpg" width=160 height=284>
+  <img src="./Images/Screenshot3.jpg" width=160 height=284>
+  <img src="./Images/Screenshot4.jpg" width=160 height=284>
+  <img src="./Images/Screenshot5.jpg" width=160 height=284>
 </div> 
+ 
