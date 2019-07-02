@@ -33,7 +33,7 @@ class TA{
         self.studentID = respToken!["student_id"] as! String
         self.sessionToken = respToken!["token"] as! String
         let params = ["token":sessionToken, "student_id":self.studentID]
-        if let resp:[[String:[Dictionary<String,String>]]]? = sr.SendJSON(url: URL, parameters: params)!["data"]! as? [[String : [Dictionary<String,String>]]]{
+        if let resp:[[String:[Dictionary<String,String>]]]? = sr.SendJSON(url: URL, parameters: params)?["data"] as? [[String : [Dictionary<String,String>]]]{
             var resp1 = resp![0]["subjects"]!
             var response = [NSMutableDictionary]()
             for course in resp1{
@@ -68,10 +68,12 @@ class TA{
                 var courseNumber = 0
                 for i in httpResp!.components(separatedBy: "<td>"){
                     if((i.contains("current mark = ") || i.contains("Please see teacher for current status regarding achievement in the course")||i.contains("Click Here")||i.contains("Level")||i.contains("Block")) && !i.contains("0000-00-00")) {
-                        let Course_Name = i.components(separatedBy: ":")[1].components(separatedBy:"<br>")[0].trimmingCharacters(in: .whitespacesAndNewlines).removingHTMLEntities;
-                        let Room_Number = i.components(separatedBy: "rm. ")[1].components(separatedBy:"</td>")[0].trimmingCharacters(in: .whitespacesAndNewlines);
-                        response[courseNumber]["Room_Number"] = Room_Number
-                        response[courseNumber]["Course_Name"] = Course_Name
+                        let Course_Name = i.components(separatedBy: ":")[1].components(separatedBy:"<br>")[0].trimmingCharacters(in: .whitespacesAndNewlines).removingHTMLEntities
+                        let Room_Number = i.components(separatedBy: "rm. ")[1].components(separatedBy:"</td>")[0].trimmingCharacters(in: .whitespacesAndNewlines)
+                        if courseNumber < response.count{
+                            response[courseNumber]["Room_Number"] = Room_Number
+                            response[courseNumber]["Course_Name"] = Course_Name
+                        }
                         courseNumber += 1
                     }
                     
