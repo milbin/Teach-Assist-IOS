@@ -28,11 +28,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         var password = Preferences.string(forKey: "password")
         self.usernameTextField.delegate = self
         self.passwordTextField.delegate = self
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        
+        //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
+        //tap.cancelsTouchesInView = false
+        
+        view.addGestureRecognizer(tap)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
+    }
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     @objc func buttonPressed(){
@@ -111,5 +121,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         
     }
+    
+    
     
 }

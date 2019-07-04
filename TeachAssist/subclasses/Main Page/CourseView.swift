@@ -21,7 +21,9 @@ class CourseView: UIView {
     @IBOutlet weak var NATextView: UITextView!
     @IBOutlet weak var TrashButton: UIButton!
     
-
+    @IBOutlet weak var ProgressBarWidth: NSLayoutConstraint!
+    @IBOutlet weak var ProgressBarHeight: NSLayoutConstraint!
+    
     
     
         
@@ -48,6 +50,11 @@ class CourseView: UIView {
         addSubview(contentView!)
         ProgressBar.font = UIFont.boldSystemFont(ofSize: 25.0)
         ProgressBar.valueFormatter = UICircularProgressRingFormatter(showFloatingPoint:true, decimalPlaces:1)
+        if(UIDevice.modelName == "iPhone SE" || UIDevice.modelName == "Simulator iPhone SE"){
+            ProgressBarWidth.constant = 115
+            ProgressBarHeight.constant = 115
+            
+        }
         self.layer.cornerRadius = 15
         self.layer.masksToBounds = true
     }

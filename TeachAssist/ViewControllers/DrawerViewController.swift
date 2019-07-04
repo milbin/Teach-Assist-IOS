@@ -27,14 +27,19 @@ class DrawerViewController: UITableViewController {
             let Preferences = UserDefaults.standard
             Preferences.set("", forKey: "username")
             Preferences.set("", forKey: "password")
-            let sr = SendRequest()
-            let serverPassword = auth()
-            let dict = ["token":Preferences.string(forKey: "token")!,
-                        "auth":serverPassword.getAuth(),
-                        "purpose":"delete",
-                        ]
-            let URL = "https://benjamintran.me/TeachassistAPI/"
-            sr.SendJSON(url: URL, parameters: dict)
+            DispatchQueue.main.async(execute: {
+                let Preferences = UserDefaults.standard
+                if let token = Preferences.string(forKey: "token"){
+                    let sr = SendRequest()
+                    let serverPassword = auth()
+                    let dict = ["token":token,
+                                "auth":serverPassword.getAuth(),
+                                "purpose":"delete",
+                                ]
+                    let URL = "https://benjamintran.me/TeachassistAPI/"
+                    print(sr.SendJSON(url: URL, parameters: dict))
+                }
+            })
             
             //  Save to disk
             Preferences.synchronize()

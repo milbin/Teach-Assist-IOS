@@ -91,8 +91,9 @@ class AssignmentView: UIView {
         addSubview(contentView!)
         contentView.layer.cornerRadius = 15
         
-        //KBar.layer.cornerRadius = 10
-        //KBar.layer.masksToBounds = true
+        if(UIDevice.modelName == "iPhone SE" || UIDevice.modelName == "Simulator iPhone SE"){
+            AssignmentMark.font = UIFont(name: AssignmentMark.font.fontName, size: 45)
+        }
         
         
             

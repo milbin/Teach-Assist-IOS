@@ -53,6 +53,11 @@ class MainViewController: UIViewController {
         
         StackView.addBackground(color: UIColor(red:0.94, green:0.94, blue:0.96, alpha:1.0))
         
+        for view in StackView.arrangedSubviews{
+            view.layoutIfNeeded()
+            print("HERE")
+        }
+        
 
         hasViewStarted = true
         //get ta data

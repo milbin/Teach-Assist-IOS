@@ -76,6 +76,9 @@ class MarksViewController: UIViewController {
             alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { (action:UIAlertAction!) in
                 self.OnRefresh()
             }))
+            alert.addAction(UIAlertAction(title: "Back", style: .default, handler: { (action:UIAlertAction!) in
+                _ = self.navigationController?.popViewController(animated: true)
+            }))
             self.present(alert, animated: true)
             return
         }
