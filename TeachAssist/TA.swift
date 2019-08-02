@@ -320,7 +320,7 @@ class TA{
                     }
                 }
                 if outOfO != 0.0 && weightO != 0.0{
-                    application += markO / outOfO * weightO;
+                    other += markO / outOfO * weightO;
                     totalWeightOther += weightO;
                 }
                 
