@@ -79,6 +79,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        let Preferences = UserDefaults.standard
+        let token = Preferences.string(forKey: "token")
+        let username = Preferences.string(forKey: "username")
+        let password = Preferences.string(forKey: "password")
+        if(username != nil && password != nil && username != "" && password != "" && token != nil){
+            let sr = SendRequest()
+            let serverPassword = auth()
+            let dict = ["username":username!,
+                        "password":password!,
+                        "platform":"IOS",
+                        "token":token!,
+                        "auth":serverPassword.getAuth(),
+                        "purpose":"register",
+                        ]
+            let URL = "https://benjamintran.me/TeachassistAPI/"
+            print(sr.SendJSON(url: URL, parameters: dict))
+        }
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -102,24 +119,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let Preferences = UserDefaults.standard
         Preferences.set(token, forKey: "token")
         Preferences.synchronize()
-        DispatchQueue.main.async(execute: {
-            let Preferences = UserDefaults.standard
-            let username = Preferences.string(forKey: "username")
-            let password = Preferences.string(forKey: "password")
-            if(username != nil && password != nil && username != "" && password != ""){
-                let sr = SendRequest()
-                            let serverPassword = auth()
-                            let dict = ["username":username!,
-                                        "password":password!,
-                                        "platform":"IOS",
-                                        "token":token,
-                                        "auth":serverPassword.getAuth(),
-                                        "purpose":"register",
-                                        ]
-                            let URL = "https://benjamintran.me/TeachassistAPI/"
-                            print(sr.SendJSON(url: URL, parameters: dict))
-                }
-            })
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
