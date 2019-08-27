@@ -21,6 +21,8 @@ class MainViewController: UIViewController {
     let ta = TA()
     
     
+
+    @IBOutlet weak var noCoursesTV: UITextView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var StackView: UIStackView!
     @IBOutlet weak var StackViewHeight: NSLayoutConstraint!
@@ -55,7 +57,6 @@ class MainViewController: UIViewController {
         
         for view in StackView.arrangedSubviews{
             view.layoutIfNeeded()
-            print("HERE")
         }
         
 
@@ -140,7 +141,15 @@ class MainViewController: UIViewController {
         }
         
         self.AverageBar.startProgress(to: 0.0, duration: 0.01, completion: {
-            self.AverageBar.startProgress(to: CGFloat(self.ta.CalculateAverage(response: self.response!)), duration: 1)
+            var average = CGFloat(self.ta.CalculateAverage(response: self.response!))
+                if average.description != "nan"{
+                    self.AverageBar.startProgress(to: average, duration: 1)
+                    self.noCoursesTV.isHidden = true
+                }else if self.response!.count > 0{
+                    self.noCoursesTV.isHidden = true
+                }else{
+                    self.noCoursesTV.isHidden = false
+            }
             })
 
         

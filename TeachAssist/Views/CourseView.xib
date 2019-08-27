@@ -98,9 +98,12 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Please see teacher for current status regarding achievement in this course " textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NFE-2L-frj">
-                    <rect key="frame" x="0.0" y="35" width="139" height="91"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Please see teacher for current mark in this course " textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NFE-2L-frj">
+                    <rect key="frame" x="0.0" y="35" width="139" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="140" id="g6p-ug-Dkn"/>
+                        <constraint firstAttribute="height" constant="60" id="p9S-Af-qw4"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
@@ -120,6 +123,7 @@
                 <constraint firstItem="jcK-SG-vMM" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="4rs-ml-T4I"/>
                 <constraint firstItem="jcK-SG-vMM" firstAttribute="leading" relation="lessThanOrEqual" secondItem="INy-at-mkD" secondAttribute="trailing" priority="250" constant="25.5" id="81M-fo-ccO"/>
                 <constraint firstItem="INy-at-mkD" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="5" id="9fo-UE-Nkp"/>
+                <constraint firstItem="NFE-2L-frj" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="5" id="BZN-Cl-fwE"/>
                 <constraint firstItem="Qhe-n4-cNj" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="E9B-HW-vlQ"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Z6R-8b-y9P" secondAttribute="trailing" constant="5" id="Jt0-Z5-rmt"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="0oe-SZ-O4K" secondAttribute="trailing" constant="5" id="PEb-Nc-1Yi"/>
@@ -131,6 +135,7 @@
                 <constraint firstItem="0oe-SZ-O4K" firstAttribute="top" secondItem="8Bu-vs-iPh" secondAttribute="bottom" constant="8" id="n2W-dg-k44"/>
                 <constraint firstItem="8Bu-vs-iPh" firstAttribute="leading" relation="lessThanOrEqual" secondItem="jcK-SG-vMM" secondAttribute="trailing" priority="250" constant="45.5" id="ozb-Dg-Qy8"/>
                 <constraint firstItem="jcK-SG-vMM" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="rma-oP-FR7"/>
+                <constraint firstItem="NFE-2L-frj" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="uUy-hu-k05"/>
                 <constraint firstItem="Qhe-n4-cNj" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="w59-hW-bAs"/>
                 <constraint firstItem="jcK-SG-vMM" firstAttribute="top" secondItem="Qhe-n4-cNj" secondAttribute="bottom" constant="2" id="zNh-Mq-Vuy"/>
             </constraints>

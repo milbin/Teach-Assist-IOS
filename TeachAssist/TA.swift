@@ -63,16 +63,25 @@ class TA{
             }
             
             var httpResp = sr.Send(url: "https://ta.yrdsb.ca/live/index.php?", parameters: ["subject_id":"0", "username":username, "password":password, "session_token": self.sessionToken, "student_id":self.studentID])
-            
             if httpResp != nil{
                 var courseNumber = 0
                 for i in httpResp!.components(separatedBy: "<td>"){
                     if((i.contains("current mark = ") || i.contains("Please see teacher for current status regarding achievement in the course")||i.contains("Click Here")||i.contains("Level")||i.contains("Block")) && !i.contains("0000-00-00")) {
                         let Course_Name = i.components(separatedBy: ":")[1].components(separatedBy:"<br>")[0].trimmingCharacters(in: .whitespacesAndNewlines).removingHTMLEntities
                         let Room_Number = i.components(separatedBy: "rm. ")[1].components(separatedBy:"</td>")[0].trimmingCharacters(in: .whitespacesAndNewlines)
+                        let course = i.components(separatedBy: " :")[0].trimmingCharacters(in: .whitespacesAndNewlines)
+                        print(course)
                         if courseNumber < response.count{
                             response[courseNumber]["Room_Number"] = Room_Number
                             response[courseNumber]["Course_Name"] = Course_Name
+                        }else{ //this would only normally get called at the start of the semester since the api takes longer than the website to update new courses.
+                            let dict = NSMutableDictionary()
+                            dict["Course_Name"] = Course_Name
+                            dict["Room_Number"] = Room_Number
+                            dict["mark"] = "NA"
+                            dict["subject_id"] = "NA"
+                            dict["course"] = course
+                            response.append(dict)
                         }
                         courseNumber += 1
                     }

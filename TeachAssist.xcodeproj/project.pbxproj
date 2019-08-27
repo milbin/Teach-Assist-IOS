@@ -181,8 +181,8 @@
 			children = (
 				EA649139228247790072E6C5 /* TeachAssist.entitlements */,
 				EA3624A5223D924B009E392D /* Views */,
-				6EDFB06322204DFD00640F87 /* Assets.xcassets */,
 				6E449D122204A26E00C0F0AC /* AppDelegate.swift */,
+				6EDFB06322204DFD00640F87 /* Assets.xcassets */,
 				EAF2A087221F607300A0BFE3 /* subclasses */,
 				EAF2A086221F565800A0BFE3 /* ViewControllers */,
 				6E449D1E2204A27200C0F0AC /* Info.plist */,
