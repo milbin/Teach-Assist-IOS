@@ -103,18 +103,23 @@ class TA{
         //TODO add crashlitics
         let sr = SendRequest()
         let URL = "https://ta.yrdsb.ca/v4/students/json.php"
-        var respToken = sr.SendJSON(url: URL, parameters: ["student_number":username, "password":password])
+        var resp1 = sr.SendJSON(url: URL, parameters: ["student_number":username, "password":password])
+        var resp2 = sr.Send(url: "https://ta.yrdsb.ca/live/index.php?", parameters: ["subject_id":"0", "username":username, "password":password, "submit": "Login"])
         
         //get main activity data
-        if respToken == nil{
-            print("returned nil")
-            return false
+        if resp1 != nil{ //check if user is registered in the api
+            if resp1!["ERROR"] == nil{
+                return true
+            }
         }
-        if respToken!["ERROR"] != nil{
-            return false
-        }else{
-            return true
+        print(resp2)
+        if resp2 != nil{//check if user is registered on the website
+            if !resp2!.contains("By logging in"){
+                return true
+            }
+            
         }
+        return false
         
     }
     
