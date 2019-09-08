@@ -43,6 +43,7 @@ class TA{
                 }
                 response.append(dict)
             }
+            print(response)
             
             var counter = 0
             for var course in response{
@@ -55,7 +56,20 @@ class TA{
                 if mark.contains("Please see teacher for current status regarding achievement in the course"){
                     course["mark"] = "NA"
                 }else if mark.contains("Level") || mark.contains("Click"){
-                    course["mark"] = CalculateCourseAverage(subjectNumber: counter)
+                    let returnValue = CalculateCourseAverage(subjectNumber: counter)
+                    if(returnValue == -1.0){
+                        course["mark"] = "NA"
+                    }else{
+                        course["mark"] = returnValue
+                    }
+                    
+                }else if(mark.contains("0.0%")){
+                    let returnValue = CalculateCourseAverage(subjectNumber: counter)
+                    if(returnValue == -1.0){
+                        course["mark"] = "NA"
+                    }else{
+                        course["mark"] = "0.0"
+                    }
                 }else if mark.contains("%"){
                     course["mark"] = Double(mark.replacingOccurrences(of:"%", with:"").trimmingCharacters(in: .whitespacesAndNewlines))
                 }
@@ -70,7 +84,6 @@ class TA{
                         let Course_Name = i.components(separatedBy: ":")[1].components(separatedBy:"<br>")[0].trimmingCharacters(in: .whitespacesAndNewlines).removingHTMLEntities
                         let Room_Number = i.components(separatedBy: "rm. ")[1].components(separatedBy:"</td>")[0].trimmingCharacters(in: .whitespacesAndNewlines)
                         let course = i.components(separatedBy: " :")[0].trimmingCharacters(in: .whitespacesAndNewlines)
-                        print(course)
                         if courseNumber < response.count{
                             response[courseNumber]["Room_Number"] = Room_Number
                             response[courseNumber]["Course_Name"] = Course_Name
@@ -87,7 +100,6 @@ class TA{
                     }
                     
                 }
-                print(response)
             }
             
             return response
@@ -112,7 +124,6 @@ class TA{
                 return true
             }
         }
-        print(resp2)
         if resp2 != nil{//check if user is registered on the website
             if !resp2!.contains("By logging in"){
                 return true
@@ -134,7 +145,6 @@ class TA{
             GetTaData(username: username, password: password)
         }
         var resp = respCheck! as! [String : Any]
-        print(resp)
         if var assignments = ((resp["data"] as? [String:Any])?["assessment"] as? [String:Any]){
             assignments = assignments["data"] as! [String:Any]
             for assignment in assignments{
@@ -213,8 +223,9 @@ class TA{
         }
         weights[""] = 0.3
        
-        
-        
+        if(marks!.count <= 1){//if this methods gets called when the mark feild is actually blank on the teachassist website since its impossible to tell via the api
+            return -1.0
+        }
         for (key, value) in marks!{
             if key != "categories"{
                 var temp = value as! [String:Any]
@@ -603,7 +614,6 @@ class TA{
             returnList.append(i)
         }
         
-        print(returnList)
         return returnList
     
     
@@ -616,7 +626,6 @@ class TA{
         var markList = ["K" : 0.0, "T" : 0.0, "C" : 0.0, "A" : 0.0, "" : 0.0]
         let categoryList = ["K", "T", "C", "A", ""]
         
-        print(assignment)
         
         
         for category in categoryList{

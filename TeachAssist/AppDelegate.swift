@@ -93,6 +93,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         "auth":serverPassword.getAuth(),
                         "purpose":"register",
                         ]
+            print(dict)
             let URL = "https://benjamintran.me/TeachassistAPI/"
             print(sr.SendJSON(url: URL, parameters: dict))
         }
@@ -134,6 +135,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             "purpose":"delete",
                             ]
                 let URL = "https://benjamintran.me/TeachassistAPI/"
+                print(dict)
                 print(sr.SendJSON(url: URL, parameters: dict))
             }
         })
