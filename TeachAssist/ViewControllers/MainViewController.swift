@@ -115,6 +115,7 @@ class MainViewController: UIViewController {
                 courseView.isUserInteractionEnabled = false
                 
             }
+            
             courseView.PeriodNumber.text = "Period: \(i+1)"
             if course["Room_Number"] != nil{
                 courseView.RoomNumber.text = "Room: \(course["Room_Number"]!)"

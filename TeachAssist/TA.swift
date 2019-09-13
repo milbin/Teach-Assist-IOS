@@ -63,12 +63,12 @@ class TA{
                         course["mark"] = returnValue
                     }
                     
-                }else if(mark.contains("0.0%")){
+                }else if(mark.contains(" 0.0%")){
                     let returnValue = CalculateCourseAverage(subjectNumber: counter)
                     if(returnValue == -1.0){
                         course["mark"] = "NA"
                     }else{
-                        course["mark"] = "0.0"
+                        course["mark"] = "0"
                     }
                 }else if mark.contains("%"){
                     course["mark"] = Double(mark.replacingOccurrences(of:"%", with:"").trimmingCharacters(in: .whitespacesAndNewlines))

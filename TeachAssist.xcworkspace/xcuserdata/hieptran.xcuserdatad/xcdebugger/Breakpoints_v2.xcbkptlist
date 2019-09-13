@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TeachAssist/TA.swift"
-            timestampString = "589649005.02964"
+            timestampString = "590098129.353019"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "658"
-            endingLineNumber = "658"
+            startingLineNumber = "659"
+            endingLineNumber = "659"
             landmarkName = "calculateAssignmentAverage(assignment:weights:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TeachAssist/TA.swift"
-            timestampString = "589649005.030413"
+            timestampString = "590098129.353567"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "627"
-            endingLineNumber = "627"
+            startingLineNumber = "628"
+            endingLineNumber = "628"
             landmarkName = "calculateAssignmentAverage(assignment:weights:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TeachAssist/TA.swift"
-            timestampString = "589649005.030784"
+            timestampString = "590098129.353917"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "633"
-            endingLineNumber = "633"
+            startingLineNumber = "634"
+            endingLineNumber = "634"
             landmarkName = "calculateAssignmentAverage(assignment:weights:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TeachAssist/TA.swift"
-            timestampString = "589649005.031148"
+            timestampString = "590098129.354257"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "638"
-            endingLineNumber = "638"
+            startingLineNumber = "639"
+            endingLineNumber = "639"
             landmarkName = "calculateAssignmentAverage(assignment:weights:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TeachAssist/TA.swift"
-            timestampString = "589649005.031513"
+            timestampString = "590098129.354599"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "631"
-            endingLineNumber = "631"
+            startingLineNumber = "632"
+            endingLineNumber = "632"
             landmarkName = "calculateAssignmentAverage(assignment:weights:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -106,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TeachAssist/TA.swift"
-            timestampString = "589649005.031882"
+            timestampString = "590098129.354938"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "668"
-            endingLineNumber = "668"
+            startingLineNumber = "669"
+            endingLineNumber = "669"
             landmarkName = "calculateAssignmentAverage(assignment:weights:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -202,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TeachAssist/TA.swift"
-            timestampString = "589649005.0323"
+            timestampString = "590098129.355337"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "198"
-            endingLineNumber = "198"
+            startingLineNumber = "199"
+            endingLineNumber = "199"
             landmarkName = "TA"
             landmarkType = "3">
          </BreakpointContent>
@@ -234,11 +234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TeachAssist/TA.swift"
-            timestampString = "589649005.032703"
+            timestampString = "590098129.355723"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "435"
-            endingLineNumber = "435"
+            startingLineNumber = "436"
+            endingLineNumber = "436"
             landmarkName = "GetCategoryAndWeightsForCourse(marks:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -250,11 +250,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TeachAssist/TA.swift"
-            timestampString = "589649005.033067"
+            timestampString = "590098129.356066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "601"
-            endingLineNumber = "601"
+            startingLineNumber = "602"
+            endingLineNumber = "602"
             landmarkName = "GetCategoryAndWeightsForCourse(marks:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -266,23 +266,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TeachAssist/TA.swift"
-            timestampString = "589649005.03343"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "614"
-            endingLineNumber = "614"
-            landmarkName = "GetCategoryAndWeightsForCourse(marks:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TeachAssist/TA.swift"
-            timestampString = "589649005.0337909"
+            timestampString = "590098129.356402"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "615"
@@ -298,11 +282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TeachAssist/TA.swift"
-            timestampString = "589649005.034156"
+            timestampString = "590098129.356739"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "539"
-            endingLineNumber = "539"
+            startingLineNumber = "616"
+            endingLineNumber = "616"
             landmarkName = "GetCategoryAndWeightsForCourse(marks:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -314,11 +298,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TeachAssist/TA.swift"
-            timestampString = "589649005.034518"
+            timestampString = "590098129.357107"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "543"
-            endingLineNumber = "543"
+            startingLineNumber = "540"
+            endingLineNumber = "540"
             landmarkName = "GetCategoryAndWeightsForCourse(marks:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -330,11 +314,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TeachAssist/TA.swift"
-            timestampString = "589649005.034879"
+            timestampString = "590098129.357814"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "545"
-            endingLineNumber = "545"
+            startingLineNumber = "544"
+            endingLineNumber = "544"
             landmarkName = "GetCategoryAndWeightsForCourse(marks:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -346,11 +330,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TeachAssist/TA.swift"
-            timestampString = "589649005.035269"
+            timestampString = "590098129.358169"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "548"
-            endingLineNumber = "548"
+            startingLineNumber = "546"
+            endingLineNumber = "546"
             landmarkName = "GetCategoryAndWeightsForCourse(marks:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -362,11 +346,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TeachAssist/TA.swift"
-            timestampString = "589649005.0356309"
+            timestampString = "590098129.35888"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "551"
-            endingLineNumber = "551"
+            startingLineNumber = "549"
+            endingLineNumber = "549"
             landmarkName = "GetCategoryAndWeightsForCourse(marks:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -378,23 +362,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TeachAssist/TA.swift"
-            timestampString = "589649005.035993"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "554"
-            endingLineNumber = "554"
-            landmarkName = "GetCategoryAndWeightsForCourse(marks:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TeachAssist/TA.swift"
-            timestampString = "589649005.036353"
+            timestampString = "590098129.359347"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "552"
@@ -410,11 +378,43 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TeachAssist/TA.swift"
-            timestampString = "589649005.0367121"
+            timestampString = "590098129.359701"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "558"
-            endingLineNumber = "558"
+            startingLineNumber = "555"
+            endingLineNumber = "555"
+            landmarkName = "GetCategoryAndWeightsForCourse(marks:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TeachAssist/TA.swift"
+            timestampString = "590098129.360041"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "553"
+            endingLineNumber = "553"
+            landmarkName = "GetCategoryAndWeightsForCourse(marks:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TeachAssist/TA.swift"
+            timestampString = "590098129.360378"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "559"
+            endingLineNumber = "559"
             landmarkName = "GetCategoryAndWeightsForCourse(marks:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -442,23 +442,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TeachAssist/TA.swift"
-            timestampString = "589649005.037091"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
-            landmarkName = "GetMarks(subjectNumber:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TeachAssist/TA.swift"
-            timestampString = "589649005.037454"
+            timestampString = "590098129.360741"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "149"
@@ -474,11 +458,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TeachAssist/TA.swift"
-            timestampString = "589649005.037817"
+            timestampString = "590098129.361093"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "150"
             endingLineNumber = "150"
+            landmarkName = "GetMarks(subjectNumber:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TeachAssist/TA.swift"
+            timestampString = "590098129.361437"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
             landmarkName = "GetMarks(subjectNumber:)"
             landmarkType = "7">
          </BreakpointContent>
