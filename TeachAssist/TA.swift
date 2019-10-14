@@ -28,6 +28,10 @@ class TA{
         if respToken == nil || respToken!["ERROR"] != nil{
             print("connection or auth error")
             print(respToken)
+            let htmlResp = GetTaData2(username: username, password: password)
+            if(htmlResp != nil){
+                return htmlResp
+            }
             return nil
         }
         self.studentID = respToken!["student_id"] as! String
@@ -104,9 +108,67 @@ class TA{
             
             return response
         }else{
+            let htmlResp = GetTaData(username: username, password: password)
+            if(htmlResp != nil){
+                return htmlResp
+            }
             return nil
         }
             
+        
+        
+    }
+    
+    func GetTaData2(username:String, password:String) -> [NSMutableDictionary]?{ //This is the html parsing method
+        //TODO add crashlitics
+        self.username = username
+        self.password = password
+        let sr = SendRequest()
+        var response = [NSMutableDictionary]()
+        var httpResp = sr.SendWithCookies(url: "https://ta.yrdsb.ca/live/index.php?", parameters: ["subject_id":"0", "username":username, "password":password, "submit": "Login"], cookies:nil)
+        if httpResp != nil{
+            self.studentID = httpResp![2]! as! String
+            self.sessionToken = httpResp![1]! as! String
+            var html = httpResp![0]!
+            var courseNumber = 0
+            for i in html.components(separatedBy: "<td>"){
+                if((i.contains("current mark = ") || i.contains("Please see teacher for current status regarding achievement in the course")||i.contains("Click Here")||i.contains("Level")||i.contains("Block")) && !i.contains("0000-00-00")) {
+                    let Course_Name = i.components(separatedBy: ":")[1].components(separatedBy:"<br>")[0].trimmingCharacters(in: .whitespacesAndNewlines).removingHTMLEntities
+                    let Room_Number = i.components(separatedBy: "rm. ")[1].components(separatedBy:"</td>")[0].trimmingCharacters(in: .whitespacesAndNewlines)
+                    let courseCode = i.components(separatedBy: " :")[0].trimmingCharacters(in: .whitespacesAndNewlines)
+                    let dict = NSMutableDictionary()
+                    dict["Course_Name"] = Course_Name
+                    dict["Room_Number"] = Room_Number
+                    dict["course"] = courseCode
+                    if(i.contains("current mark = ")){
+                        let subjectID = i.components(separatedBy: "subject_id=")[1].components(separatedBy:"&")[0].trimmingCharacters(in: .whitespacesAndNewlines).removingHTMLEntities
+                        let mark = i.components(separatedBy: "current mark = ")[1].components(separatedBy:"%</a>")[0].trimmingCharacters(in: .whitespacesAndNewlines).removingHTMLEntities
+                        dict["mark"] = Double(mark)
+                        dict["subject_id"] = subjectID as? String
+                        courses.append(subjectID)
+                    }else if(i.contains("Click Here") || i.contains("Level")){
+                        let subjectID = i.components(separatedBy: "subject_id=")[1].components(separatedBy:"&")[0].trimmingCharacters(in: .whitespacesAndNewlines).removingHTMLEntities
+                        let mark = i.components(separatedBy: "current mark = ")[1].components(separatedBy:"%</a>")[0].trimmingCharacters(in: .whitespacesAndNewlines).removingHTMLEntities
+                        dict["mark"] = "NA"
+                        dict["subject_id"] = "NA"
+                        courses.append(subjectID)
+                    }else{
+                        dict["mark"] = "NA"
+                        dict["subject_id"] = "NA"
+                        courses.append("NA")
+                    }
+                    response.append(dict)
+                    
+                    courseNumber += 1
+                }
+                
+            }
+            return response
+        }else{
+            return nil
+        }
+        return nil
+        
         
         
     }
@@ -139,6 +201,10 @@ class TA{
         var params = ["student_id": self.studentID, "token":self.sessionToken, "subject_id":courses[subjectNumber]]
         var respCheck = sr.SendJSON(url: "https://ta.yrdsb.ca/v4/students/json.php", parameters: params)
         if respCheck == nil{
+            let resp2 = GetMarks2(subjectNumber: subjectNumber)
+            if(resp2 != nil){
+                return resp2
+            }
             return nil
         }else if respCheck!["ERROR"] != nil{
             print("INVALID TOKEN")
@@ -151,7 +217,6 @@ class TA{
                 assignments[assignment.key] = assignment.value as! [String:Any]
             }
             for assignment in assignments{
-                
                 if assignment.key != "categories"{
                     var value = assignment.value as! [String:Any]
                     var feedback = value["feedback"] as? String
@@ -163,15 +228,91 @@ class TA{
                 }
             }
             
-            
-            
             return assignments
         }else{
+            let resp2 = GetMarks2(subjectNumber: subjectNumber)
+            if(resp2 != nil){
+                return resp2
+            }
             return nil
         }
-        
-        
-        
+    }
+    
+    func GetMarks2(subjectNumber:Int) -> [String:Any]?{
+        var sr = SendRequest()
+        var params = ["student_id": self.studentID, "token":self.sessionToken, "subject_id":courses[subjectNumber]]
+        var cookieProps = [
+            HTTPCookiePropertyKey.domain: "ta.yrdsb.ca",
+            HTTPCookiePropertyKey.path: "/",
+            HTTPCookiePropertyKey.name: "session_token",
+            HTTPCookiePropertyKey.value: self.sessionToken,
+            HTTPCookiePropertyKey.secure: "TRUE",
+            HTTPCookiePropertyKey.expires: NSDate(timeIntervalSinceNow: 3600)//one hour
+            ] as [HTTPCookiePropertyKey : Any]
+        let cookie = HTTPCookie(properties: cookieProps)
+        var respCheck = sr.SendWithCookies(url: "https://ta.yrdsb.ca/live/students/viewReport.php?", parameters: params, cookies:cookie)
+        if respCheck == nil{
+            return nil
+        }else if respCheck![0]?.contains("By logging in") != nil{
+            print("INVALID TOKEN")
+            GetTaData(username: username, password: password)
+        }
+        //print(respCheck)
+        var html = respCheck![0]!
+        for i in html.components(separatedBy:"rowspan="){ //each assignment
+            var dict = NSMutableDictionary()
+            //dict["K"] = NSMutableDictionary()
+            //dict["T"] = NSMutableDictionary()
+            //dict["C"] = NSMutableDictionary()
+            //dict["A"] = NSMutableDictionary()
+            
+            if(i.contains("bgcolor=\"white\"")){ //each itteration is one assignment
+                let title = i.components(separatedBy: "\"2\">")[1].components(separatedBy: "</td>")[0]
+                dict["title"] = title
+                do{
+                    let categoryList = ["K", "T", "C", "A"]
+                    var categoryNumber = -1
+                    for j in i.components(separatedBy: " align=\"center\">"){ //each itteration is one category
+                        if(categoryNumber < 0){
+                            categoryNumber += 1
+                            continue
+                        }else if(categoryNumber == 4){//feedback
+                            
+                        }
+                        //print(j)
+                        print("------------------------------------------------")
+                        let regex1 = try NSRegularExpression(pattern: "\\d+\\s/\\s\\d+\\s.\\s\\d+") //https://www.rexegg.com/regex-quickstart.html
+                        let markString1 = regex1.matches(in: j, range:NSRange(location: 0, length: j.count)).map {
+                            String(j[Range($0.range, in: j)!])
+                        }
+                        if(markString1.count != 0){
+                            print(categoryNumber)
+                            dict[categoryList[categoryNumber]] = NSMutableDictionary()
+                            (dict[categoryList[categoryNumber]]!as! NSMutableDictionary) ["mark"] = markString1[0].components(separatedBy: " / ")[0]
+                            (dict[categoryList[categoryNumber]]!as! NSMutableDictionary) ["outOf"] = markString1[0].components(separatedBy: " / ")[1].components(separatedBy: "=")[0].trimmingCharacters(in: .whitespacesAndNewlines)
+                        }
+                        
+                        /*let regex2 = try NSRegularExpression(pattern: "\\s/\\s\\d+\\s.\\s") //https://www.rexegg.com/regex-quickstart.html
+                        let markString2 = regex2.matches(in: i, range:NSRange(location: 0, length: i.count)).map {
+                            String(i[Range($0.range, in: i)!])
+                        }
+                        if(markString2.count != 0){
+                            
+                        }*/
+                        
+                        categoryNumber += 1
+                    }
+                }catch{}
+                
+                let markK = i.components(separatedBy: " / ")[0].components(separatedBy: ">").last?.trimmingCharacters(in: .whitespacesAndNewlines)
+                let outOfK = i.components(separatedBy: " / ")[1].components(separatedBy: "=")[0].trimmingCharacters(in: .whitespacesAndNewlines)
+                //print(i)
+                print("HERE")
+                print(dict)
+                
+            }
+        }
+        return nil
     }
     
     func CalculateAverage(response:[NSMutableDictionary]) -> Double{

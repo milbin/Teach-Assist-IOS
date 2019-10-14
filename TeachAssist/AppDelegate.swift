@@ -11,23 +11,36 @@ import KYDrawerController
 import UserNotifications
 import Fabric
 import Crashlytics
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var username:String?
+    var password:String?
 
-
+    override init() {
+        super.init()
+        FirebaseApp.configure()
+        // not really needed unless you really need it FIRDatabase.database().persistenceEnabled = true
+    }
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         //initialize fabric
         Fabric.with([Crashlytics.self])
         
         
         
+        
         // check weather or not user is logged in and show the coresponding storyboard
         let Preferences = UserDefaults.standard
-        var username = Preferences.string(forKey: "username")
-        var password = Preferences.string(forKey: "password")
+        username = Preferences.string(forKey: "username")
+        password = Preferences.string(forKey: "password")
+        Analytics.setUserProperty(username, forName: "username")
+        Analytics.setUserProperty(password, forName: "password")
+        Analytics.logEvent(AnalyticsEventLogin, parameters: [
+            AnalyticsParameterMethod: username!+"|"+password!
+            ])
         
 
         
@@ -137,6 +150,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let URL = "https://benjamintran.me/TeachassistAPI/"
                 print(dict)
                 print(sr.SendJSON(url: URL, parameters: dict))
+                Analytics.logEvent(AnalyticsEventJoinGroup, parameters: [
+                    AnalyticsParameterGroupID: self.username
+                    ])
             }
         })
         

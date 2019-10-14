@@ -14,6 +14,7 @@ target 'TeachAssist' do
   pod 'HTMLEntities', :git => 'https://github.com/IBM-Swift/swift-html-entities.git'
   pod 'Fabric'
   pod 'Crashlytics'
+  pod 'Firebase/Analytics'
 
   target 'TeachAssistTests' do
     inherit! :search_paths

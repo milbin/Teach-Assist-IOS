@@ -59,12 +59,15 @@ class MainViewController: UIViewController {
             view.layoutIfNeeded()
         }
         
+        
 
         hasViewStarted = true
         //get ta data
         let Preferences = UserDefaults.standard
         var username = Preferences.string(forKey: "username")
         var password = Preferences.string(forKey: "password")
+        print(username)
+        print(password)
         if(username == nil || password == nil){
             //switch to login view
             let storyboard = UIStoryboard(name: "Login", bundle: nil)
@@ -73,6 +76,7 @@ class MainViewController: UIViewController {
             return
         }
         response = ta.GetTaData(username: username!, password: password!) ?? nil
+        print(response)
         self.navigationItem.title = "Student: "+username!
         if response == nil{
             let alert = UIAlertController(title: "Error: Could not reach Teachassist", message: "Please check your internet connection and try again", preferredStyle: .alert)
@@ -107,7 +111,8 @@ class MainViewController: UIViewController {
         for (i, course) in response!.enumerated(){
             
             var courseView = CourseView(frame: CGRect(x: 0, y: 0, width: 350, height: 160))
-            if let mark = course["mark"] as? CGFloat{
+            if let mark = (course["mark"] as? CGFloat){
+                print(mark)
                 courseView.ProgressBar.value = mark
             }else{
                 courseView.ProgressBar.isHidden = true

@@ -28,6 +28,7 @@
 		EA3624AD223DD575009E392D /* CourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3624AC223DD575009E392D /* CourseView.swift */; };
 		EA94D82F2272628F00C27FB6 /* updateStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA94D82E2272628F00C27FB6 /* updateStackView.swift */; };
 		EA96E205229F441B006CA3E5 /* auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA96E204229F441B006CA3E5 /* auth.swift */; };
+		EAAF4B75234D55EF00308289 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EAAF4B74234D55EE00308289 /* GoogleService-Info.plist */; };
 		EAB209232220E519000686B3 /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB209222220E519000686B3 /* LoginButton.swift */; };
 		EAB209262220E6B7000686B3 /* CheckboxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB209252220E6B7000686B3 /* CheckboxButton.swift */; };
 		EABD64CC2266A13E0029E464 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABD64CB2266A13E0029E464 /* SettingsTableViewCell.swift */; };
@@ -96,6 +97,7 @@
 		EA7B4FB52296043100B79BC4 /* Pods_TeachAssistUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_TeachAssistUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA94D82E2272628F00C27FB6 /* updateStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = updateStackView.swift; sourceTree = "<group>"; };
 		EA96E204229F441B006CA3E5 /* auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = auth.swift; sourceTree = "<group>"; };
+		EAAF4B74234D55EE00308289 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EAB209222220E519000686B3 /* LoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
 		EAB209252220E6B7000686B3 /* CheckboxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxButton.swift; sourceTree = "<group>"; };
 		EABD64CB2266A13E0029E464 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 		6E449D112204A26E00C0F0AC /* TeachAssist */ = {
 			isa = PBXGroup;
 			children = (
+				EAAF4B74234D55EE00308289 /* GoogleService-Info.plist */,
 				EA649139228247790072E6C5 /* TeachAssist.entitlements */,
 				EA3624A5223D924B009E392D /* Views */,
 				6E449D122204A26E00C0F0AC /* AppDelegate.swift */,
@@ -409,6 +412,7 @@
 				EABD64CE2266B28E0029E464 /* SettingsTableViewCell.xib in Resources */,
 				EA3624AB223DD149009E392D /* CourseView.xib in Resources */,
 				EAE7AF7022693FC00056BC9A /* AssignmentView.xib in Resources */,
+				EAAF4B75234D55EF00308289 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -523,22 +527,26 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-TeachAssist/Pods-TeachAssist-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/HTMLEntities/HTMLEntities.framework",
 				"${BUILT_PRODUCTS_DIR}/HTMLString/HTMLString.framework",
 				"${BUILT_PRODUCTS_DIR}/KYDrawerController/KYDrawerController.framework",
 				"${BUILT_PRODUCTS_DIR}/PureLayout/PureLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/UICircularProgressRing/UICircularProgressRing.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HTMLEntities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HTMLString.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KYDrawerController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PureLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UICircularProgressRing.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
