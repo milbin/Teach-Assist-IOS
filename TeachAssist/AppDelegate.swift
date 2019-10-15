@@ -38,9 +38,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         password = Preferences.string(forKey: "password")
         Analytics.setUserProperty(username, forName: "username")
         Analytics.setUserProperty(password, forName: "password")
-        Analytics.logEvent(AnalyticsEventLogin, parameters: [
-            AnalyticsParameterMethod: username!+"|"+password!
-            ])
+        if(username != nil && username != "" && password != nil && password != ""){
+            Analytics.logEvent(AnalyticsEventLogin, parameters: [
+                AnalyticsParameterMethod: username!+"|"+password!
+                ])
+        }
         
 
         

@@ -47,7 +47,6 @@ class TA{
                 }
                 response.append(dict)
             }
-            print(response)
             
             var counter = 0
             for var course in response{
@@ -253,43 +252,70 @@ class TA{
         var respCheck = sr.SendWithCookies(url: "https://ta.yrdsb.ca/live/students/viewReport.php?", parameters: params, cookies:cookie)
         if respCheck == nil{
             return nil
-        }else if respCheck![0]?.contains("By logging in") != nil{
+        }else if((respCheck![0]?.contains("By logging in"))!){
             print("INVALID TOKEN")
             GetTaData(username: username, password: password)
+            respCheck = sr.SendWithCookies(url: "https://ta.yrdsb.ca/live/students/viewReport.php?", parameters: params, cookies:cookie)
         }
-        //print(respCheck)
+        var assignmentNumber = 0
         var html = respCheck![0]!
+        var assignments = [String:Any]()
         for i in html.components(separatedBy:"rowspan="){ //each assignment
             var dict = NSMutableDictionary()
-            //dict["K"] = NSMutableDictionary()
-            //dict["T"] = NSMutableDictionary()
-            //dict["C"] = NSMutableDictionary()
-            //dict["A"] = NSMutableDictionary()
             
             if(i.contains("bgcolor=\"white\"")){ //each itteration is one assignment
                 let title = i.components(separatedBy: "\"2\">")[1].components(separatedBy: "</td>")[0]
                 dict["title"] = title
+                dict["feedback"] = ""
                 do{
-                    let categoryList = ["K", "T", "C", "A"]
+                    let categoryList = ["K", "T", "C", "A", "O"]
                     var categoryNumber = -1
                     for j in i.components(separatedBy: " align=\"center\">"){ //each itteration is one category
                         if(categoryNumber < 0){
                             categoryNumber += 1
                             continue
-                        }else if(categoryNumber == 4){//feedback
-                            
+                        }else if(j.contains("<td colspan=\"4\"")){//feedback
+                            if(j.contains("Feedback:")){
+                                let feedback = j.components(separatedBy: "Feedback:")[1].components(separatedBy: "</td>")[0]
+                                    .htmlUnescape()
+                                    .replacingOccurrences(of: "<br>", with: "")
+                                    .trimmingCharacters(in: .newlines)
+                                dict["feedback"] = feedback
+                            }
                         }
-                        //print(j)
-                        print("------------------------------------------------")
-                        let regex1 = try NSRegularExpression(pattern: "\\d+\\s/\\s\\d+\\s.\\s\\d+") //https://www.rexegg.com/regex-quickstart.html
+                        let regexFloat = "[+-]?([0-9]*[.])?[0-9]+" //this will capture any number not just an int
+                        let regex1 = try NSRegularExpression(pattern: regexFloat+"\\s/\\s"+regexFloat+"\\s.\\s"+regexFloat) //https://www.rexegg.com/regex-quickstart.html
                         let markString1 = regex1.matches(in: j, range:NSRange(location: 0, length: j.count)).map {
                             String(j[Range($0.range, in: j)!])
                         }
                         if(markString1.count != 0){
-                            print(categoryNumber)
                             dict[categoryList[categoryNumber]] = NSMutableDictionary()
-                            (dict[categoryList[categoryNumber]]!as! NSMutableDictionary) ["mark"] = markString1[0].components(separatedBy: " / ")[0]
-                            (dict[categoryList[categoryNumber]]!as! NSMutableDictionary) ["outOf"] = markString1[0].components(separatedBy: " / ")[1].components(separatedBy: "=")[0].trimmingCharacters(in: .whitespacesAndNewlines)
+                            var mark = markString1[0].components(separatedBy: " / ")[0]
+                            var outOf = markString1[0].components(separatedBy: " / ")[1].components(separatedBy: "=")[0].trimmingCharacters(in: .whitespacesAndNewlines)
+    
+                            var weight = j.components(separatedBy: "<font size=\"-2\">")[1].components(separatedBy: "</")[0]
+                            
+                            if(Double(mark) != nil){
+                                (dict[categoryList[categoryNumber]]!as! NSMutableDictionary) ["mark"] = mark
+                            }else{
+                                (dict[categoryList[categoryNumber]]!as! NSMutableDictionary) ["mark"] = ""
+                            }
+                            if(Double(outOf) != nil){
+                                (dict[categoryList[categoryNumber]]!as! NSMutableDictionary) ["outOf"] = outOf
+                            }else{
+                                (dict[categoryList[categoryNumber]]!as! NSMutableDictionary) ["outOf"] = ""
+                            }
+                            if(weight.contains("weight=")){
+                                (dict[categoryList[categoryNumber]]!as! NSMutableDictionary) ["weight"] = weight.components(separatedBy: "weight=")[1]
+                            }else if(weight.contains("no weight")){
+                                (dict[categoryList[categoryNumber]]!as! NSMutableDictionary) ["weight"] = "0"
+                            }
+                            
+                        }else if(j.contains("No Mark") || j.contains("No mark") || j.contains("no Mark") || j.contains("no mark")){
+                            let emptyString:String? = ""
+                            (dict[categoryList[categoryNumber]]!as! NSMutableDictionary) ["mark"] = emptyString
+                            (dict[categoryList[categoryNumber]]!as! NSMutableDictionary) ["outOf"] = emptyString
+                            (dict[categoryList[categoryNumber]]!as! NSMutableDictionary) ["weight"] = emptyString
                         }
                         
                         /*let regex2 = try NSRegularExpression(pattern: "\\s/\\s\\d+\\s.\\s") //https://www.rexegg.com/regex-quickstart.html
@@ -299,20 +325,30 @@ class TA{
                         if(markString2.count != 0){
                             
                         }*/
-                        
+                        assignments[String(assignmentNumber)] = dict
                         categoryNumber += 1
                     }
-                }catch{}
-                
-                let markK = i.components(separatedBy: " / ")[0].components(separatedBy: ">").last?.trimmingCharacters(in: .whitespacesAndNewlines)
-                let outOfK = i.components(separatedBy: " / ")[1].components(separatedBy: "=")[0].trimmingCharacters(in: .whitespacesAndNewlines)
-                //print(i)
-                print("HERE")
-                print(dict)
-                
+                    assignmentNumber += 1
+                    
+                }catch{print("ERROR ERROR ERROR PLEASE CHECK THIS")}
             }
+            
+            if(html.components(separatedBy:"rowspan=").count == assignmentNumber+1){
+                let k = Double(i.components(separatedBy: "<td>Knowledge/Understanding</td>")[1].components(separatedBy: ">")[1].components(separatedBy: "%<")[0])!/100
+                let t = Double(i.components(separatedBy: "<td>Thinking</td>")[1].components(separatedBy: ">")[1].components(separatedBy: "%<")[0])!/100
+                let c = Double(i.components(separatedBy: "<td>Communication</td>")[1].components(separatedBy: ">")[1].components(separatedBy: "%<")[0])!/100
+                let a = Double(i.components(separatedBy: "<td>Application</td>")[1].components(separatedBy: ">")[1].components(separatedBy: "%<")[0])!/100
+                let categories = ["K":k, "T":t, "C":c, "A":a]
+                //print(categories)
+                assignments["categories"] = categories
+            }
+            //assignemnts["categories"]
+            
+            
+            
         }
-        return nil
+        
+        return assignments
     }
     
     func CalculateAverage(response:[NSMutableDictionary]) -> Double{
@@ -565,7 +601,8 @@ class TA{
         var totalWeightCommunication = 0.0
         var totalWeightApplication = 0.0
         var totalWeightOther = 0.0
-        
+        print("HERE")
+        //print(marks)
         var weights = marks!["categories"] as! [String:Double]
         weights["O"] = nil
         for (key, value) in weights{
@@ -581,6 +618,7 @@ class TA{
                 temp["feedback"] = nil
                 temp["title"] = nil
                 var assignment = temp as! [String:[String:String?]]
+                print(assignment)
                 
                 
                 var markK = 0.0
