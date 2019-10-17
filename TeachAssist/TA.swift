@@ -147,10 +147,11 @@ class TA{
                         courses.append(subjectID)
                     }else if(i.contains("Click Here") || i.contains("Level")){
                         let subjectID = i.components(separatedBy: "subject_id=")[1].components(separatedBy:"&")[0].trimmingCharacters(in: .whitespacesAndNewlines).removingHTMLEntities
-                        let mark = i.components(separatedBy: "current mark = ")[1].components(separatedBy:"%</a>")[0].trimmingCharacters(in: .whitespacesAndNewlines).removingHTMLEntities
-                        dict["mark"] = "NA"
-                        dict["subject_id"] = "NA"
                         courses.append(subjectID)
+                        let marks = GetMarks(subjectNumber: courseNumber)
+                        let mark = CalculateCourseAverage(subjectNumber: courseNumber, markParam: marks)
+                        dict["mark"] = mark
+                        dict["subject_id"] = subjectID
                     }else{
                         dict["mark"] = "NA"
                         dict["subject_id"] = "NA"
