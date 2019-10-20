@@ -110,7 +110,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         ]
             print(dict)
             let URL = "https://benjamintran.me/TeachassistAPI/"
-            print(sr.SendJSON(url: URL, parameters: dict))
+            //print(sr.SendJSON(url: URL, parameters: dict))
         }
     }
 
@@ -151,7 +151,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             ]
                 let URL = "https://benjamintran.me/TeachassistAPI/"
                 print(dict)
-                print(sr.SendJSON(url: URL, parameters: dict))
+                //print(sr.SendJSON(url: URL, parameters: dict))
                 Analytics.logEvent(AnalyticsEventJoinGroup, parameters: [
                     AnalyticsParameterGroupID: self.username
                     ])

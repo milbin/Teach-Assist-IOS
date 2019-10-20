@@ -37,7 +37,7 @@ class DrawerViewController: UITableViewController {
                                 "purpose":"delete",
                                 ]
                     let URL = "https://benjamintran.me/TeachassistAPI/"
-                    print(sr.SendJSON(url: URL, parameters: dict))
+                    //print(sr.SendJSON(url: URL, parameters: dict))
                 }
             })
             

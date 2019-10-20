@@ -199,8 +199,9 @@ class TA{
     func GetMarks(subjectNumber:Int) -> [String:Any]?{
         var sr = SendRequest()
         var params = ["student_id": self.studentID, "token":self.sessionToken, "subject_id":courses[subjectNumber]]
-        var respCheck = sr.SendJSON(url: "https://ta.yrdsb.ca/v4/students/json.php", parameters: params)
+        var respCheck = sr.SendJSON(url: "https://ta.yrdsb.ca/v4/students/json-20180628.php", parameters: params)
         if respCheck == nil{
+            print("REQUEST FAILED")
             let resp2 = GetMarks2(subjectNumber: subjectNumber)
             if(resp2 != nil){
                 return resp2

@@ -92,7 +92,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                                     "purpose":"register",
                                     ]
                         let URL = "https://benjamintran.me/TeachassistAPI/"
-                        print(sr.SendJSON(url: URL, parameters: dict))
+                        //print(sr.SendJSON(url: URL, parameters: dict))
                     }
                     
                     
