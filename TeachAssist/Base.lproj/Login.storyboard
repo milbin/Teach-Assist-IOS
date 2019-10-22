@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="da3-f6-13K">
-    <device id="retina5_5" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="da3-f6-13K">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Eczar-SemiBold.ttf">
+            <string>Eczar-SemiBold</string>
+        </array>
+        <array key="SN.otf">
+            <string>Gilroy-Regular</string>
+        </array>
+        <array key="sandstone_bold.otf">
+            <string>Gilroy-Bold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Login View Controller-->
         <scene sceneID="JGS-Tn-pTZ">
@@ -18,34 +28,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aap-9L-fGT">
-                                <rect key="frame" x="119.66666666666669" y="300" width="175" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aap-9L-fGT">
+                                <rect key="frame" x="107" y="303" width="198.33333333333337" height="34"/>
+                                <color key="backgroundColor" name="dark_gray"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="aap-9L-fGT" secondAttribute="height" multiplier="35:6" id="SHJ-8i-1zA"/>
                                 </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="username"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rcy-Bo-jhQ">
-                                <rect key="frame" x="119.66666666666669" y="340" width="175" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rcy-Bo-jhQ">
+                                <rect key="frame" x="107" y="347" width="198.33333333333337" height="34"/>
+                                <color key="backgroundColor" name="dark_gray"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="rcy-Bo-jhQ" secondAttribute="height" multiplier="35:6" id="gqm-Fa-ud0"/>
                                 </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lock" translatesAutoresizingMaskIntoConstraints="NO" id="NIg-3U-eQ6">
-                                <rect key="frame" x="95.666666666666671" y="344" width="22" height="22"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="22" id="HdZ-z6-EJ0"/>
-                                    <constraint firstAttribute="height" constant="22" id="YW3-E5-HBK"/>
-                                    <constraint firstAttribute="width" secondItem="NIg-3U-eQ6" secondAttribute="height" multiplier="1:1" id="dYe-eE-z53"/>
-                                </constraints>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="account" translatesAutoresizingMaskIntoConstraints="NO" id="Dze-Gm-3Nq">
-                                <rect key="frame" x="95.666666666666671" y="305" width="22" height="22"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="account" translatesAutoresizingMaskIntoConstraints="NO" id="Dze-Gm-3Nq">
+                                <rect key="frame" x="85" y="309" width="22" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Dze-Gm-3Nq" secondAttribute="height" multiplier="1:1" id="7D5-Gw-lep"/>
                                     <constraint firstAttribute="width" secondItem="Dze-Gm-3Nq" secondAttribute="height" multiplier="1:1" id="op1-p1-wTW"/>
@@ -53,8 +65,8 @@
                                     <constraint firstAttribute="width" constant="22" id="x6N-4c-Rh6"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jdP-vQ-dis" customClass="CheckboxButton" customModule="TeachAssist" customModuleProvider="target">
-                                <rect key="frame" x="124" y="395" width="22" height="22"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jdP-vQ-dis" customClass="CheckboxButton" customModule="TeachAssist" customModuleProvider="target">
+                                <rect key="frame" x="123" y="406" width="22" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="22" id="Wte-dl-LCn"/>
                                     <constraint firstAttribute="height" constant="22" id="iBU-D8-XFn"/>
@@ -63,47 +75,56 @@
                                 <state key="normal" title="Remeber Me" image="checkbox-marked"/>
                                 <state key="selected" title="Remember Me" image="checkbox-blank-outline"/>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ta_logo_v3" translatesAutoresizingMaskIntoConstraints="NO" id="JfH-d3-jRd">
-                                <rect key="frame" x="107" y="70" width="200" height="200"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Teachassist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2bj-aP-m1T">
+                                <rect key="frame" x="155" y="189" width="106" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Eczar-SemiBold" family="Eczar" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="ta_logo_v3" translatesAutoresizingMaskIntoConstraints="NO" id="JfH-d3-jRd">
+                                <rect key="frame" x="155" y="78" width="103" height="103"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="6Fc-e7-d1i"/>
                                     <constraint firstAttribute="width" secondItem="JfH-d3-jRd" secondAttribute="height" multiplier="1:1" id="WfX-6O-ee0"/>
                                     <constraint firstAttribute="width" constant="200" id="vq5-oz-BjU"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Cv-B8-o1R">
-                                <rect key="frame" x="188" y="473" width="38" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Login">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Remember Me" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Dhu-8j-qP1">
-                                <rect key="frame" x="153" y="390" width="108" height="32"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="Remember Me" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Dhu-8j-qP1">
+                                <rect key="frame" x="142" y="401" width="108" height="32"/>
                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="J8X-QO-dV3"/>
                                     <constraint firstAttribute="width" constant="108" id="g4d-9Y-ozo"/>
                                 </constraints>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fma-ZI-wm8" customClass="LoginButton" customModule="TeachAssist" customModuleProvider="target">
-                                <rect key="frame" x="101.66666666666669" y="487" width="211" height="40"/>
-                                <color key="backgroundColor" red="0.14901960784313725" green="0.67843137254901964" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fma-ZI-wm8" customClass="LoginButton" customModule="TeachAssist" customModuleProvider="target">
+                                <rect key="frame" x="101" y="511" width="211" height="40"/>
+                                <color key="backgroundColor" name="dark_green"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="c0e-X1-TGB"/>
                                     <constraint firstAttribute="width" constant="211" id="wls-bZ-MDY"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="17"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Login">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="lock" translatesAutoresizingMaskIntoConstraints="NO" id="NIg-3U-eQ6">
+                                <rect key="frame" x="85" y="353" width="22" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="22" id="HdZ-z6-EJ0"/>
+                                    <constraint firstAttribute="height" constant="22" id="YW3-E5-HBK"/>
+                                    <constraint firstAttribute="width" secondItem="NIg-3U-eQ6" secondAttribute="height" multiplier="1:1" id="dYe-eE-z53"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="gray"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="jdP-vQ-dis" firstAttribute="top" secondItem="rcy-Bo-jhQ" secondAttribute="bottom" constant="25" id="1nl-Am-AxQ"/>
                             <constraint firstItem="Dhu-8j-qP1" firstAttribute="leading" secondItem="jdP-vQ-dis" secondAttribute="trailing" constant="7" id="2aj-46-Zpl"/>
@@ -141,5 +162,14 @@
         <image name="checkbox-marked" width="48" height="48"/>
         <image name="lock" width="48" height="48"/>
         <image name="ta_logo_v3" width="487" height="487"/>
+        <namedColor name="dark_gray">
+            <color red="0.15294117647058825" green="0.15294117647058825" blue="0.18431372549019609" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dark_green">
+            <color red="0.015686274509803921" green="0.36470588235294116" blue="0.33725490196078434" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="gray">
+            <color red="0.20000000000000001" green="0.20000000000000001" blue="0.23921568627450979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>
