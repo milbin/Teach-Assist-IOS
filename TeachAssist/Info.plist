@@ -61,5 +61,14 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>sandstone_regular.otf</string>
+		<string>sandstone_bold.otf</string>
+		<string>Eczar-Regular.tff</string>
+		<string>Eczar-Medium.tff</string>
+		<string>Eczar-SemiBold.tff</string>
+		<string>Eczar-ExtraBold.tff</string>
+	</array>
 </dict>
 </plist>
