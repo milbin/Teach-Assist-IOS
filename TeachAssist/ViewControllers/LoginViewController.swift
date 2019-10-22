@@ -2,7 +2,7 @@
 //  LoginViewController.swift
 //  TeachAssist
 //
-//  Created by hiep tran on 2019-02-21.
+//  Created by ben tran on 2019-02-21.
 //  Copyright © 2019 Ben Tran. All rights reserved.
 //
 
@@ -30,6 +30,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.passwordTextField.delegate = self
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        loginButton.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner], radius: 5)
+        
+        usernameTextField.attributedPlaceholder = NSAttributedString(string:"Username", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red:0.22, green: 0.22, blue: 0.25, alpha: 1.0)])
+        
+        passwordTextField.attributedPlaceholder = NSAttributedString(string:"Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red:0.22, green: 0.22, blue: 0.25, alpha: 1.0)])
         
         //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
         //tap.cancelsTouchesInView = false
