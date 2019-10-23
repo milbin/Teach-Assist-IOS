@@ -16,11 +16,10 @@ class MainViewController: UIViewController {
     var courseList = [CourseView]()
     var userIsEditing = false
     var response:[NSMutableDictionary]? = nil
-    var hasViewStarted = false //this variable will check to make sure that the view hasnt started before so that courses arent re-added every time the nav drawer is triggered.
+    var hasViewStarted = false
+    //this variable will check to make sure that the view hasnt started before so that courses arent re-added every time the nav drawer is triggered.
     var refreshControl:UIRefreshControl? = nil
     let ta = TA()
-    
-    
 
     @IBOutlet weak var noCoursesTV: UITextView!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -45,7 +44,6 @@ class MainViewController: UIViewController {
         scrollView.refreshControl = refreshControl
         
     }
-    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
@@ -192,7 +190,12 @@ class MainViewController: UIViewController {
         
         let backItem = UIBarButtonItem()
         backItem.title = "Back"
-        navigationItem.backBarButtonItem = backItem // This will show in the next view controller being pushed
+        backItem.setTitleTextAttributes([
+            NSAttributedString.Key.font: UIFont(name: "Gilroy-Regular", size: 17)!,
+            NSAttributedString.Key.foregroundColor: UIColor.white],
+        for: .normal)
+        navigationItem.backBarButtonItem = backItem
+        // This will show in the next view controller being pushed
     }
     
     @objc func OnEditButtonPress(sender: UIBarButtonItem){
@@ -277,7 +280,6 @@ class MainViewController: UIViewController {
     
     
 }
-
 
 extension UIView {
     
