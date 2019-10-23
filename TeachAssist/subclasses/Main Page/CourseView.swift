@@ -48,7 +48,11 @@ class CourseView: UIView {
         
         // Adding custom subview on top of our view (over any custom drawing > see note below)
         addSubview(contentView!)
-        ProgressBar.font = UIFont.boldSystemFont(ofSize: 25.0)
+        contentView.layer.borderWidth = 2
+        contentView.layer.borderColor = UIColor(red:39/255, green:39/255, blue: 47/255, alpha:1).cgColor
+        contentView.layer.cornerRadius = 15
+        ProgressBar.font =  UIFont(name: "Gilroy-Bold", size: 20)!
+        ProgressBar.fontColor = UIColor.white
         ProgressBar.valueFormatter = UICircularProgressRingFormatter(showFloatingPoint:true, decimalPlaces:1)
         if(UIDevice.modelName == "iPhone SE" || UIDevice.modelName == "Simulator iPhone SE"){
             ProgressBarWidth.constant = 115

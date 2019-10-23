@@ -53,13 +53,15 @@ class MainViewController: UIViewController {
             return
         }
         
-        StackView.addBackground(color: UIColor(red:0.94, green:0.94, blue:0.96, alpha:1.0))
         
         for view in StackView.arrangedSubviews{
             view.layoutIfNeeded()
         }
         
-        
+        AverageBar.font = UIFont(name: "Gilroy-Bold", size: 22)!
+        AverageBar.fontColor = UIColor.white
+        scrollView.backgroundColor = UIColor(red:51/255, green:51/255, blue: 61/255, alpha:1)
+        StackView.addBackground(color: UIColor(red:51/255, green:51/255, blue: 61/255, alpha:1))
 
         hasViewStarted = true
         //get ta data
@@ -275,6 +277,7 @@ class MainViewController: UIViewController {
     
     
 }
+
 
 extension UIView {
     
