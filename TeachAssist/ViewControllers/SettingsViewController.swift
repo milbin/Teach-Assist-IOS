@@ -10,12 +10,6 @@ import UIKit
 
 class SettingsViewController: UITableViewController {
     var response:[NSMutableDictionary]?
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.navigationItem.title = "Settings"
-        
-    }
     
     //number of cells in tableview
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -34,7 +28,8 @@ class SettingsViewController: UITableViewController {
     }
     //customize the header to make the background white and the text match the pinkish teachassist theme colour
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        view.tintColor = UIColor.white
+        view.backgroundColor = UIColor(red:0.51, green:0.51, blue:0.61, alpha:1.0)
+        view.tintColor = UIColor(red:0, green:0, blue:0, alpha:0) //gray colour w no tint
         let header = view as! UITableViewHeaderFooterView
         header.textLabel?.textColor = UIColor(red:0.91, green:0.12, blue:0.39, alpha:1.0) //teachassist themed pink
     }
@@ -60,7 +55,8 @@ class SettingsViewController: UITableViewController {
         
         cell.Description.text = "Notification Toggle for: " + (dict["course"] as! String)
         cell.Title.text = "Period " + String(indexPath.row + 1)
-        
+        cell.backgroundColor = UIColor(red:0.51, green:0.51, blue:0.61, alpha:0)
+        cell.tintColor = UIColor(red:0, green:0, blue:0, alpha:0) //these lines are obselete but the background of the cells gets messed up without them ?? test before changing
         
         return cell
     }
