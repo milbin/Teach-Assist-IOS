@@ -283,7 +283,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XFH-2V-VbQ">
-                                <rect key="frame" x="0.0" y="167" width="375" height="500"/>
+                                <rect key="frame" x="0.0" y="190" width="375" height="500"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="500" id="wAm-b2-KJ4"/>
                                 </constraints>
@@ -291,16 +291,26 @@
                                     <segue destination="NTm-cx-Vch" kind="embed" id="07q-Bp-FFV"/>
                                 </connections>
                             </containerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DGu-6e-RMz">
+                                <rect key="frame" x="20" y="172" width="335" height="3"/>
+                                <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="3" id="kdv-uv-kOF"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Aiu-NN-iMI" firstAttribute="centerX" secondItem="SSE-l6-BNh" secondAttribute="centerX" id="2dF-RD-cNH"/>
+                            <constraint firstItem="odv-C7-WgD" firstAttribute="trailing" secondItem="DGu-6e-RMz" secondAttribute="trailing" constant="20" id="CXY-ge-Y9Z"/>
                             <constraint firstItem="Kkf-gX-D4h" firstAttribute="centerX" secondItem="SSE-l6-BNh" secondAttribute="centerX" id="CmF-tl-75c"/>
                             <constraint firstItem="Aiu-NN-iMI" firstAttribute="top" secondItem="odv-C7-WgD" secondAttribute="top" constant="20" id="YhP-xa-xxl"/>
-                            <constraint firstItem="XFH-2V-VbQ" firstAttribute="bottom" secondItem="odv-C7-WgD" secondAttribute="bottom" id="ZX0-lf-fCt"/>
+                            <constraint firstItem="DGu-6e-RMz" firstAttribute="leading" secondItem="odv-C7-WgD" secondAttribute="leading" constant="20" id="dLd-Ri-cuV"/>
                             <constraint firstItem="XFH-2V-VbQ" firstAttribute="trailing" secondItem="odv-C7-WgD" secondAttribute="trailing" id="iLc-Jr-Jhe"/>
+                            <constraint firstItem="DGu-6e-RMz" firstAttribute="top" secondItem="Kkf-gX-D4h" secondAttribute="bottom" constant="15" id="icr-cw-fTX"/>
                             <constraint firstItem="Kkf-gX-D4h" firstAttribute="top" secondItem="Aiu-NN-iMI" secondAttribute="bottom" constant="10" id="mjc-Bw-jpQ"/>
                             <constraint firstItem="XFH-2V-VbQ" firstAttribute="leading" secondItem="odv-C7-WgD" secondAttribute="leading" id="tpR-KW-3c1"/>
+                            <constraint firstItem="XFH-2V-VbQ" firstAttribute="top" secondItem="DGu-6e-RMz" secondAttribute="bottom" constant="15" id="ubY-H5-pfr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="odv-C7-WgD"/>
                     </view>
