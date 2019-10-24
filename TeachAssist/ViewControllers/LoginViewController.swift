@@ -32,7 +32,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         loginButton.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner], radius: 5)
         
-        usernameTextField.attributedPlaceholder = NSAttributedString(string:"Username", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red:0.51, green: 0.51, blue: 0.61, alpha: 1.0)]) //to make the colour of the placeholder gray
+        usernameTextField.attributedPlaceholder = NSAttributedString(string:"Username", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red:0.51, green: 0.51, blue: 0.61, alpha: 1.0)]) //to make the colour of the placeholder gray, not entirely working for some reason
         
         passwordTextField.attributedPlaceholder = NSAttributedString(string:"Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red:0.51, green: 0.51, blue: 0.61, alpha: 1.0)])
         
