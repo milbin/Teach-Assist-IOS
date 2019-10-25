@@ -54,11 +54,7 @@ class CourseView: UIView {
         ProgressBar.font =  UIFont(name: "Gilroy-Bold", size: 20)!
         ProgressBar.fontColor = UIColor.white
         ProgressBar.valueFormatter = UICircularProgressRingFormatter(showFloatingPoint:true, decimalPlaces:1)
-        if(UIDevice.modelName == "iPhone SE" || UIDevice.modelName == "Simulator iPhone SE"){
-            ProgressBarWidth.constant = 115
-            ProgressBarHeight.constant = 115
-            
-        }
+                    
         self.layer.cornerRadius = 15
         self.layer.masksToBounds = true
     }

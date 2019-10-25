@@ -59,7 +59,7 @@ class MainViewController: UIViewController {
             view.layoutIfNeeded()
         }
         
-        AverageBar.font = UIFont(name: "Gilroy-Bold", size: 22)!
+        AverageBar.font = UIFont(name: "Gilroy-Bold", size: 30)!
         AverageBar.fontColor = UIColor.white
         scrollView.backgroundColor = UIColor(red:51/255, green:51/255, blue: 61/255, alpha:1)
         StackView.addBackground(color: UIColor(red:51/255, green:51/255, blue: 61/255, alpha:1))
@@ -113,7 +113,7 @@ class MainViewController: UIViewController {
         
         for (i, course) in response!.enumerated(){
             
-            var courseView = CourseView(frame: CGRect(x: 0, y: 0, width: 350, height: 160))
+            var courseView = CourseView(frame: CGRect(x: 0, y: 0, width: 350, height: 130))
             if let mark = (course["mark"] as? CGFloat){
                 print(mark)
                 courseView.ProgressBar.value = mark
@@ -124,9 +124,9 @@ class MainViewController: UIViewController {
                 
             }
             
-            courseView.PeriodNumber.text = "Period: \(i+1)"
+            courseView.PeriodNumber.text = "Period \(i+1)"
             if course["Room_Number"] != nil{
-                courseView.RoomNumber.text = "Room: \(course["Room_Number"]!)"
+                courseView.RoomNumber.text = "Room \(course["Room_Number"]!)"
             }
             if course["course"] != nil{
                 courseView.CourseCode.text = (course["course"] as! String)
@@ -141,7 +141,7 @@ class MainViewController: UIViewController {
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(OnCourseSelected))
             courseView.addGestureRecognizer(tapGesture)
             
-            StackViewHeight.constant = StackViewHeight.constant + 130
+            StackViewHeight.constant = StackViewHeight.constant + 100
             
         }
         
@@ -240,7 +240,7 @@ class MainViewController: UIViewController {
         view?.isHidden = true
         view?.removeFromSuperview()
         StackView.layoutIfNeeded()
-        StackViewHeight.constant -= 170
+        StackViewHeight.constant -= 100
         
         
         
@@ -256,7 +256,7 @@ class MainViewController: UIViewController {
             if courseNumber >= 0{
                 view.isHidden = true
                 view.removeFromSuperview()
-                StackViewHeight.constant -= 170
+                StackViewHeight.constant -= 100
             }
             courseNumber += 1
         }
@@ -271,7 +271,7 @@ class MainViewController: UIViewController {
             gesture.view!.alpha = 0.65
             gesture.view!.alpha = 1
         })
-        var courseNumber = -1
+        var courseNumber = 0
         for course in StackView.arrangedSubviews{
             if gesture.view == course{
                 break
