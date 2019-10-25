@@ -126,7 +126,7 @@ class MainViewController: UIViewController {
             
             courseView.PeriodNumber.text = "Period \(i+1)"
             if course["Room_Number"] != nil{
-                courseView.RoomNumber.text = "Room \(course["Room_Number"]!)"
+                courseView.RoomNumber.text = "— Rm \(course["Room_Number"]!)"
             }
             if course["course"] != nil{
                 courseView.CourseCode.text = (course["course"] as! String)
@@ -228,7 +228,7 @@ class MainViewController: UIViewController {
     @objc func OnTrashButtonPress(sender: UIButton) {
         print("Pressed Trash Button")
         let view = sender.superview?.superview
-        var courseNumber = -1
+        var courseNumber = 0
         for course in StackView.arrangedSubviews{
             if view == course{
                 response!.remove(at: courseNumber)
@@ -251,7 +251,7 @@ class MainViewController: UIViewController {
         print("refreshed")
         
         
-        var courseNumber = -1
+        var courseNumber = 0
         for view in StackView.arrangedSubviews{
             if courseNumber >= 0{
                 view.isHidden = true
