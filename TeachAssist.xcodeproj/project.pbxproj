@@ -23,12 +23,14 @@
 		49598EA0235F7D290014D749 /* sandstone_bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 49598E8F235F7D0D0014D749 /* sandstone_bold.otf */; };
 		49598EA1235F7D2A0014D749 /* sandstone_bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 49598E8F235F7D0D0014D749 /* sandstone_bold.otf */; };
 		49598EA2235F7D2A0014D749 /* sandstone_bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 49598E8F235F7D0D0014D749 /* sandstone_bold.otf */; };
-		49598EA3235F7D2D0014D749 /* SN.otf in Resources */ = {isa = PBXBuildFile; fileRef = 49598E90235F7D0D0014D749 /* SN.otf */; };
-		49598EA4235F7D2D0014D749 /* SN.otf in Resources */ = {isa = PBXBuildFile; fileRef = 49598E90235F7D0D0014D749 /* SN.otf */; };
-		49598EA5235F7D2E0014D749 /* SN.otf in Resources */ = {isa = PBXBuildFile; fileRef = 49598E90235F7D0D0014D749 /* SN.otf */; };
+		49598EA3235F7D2D0014D749 /* sandstone.otf in Resources */ = {isa = PBXBuildFile; fileRef = 49598E90235F7D0D0014D749 /* sandstone.otf */; };
+		49598EA4235F7D2D0014D749 /* sandstone.otf in Resources */ = {isa = PBXBuildFile; fileRef = 49598E90235F7D0D0014D749 /* sandstone.otf */; };
+		49598EA5235F7D2E0014D749 /* sandstone.otf in Resources */ = {isa = PBXBuildFile; fileRef = 49598E90235F7D0D0014D749 /* sandstone.otf */; };
 		49598EA7235F89B70014D749 /* Eczar-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 49598EA6235F7DE30014D749 /* Eczar-Bold.ttf */; };
 		49598EA8235F89BA0014D749 /* Eczar-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 49598EA6235F7DE30014D749 /* Eczar-Bold.ttf */; };
 		49598EA9235F89BB0014D749 /* Eczar-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 49598EA6235F7DE30014D749 /* Eczar-Bold.ttf */; };
+		499BB5722362AC6C003ED59F /* Gilroy-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 499BB5712362AC6C003ED59F /* Gilroy-Light.ttf */; };
+		499BB5742362AC79003ED59F /* Gilroy-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 499BB5732362AC79003ED59F /* Gilroy-ExtraBold.ttf */; };
 		6E449D132204A26E00C0F0AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E449D122204A26E00C0F0AC /* AppDelegate.swift */; };
 		6E449D152204A26E00C0F0AC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E449D142204A26E00C0F0AC /* MainViewController.swift */; };
 		6E449D282204A27200C0F0AC /* TeachAssistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E449D272204A27200C0F0AC /* TeachAssistTests.swift */; };
@@ -82,11 +84,13 @@
 		279DDEDA5A9D53385E9A4939 /* Pods_TeachAssist.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeachAssist.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49598E8E235F7D0D0014D749 /* Eczar-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Eczar-Regular.ttf"; sourceTree = "<group>"; };
 		49598E8F235F7D0D0014D749 /* sandstone_bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sandstone_bold.otf; sourceTree = "<group>"; };
-		49598E90235F7D0D0014D749 /* SN.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SN.otf; sourceTree = "<group>"; };
+		49598E90235F7D0D0014D749 /* sandstone.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sandstone.otf; sourceTree = "<group>"; };
 		49598E91235F7D0D0014D749 /* Eczar-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Eczar-SemiBold.ttf"; sourceTree = "<group>"; };
 		49598E92235F7D0D0014D749 /* Eczar-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Eczar-ExtraBold.ttf"; sourceTree = "<group>"; };
 		49598E93235F7D0E0014D749 /* Eczar-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Eczar-Medium.ttf"; sourceTree = "<group>"; };
 		49598EA6235F7DE30014D749 /* Eczar-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Eczar-Bold.ttf"; sourceTree = "<group>"; };
+		499BB5712362AC6C003ED59F /* Gilroy-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gilroy-Light.ttf"; path = "../../../../../../../Downloads/Gilroy/Gilroy-Light.ttf"; sourceTree = "<group>"; };
+		499BB5732362AC79003ED59F /* Gilroy-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gilroy-ExtraBold.ttf"; path = "../../../../../../../Downloads/Gilroy/Gilroy-ExtraBold.ttf"; sourceTree = "<group>"; };
 		5F38B4DEB25E275E6B3D94A4 /* Pods-TeachAssistUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeachAssistUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TeachAssistUITests/Pods-TeachAssistUITests.release.xcconfig"; sourceTree = "<group>"; };
 		61D508545975C28BFFF72A94 /* Pods-TeachAssist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeachAssist.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TeachAssist/Pods-TeachAssist.debug.xcconfig"; sourceTree = "<group>"; };
 		6E449D0F2204A26E00C0F0AC /* TeachAssist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeachAssist.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -169,8 +173,10 @@
 		49598E8D235F7CF40014D749 /* fonts */ = {
 			isa = PBXGroup;
 			children = (
-				49598E90235F7D0D0014D749 /* SN.otf */,
+				49598E90235F7D0D0014D749 /* sandstone.otf */,
+				499BB5712362AC6C003ED59F /* Gilroy-Light.ttf */,
 				49598E8F235F7D0D0014D749 /* sandstone_bold.otf */,
+				499BB5732362AC79003ED59F /* Gilroy-ExtraBold.ttf */,
 				49598E8E235F7D0D0014D749 /* Eczar-Regular.ttf */,
 				49598E93235F7D0E0014D749 /* Eczar-Medium.ttf */,
 				49598E91235F7D0D0014D749 /* Eczar-SemiBold.ttf */,
@@ -452,11 +458,13 @@
 				EA007A4C2227175C00AD7AFE /* Main.storyboard in Resources */,
 				EA007A4622270D6A00AD7AFE /* Login.storyboard in Resources */,
 				6EDFB06422204DFE00640F87 /* Assets.xcassets in Resources */,
+				499BB5722362AC6C003ED59F /* Gilroy-Light.ttf in Resources */,
 				49598E9D235F7D260014D749 /* Eczar-SemiBold.ttf in Resources */,
 				49598E9A235F7D220014D749 /* Eczar-Regular.ttf in Resources */,
 				49598E97235F7D1F0014D749 /* Eczar-Medium.ttf in Resources */,
 				EABD64CE2266B28E0029E464 /* SettingsTableViewCell.xib in Resources */,
-				49598EA3235F7D2D0014D749 /* SN.otf in Resources */,
+				499BB5742362AC79003ED59F /* Gilroy-ExtraBold.ttf in Resources */,
+				49598EA3235F7D2D0014D749 /* sandstone.otf in Resources */,
 				49598EA0235F7D290014D749 /* sandstone_bold.otf in Resources */,
 				EA3624AB223DD149009E392D /* CourseView.xib in Resources */,
 				EAE7AF7022693FC00056BC9A /* AssignmentView.xib in Resources */,
@@ -471,7 +479,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49598EA1235F7D2A0014D749 /* sandstone_bold.otf in Resources */,
-				49598EA4235F7D2D0014D749 /* SN.otf in Resources */,
+				49598EA4235F7D2D0014D749 /* sandstone.otf in Resources */,
 				49598E9E235F7D260014D749 /* Eczar-SemiBold.ttf in Resources */,
 				49598E95235F7D1C0014D749 /* Eczar-ExtraBold.ttf in Resources */,
 				49598EA8235F89BA0014D749 /* Eczar-Bold.ttf in Resources */,
@@ -485,7 +493,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49598EA2235F7D2A0014D749 /* sandstone_bold.otf in Resources */,
-				49598EA5235F7D2E0014D749 /* SN.otf in Resources */,
+				49598EA5235F7D2E0014D749 /* sandstone.otf in Resources */,
 				49598E9F235F7D270014D749 /* Eczar-SemiBold.ttf in Resources */,
 				49598E96235F7D1D0014D749 /* Eczar-ExtraBold.ttf in Resources */,
 				49598EA9235F89BB0014D749 /* Eczar-Bold.ttf in Resources */,
