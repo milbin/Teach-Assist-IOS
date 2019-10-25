@@ -141,7 +141,7 @@ class MainViewController: UIViewController {
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(OnCourseSelected))
             courseView.addGestureRecognizer(tapGesture)
             
-            StackViewHeight.constant = StackViewHeight.constant + 170
+            StackViewHeight.constant = StackViewHeight.constant + 130
             
         }
         
