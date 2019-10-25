@@ -152,7 +152,7 @@
                         <constraint firstItem="NFE-2L-frj" firstAttribute="centerY" secondItem="gti-2v-tcC" secondAttribute="centerY" id="upC-Tz-YPN"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D3O-SA-uVT" userLabel="Forward Button">
+                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D3O-SA-uVT" userLabel="Forward Button">
                     <rect key="frame" x="345" y="62.5" width="25" height="25"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="7Wm-fP-D6C"/>
