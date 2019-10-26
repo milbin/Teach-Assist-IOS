@@ -624,7 +624,7 @@
                                     </view>
                                     <stackView clipsSubviews="YES" contentMode="top" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Wbi-ua-Tav">
                                         <rect key="frame" x="0.0" y="370" width="375" height="0.0"/>
-                                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" id="FGj-np-CzG"/>
                                         </constraints>
@@ -632,6 +632,7 @@
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="Wbi-ua-Tav" firstAttribute="width" secondItem="nqq-Tp-y36" secondAttribute="width" id="3OE-Pw-7tD"/>
                                     <constraint firstAttribute="bottom" secondItem="Wbi-ua-Tav" secondAttribute="bottom" priority="250" constant="50" id="Gsw-D8-buv"/>

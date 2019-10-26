@@ -11,7 +11,7 @@
         <array key="Eczar-Bold.ttf">
             <string>Eczar-Bold</string>
         </array>
-        <array key="SN.otf">
+        <array key="sandstone.otf">
             <string>Gilroy-Regular</string>
         </array>
         <array key="sandstone_bold.otf">
@@ -34,7 +34,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fma-ZI-wm8" customClass="LoginButton" customModule="TeachAssist" customModuleProvider="target">
-                                <rect key="frame" x="100" y="532.33333333333337" width="214" height="40"/>
+                                <rect key="frame" x="100" y="527" width="214" height="40"/>
                                 <color key="backgroundColor" red="0.015686274509803921" green="0.36470588235294116" blue="0.33725490196078434" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="c0e-X1-TGB"/>
@@ -51,27 +51,21 @@
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aap-9L-fGT">
-                                <rect key="frame" x="100" y="305" width="214" height="36.666666666666686"/>
+                                <rect key="frame" x="100" y="305" width="214" height="34"/>
                                 <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="aap-9L-fGT" secondAttribute="height" multiplier="35:6" id="SHJ-8i-1zA"/>
-                                </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="username"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rcy-Bo-jhQ">
-                                <rect key="frame" x="100" y="351.66666666666669" width="214" height="36.666666666666686"/>
+                                <rect key="frame" x="100" y="349" width="214" height="34"/>
                                 <color key="backgroundColor" red="0.15294117647058825" green="0.15294117647058825" blue="0.18431372549019609" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="rcy-Bo-jhQ" secondAttribute="height" multiplier="35:6" id="gqm-Fa-ud0"/>
-                                </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lock" translatesAutoresizingMaskIntoConstraints="NO" id="NIg-3U-eQ6">
-                                <rect key="frame" x="73" y="359" width="22" height="22"/>
+                                <rect key="frame" x="73" y="355" width="22" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="22" id="HdZ-z6-EJ0"/>
                                     <constraint firstAttribute="height" constant="22" id="YW3-E5-HBK"/>
@@ -79,7 +73,7 @@
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="account" translatesAutoresizingMaskIntoConstraints="NO" id="Dze-Gm-3Nq">
-                                <rect key="frame" x="73" y="312.33333333333331" width="22" height="22"/>
+                                <rect key="frame" x="73" y="311" width="22" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Dze-Gm-3Nq" secondAttribute="height" multiplier="1:1" id="7D5-Gw-lep"/>
                                     <constraint firstAttribute="width" secondItem="Dze-Gm-3Nq" secondAttribute="height" multiplier="1:1" id="op1-p1-wTW"/>
@@ -88,7 +82,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jdP-vQ-dis" customClass="CheckboxButton" customModule="TeachAssist" customModuleProvider="target">
-                                <rect key="frame" x="100" y="408.33333333333331" width="24" height="24"/>
+                                <rect key="frame" x="100" y="403" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="hpf-kB-ITf"/>
                                     <constraint firstAttribute="width" constant="24" id="j19-9S-vCP"/>
@@ -106,7 +100,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remember Me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KtX-hp-J7M">
-                                <rect key="frame" x="132" y="412.33333333333331" width="92.666666666666686" height="16.333333333333314"/>
+                                <rect key="frame" x="132" y="407" width="92.666666666666686" height="16.333333333333314"/>
                                 <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>

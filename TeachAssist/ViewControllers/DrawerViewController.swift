@@ -59,6 +59,7 @@ class DrawerViewController: UITableViewController {
             
             
         }else if indexPath.row == cells["bug report"]{
+            print("test123")
             let email = "TaAppYRDSB@gmail.com"
             if let url = URL(string: "mailto:\(email)") {
                 if #available(iOS 10.0, *) {
