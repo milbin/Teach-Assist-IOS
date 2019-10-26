@@ -27,7 +27,6 @@ class TA{
         //get main activity data
         if respToken == nil || respToken!["ERROR"] != nil{
             print("connection or auth error")
-            print(respToken)
             let htmlResp = GetTaData2(username: username, password: password)
             if(htmlResp != nil){
                 return htmlResp
