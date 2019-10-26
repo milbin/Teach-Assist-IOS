@@ -46,7 +46,7 @@ class DrawerViewController: UITableViewController {
             self.dismiss(animated: false, completion: nil)
             let storyboard = UIStoryboard(name: "Login", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "LoginView") as UIViewController
-            present(vc, animated: true, completion: nil)
+            //present(vc, animated: true, completion: nil)
             UIApplication.shared.keyWindow?.rootViewController = vc
             UIApplication.shared.keyWindow?.makeKeyAndVisible()
             
