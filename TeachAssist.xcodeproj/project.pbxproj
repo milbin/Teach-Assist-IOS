@@ -89,8 +89,8 @@
 		49598E92235F7D0D0014D749 /* Eczar-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Eczar-ExtraBold.ttf"; sourceTree = "<group>"; };
 		49598E93235F7D0E0014D749 /* Eczar-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Eczar-Medium.ttf"; sourceTree = "<group>"; };
 		49598EA6235F7DE30014D749 /* Eczar-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Eczar-Bold.ttf"; sourceTree = "<group>"; };
-		499BB5712362AC6C003ED59F /* Gilroy-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gilroy-Light.ttf"; path = "../../../../../../../Downloads/Gilroy/Gilroy-Light.ttf"; sourceTree = "<group>"; };
-		499BB5732362AC79003ED59F /* Gilroy-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gilroy-ExtraBold.ttf"; path = "../../../../../../../Downloads/Gilroy/Gilroy-ExtraBold.ttf"; sourceTree = "<group>"; };
+		499BB5712362AC6C003ED59F /* Gilroy-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Light.ttf"; sourceTree = "<group>"; };
+		499BB5732362AC79003ED59F /* Gilroy-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-ExtraBold.ttf"; sourceTree = "<group>"; };
 		5F38B4DEB25E275E6B3D94A4 /* Pods-TeachAssistUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeachAssistUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TeachAssistUITests/Pods-TeachAssistUITests.release.xcconfig"; sourceTree = "<group>"; };
 		61D508545975C28BFFF72A94 /* Pods-TeachAssist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeachAssist.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TeachAssist/Pods-TeachAssist.debug.xcconfig"; sourceTree = "<group>"; };
 		6E449D0F2204A26E00C0F0AC /* TeachAssist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeachAssist.app; sourceTree = BUILT_PRODUCTS_DIR; };
