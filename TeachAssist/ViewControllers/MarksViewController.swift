@@ -54,7 +54,8 @@ class MarksViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("MARKS VIEW")
-        AverageBar.font = UIFont.boldSystemFont(ofSize: 25.0)
+        AverageBar.font = UIFont(name: "Gilroy-Bold", size: 25)!
+        AverageBar.fontColor = UIColor.white
         AverageBar.valueFormatter = UICircularProgressRingFormatter(showFloatingPoint:true, decimalPlaces:1)
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(OnEditButtonPress))//add edit button as the onClick method
         navigationItem.rightBarButtonItem?.tintColor = UIColor.white
@@ -457,11 +458,11 @@ class MarksViewController: UIViewController {
     func UpdateMarkBars(){
         let list = ta!.GetCategoryAndWeightsForCourse(marks: response!)
         
-        KbarAverageHeight.constant = CGFloat(list[0] * 0.9 + 15)
-        TbarAverageHeight.constant = CGFloat(list[1] * 0.9 + 15)
-        CbarAverageHeight.constant = CGFloat(list[2] * 0.9 + 15)
-        AbarAverageHeight.constant = CGFloat(list[3] * 0.9 + 15)
-        ObarAverageHeight.constant = CGFloat(list[4] * 0.9 + 15)
+        KbarAverageHeight.constant = CGFloat(list[0] * 0.9 + 35)
+        TbarAverageHeight.constant = CGFloat(list[1] * 0.9 + 35)
+        CbarAverageHeight.constant = CGFloat(list[2] * 0.9 + 35)
+        AbarAverageHeight.constant = CGFloat(list[3] * 0.9 + 35)
+        ObarAverageHeight.constant = CGFloat(list[4] * 0.9 + 35)
         
             
         KbarAverage.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
@@ -475,7 +476,7 @@ class MarksViewController: UIViewController {
         
         if list[0] != 0{
             KmarkAverage.text = String(round(list[0]*1000)/1000)
-            KbarAverage.backgroundColor = UIColor(red:0.15, green:0.73, blue:0.22, alpha:1.0)
+            KbarAverage.backgroundColor = UIColor(red:04/255, green:93/255, blue:86/255, alpha:1.0)
         }else{
             KmarkAverage.text = "NA"
             KbarAverage.backgroundColor = UIColor(red:0.91, green:0.12, blue:0.39, alpha:1.0)
@@ -483,7 +484,7 @@ class MarksViewController: UIViewController {
         
         if list[1] != 0{
             TmarkAverage.text = String(round(list[1]*1000)/1000)
-            TbarAverage.backgroundColor = UIColor(red:0.15, green:0.73, blue:0.22, alpha:1.0)
+            TbarAverage.backgroundColor = UIColor(red:04/255, green:93/255, blue:86/255, alpha:1.0)
         }else{
             TmarkAverage.text = "NA"
             TbarAverage.backgroundColor = UIColor(red:0.91, green:0.12, blue:0.39, alpha:1.0)
@@ -491,7 +492,7 @@ class MarksViewController: UIViewController {
         
         if list[2] != 0{
             CmarkAverage.text = String(round(list[2]*1000)/1000)
-            CbarAverage.backgroundColor = UIColor(red:0.15, green:0.73, blue:0.22, alpha:1.0)
+            CbarAverage.backgroundColor = UIColor(red:04/255, green:93/255, blue:86/255, alpha:1.0)
         }else{
             CmarkAverage.text = "NA"
             CbarAverage.backgroundColor = UIColor(red:0.91, green:0.12, blue:0.39, alpha:1.0)
@@ -499,7 +500,7 @@ class MarksViewController: UIViewController {
         
         if list[3] != 0{
             AmarkAverage.text = String(round(list[3]*1000)/1000)
-            AbarAverage.backgroundColor = UIColor(red:0.15, green:0.73, blue:0.22, alpha:1.0)
+            AbarAverage.backgroundColor = UIColor(red:04/255, green:93/255, blue:86/255, alpha:1.0)
         }else{
             AmarkAverage.text = "NA"
             AbarAverage.backgroundColor = UIColor(red:0.91, green:0.12, blue:0.39, alpha:1.0)
