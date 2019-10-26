@@ -261,7 +261,7 @@ class MarksViewController: UIViewController {
             assignmentView.ABar.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
             assignmentView.OBar.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
             
-            assignmentView.feedback.text = "feedback: " + feedback!
+            assignmentView.feedback.text = "Feedback: " + feedback!
             assignmentView.TrashButton.addTarget(self, action: #selector(OnTrashButtonPress), for: .touchUpInside)
             assignmentList.append(assignmentView)
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(OnAssignmentSelected))
@@ -286,7 +286,7 @@ class MarksViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         if hasViewBeenLayedOut == false && response != nil{
             hasViewBeenLayedOut = true
-            StackView.addBackground(color: UIColor(red:0.94, green:0.94, blue:0.96, alpha:1.0))
+            StackView.addBackground(color: UIColor(red:51/255, green: 51/255, blue: 61/255, alpha: 1.0))
             
             for assignment in StackView.arrangedSubviews{
                 assignment.invalidateIntrinsicContentSize()

@@ -94,7 +94,7 @@
                     <state key="normal" title="Button" image="ic_action_delete"/>
                 </button>
                 <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gti-2v-tcC" userLabel="Progress View">
-                    <rect key="frame" x="225" y="0.0" width="100" height="150"/>
+                    <rect key="frame" x="230" y="0.0" width="100" height="150"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="INy-at-mkD" customClass="UICircularProgressRing" customModule="UICircularProgressRing">
                             <rect key="frame" x="-2.5" y="22.5" width="105" height="105"/>
@@ -153,10 +153,10 @@
                     </constraints>
                 </view>
                 <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D3O-SA-uVT" userLabel="Forward Button">
-                    <rect key="frame" x="345" y="62.5" width="25" height="25"/>
+                    <rect key="frame" x="350" y="67.5" width="15" height="15"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="25" id="7Wm-fP-D6C"/>
-                        <constraint firstAttribute="width" constant="25" id="PgM-Bw-7cn"/>
+                        <constraint firstAttribute="height" constant="15" id="7Wm-fP-D6C"/>
+                        <constraint firstAttribute="width" constant="15" id="PgM-Bw-7cn"/>
                     </constraints>
                     <state key="normal" title="Button" image="forward">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -168,14 +168,14 @@
             <constraints>
                 <constraint firstItem="gti-2v-tcC" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="59D-RV-IfX"/>
                 <constraint firstItem="D3O-SA-uVT" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="8uq-uh-7wj"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="D3O-SA-uVT" secondAttribute="trailing" constant="5" id="FpX-yV-0vM"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="D3O-SA-uVT" secondAttribute="trailing" constant="10" id="FpX-yV-0vM"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Z6R-8b-y9P" secondAttribute="trailing" constant="5" id="Jt0-Z5-rmt"/>
                 <constraint firstItem="rIL-oU-AGX" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Rc4-pM-a9X"/>
                 <constraint firstItem="Z6R-8b-y9P" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="8" id="WFg-Bf-WBZ"/>
                 <constraint firstItem="gti-2v-tcC" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="gDY-zd-TRF"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="rIL-oU-AGX" secondAttribute="bottom" id="lxj-f5-XPv"/>
                 <constraint firstItem="rIL-oU-AGX" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="sCE-BY-oJv"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="gti-2v-tcC" secondAttribute="trailing" constant="50" id="slx-R4-8RY"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="gti-2v-tcC" secondAttribute="trailing" constant="45" id="slx-R4-8RY"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <edgeInsets key="layoutMargins" top="10" left="10" bottom="10" right="10"/>

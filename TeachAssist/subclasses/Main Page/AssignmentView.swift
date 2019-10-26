@@ -89,6 +89,8 @@ class AssignmentView: UIView {
         
         // Adding custom subview on top of our view (over any custom drawing > see note below)
         addSubview(contentView!)
+        contentView.layer.borderWidth = 2
+        contentView.layer.borderColor = UIColor(red:39/255, green:39/255, blue: 47/255, alpha:1).cgColor
         contentView.layer.cornerRadius = 15
         
         if(UIDevice.modelName == "iPhone SE" || UIDevice.modelName == "Simulator iPhone SE"){

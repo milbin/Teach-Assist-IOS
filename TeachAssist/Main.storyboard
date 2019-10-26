@@ -623,7 +623,7 @@
                                         <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="10" bottom="14" trailing="10"/>
                                     </view>
                                     <stackView clipsSubviews="YES" contentMode="top" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Wbi-ua-Tav">
-                                        <rect key="frame" x="0.0" y="350" width="375" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="370" width="375" height="0.0"/>
                                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" id="FGj-np-CzG"/>
@@ -638,7 +638,7 @@
                                     <constraint firstItem="apU-Uu-CAA" firstAttribute="leading" secondItem="nqq-Tp-y36" secondAttribute="leading" id="JEl-Nc-gts"/>
                                     <constraint firstAttribute="trailing" secondItem="apU-Uu-CAA" secondAttribute="trailing" id="JmU-b1-pzB"/>
                                     <constraint firstItem="Wbi-ua-Tav" firstAttribute="leading" secondItem="nqq-Tp-y36" secondAttribute="leading" id="KV6-uJ-DKp"/>
-                                    <constraint firstItem="Wbi-ua-Tav" firstAttribute="top" secondItem="apU-Uu-CAA" secondAttribute="bottom" id="WOD-Y9-XkH"/>
+                                    <constraint firstItem="Wbi-ua-Tav" firstAttribute="top" secondItem="apU-Uu-CAA" secondAttribute="bottom" constant="20" id="WOD-Y9-XkH"/>
                                     <constraint firstAttribute="trailing" secondItem="Wbi-ua-Tav" secondAttribute="trailing" id="blY-vt-NOK"/>
                                     <constraint firstItem="apU-Uu-CAA" firstAttribute="top" secondItem="nqq-Tp-y36" secondAttribute="top" id="vDP-Iu-4Dp"/>
                                 </constraints>

@@ -8,11 +8,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Eczar-Regular.ttf">
-            <string>Eczar-Regular</string>
-        </array>
-        <array key="SN.otf">
+        <array key="sandstone.otf">
             <string>Gilroy-Regular</string>
+        </array>
+        <array key="sandstone_bold.otf">
+            <string>Gilroy-Bold</string>
         </array>
     </customFonts>
     <objects>
@@ -23,15 +23,15 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notification Toggle for: SBI3U2-01" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h6K-BD-VrR">
-                    <rect key="frame" x="25" y="44" width="228.5" height="18"/>
+                    <rect key="frame" x="25" y="33" width="228.5" height="18"/>
                     <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="15"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                     <size key="shadowOffset" width="0.0" height="0.0"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Period 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RYl-HN-8Q3">
-                    <rect key="frame" x="25" y="10" width="61.5" height="32"/>
-                    <fontDescription key="fontDescription" name="Eczar-Regular" family="Eczar" pointSize="18"/>
+                    <rect key="frame" x="25" y="10" width="61.5" height="21"/>
+                    <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="17"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                     <size key="shadowOffset" width="0.0" height="0.0"/>
@@ -66,11 +66,6 @@
             </connections>
             <point key="canvasLocation" x="138.40000000000001" y="-105.69715142428787"/>
         </view>
-        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="mJz-hp-PaO">
-            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <point key="canvasLocation" x="-394" y="-23"/>
-        </imageView>
     </objects>
     <resources>
         <image name="checkbox-blank-outline" width="48" height="48"/>
