@@ -20,6 +20,7 @@ class MainViewController: UIViewController {
     //this variable will check to make sure that the view hasnt started before so that courses arent re-added every time the nav drawer is triggered.
     var refreshControl:UIRefreshControl? = nil
     let ta = TA()
+    var numberOfRemovedCourses = 0
 
     @IBOutlet weak var noCoursesTV: UITextView!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -244,6 +245,7 @@ class MainViewController: UIViewController {
             }
             courseNumber += 1
         }
+        self.numberOfRemovedCourses += 1
         
         view?.isHidden = true
         view?.removeFromSuperview()
@@ -286,7 +288,7 @@ class MainViewController: UIViewController {
             }
             courseNumber += 1
         }
-        performSegue(withIdentifier: "MarksViewSegue", sender: [response![courseNumber]["mark"], Double(courseNumber), response![courseNumber]["course"]])
+        performSegue(withIdentifier: "MarksViewSegue", sender: [response![courseNumber]["mark"], Double(courseNumber+numberOfRemovedCourses), response![courseNumber]["course"]])
     }
     
     

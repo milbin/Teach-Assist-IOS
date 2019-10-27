@@ -89,8 +89,9 @@ class MarksViewController: UIViewController {
         }
         originalResponse = response!
         
-        print(response)
         
+        
+        print(response)
         //setup refresh controller to allow main view to be refreshed
         refreshControl = UIRefreshControl()
         refreshControl!.addTarget(self,

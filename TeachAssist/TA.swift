@@ -21,7 +21,7 @@ class TA{
         self.username = username
         self.password = password
         let sr = SendRequest()
-        let URL = "https://ta.yrdsb.ca/v4/students/json.php"
+        let URL = "https://ta.yrdsb.ca/v4/students/json-20180628.php"
         var respToken = sr.SendJSON(url: URL, parameters: ["student_number":username, "password":password])
         
         //get main activity data
@@ -54,7 +54,7 @@ class TA{
                 }else{
                     self.courses.append("NA")
                 }
-                let mark = course["mark"]! as! String
+                var mark = course["mark"]! as! String
                 if mark.contains("Please see teacher for current status regarding achievement in the course"){
                     course["mark"] = "NA"
                 }else if mark.contains("Level") || mark.contains("Click"){
@@ -227,9 +227,9 @@ class TA{
                     assignments[assignment.key] = value
                 }
             }
-            
             return assignments
         }else{
+            print("REQUEST FAILED")
             let resp2 = GetMarks2(subjectNumber: subjectNumber)
             if(resp2 != nil){
                 return resp2
@@ -605,7 +605,6 @@ class TA{
         var totalWeightCommunication = 0.0
         var totalWeightApplication = 0.0
         var totalWeightOther = 0.0
-        print("HERE")
         //print(marks)
         var weights = marks!["categories"] as! [String:Double]
         weights["O"] = nil
@@ -622,7 +621,6 @@ class TA{
                 temp["feedback"] = nil
                 temp["title"] = nil
                 var assignment = temp as! [String:[String:String?]]
-                print(assignment)
                 
                 
                 var markK = 0.0
