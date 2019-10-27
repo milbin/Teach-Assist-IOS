@@ -67,8 +67,8 @@ class MainViewController: UIViewController {
         hasViewStarted = true
         //get ta data
         let Preferences = UserDefaults.standard
-        var username = Preferences.string(forKey: "username")
-        var password = Preferences.string(forKey: "password")
+        let username = Preferences.string(forKey: "username")
+        let password = Preferences.string(forKey: "password")
         print(username)
         print(password)
         if(username == nil || password == nil){
@@ -82,7 +82,7 @@ class MainViewController: UIViewController {
         print(response)
         self.navigationItem.title = "Student: "+username!
         if response == nil{
-            let alert = UIAlertController(title: "Error: Could not reach Teachassist", message: "Please check your internet connection and try again", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Could not reach Teachassist", message: "Please check your internet connection and try again", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { (action:UIAlertAction!) in
                 self.OnRefresh()
             }))
@@ -101,7 +101,7 @@ class MainViewController: UIViewController {
         
         //add courses to main view
         if response == nil{
-            let alert = UIAlertController(title: "Error: Could not reach Teachassist", message: "Please check your internet connection and try again", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Could not reach Teachassist", message: "Please check your internet connection and try again", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { (action:UIAlertAction!) in
                 self.OnRefresh()
             }))
@@ -132,7 +132,13 @@ class MainViewController: UIViewController {
                 courseView.CourseCode.text = (course["course"] as! String)
             }
             if course["Course_Name"] != nil{
-                courseView.CourseName.text = (course["Course_Name"] as! String)
+                if((course["course"]as! String).contains("SHAL")){
+                    courseView.CourseName.text = "Spare"
+                }else if((course["course"]as! String).contains("COP")){
+                    courseView.CourseName.text = "Co-op"
+                }else{
+                    courseView.CourseName.text = (course["Course_Name"] as! String)
+                }
             }
             StackView.addArrangedSubview(courseView as UIView)
             
@@ -141,7 +147,7 @@ class MainViewController: UIViewController {
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(OnCourseSelected))
             courseView.addGestureRecognizer(tapGesture)
             
-            StackViewHeight.constant = StackViewHeight.constant + 100
+            StackViewHeight.constant = StackViewHeight.constant + 140
             
         }
         
@@ -205,11 +211,13 @@ class MainViewController: UIViewController {
         print("edit Button pressed")
         if userIsEditing{
             userIsEditing = false
+            self.setEditing(false, animated: true)
             for course in courseList{
                 course.TrashButton.isHidden = true
             }
         }else{
             userIsEditing = true
+            self.setEditing(true, animated: true)
             for course in courseList{
                 course.TrashButton.isHidden = false
             }
@@ -240,7 +248,7 @@ class MainViewController: UIViewController {
         view?.isHidden = true
         view?.removeFromSuperview()
         StackView.layoutIfNeeded()
-        StackViewHeight.constant -= 100
+        StackViewHeight.constant -= 140
         
         
         
@@ -256,7 +264,7 @@ class MainViewController: UIViewController {
             if courseNumber >= 0{
                 view.isHidden = true
                 view.removeFromSuperview()
-                StackViewHeight.constant -= 100
+                StackViewHeight.constant -= 140
             }
             courseNumber += 1
         }

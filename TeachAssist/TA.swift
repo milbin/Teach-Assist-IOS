@@ -106,7 +106,7 @@ class TA{
             
             return response
         }else{
-            let htmlResp = GetTaData(username: username, password: password)
+            let htmlResp = GetTaData2(username: username, password: password)
             if(htmlResp != nil){
                 return htmlResp
             }
@@ -208,7 +208,7 @@ class TA{
             return nil
         }else if respCheck!["ERROR"] != nil{
             print("INVALID TOKEN")
-            GetTaData(username: username, password: password)
+            //GetTaData(username: username, password: password)
         }
         var resp = respCheck! as! [String : Any]
         if var assignments = ((resp["data"] as? [String:Any])?["assessment"] as? [String:Any]){
@@ -257,9 +257,12 @@ class TA{
             print("INVALID TOKEN")
             GetTaData(username: username, password: password)
             respCheck = sr.SendWithCookies(url: "https://ta.yrdsb.ca/live/students/viewReport.php?", parameters: params, cookies:cookie)
+            if(respCheck == nil || (respCheck![0]?.contains("By logging in"))!){
+                return nil
+            }
         }
         var assignmentNumber = 0
-        var html = respCheck![0]!
+        let html = respCheck![0]!
         var assignments = [String:Any]()
         for i in html.components(separatedBy:"rowspan="){ //each assignment
             var dict = NSMutableDictionary()

@@ -59,6 +59,10 @@ class MarksViewController: UIViewController {
         AverageBar.valueFormatter = UICircularProgressRingFormatter(showFloatingPoint:true, decimalPlaces:1)
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(OnEditButtonPress))//add edit button as the onClick method
         navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+        navigationItem.rightBarButtonItem?.setTitleTextAttributes([
+            NSAttributedString.Key.font: UIFont(name: "Gilroy-Regular", size: 17)!,
+            NSAttributedString.Key.foregroundColor: UIColor.white],
+                                                                  for: .normal)
         if vcTitle != nil{
             self.title = vcTitle!
         }
@@ -73,7 +77,7 @@ class MarksViewController: UIViewController {
         
         response = ta!.GetMarks(subjectNumber: courseNumber!)
         if response == nil{
-            let alert = UIAlertController(title: "Error: Could not reach Teachassist", message: "Please check your internet connection and try again", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Could not reach Teachassist", message: "Please check your internet connection and try again", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { (action:UIAlertAction!) in
                 self.OnRefresh()
             }))

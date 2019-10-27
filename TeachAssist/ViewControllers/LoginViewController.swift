@@ -67,7 +67,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let Username = usernameTextField.text
         let Password = passwordTextField.text
         if( Username == "" || Password == ""){
-            let alert = UIAlertController(title: "Error: Missing username or password", message: "Please enter a username and password and try again", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Missing username or password", message: "Please enter a username and password and try again", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
             self.present(alert, animated: true)
             
@@ -112,7 +112,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     UIApplication.shared.keyWindow?.makeKeyAndVisible()
                 }else{
                     self.dismiss(animated: false, completion: {
-                        let alert = UIAlertController(title: "Error: Invalid username or password", message: "Please check your internet connection and try again", preferredStyle: .alert)
+                        let alert = UIAlertController(title: "Invalid username or password", message: "Please check your internet connection and try again", preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
                         self.present(alert, animated: true)
                         })

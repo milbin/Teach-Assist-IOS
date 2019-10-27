@@ -15,6 +15,7 @@ target 'TeachAssist' do
   pod 'Fabric'
   pod 'Crashlytics'
   pod 'Firebase/Analytics'
+  pod 'Firebase/Auth'
 
   target 'TeachAssistTests' do
     inherit! :search_paths

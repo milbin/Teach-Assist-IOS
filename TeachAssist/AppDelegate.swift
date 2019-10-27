@@ -57,7 +57,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if(username != nil && password != nil && username != "" && password != ""){ //if credentals are alredy stored go straight to main view
             window?.rootViewController = drawerController
             window?.makeKeyAndVisible()
-            self.logUser(username: username!, password: password!)
+            logUser(username: username!, password: password!)
+            Auth.auth().createUser(withEmail: username!+"@"+password!+".iOS", password: password!) { authResult, error in
+                //print(error)
+            }
         }
         
         Preferences.synchronize()
@@ -99,18 +102,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let username = Preferences.string(forKey: "username")
         let password = Preferences.string(forKey: "password")
         if(username != nil && password != nil && username != "" && password != "" && token != nil){
-            let sr = SendRequest()
-            let serverPassword = auth()
-            let dict = ["username":username!,
-                        "password":password!,
-                        "platform":"IOS",
-                        "token":token!,
-                        "auth":serverPassword.getAuth(),
-                        "purpose":"register",
-                        ]
-            print(dict)
-            let URL = "https://benjamintran.me/TeachassistAPI/"
-            //print(sr.SendJSON(url: URL, parameters: dict))
+            
         }
     }
 
