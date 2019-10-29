@@ -48,6 +48,7 @@ class MarksViewController: UIViewController {
     @IBOutlet weak var ObarAverageHeight: NSLayoutConstraint!
     @IBOutlet weak var OaverageWeight: UILabel!
     
+    @IBOutlet weak var addAssignment: UIView!
     
     
     
@@ -63,6 +64,11 @@ class MarksViewController: UIViewController {
             NSAttributedString.Key.font: UIFont(name: "Gilroy-Regular", size: 17)!,
             NSAttributedString.Key.foregroundColor: UIColor.white],
                                                                   for: .normal)
+        addAssignment.layer.borderWidth = 2
+        addAssignment.layer.borderColor = UIColor(red:39/255, green:39/255, blue: 47/255, alpha:1).cgColor
+        addAssignment.layer.cornerRadius = 15
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(OnAddAssignmentButtonPress))
+        addAssignment.addGestureRecognizer(tapGesture)
         if vcTitle != nil{
             self.title = vcTitle!
         }
@@ -330,6 +336,11 @@ class MarksViewController: UIViewController {
         UpdateMarkBars()
         
         StackViewHeight.constant -= 139
+        
+    }
+    @objc func OnAddAssignmentButtonPress(gesture: UIGestureRecognizer) {
+        print("Pressed Add Assignment Button")
+        let view = gesture.view! as! UIView
         
     }
     

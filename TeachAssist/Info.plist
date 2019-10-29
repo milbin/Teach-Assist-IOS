@@ -17,9 +17,9 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.5.3</string>
+	<string>2.0.1</string>
 	<key>CFBundleVersion</key>
-	<string>21</string>
+	<string>24</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -36,6 +36,18 @@
 	</dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>sandstone_regular.otf</string>
+		<string>Gilroy-Light.ttf</string>
+		<string>sandstone_bold.otf</string>
+		<string>Gilroy-ExtraBold.ttf</string>
+		<string>Eczar-Regular.tff</string>
+		<string>Eczar-Medium.tff</string>
+		<string>Eczar-SemiBold.tff</string>
+		<string>Eczar-Bold.tff</string>
+		<string>Eczar-ExtraBold.tff</string>
+	</array>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
@@ -60,18 +72,6 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>UIAppFonts</key>
-	<array>
-		<string>sandstone_regular.otf</string>
-		<string>Gilroy-Light.ttf</string>
-		<string>sandstone_bold.otf</string>
-		<string>Gilroy-ExtraBold.ttf</string>
-		<string>Eczar-Regular.tff</string>
-		<string>Eczar-Medium.tff</string>
-		<string>Eczar-SemiBold.tff</string>
-		<string>Eczar-Bold.tff</string>
-		<string>Eczar-ExtraBold.tff</string>
 	</array>
 </dict>
 </plist>
