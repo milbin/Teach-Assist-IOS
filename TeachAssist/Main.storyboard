@@ -666,20 +666,32 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mark" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oGJ-PH-wpL">
-                                                <rect key="frame" x="50" y="87" width="255" height="30"/>
+                                                <rect key="frame" x="70" y="110" width="80" height="30"/>
                                                 <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="600" id="7P0-5l-o3g"/>
+                                                    <constraint firstAttribute="width" constant="80" id="pUM-8c-plC"/>
                                                 </constraints>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad" textContentType="username"/>
                                             </textField>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mark" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZAi-ci-0iX">
+                                                <rect key="frame" x="94" y="90" width="32" height="17"/>
+                                                <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="14"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weight" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="drt-yn-zNp">
+                                                <rect key="frame" x="221.5" y="90" width="47" height="17"/>
+                                                <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="14"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Weight" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wcd-EG-gx5">
-                                                <rect key="frame" x="50" y="122" width="255" height="30"/>
+                                                <rect key="frame" x="205" y="110" width="80" height="30"/>
                                                 <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="600" id="zba-Ii-jHb"/>
+                                                    <constraint firstAttribute="width" constant="80" id="FLJ-46-3s0"/>
                                                 </constraints>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="14"/>
@@ -690,18 +702,20 @@
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="Xkg-1Q-ddw" firstAttribute="leading" secondItem="yKE-FW-LrY" secondAttribute="leading" constant="50" id="0rC-Mg-N5e"/>
+                                            <constraint firstItem="drt-yn-zNp" firstAttribute="centerX" secondItem="Wcd-EG-gx5" secondAttribute="centerX" id="0vW-Qu-Dle"/>
                                             <constraint firstItem="Xkg-1Q-ddw" firstAttribute="top" secondItem="yKE-FW-LrY" secondAttribute="top" constant="50" id="8X2-Jd-MRc"/>
-                                            <constraint firstAttribute="trailing" secondItem="Wcd-EG-gx5" secondAttribute="trailing" constant="50" id="98K-6h-uig"/>
+                                            <constraint firstItem="oGJ-PH-wpL" firstAttribute="top" secondItem="ZAi-ci-0iX" secondAttribute="bottom" constant="3" id="BcX-p7-CHH"/>
                                             <constraint firstItem="yEu-dX-DWu" firstAttribute="top" secondItem="yKE-FW-LrY" secondAttribute="top" constant="10" id="FpG-2K-M4m"/>
                                             <constraint firstItem="yEu-dX-DWu" firstAttribute="centerX" secondItem="yKE-FW-LrY" secondAttribute="centerX" id="G6v-08-vga"/>
-                                            <constraint firstItem="oGJ-PH-wpL" firstAttribute="top" secondItem="Xkg-1Q-ddw" secondAttribute="bottom" constant="7" id="Nty-Yc-a14"/>
+                                            <constraint firstItem="ZAi-ci-0iX" firstAttribute="top" secondItem="Xkg-1Q-ddw" secondAttribute="bottom" constant="10" id="KmG-tV-siC"/>
+                                            <constraint firstItem="oGJ-PH-wpL" firstAttribute="centerX" secondItem="ZAi-ci-0iX" secondAttribute="centerX" id="Nw4-cz-kKj"/>
                                             <constraint firstItem="yEu-dX-DWu" firstAttribute="top" secondItem="wzy-3m-0RF" secondAttribute="bottom" constant="-5" id="SOr-13-n7z"/>
-                                            <constraint firstItem="Wcd-EG-gx5" firstAttribute="top" secondItem="oGJ-PH-wpL" secondAttribute="bottom" constant="5" id="amT-IF-aDP"/>
+                                            <constraint firstAttribute="trailing" secondItem="Wcd-EG-gx5" secondAttribute="trailing" constant="70" id="aMh-9T-uwa"/>
+                                            <constraint firstItem="drt-yn-zNp" firstAttribute="top" secondItem="Xkg-1Q-ddw" secondAttribute="bottom" constant="10" id="d30-Qx-DMj"/>
+                                            <constraint firstItem="Wcd-EG-gx5" firstAttribute="top" secondItem="drt-yn-zNp" secondAttribute="bottom" constant="3" id="ik1-QA-g9F"/>
                                             <constraint firstAttribute="trailing" secondItem="Xkg-1Q-ddw" secondAttribute="trailing" constant="50" id="imx-6B-3q0"/>
-                                            <constraint firstItem="Wcd-EG-gx5" firstAttribute="leading" secondItem="yKE-FW-LrY" secondAttribute="leading" constant="50" id="nuy-e0-JWn"/>
-                                            <constraint firstAttribute="trailing" secondItem="oGJ-PH-wpL" secondAttribute="trailing" constant="50" id="omJ-Pi-dGJ"/>
                                             <constraint firstAttribute="height" constant="300" id="ozi-Wr-cgm"/>
-                                            <constraint firstItem="oGJ-PH-wpL" firstAttribute="leading" secondItem="yKE-FW-LrY" secondAttribute="leading" constant="50" id="vI3-g6-qm8"/>
+                                            <constraint firstItem="oGJ-PH-wpL" firstAttribute="leading" secondItem="yKE-FW-LrY" secondAttribute="leading" constant="70" id="qoM-E4-tk5"/>
                                             <constraint firstItem="wzy-3m-0RF" firstAttribute="centerY" secondItem="yKE-FW-LrY" secondAttribute="centerY" constant="-5" id="y0a-hJ-02X"/>
                                             <constraint firstItem="wzy-3m-0RF" firstAttribute="centerX" secondItem="yKE-FW-LrY" secondAttribute="centerX" id="yZH-rC-Mbg"/>
                                         </constraints>
@@ -767,10 +781,12 @@
                         <outlet property="TmarkAverage" destination="crc-JU-i4M" id="8S5-Ch-Fij"/>
                         <outlet property="addAssignment" destination="yKE-FW-LrY" id="lqT-4P-Izu"/>
                         <outlet property="addAssignmentBoxTitleAlignTop" destination="FpG-2K-M4m" id="DDP-Ga-Ngl"/>
+                        <outlet property="addAssignmentMarkLabel" destination="ZAi-ci-0iX" id="iOy-bR-SKJ"/>
                         <outlet property="addAssignmentPlusButton" destination="wzy-3m-0RF" id="wng-aa-NEn"/>
                         <outlet property="addAssignmentSimpleMark" destination="oGJ-PH-wpL" id="ADj-57-ST5"/>
                         <outlet property="addAssignmentSimpleWeight" destination="Wcd-EG-gx5" id="qXR-pq-hF0"/>
                         <outlet property="addAssignmentTitle" destination="Xkg-1Q-ddw" id="ZEA-y4-Fod"/>
+                        <outlet property="addAssignmentWeightLabel" destination="drt-yn-zNp" id="1j0-9F-Wbr"/>
                         <outlet property="scrollView" destination="nqq-Tp-y36" id="3ZL-qY-FON"/>
                         <outlet property="scrollViewBottom" destination="Gsw-D8-buv" id="VTg-Zy-YCc"/>
                     </connections>
