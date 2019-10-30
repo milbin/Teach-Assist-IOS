@@ -633,31 +633,83 @@
                                         <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="10" bottom="0.0" trailing="10"/>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yKE-FW-LrY">
-                                        <rect key="frame" x="10" y="380" width="355" height="80"/>
+                                        <rect key="frame" x="10" y="380" width="355" height="300"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus-icon" translatesAutoresizingMaskIntoConstraints="NO" id="wzy-3m-0RF">
-                                                <rect key="frame" x="157.5" y="15" width="40" height="40"/>
+                                                <rect key="frame" x="157.5" y="125" width="40" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="40" id="QO3-LY-EE0"/>
                                                     <constraint firstAttribute="height" constant="40" id="bts-FV-Krn"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Mock Assignment or Test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yEu-dX-DWu">
-                                                <rect key="frame" x="84" y="50" width="187" height="17"/>
+                                                <rect key="frame" x="84" y="160" width="187" height="17"/>
                                                 <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title of Assignment" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xkg-1Q-ddw">
+                                                <rect key="frame" x="50" y="50" width="255" height="30"/>
+                                                <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="600" id="8Wi-Ac-eHF"/>
+                                                </constraints>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="done" textContentType="name"/>
+                                            </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wp1-cb-zLq">
+                                                <rect key="frame" x="157" y="8" width="0.0" height="0.0"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mark" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oGJ-PH-wpL">
+                                                <rect key="frame" x="50" y="87" width="255" height="30"/>
+                                                <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="600" id="7P0-5l-o3g"/>
+                                                </constraints>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad" textContentType="username"/>
+                                            </textField>
+                                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Weight" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wcd-EG-gx5">
+                                                <rect key="frame" x="50" y="122" width="255" height="30"/>
+                                                <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="600" id="zba-Ii-jHb"/>
+                                                </constraints>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad" textContentType="username"/>
+                                            </textField>
                                         </subviews>
                                         <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.23921568627450979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="Xkg-1Q-ddw" firstAttribute="leading" secondItem="yKE-FW-LrY" secondAttribute="leading" constant="50" id="0rC-Mg-N5e"/>
+                                            <constraint firstItem="Xkg-1Q-ddw" firstAttribute="top" secondItem="yKE-FW-LrY" secondAttribute="top" constant="50" id="8X2-Jd-MRc"/>
+                                            <constraint firstAttribute="trailing" secondItem="Wcd-EG-gx5" secondAttribute="trailing" constant="50" id="98K-6h-uig"/>
+                                            <constraint firstItem="yEu-dX-DWu" firstAttribute="top" secondItem="yKE-FW-LrY" secondAttribute="top" constant="10" id="FpG-2K-M4m"/>
                                             <constraint firstItem="yEu-dX-DWu" firstAttribute="centerX" secondItem="yKE-FW-LrY" secondAttribute="centerX" id="G6v-08-vga"/>
+                                            <constraint firstItem="oGJ-PH-wpL" firstAttribute="top" secondItem="Xkg-1Q-ddw" secondAttribute="bottom" constant="7" id="Nty-Yc-a14"/>
                                             <constraint firstItem="yEu-dX-DWu" firstAttribute="top" secondItem="wzy-3m-0RF" secondAttribute="bottom" constant="-5" id="SOr-13-n7z"/>
-                                            <constraint firstAttribute="height" constant="80" id="ozi-Wr-cgm"/>
+                                            <constraint firstItem="Wcd-EG-gx5" firstAttribute="top" secondItem="oGJ-PH-wpL" secondAttribute="bottom" constant="5" id="amT-IF-aDP"/>
+                                            <constraint firstAttribute="trailing" secondItem="Xkg-1Q-ddw" secondAttribute="trailing" constant="50" id="imx-6B-3q0"/>
+                                            <constraint firstItem="Wcd-EG-gx5" firstAttribute="leading" secondItem="yKE-FW-LrY" secondAttribute="leading" constant="50" id="nuy-e0-JWn"/>
+                                            <constraint firstAttribute="trailing" secondItem="oGJ-PH-wpL" secondAttribute="trailing" constant="50" id="omJ-Pi-dGJ"/>
+                                            <constraint firstAttribute="height" constant="300" id="ozi-Wr-cgm"/>
+                                            <constraint firstItem="oGJ-PH-wpL" firstAttribute="leading" secondItem="yKE-FW-LrY" secondAttribute="leading" constant="50" id="vI3-g6-qm8"/>
                                             <constraint firstItem="wzy-3m-0RF" firstAttribute="centerY" secondItem="yKE-FW-LrY" secondAttribute="centerY" constant="-5" id="y0a-hJ-02X"/>
                                             <constraint firstItem="wzy-3m-0RF" firstAttribute="centerX" secondItem="yKE-FW-LrY" secondAttribute="centerX" id="yZH-rC-Mbg"/>
                                         </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="FpG-2K-M4m"/>
+                                            </mask>
+                                        </variation>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -691,6 +743,7 @@
                         <outlet property="AaverageWeight" destination="CVd-yb-Ica" id="ujD-21-s94"/>
                         <outlet property="AbarAverage" destination="0Td-ej-ThW" id="zqE-Ew-lqT"/>
                         <outlet property="AbarAverageHeight" destination="q02-Y6-zXa" id="Ssi-O6-WCq"/>
+                        <outlet property="AddAssignmentHeight" destination="ozi-Wr-cgm" id="2Yh-Tu-zcV"/>
                         <outlet property="AmarkAverage" destination="Bq4-wp-Tly" id="KV8-cE-yap"/>
                         <outlet property="AverageBar" destination="aTd-IU-EAV" id="ukt-lf-sgs"/>
                         <outlet property="CaverageWeight" destination="1aa-nW-AF5" id="IbI-4G-AT9"/>
@@ -713,6 +766,11 @@
                         <outlet property="TbarAverageHeight" destination="AHM-Gh-ZPd" id="aKG-nE-IHV"/>
                         <outlet property="TmarkAverage" destination="crc-JU-i4M" id="8S5-Ch-Fij"/>
                         <outlet property="addAssignment" destination="yKE-FW-LrY" id="lqT-4P-Izu"/>
+                        <outlet property="addAssignmentBoxTitleAlignTop" destination="FpG-2K-M4m" id="DDP-Ga-Ngl"/>
+                        <outlet property="addAssignmentPlusButton" destination="wzy-3m-0RF" id="wng-aa-NEn"/>
+                        <outlet property="addAssignmentSimpleMark" destination="oGJ-PH-wpL" id="ADj-57-ST5"/>
+                        <outlet property="addAssignmentSimpleWeight" destination="Wcd-EG-gx5" id="qXR-pq-hF0"/>
+                        <outlet property="addAssignmentTitle" destination="Xkg-1Q-ddw" id="ZEA-y4-Fod"/>
                         <outlet property="scrollView" destination="nqq-Tp-y36" id="3ZL-qY-FON"/>
                         <outlet property="scrollViewBottom" destination="Gsw-D8-buv" id="VTg-Zy-YCc"/>
                     </connections>

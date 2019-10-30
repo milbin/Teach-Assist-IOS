@@ -2,7 +2,7 @@ import UIKit
 import UICircularProgressRing
 import HTMLEntities
 
-class MarksViewController: UIViewController {
+class MarksViewController: UIViewController, UITextFieldDelegate {
     var Mark:Double? = nil
     var assignmentList = [AssignmentView]()
     var userIsEditing = false
@@ -49,6 +49,12 @@ class MarksViewController: UIViewController {
     @IBOutlet weak var OaverageWeight: UILabel!
     
     @IBOutlet weak var addAssignment: UIView!
+    @IBOutlet weak var AddAssignmentHeight: NSLayoutConstraint!
+    @IBOutlet weak var addAssignmentBoxTitleAlignTop: NSLayoutConstraint!
+    @IBOutlet weak var addAssignmentPlusButton: UIImageView!
+    @IBOutlet weak var addAssignmentTitle: UITextField!
+    @IBOutlet weak var addAssignmentSimpleMark: UITextField!
+    @IBOutlet weak var addAssignmentSimpleWeight: UITextField!
     
     
     
@@ -69,9 +75,17 @@ class MarksViewController: UIViewController {
         addAssignment.layer.cornerRadius = 15
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(OnAddAssignmentButtonPress))
         addAssignment.addGestureRecognizer(tapGesture)
+        addAssignmentTitle.attributedPlaceholder = NSAttributedString(string:"Assignment Title", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red:61/255, green: 61/255, blue: 71/255, alpha: 1.0)]) //to make the colour of the placeholder gray
+        addAssignmentSimpleMark.attributedPlaceholder = NSAttributedString(string:"Assignment Mark", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red:61/255, green: 61/255, blue: 71/255, alpha: 1.0)])
+        addAssignmentSimpleWeight.attributedPlaceholder = NSAttributedString(string:"Assignment Weight", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red:61/255, green: 61/255, blue: 71/255, alpha: 1.0)])
+        addAssignmentTitle.delegate = self
+        addAssignmentSimpleMark.addDoneCancelToolbar()
+        addAssignmentSimpleWeight.addDoneCancelToolbar()
+        
         if vcTitle != nil{
             self.title = vcTitle!
         }
+        
         
         
         
@@ -340,7 +354,16 @@ class MarksViewController: UIViewController {
     }
     @objc func OnAddAssignmentButtonPress(gesture: UIGestureRecognizer) {
         print("Pressed Add Assignment Button")
-        let view = gesture.view! as! UIView
+        UIView.animate(withDuration: 0.1, animations: {
+            self.AddAssignmentHeight.constant = 300
+            self.addAssignmentBoxTitleAlignTop.isActive = true
+            self.addAssignmentPlusButton.isHidden = true
+            self.addAssignmentTitle.isHidden = false
+            self.addAssignmentSimpleMark.isHidden = false
+            self.addAssignmentSimpleWeight.isHidden = false
+            
+        })
+        
         
     }
     
@@ -547,6 +570,14 @@ class MarksViewController: UIViewController {
         })
         
     }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    @objc func doneButtonTapped() {
+        self.view.endEditing(true)
+    }
+    
     
     
     
@@ -563,4 +594,23 @@ extension UIStackView { //only way to have a non transparent stackview
         subView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         insertSubview(subView, at: 0)
     }
+}
+extension UITextField {
+    func addDoneCancelToolbar(onDone: (target: Any, action: Selector)? = nil, onCancel: (target: Any, action: Selector)? = nil) {
+        let onDone = onDone ?? (target: self, action: #selector(doneButtonTapped))
+        
+        let toolbar: UIToolbar = UIToolbar()
+        toolbar.barStyle = .default
+        toolbar.items = [
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil),
+            UIBarButtonItem(title: "Done", style: .done, target: onDone.target, action: onDone.action)
+        ]
+        toolbar.sizeToFit()
+        
+        self.inputAccessoryView = toolbar
+    }
+    
+    // Default actions:
+    @objc func doneButtonTapped() { self.resignFirstResponder() }
+    func cancelButtonTapped() { self.resignFirstResponder() }
 }
