@@ -16,6 +16,7 @@ target 'TeachAssist' do
   pod 'Crashlytics'
   pod 'Firebase/Analytics'
   pod 'Firebase/Auth'
+  pod 'IQKeyboardManagerSwift'
 
   target 'TeachAssistTests' do
     inherit! :search_paths

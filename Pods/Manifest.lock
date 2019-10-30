@@ -61,6 +61,7 @@ PODS:
   - GTMSessionFetcher/Core (1.2.1)
   - HTMLEntities (3.0.12)
   - HTMLString (4.0.2)
+  - IQKeyboardManagerSwift (6.2.0)
   - KYDrawerController (2.1.0)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
@@ -78,6 +79,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - HTMLEntities (from `https://github.com/IBM-Swift/swift-html-entities.git`)
   - HTMLString (~> 4.0)
+  - IQKeyboardManagerSwift
   - KYDrawerController
   - PureLayout (~> 2.0.5)
   - UICircularProgressRing
@@ -97,6 +99,7 @@ SPEC REPOS:
     - GoogleUtilities
     - GTMSessionFetcher
     - HTMLString
+    - IQKeyboardManagerSwift
     - KYDrawerController
     - nanopb
     - PureLayout
@@ -126,11 +129,12 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
   HTMLEntities: b195103df85a07c6174ed52435d30ae90085fa44
   HTMLString: d346ba551d1b7e687190c948ec0c2ddaf4057544
+  IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
   KYDrawerController: baad0e63b09c0cb564bd48f0f7f70f45d9176ebc
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   PureLayout: f25f0bb904d5ccfe6e31da3cb869185259f02e0d
   UICircularProgressRing: 2ef1293241b83d8020ede21a8fe3b3d859525730
 
-PODFILE CHECKSUM: 9e36c9c2f6ad68d3e438264af60eeac63c94a1c8
+PODFILE CHECKSUM: c05fc0310e0b4c82035d9fc59d0f999824fcfc0f
 
 COCOAPODS: 1.6.1
