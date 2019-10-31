@@ -241,8 +241,8 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
             let alert = UIAlertController(title: "Error Adding Assignment", message: "Please enter a number for mark and weight that is greater than or equal to zero", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .default))
             self.present(alert, animated: true)
-        }else if(mark! > 1000){
-            let alert = UIAlertController(title: "lol yeah right", message: "no way you got a mark higher than 1000%", preferredStyle: .alert)
+        }else if(mark! > 150){
+            let alert = UIAlertController(title: "lol yeah right", message: "no way you got a mark higher than 150%", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .default))
             self.present(alert, animated: true)
         }
@@ -288,7 +288,6 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
                 self.addAssignmentSimpleMark.isHidden = true
                 self.addAssignmentSimpleWeight.isHidden = true
                 self.addAssignmentMarkLabel.isHidden = true
-                self.addAssignmentWeightLabel.isHidden = true
                 self.addAssignmentCancelButton.isHidden = true
                 self.addAssignmentAddButton.isHidden = true
             })
@@ -308,7 +307,6 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
             self.addAssignmentSimpleMark.isHidden = true
             self.addAssignmentSimpleWeight.isHidden = true
             self.addAssignmentMarkLabel.isHidden = true
-            self.addAssignmentWeightLabel.isHidden = true
             self.addAssignmentCancelButton.isHidden = true
             self.addAssignmentAddButton.isHidden = true
             self.addAssignmentTitle.text = nil
