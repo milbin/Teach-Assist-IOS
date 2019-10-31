@@ -637,14 +637,14 @@
                                         <rect key="frame" x="10" y="380" width="355" height="129"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus-icon" translatesAutoresizingMaskIntoConstraints="NO" id="wzy-3m-0RF">
-                                                <rect key="frame" x="157.5" y="39.5" width="40" height="40"/>
+                                                <rect key="frame" x="162.5" y="54.5" width="30" height="30"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="40" id="QO3-LY-EE0"/>
-                                                    <constraint firstAttribute="height" constant="40" id="bts-FV-Krn"/>
+                                                    <constraint firstAttribute="width" constant="30" id="QO3-LY-EE0"/>
+                                                    <constraint firstAttribute="height" constant="30" id="bts-FV-Krn"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calculate New Assignment Mark" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yEu-dX-DWu">
-                                                <rect key="frame" x="74.5" y="84.5" width="206.5" height="17"/>
+                                                <rect key="frame" x="74.5" y="27.5" width="206.5" height="17"/>
                                                 <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -730,7 +730,7 @@
                                             <constraint firstItem="ZAi-ci-0iX" firstAttribute="top" secondItem="Xkg-1Q-ddw" secondAttribute="bottom" constant="10" id="KmG-tV-siC"/>
                                             <constraint firstAttribute="bottom" secondItem="Yas-ZC-68j" secondAttribute="bottom" constant="20" id="Lac-YZ-5A2"/>
                                             <constraint firstItem="oGJ-PH-wpL" firstAttribute="centerX" secondItem="ZAi-ci-0iX" secondAttribute="centerX" id="Nw4-cz-kKj"/>
-                                            <constraint firstItem="yEu-dX-DWu" firstAttribute="top" secondItem="wzy-3m-0RF" secondAttribute="bottom" constant="5" id="SOr-13-n7z"/>
+                                            <constraint firstItem="yEu-dX-DWu" firstAttribute="bottom" secondItem="wzy-3m-0RF" secondAttribute="top" constant="-10" id="SOr-13-n7z"/>
                                             <constraint firstAttribute="trailing" secondItem="Wcd-EG-gx5" secondAttribute="trailing" constant="70" id="aMh-9T-uwa"/>
                                             <constraint firstItem="drt-yn-zNp" firstAttribute="top" secondItem="Xkg-1Q-ddw" secondAttribute="bottom" constant="10" id="d30-Qx-DMj"/>
                                             <constraint firstAttribute="trailing" secondItem="Yas-ZC-68j" secondAttribute="trailing" constant="70" id="ecY-Km-Eh1"/>
@@ -739,7 +739,7 @@
                                             <constraint firstAttribute="height" constant="129" id="ozi-Wr-cgm"/>
                                             <constraint firstAttribute="bottom" secondItem="XtF-aW-OeH" secondAttribute="bottom" constant="20" id="qk0-2R-gxA"/>
                                             <constraint firstItem="oGJ-PH-wpL" firstAttribute="leading" secondItem="yKE-FW-LrY" secondAttribute="leading" constant="70" id="qoM-E4-tk5"/>
-                                            <constraint firstItem="wzy-3m-0RF" firstAttribute="centerY" secondItem="yKE-FW-LrY" secondAttribute="centerY" constant="-5" id="y0a-hJ-02X"/>
+                                            <constraint firstItem="wzy-3m-0RF" firstAttribute="centerY" secondItem="yKE-FW-LrY" secondAttribute="centerY" constant="5" id="y0a-hJ-02X"/>
                                             <constraint firstItem="wzy-3m-0RF" firstAttribute="centerX" secondItem="yKE-FW-LrY" secondAttribute="centerX" id="yZH-rC-Mbg"/>
                                         </constraints>
                                         <variation key="default">
