@@ -11,6 +11,7 @@ import UICircularProgressRing
 import KYDrawerController
 import UserNotifications
 import Crashlytics
+import PopupDialog
 
 class MainViewController: UIViewController {
     var courseList = [CourseView]()
@@ -46,6 +47,22 @@ class MainViewController: UIViewController {
                                   action: #selector(OnRefresh),
                                   for: .valueChanged)
         scrollView.refreshControl = refreshControl
+        
+        //ask for ratings
+        let Preferences = UserDefaults.standard
+        let firstLaunch = Preferences.string(forKey: "firstLaunch")
+        if(firstLaunch == nil || true){
+            Preferences.set("true", forKey: "firstLaunch")
+            let title = "Teachassist app Version 2.1"
+            let message = "This is the message section of the popup dialog default view, This is the message section of the popup dialog default view, This is the message section of the popup dialog default view, This is the message section of the popup dialog default view, This is the message section of the popup dialog default view, This is the message section of the popup dialog default view, This is the message section of the popup dialog default view, This is the message section of the popup dialog default view, "
+            let image = UIImage(named: "ta_logo_v3")
+            let popup = PopupDialog(title: title, message: message, image: image)
+            let buttonOne = PopupDialogButton(title: "Ok", dismissOnTap: true) {
+                print("What a beauty!")
+            }
+            popup.addButtons([buttonOne])
+            self.present(popup, animated: true, completion: nil)
+        }
         
     }
     

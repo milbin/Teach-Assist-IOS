@@ -2,6 +2,7 @@ PODS:
   - Alamofire (5.0.0-beta.2)
   - Crashlytics (3.12.0):
     - Fabric (~> 1.9.0)
+  - DynamicBlurView (3.0.1)
   - Fabric (1.9.0)
   - Firebase/Analytics (5.17.0):
     - Firebase/Core
@@ -68,6 +69,8 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
+  - PopupDialog (1.0.0):
+    - DynamicBlurView (~> 3.0.1)
   - PureLayout (2.0.6)
   - UICircularProgressRing (6.0.2)
 
@@ -81,6 +84,7 @@ DEPENDENCIES:
   - HTMLString (~> 4.0)
   - IQKeyboardManagerSwift
   - KYDrawerController
+  - PopupDialog (~> 1.0.0)
   - PureLayout (~> 2.0.5)
   - UICircularProgressRing
 
@@ -88,6 +92,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - Crashlytics
+    - DynamicBlurView
     - Fabric
     - Firebase
     - FirebaseAnalytics
@@ -102,6 +107,7 @@ SPEC REPOS:
     - IQKeyboardManagerSwift
     - KYDrawerController
     - nanopb
+    - PopupDialog
     - PureLayout
     - UICircularProgressRing
 
@@ -117,6 +123,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: d1e5493588babe3e7b56ae29e8032942f4de09fe
   Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
+  DynamicBlurView: b1df5415f9bd31897549e5d7077e5ec120a4d636
   Fabric: f988e33c97f08930a413e08123064d2e5f68d655
   Firebase: 59d557e064217fab6a03ff00baa73c06e73832e6
   FirebaseAnalytics: 75e4bbc6417d190cc98ec1f17c41a4fad4c2c976
@@ -132,9 +139,10 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
   KYDrawerController: baad0e63b09c0cb564bd48f0f7f70f45d9176ebc
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  PopupDialog: 28f29a1ffe9e1fab32fb258b53d56ca31670e8a2
   PureLayout: f25f0bb904d5ccfe6e31da3cb869185259f02e0d
   UICircularProgressRing: 2ef1293241b83d8020ede21a8fe3b3d859525730
 
-PODFILE CHECKSUM: c05fc0310e0b4c82035d9fc59d0f999824fcfc0f
+PODFILE CHECKSUM: deadefaae791678aaf03f91aab1f5390d8352735
 
 COCOAPODS: 1.6.1
