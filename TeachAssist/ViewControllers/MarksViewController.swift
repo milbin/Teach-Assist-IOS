@@ -212,14 +212,13 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
     }
     @objc func OnAddAssignmentButtonPress(gesture: UIGestureRecognizer) {
         UIView.animate(withDuration: 0.1, animations: {
-            self.AddAssignmentHeight.constant = 300
+            self.AddAssignmentHeight.constant = 350
             self.addAssignmentBoxTitleAlignTop.isActive = true
             self.addAssignmentPlusButton.isHidden = true
             self.addAssignmentTitle.isHidden = false
             self.addAssignmentSimpleMark.isHidden = false
             self.addAssignmentSimpleWeight.isHidden = false
             self.addAssignmentMarkLabel.isHidden = false
-            self.addAssignmentWeightLabel.isHidden = false
             self.addAssignmentCancelButton.isHidden = false
             self.addAssignmentAddButton.isHidden = false
         })
@@ -282,7 +281,7 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
             UpdateMarkBars()
             AverageBar.value = CGFloat((ta?.CalculateCourseAverage(markParam: response!))!)
             UIView.animate(withDuration: 0.1, animations: {
-                self.AddAssignmentHeight.constant = 80
+                self.AddAssignmentHeight.constant = 129
                 self.addAssignmentBoxTitleAlignTop.isActive = false
                 self.addAssignmentPlusButton.isHidden = false
                 self.addAssignmentTitle.isHidden = true
@@ -302,7 +301,7 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
     }
     @objc func OnAddAssignmentCancelButtonPress(sender: UIButton) {
         UIView.animate(withDuration: 0.1, animations: {
-            self.AddAssignmentHeight.constant = 80
+            self.AddAssignmentHeight.constant = 129
             self.addAssignmentBoxTitleAlignTop.isActive = false
             self.addAssignmentPlusButton.isHidden = false
             self.addAssignmentTitle.isHidden = true

@@ -644,30 +644,26 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calculate New Assignment Mark" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yEu-dX-DWu">
-                                                <rect key="frame" x="74.5" y="28" width="206.5" height="16.5"/>
-                                                <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="14"/>
+                                                <rect key="frame" x="72.5" y="27.5" width="210.5" height="17"/>
+                                                <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title of Assignment" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xkg-1Q-ddw">
-                                                <rect key="frame" x="50" y="50" width="255" height="34"/>
+                                                <rect key="frame" x="50" y="75" width="255" height="34"/>
                                                 <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="600" id="8Wi-Ac-eHF"/>
-                                                </constraints>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done" textContentType="name"/>
                                             </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wp1-cb-zLq">
-                                                <rect key="frame" x="157" y="8" width="0.0" height="0.0"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wp1-cb-zLq">
+                                                <rect key="frame" x="50" y="8" width="0.0" height="0.0"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mark" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oGJ-PH-wpL">
-                                                <rect key="frame" x="70" y="114" width="80" height="34"/>
+                                                <rect key="frame" x="50" y="156" width="80" height="34"/>
                                                 <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="80" id="pUM-8c-plC"/>
@@ -676,14 +672,8 @@
                                                 <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad" textContentType="username"/>
                                             </textField>
-                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mark" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZAi-ci-0iX">
-                                                <rect key="frame" x="94" y="94" width="32" height="17"/>
-                                                <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="14"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weight" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="drt-yn-zNp">
-                                                <rect key="frame" x="221.5" y="94" width="47" height="17"/>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overall Mark" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZAi-ci-0iX">
+                                                <rect key="frame" x="50" y="129" width="80" height="17"/>
                                                 <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -698,7 +688,7 @@
                                                 <state key="normal" title="Cancel"/>
                                             </button>
                                             <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Weight" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wcd-EG-gx5">
-                                                <rect key="frame" x="205" y="114" width="80" height="34"/>
+                                                <rect key="frame" x="160" y="156" width="80" height="34"/>
                                                 <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="80" id="FLJ-46-3s0"/>
@@ -707,6 +697,12 @@
                                                 <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad" textContentType="username"/>
                                             </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Advanced" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UFh-8V-uRN">
+                                                <rect key="frame" x="50" y="222" width="66" height="17"/>
+                                                <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="14"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yas-ZC-68j">
                                                 <rect key="frame" x="205" y="80" width="80" height="29"/>
                                                 <color key="backgroundColor" red="0.015686274509803921" green="0.36470588235294116" blue="0.33725490196078434" alpha="1" colorSpace="calibratedRGB"/>
@@ -716,29 +712,52 @@
                                                 <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="14"/>
                                                 <state key="normal" title="Add"/>
                                             </button>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nK6-lO-Qjw" userLabel="Divider View">
+                                                <rect key="frame" x="50" y="210" width="255" height="2"/>
+                                                <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="2" id="LKy-90-u71"/>
+                                                </constraints>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hqy-1V-lvZ">
+                                                <rect key="frame" x="126" y="225.5" width="10" height="10"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="10" id="Cd6-Pc-dfm"/>
+                                                    <constraint firstAttribute="width" constant="10" id="jLa-lU-3QA"/>
+                                                </constraints>
+                                                <state key="normal" title="Button" image="down"/>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.23921568627450979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="Xkg-1Q-ddw" firstAttribute="leading" secondItem="yKE-FW-LrY" secondAttribute="leading" constant="50" id="0rC-Mg-N5e"/>
-                                            <constraint firstItem="drt-yn-zNp" firstAttribute="centerX" secondItem="Wcd-EG-gx5" secondAttribute="centerX" id="0vW-Qu-Dle"/>
-                                            <constraint firstItem="Xkg-1Q-ddw" firstAttribute="top" secondItem="yKE-FW-LrY" secondAttribute="top" constant="50" id="8X2-Jd-MRc"/>
+                                            <constraint firstItem="hqy-1V-lvZ" firstAttribute="leading" secondItem="UFh-8V-uRN" secondAttribute="trailing" constant="10" id="6Hu-jy-kpb"/>
+                                            <constraint firstItem="UFh-8V-uRN" firstAttribute="top" secondItem="nK6-lO-Qjw" secondAttribute="bottom" constant="10" id="6dZ-ql-N6Y"/>
+                                            <constraint firstItem="Wp1-cb-zLq" firstAttribute="leading" secondItem="Xkg-1Q-ddw" secondAttribute="leading" id="8Tf-LT-8U3"/>
+                                            <constraint firstItem="Xkg-1Q-ddw" firstAttribute="top" secondItem="yKE-FW-LrY" secondAttribute="top" constant="75" id="8X2-Jd-MRc"/>
+                                            <constraint firstItem="Wcd-EG-gx5" firstAttribute="centerY" secondItem="oGJ-PH-wpL" secondAttribute="centerY" id="8ad-lx-xEd"/>
                                             <constraint firstItem="XtF-aW-OeH" firstAttribute="leading" secondItem="yKE-FW-LrY" secondAttribute="leading" constant="70" id="9Oh-u5-Kwz"/>
-                                            <constraint firstItem="oGJ-PH-wpL" firstAttribute="top" secondItem="ZAi-ci-0iX" secondAttribute="bottom" constant="3" id="BcX-p7-CHH"/>
-                                            <constraint firstItem="yEu-dX-DWu" firstAttribute="top" secondItem="yKE-FW-LrY" secondAttribute="top" constant="20" id="FpG-2K-M4m"/>
+                                            <constraint firstItem="nK6-lO-Qjw" firstAttribute="leading" secondItem="Xkg-1Q-ddw" secondAttribute="leading" id="BFq-2P-9D5"/>
+                                            <constraint firstItem="oGJ-PH-wpL" firstAttribute="top" secondItem="ZAi-ci-0iX" secondAttribute="bottom" constant="10" id="BcX-p7-CHH"/>
+                                            <constraint firstItem="UFh-8V-uRN" firstAttribute="centerY" secondItem="hqy-1V-lvZ" secondAttribute="centerY" id="Dzd-cT-gLe"/>
+                                            <constraint firstItem="yEu-dX-DWu" firstAttribute="top" secondItem="yKE-FW-LrY" secondAttribute="top" constant="27.5" id="FpG-2K-M4m"/>
                                             <constraint firstItem="yEu-dX-DWu" firstAttribute="centerX" secondItem="yKE-FW-LrY" secondAttribute="centerX" id="G6v-08-vga"/>
-                                            <constraint firstItem="ZAi-ci-0iX" firstAttribute="top" secondItem="Xkg-1Q-ddw" secondAttribute="bottom" constant="10" id="KmG-tV-siC"/>
+                                            <constraint firstItem="Wp1-cb-zLq" firstAttribute="top" secondItem="yKE-FW-LrY" secondAttribute="topMargin" id="I00-Qd-gT9"/>
+                                            <constraint firstItem="UFh-8V-uRN" firstAttribute="leading" secondItem="Xkg-1Q-ddw" secondAttribute="leading" id="K6C-ak-pEU"/>
+                                            <constraint firstItem="ZAi-ci-0iX" firstAttribute="top" secondItem="Xkg-1Q-ddw" secondAttribute="bottom" constant="20" id="KmG-tV-siC"/>
                                             <constraint firstAttribute="bottom" secondItem="Yas-ZC-68j" secondAttribute="bottom" constant="20" id="Lac-YZ-5A2"/>
-                                            <constraint firstItem="oGJ-PH-wpL" firstAttribute="centerX" secondItem="ZAi-ci-0iX" secondAttribute="centerX" id="Nw4-cz-kKj"/>
                                             <constraint firstItem="yEu-dX-DWu" firstAttribute="bottom" secondItem="wzy-3m-0RF" secondAttribute="top" priority="250" constant="-10" id="SOr-13-n7z"/>
-                                            <constraint firstAttribute="trailing" secondItem="Wcd-EG-gx5" secondAttribute="trailing" constant="70" id="aMh-9T-uwa"/>
-                                            <constraint firstItem="drt-yn-zNp" firstAttribute="top" secondItem="Xkg-1Q-ddw" secondAttribute="bottom" constant="10" id="d30-Qx-DMj"/>
+                                            <constraint firstItem="nK6-lO-Qjw" firstAttribute="centerX" secondItem="yKE-FW-LrY" secondAttribute="centerX" id="VE0-nb-ZVO"/>
+                                            <constraint firstItem="ZAi-ci-0iX" firstAttribute="leading" secondItem="Xkg-1Q-ddw" secondAttribute="leading" id="Vbq-8y-7Wg"/>
+                                            <constraint firstItem="Wcd-EG-gx5" firstAttribute="leading" secondItem="oGJ-PH-wpL" secondAttribute="trailing" constant="30" id="e9x-Jp-he4"/>
                                             <constraint firstAttribute="trailing" secondItem="Yas-ZC-68j" secondAttribute="trailing" constant="70" id="ecY-Km-Eh1"/>
-                                            <constraint firstItem="Wcd-EG-gx5" firstAttribute="top" secondItem="drt-yn-zNp" secondAttribute="bottom" constant="3" id="ik1-QA-g9F"/>
+                                            <constraint firstItem="nK6-lO-Qjw" firstAttribute="trailing" secondItem="Xkg-1Q-ddw" secondAttribute="trailing" id="hDf-ET-akc"/>
                                             <constraint firstAttribute="trailing" secondItem="Xkg-1Q-ddw" secondAttribute="trailing" constant="50" id="imx-6B-3q0"/>
+                                            <constraint firstItem="nK6-lO-Qjw" firstAttribute="top" secondItem="oGJ-PH-wpL" secondAttribute="bottom" constant="20" id="lla-0X-NS3"/>
                                             <constraint firstAttribute="height" constant="129" id="ozi-Wr-cgm"/>
                                             <constraint firstAttribute="bottom" secondItem="XtF-aW-OeH" secondAttribute="bottom" constant="20" id="qk0-2R-gxA"/>
-                                            <constraint firstItem="oGJ-PH-wpL" firstAttribute="leading" secondItem="yKE-FW-LrY" secondAttribute="leading" constant="70" id="qoM-E4-tk5"/>
+                                            <constraint firstItem="oGJ-PH-wpL" firstAttribute="leading" secondItem="Xkg-1Q-ddw" secondAttribute="leading" id="vhe-mq-6Us"/>
                                             <constraint firstItem="wzy-3m-0RF" firstAttribute="centerY" secondItem="yKE-FW-LrY" secondAttribute="centerY" constant="5" id="y0a-hJ-02X"/>
                                             <constraint firstItem="wzy-3m-0RF" firstAttribute="centerX" secondItem="yKE-FW-LrY" secondAttribute="centerX" id="yZH-rC-Mbg"/>
                                         </constraints>
@@ -754,7 +773,7 @@
                                 <constraints>
                                     <constraint firstItem="Wbi-ua-Tav" firstAttribute="width" secondItem="nqq-Tp-y36" secondAttribute="width" id="3OE-Pw-7tD"/>
                                     <constraint firstAttribute="bottom" secondItem="yKE-FW-LrY" secondAttribute="bottom" constant="50" id="ED0-BZ-Fwm"/>
-                                    <constraint firstItem="yKE-FW-LrY" firstAttribute="top" secondItem="Wbi-ua-Tav" secondAttribute="bottom" priority="250" constant="10" id="Gsw-D8-buv"/>
+                                    <constraint firstItem="yKE-FW-LrY" firstAttribute="top" secondItem="Wbi-ua-Tav" secondAttribute="bottom" priority="500" constant="10" id="Gsw-D8-buv"/>
                                     <constraint firstItem="apU-Uu-CAA" firstAttribute="leading" secondItem="nqq-Tp-y36" secondAttribute="leading" id="JEl-Nc-gts"/>
                                     <constraint firstAttribute="trailing" secondItem="apU-Uu-CAA" secondAttribute="trailing" id="JmU-b1-pzB"/>
                                     <constraint firstItem="Wbi-ua-Tav" firstAttribute="leading" secondItem="nqq-Tp-y36" secondAttribute="leading" id="KV6-uJ-DKp"/>
@@ -811,7 +830,6 @@
                         <outlet property="addAssignmentSimpleMark" destination="oGJ-PH-wpL" id="ADj-57-ST5"/>
                         <outlet property="addAssignmentSimpleWeight" destination="Wcd-EG-gx5" id="qXR-pq-hF0"/>
                         <outlet property="addAssignmentTitle" destination="Xkg-1Q-ddw" id="ZEA-y4-Fod"/>
-                        <outlet property="addAssignmentWeightLabel" destination="drt-yn-zNp" id="1j0-9F-Wbr"/>
                         <outlet property="scrollView" destination="nqq-Tp-y36" id="3ZL-qY-FON"/>
                         <outlet property="scrollViewBottom" destination="Gsw-D8-buv" id="VTg-Zy-YCc"/>
                     </connections>
@@ -824,6 +842,7 @@
     <resources>
         <image name="baseline_bug_report_black_48dp" width="120" height="120"/>
         <image name="baseline_settings_black_48dp" width="60" height="59"/>
+        <image name="down" width="96" height="96"/>
         <image name="logout_icon" width="119" height="120"/>
         <image name="plus-icon" width="100" height="100"/>
         <image name="ta_logo_v3" width="563" height="563"/>
