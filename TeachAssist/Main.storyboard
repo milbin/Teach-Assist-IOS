@@ -34,7 +34,7 @@
                                         <rect key="frame" x="100" y="20" width="175" height="175"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Average:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RgN-Av-UF1">
-                                                <rect key="frame" x="57" y="49" width="61" height="17.5"/>
+                                                <rect key="frame" x="58" y="49" width="59" height="17.5"/>
                                                 <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="15"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -184,7 +184,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OSx-M5-GhC">
-                                                    <rect key="frame" x="60" y="13.5" width="49" height="17.5"/>
+                                                    <rect key="frame" x="60" y="13.5" width="47.5" height="17.5"/>
                                                     <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="15"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -214,7 +214,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feedback / Bug Report" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cnb-SG-IB0">
-                                                    <rect key="frame" x="60" y="13" width="163" height="18"/>
+                                                    <rect key="frame" x="60" y="13" width="157" height="18"/>
                                                     <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="15"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -268,13 +268,13 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Teachassist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kkf-gX-D4h">
-                                <rect key="frame" x="138.5" y="125" width="98.5" height="32"/>
+                                <rect key="frame" x="140.5" y="125" width="94" height="21"/>
                                 <fontDescription key="fontDescription" name="Eczar-Bold" family="Eczar" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XFH-2V-VbQ">
-                                <rect key="frame" x="0.0" y="190" width="375" height="500"/>
+                                <rect key="frame" x="0.0" y="179" width="375" height="500"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="500" id="wAm-b2-KJ4"/>
                                 </constraints>
@@ -283,7 +283,7 @@
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DGu-6e-RMz">
-                                <rect key="frame" x="20" y="172" width="335" height="3"/>
+                                <rect key="frame" x="20" y="161" width="335" height="3"/>
                                 <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="3" id="kdv-uv-kOF"/>
@@ -727,38 +727,198 @@
                                                 </constraints>
                                                 <state key="normal" title="Button" image="down"/>
                                             </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Knowledge)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="byM-6u-c9c">
+                                                <rect key="frame" x="255" y="259" width="68.5" height="14"/>
+                                                <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="12"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mark" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="27D-go-bim" userLabel="KMark">
+                                                <rect key="frame" x="50" y="249" width="80" height="34"/>
+                                                <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="80" id="V8z-wi-eI5"/>
+                                                </constraints>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad" textContentType="username"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Weight" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sQb-ux-qND" userLabel="KWeight">
+                                                <rect key="frame" x="160" y="249" width="80" height="34"/>
+                                                <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="80" id="VCR-NB-pH5"/>
+                                                </constraints>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad" textContentType="username"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mark" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Wj-cB-QfH" userLabel="TMark">
+                                                <rect key="frame" x="50" y="293" width="80" height="34"/>
+                                                <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="80" id="vnC-Ep-XCf"/>
+                                                </constraints>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad" textContentType="username"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Weight" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Y7-iC-Jqd" userLabel="TWeight">
+                                                <rect key="frame" x="160" y="293" width="80" height="34"/>
+                                                <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="80" id="G6R-Xu-CVW"/>
+                                                </constraints>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad" textContentType="username"/>
+                                            </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Thinking)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u00-gq-PmN">
+                                                <rect key="frame" x="255" y="303" width="51.5" height="14"/>
+                                                <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="12"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mark" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dIF-m2-9Oe" userLabel="CMark">
+                                                <rect key="frame" x="50" y="337" width="80" height="34"/>
+                                                <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="80" id="dgN-nA-bg3"/>
+                                                </constraints>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad" textContentType="username"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Weight" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bqh-Nz-JRT" userLabel="CWeight">
+                                                <rect key="frame" x="160" y="337" width="80" height="34"/>
+                                                <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="80" id="jQb-nw-xqD"/>
+                                                </constraints>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad" textContentType="username"/>
+                                            </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Communication)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bpQ-G1-P3c">
+                                                <rect key="frame" x="255" y="347" width="94" height="14"/>
+                                                <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="12"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mark" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KCs-Ky-hUS" userLabel="AMark">
+                                                <rect key="frame" x="50" y="381" width="80" height="34"/>
+                                                <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="80" id="Evf-oK-Ken"/>
+                                                </constraints>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad" textContentType="username"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Weight" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="slC-sD-AWK" userLabel="AWeight">
+                                                <rect key="frame" x="160" y="381" width="80" height="34"/>
+                                                <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="80" id="WlV-om-ToE"/>
+                                                </constraints>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad" textContentType="username"/>
+                                            </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Application)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oZo-Lq-PVe">
+                                                <rect key="frame" x="255" y="391" width="70" height="14"/>
+                                                <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="12"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mark" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dQ1-z1-LVW" userLabel="OMark">
+                                                <rect key="frame" x="50" y="425" width="80" height="34"/>
+                                                <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="80" id="eOG-eU-RlH"/>
+                                                </constraints>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad" textContentType="username"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Weight" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eIx-9q-om6" userLabel="OWeight">
+                                                <rect key="frame" x="160" y="425" width="80" height="34"/>
+                                                <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="80" id="k34-Wk-fta"/>
+                                                </constraints>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad" textContentType="username"/>
+                                            </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Other)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1pM-od-KaD">
+                                                <rect key="frame" x="255" y="435" width="39" height="14"/>
+                                                <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="12"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.23921568627450979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="Xkg-1Q-ddw" firstAttribute="leading" secondItem="yKE-FW-LrY" secondAttribute="leading" constant="50" id="0rC-Mg-N5e"/>
+                                            <constraint firstItem="KCs-Ky-hUS" firstAttribute="centerY" secondItem="oZo-Lq-PVe" secondAttribute="centerY" id="2Fw-tq-DC9"/>
                                             <constraint firstItem="hqy-1V-lvZ" firstAttribute="leading" secondItem="UFh-8V-uRN" secondAttribute="trailing" constant="10" id="6Hu-jy-kpb"/>
                                             <constraint firstItem="UFh-8V-uRN" firstAttribute="top" secondItem="nK6-lO-Qjw" secondAttribute="bottom" constant="10" id="6dZ-ql-N6Y"/>
+                                            <constraint firstItem="byM-6u-c9c" firstAttribute="leading" secondItem="sQb-ux-qND" secondAttribute="trailing" constant="15" id="6t9-2C-kX5"/>
+                                            <constraint firstItem="dQ1-z1-LVW" firstAttribute="centerY" secondItem="eIx-9q-om6" secondAttribute="centerY" id="72c-Ek-kDX"/>
                                             <constraint firstItem="Wp1-cb-zLq" firstAttribute="leading" secondItem="Xkg-1Q-ddw" secondAttribute="leading" id="8Tf-LT-8U3"/>
                                             <constraint firstItem="Xkg-1Q-ddw" firstAttribute="top" secondItem="yKE-FW-LrY" secondAttribute="top" constant="75" id="8X2-Jd-MRc"/>
                                             <constraint firstItem="Wcd-EG-gx5" firstAttribute="centerY" secondItem="oGJ-PH-wpL" secondAttribute="centerY" id="8ad-lx-xEd"/>
                                             <constraint firstItem="XtF-aW-OeH" firstAttribute="leading" secondItem="yKE-FW-LrY" secondAttribute="leading" constant="70" id="9Oh-u5-Kwz"/>
                                             <constraint firstItem="nK6-lO-Qjw" firstAttribute="leading" secondItem="Xkg-1Q-ddw" secondAttribute="leading" id="BFq-2P-9D5"/>
                                             <constraint firstItem="oGJ-PH-wpL" firstAttribute="top" secondItem="ZAi-ci-0iX" secondAttribute="bottom" constant="10" id="BcX-p7-CHH"/>
+                                            <constraint firstItem="KCs-Ky-hUS" firstAttribute="centerY" secondItem="slC-sD-AWK" secondAttribute="centerY" id="D93-KD-vHy"/>
                                             <constraint firstItem="UFh-8V-uRN" firstAttribute="centerY" secondItem="hqy-1V-lvZ" secondAttribute="centerY" id="Dzd-cT-gLe"/>
+                                            <constraint firstItem="u00-gq-PmN" firstAttribute="leading" secondItem="5Y7-iC-Jqd" secondAttribute="trailing" constant="15" id="EZh-jc-EAt"/>
+                                            <constraint firstItem="dQ1-z1-LVW" firstAttribute="leading" secondItem="Xkg-1Q-ddw" secondAttribute="leading" id="Eri-um-adC"/>
                                             <constraint firstItem="yEu-dX-DWu" firstAttribute="top" secondItem="yKE-FW-LrY" secondAttribute="top" constant="27.5" id="FpG-2K-M4m"/>
                                             <constraint firstItem="yEu-dX-DWu" firstAttribute="centerX" secondItem="yKE-FW-LrY" secondAttribute="centerX" id="G6v-08-vga"/>
                                             <constraint firstItem="Wp1-cb-zLq" firstAttribute="top" secondItem="yKE-FW-LrY" secondAttribute="topMargin" id="I00-Qd-gT9"/>
                                             <constraint firstItem="UFh-8V-uRN" firstAttribute="leading" secondItem="Xkg-1Q-ddw" secondAttribute="leading" id="K6C-ak-pEU"/>
                                             <constraint firstItem="ZAi-ci-0iX" firstAttribute="top" secondItem="Xkg-1Q-ddw" secondAttribute="bottom" constant="20" id="KmG-tV-siC"/>
                                             <constraint firstAttribute="bottom" secondItem="Yas-ZC-68j" secondAttribute="bottom" constant="20" id="Lac-YZ-5A2"/>
+                                            <constraint firstItem="27D-go-bim" firstAttribute="centerY" secondItem="byM-6u-c9c" secondAttribute="centerY" id="OnZ-on-Ppk"/>
                                             <constraint firstItem="yEu-dX-DWu" firstAttribute="bottom" secondItem="wzy-3m-0RF" secondAttribute="top" priority="250" constant="-10" id="SOr-13-n7z"/>
                                             <constraint firstItem="nK6-lO-Qjw" firstAttribute="centerX" secondItem="yKE-FW-LrY" secondAttribute="centerX" id="VE0-nb-ZVO"/>
                                             <constraint firstItem="ZAi-ci-0iX" firstAttribute="leading" secondItem="Xkg-1Q-ddw" secondAttribute="leading" id="Vbq-8y-7Wg"/>
+                                            <constraint firstItem="27D-go-bim" firstAttribute="leading" secondItem="Xkg-1Q-ddw" secondAttribute="leading" id="VnW-Qv-nfH"/>
+                                            <constraint firstItem="dQ1-z1-LVW" firstAttribute="top" secondItem="KCs-Ky-hUS" secondAttribute="bottom" constant="10" id="WBm-Vw-BM3"/>
+                                            <constraint firstItem="sQb-ux-qND" firstAttribute="leading" secondItem="27D-go-bim" secondAttribute="trailing" constant="30" id="Wha-Ws-itS"/>
+                                            <constraint firstItem="dQ1-z1-LVW" firstAttribute="centerY" secondItem="1pM-od-KaD" secondAttribute="centerY" id="Wuv-Cg-4AP"/>
+                                            <constraint firstItem="KCs-Ky-hUS" firstAttribute="leading" secondItem="Xkg-1Q-ddw" secondAttribute="leading" id="Xy1-PS-Ek4"/>
+                                            <constraint firstItem="KCs-Ky-hUS" firstAttribute="top" secondItem="dIF-m2-9Oe" secondAttribute="bottom" constant="10" id="YnC-Vh-iX2"/>
+                                            <constraint firstItem="bpQ-G1-P3c" firstAttribute="leading" secondItem="bqh-Nz-JRT" secondAttribute="trailing" constant="15" id="ZjV-QB-8Bb"/>
+                                            <constraint firstItem="slC-sD-AWK" firstAttribute="leading" secondItem="KCs-Ky-hUS" secondAttribute="trailing" constant="30" id="aFD-xm-n7c"/>
+                                            <constraint firstItem="dIF-m2-9Oe" firstAttribute="top" secondItem="9Wj-cB-QfH" secondAttribute="bottom" constant="10" id="bXH-k1-lMP"/>
+                                            <constraint firstItem="9Wj-cB-QfH" firstAttribute="centerY" secondItem="5Y7-iC-Jqd" secondAttribute="centerY" id="bfk-mY-WTO"/>
+                                            <constraint firstItem="eIx-9q-om6" firstAttribute="leading" secondItem="dQ1-z1-LVW" secondAttribute="trailing" constant="30" id="cgZ-G0-M7K"/>
+                                            <constraint firstItem="27D-go-bim" firstAttribute="centerY" secondItem="sQb-ux-qND" secondAttribute="centerY" id="d1k-bS-LKe"/>
                                             <constraint firstItem="Wcd-EG-gx5" firstAttribute="leading" secondItem="oGJ-PH-wpL" secondAttribute="trailing" constant="30" id="e9x-Jp-he4"/>
                                             <constraint firstAttribute="trailing" secondItem="Yas-ZC-68j" secondAttribute="trailing" constant="70" id="ecY-Km-Eh1"/>
                                             <constraint firstItem="nK6-lO-Qjw" firstAttribute="trailing" secondItem="Xkg-1Q-ddw" secondAttribute="trailing" id="hDf-ET-akc"/>
+                                            <constraint firstItem="9Wj-cB-QfH" firstAttribute="leading" secondItem="Xkg-1Q-ddw" secondAttribute="leading" id="iDr-jk-Zi8"/>
                                             <constraint firstAttribute="trailing" secondItem="Xkg-1Q-ddw" secondAttribute="trailing" constant="50" id="imx-6B-3q0"/>
                                             <constraint firstItem="nK6-lO-Qjw" firstAttribute="top" secondItem="oGJ-PH-wpL" secondAttribute="bottom" constant="20" id="lla-0X-NS3"/>
+                                            <constraint firstItem="27D-go-bim" firstAttribute="top" secondItem="UFh-8V-uRN" secondAttribute="bottom" constant="10" id="o1b-KB-JTo"/>
+                                            <constraint firstItem="9Wj-cB-QfH" firstAttribute="top" secondItem="sQb-ux-qND" secondAttribute="bottom" constant="10" id="oKL-Kl-IgO"/>
                                             <constraint firstAttribute="height" constant="129" id="ozi-Wr-cgm"/>
+                                            <constraint firstItem="dIF-m2-9Oe" firstAttribute="centerY" secondItem="bpQ-G1-P3c" secondAttribute="centerY" id="pgT-S2-IQC"/>
                                             <constraint firstAttribute="bottom" secondItem="XtF-aW-OeH" secondAttribute="bottom" constant="20" id="qk0-2R-gxA"/>
+                                            <constraint firstItem="oZo-Lq-PVe" firstAttribute="leading" secondItem="slC-sD-AWK" secondAttribute="trailing" constant="15" id="smA-29-yrd"/>
+                                            <constraint firstItem="1pM-od-KaD" firstAttribute="leading" secondItem="eIx-9q-om6" secondAttribute="trailing" constant="15" id="uMY-Ak-yfw"/>
+                                            <constraint firstItem="dIF-m2-9Oe" firstAttribute="centerY" secondItem="bqh-Nz-JRT" secondAttribute="centerY" id="vdu-MI-8dc"/>
                                             <constraint firstItem="oGJ-PH-wpL" firstAttribute="leading" secondItem="Xkg-1Q-ddw" secondAttribute="leading" id="vhe-mq-6Us"/>
+                                            <constraint firstItem="5Y7-iC-Jqd" firstAttribute="leading" secondItem="9Wj-cB-QfH" secondAttribute="trailing" constant="30" id="xEd-Iv-mXA"/>
+                                            <constraint firstItem="dIF-m2-9Oe" firstAttribute="leading" secondItem="Xkg-1Q-ddw" secondAttribute="leading" id="xTO-70-SoE"/>
+                                            <constraint firstItem="bqh-Nz-JRT" firstAttribute="leading" secondItem="dIF-m2-9Oe" secondAttribute="trailing" constant="30" id="xv1-Uv-GIP"/>
                                             <constraint firstItem="wzy-3m-0RF" firstAttribute="centerY" secondItem="yKE-FW-LrY" secondAttribute="centerY" constant="5" id="y0a-hJ-02X"/>
+                                            <constraint firstItem="9Wj-cB-QfH" firstAttribute="centerY" secondItem="u00-gq-PmN" secondAttribute="centerY" id="y25-PQ-9Z4"/>
                                             <constraint firstItem="wzy-3m-0RF" firstAttribute="centerX" secondItem="yKE-FW-LrY" secondAttribute="centerX" id="yZH-rC-Mbg"/>
                                         </constraints>
                                         <variation key="default">
