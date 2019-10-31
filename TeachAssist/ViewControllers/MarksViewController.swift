@@ -159,6 +159,7 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
             
         }
         AverageBar.startProgress(to: CGFloat(Mark!), duration: 1.8)
+        addAssignment.isHidden = false
         
         if refreshControl!.isRefreshing{
             refreshControl!.endRefreshing()
