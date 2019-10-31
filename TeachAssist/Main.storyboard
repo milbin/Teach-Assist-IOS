@@ -16,6 +16,9 @@
         <array key="sandstone.otf">
             <string>Gilroy-Regular</string>
         </array>
+        <array key="sandstone_bold.otf">
+            <string>Gilroy-Bold</string>
+        </array>
     </customFonts>
     <scenes>
         <!--Main View Controller-->
@@ -633,17 +636,17 @@
                                         <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="10" bottom="0.0" trailing="10"/>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yKE-FW-LrY">
-                                        <rect key="frame" x="10" y="380" width="355" height="300"/>
+                                        <rect key="frame" x="10" y="380" width="355" height="80"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus-icon" translatesAutoresizingMaskIntoConstraints="NO" id="wzy-3m-0RF">
-                                                <rect key="frame" x="157.5" y="125" width="40" height="40"/>
+                                                <rect key="frame" x="157.5" y="15" width="40" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="40" id="QO3-LY-EE0"/>
                                                     <constraint firstAttribute="height" constant="40" id="bts-FV-Krn"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Mock Assignment or Test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yEu-dX-DWu">
-                                                <rect key="frame" x="84" y="160" width="187" height="17"/>
+                                                <rect key="frame" x="84" y="50" width="187" height="17"/>
                                                 <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -687,6 +690,15 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XtF-aW-OeH">
+                                                <rect key="frame" x="70" y="31" width="80" height="29"/>
+                                                <color key="backgroundColor" red="0.91372549020000005" green="0.1176470588" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="80" id="09z-jh-rWR"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="14"/>
+                                                <state key="normal" title="Cancel"/>
+                                            </button>
                                             <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Weight" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wcd-EG-gx5">
                                                 <rect key="frame" x="205" y="110" width="80" height="30"/>
                                                 <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -697,6 +709,15 @@
                                                 <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad" textContentType="username"/>
                                             </textField>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yas-ZC-68j">
+                                                <rect key="frame" x="205" y="31" width="80" height="29"/>
+                                                <color key="backgroundColor" red="0.015686274509803921" green="0.36470588235294116" blue="0.33725490196078434" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="80" id="e6O-Ra-3IB"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="14"/>
+                                                <state key="normal" title="Add"/>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.23921568627450979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -704,17 +725,21 @@
                                             <constraint firstItem="Xkg-1Q-ddw" firstAttribute="leading" secondItem="yKE-FW-LrY" secondAttribute="leading" constant="50" id="0rC-Mg-N5e"/>
                                             <constraint firstItem="drt-yn-zNp" firstAttribute="centerX" secondItem="Wcd-EG-gx5" secondAttribute="centerX" id="0vW-Qu-Dle"/>
                                             <constraint firstItem="Xkg-1Q-ddw" firstAttribute="top" secondItem="yKE-FW-LrY" secondAttribute="top" constant="50" id="8X2-Jd-MRc"/>
+                                            <constraint firstItem="XtF-aW-OeH" firstAttribute="leading" secondItem="yKE-FW-LrY" secondAttribute="leading" constant="70" id="9Oh-u5-Kwz"/>
                                             <constraint firstItem="oGJ-PH-wpL" firstAttribute="top" secondItem="ZAi-ci-0iX" secondAttribute="bottom" constant="3" id="BcX-p7-CHH"/>
                                             <constraint firstItem="yEu-dX-DWu" firstAttribute="top" secondItem="yKE-FW-LrY" secondAttribute="top" constant="10" id="FpG-2K-M4m"/>
                                             <constraint firstItem="yEu-dX-DWu" firstAttribute="centerX" secondItem="yKE-FW-LrY" secondAttribute="centerX" id="G6v-08-vga"/>
                                             <constraint firstItem="ZAi-ci-0iX" firstAttribute="top" secondItem="Xkg-1Q-ddw" secondAttribute="bottom" constant="10" id="KmG-tV-siC"/>
+                                            <constraint firstAttribute="bottom" secondItem="Yas-ZC-68j" secondAttribute="bottom" constant="20" id="Lac-YZ-5A2"/>
                                             <constraint firstItem="oGJ-PH-wpL" firstAttribute="centerX" secondItem="ZAi-ci-0iX" secondAttribute="centerX" id="Nw4-cz-kKj"/>
                                             <constraint firstItem="yEu-dX-DWu" firstAttribute="top" secondItem="wzy-3m-0RF" secondAttribute="bottom" constant="-5" id="SOr-13-n7z"/>
                                             <constraint firstAttribute="trailing" secondItem="Wcd-EG-gx5" secondAttribute="trailing" constant="70" id="aMh-9T-uwa"/>
                                             <constraint firstItem="drt-yn-zNp" firstAttribute="top" secondItem="Xkg-1Q-ddw" secondAttribute="bottom" constant="10" id="d30-Qx-DMj"/>
+                                            <constraint firstAttribute="trailing" secondItem="Yas-ZC-68j" secondAttribute="trailing" constant="70" id="ecY-Km-Eh1"/>
                                             <constraint firstItem="Wcd-EG-gx5" firstAttribute="top" secondItem="drt-yn-zNp" secondAttribute="bottom" constant="3" id="ik1-QA-g9F"/>
                                             <constraint firstAttribute="trailing" secondItem="Xkg-1Q-ddw" secondAttribute="trailing" constant="50" id="imx-6B-3q0"/>
-                                            <constraint firstAttribute="height" constant="300" id="ozi-Wr-cgm"/>
+                                            <constraint firstAttribute="height" constant="80" id="ozi-Wr-cgm"/>
+                                            <constraint firstAttribute="bottom" secondItem="XtF-aW-OeH" secondAttribute="bottom" constant="20" id="qk0-2R-gxA"/>
                                             <constraint firstItem="oGJ-PH-wpL" firstAttribute="leading" secondItem="yKE-FW-LrY" secondAttribute="leading" constant="70" id="qoM-E4-tk5"/>
                                             <constraint firstItem="wzy-3m-0RF" firstAttribute="centerY" secondItem="yKE-FW-LrY" secondAttribute="centerY" constant="-5" id="y0a-hJ-02X"/>
                                             <constraint firstItem="wzy-3m-0RF" firstAttribute="centerX" secondItem="yKE-FW-LrY" secondAttribute="centerX" id="yZH-rC-Mbg"/>
@@ -730,7 +755,7 @@
                                 <color key="tintColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="Wbi-ua-Tav" firstAttribute="width" secondItem="nqq-Tp-y36" secondAttribute="width" id="3OE-Pw-7tD"/>
-                                    <constraint firstAttribute="bottom" secondItem="yKE-FW-LrY" secondAttribute="bottom" constant="10" id="ED0-BZ-Fwm"/>
+                                    <constraint firstAttribute="bottom" secondItem="yKE-FW-LrY" secondAttribute="bottom" constant="50" id="ED0-BZ-Fwm"/>
                                     <constraint firstItem="yKE-FW-LrY" firstAttribute="top" secondItem="Wbi-ua-Tav" secondAttribute="bottom" priority="250" constant="10" id="Gsw-D8-buv"/>
                                     <constraint firstItem="apU-Uu-CAA" firstAttribute="leading" secondItem="nqq-Tp-y36" secondAttribute="leading" id="JEl-Nc-gts"/>
                                     <constraint firstAttribute="trailing" secondItem="apU-Uu-CAA" secondAttribute="trailing" id="JmU-b1-pzB"/>
@@ -780,7 +805,9 @@
                         <outlet property="TbarAverageHeight" destination="AHM-Gh-ZPd" id="aKG-nE-IHV"/>
                         <outlet property="TmarkAverage" destination="crc-JU-i4M" id="8S5-Ch-Fij"/>
                         <outlet property="addAssignment" destination="yKE-FW-LrY" id="lqT-4P-Izu"/>
+                        <outlet property="addAssignmentAddButton" destination="Yas-ZC-68j" id="LMr-PX-s63"/>
                         <outlet property="addAssignmentBoxTitleAlignTop" destination="FpG-2K-M4m" id="DDP-Ga-Ngl"/>
+                        <outlet property="addAssignmentCancelButton" destination="XtF-aW-OeH" id="o2T-eW-6bB"/>
                         <outlet property="addAssignmentMarkLabel" destination="ZAi-ci-0iX" id="iOy-bR-SKJ"/>
                         <outlet property="addAssignmentPlusButton" destination="wzy-3m-0RF" id="wng-aa-NEn"/>
                         <outlet property="addAssignmentSimpleMark" destination="oGJ-PH-wpL" id="ADj-57-ST5"/>

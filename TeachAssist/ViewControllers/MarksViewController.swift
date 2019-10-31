@@ -15,6 +15,7 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
     var refreshControl:UIRefreshControl? = nil
     var hasViewBeenLayedOut = false
     var numOfremovedViews = 0
+    var addAssignmentIsExpanded = false
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var StackView: UIStackView!
@@ -57,6 +58,8 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var addAssignmentSimpleWeight: UITextField!
     @IBOutlet weak var addAssignmentMarkLabel: UILabel!
     @IBOutlet weak var addAssignmentWeightLabel: UILabel!
+    @IBOutlet weak var addAssignmentCancelButton: UIButton!
+    @IBOutlet weak var addAssignmentAddButton: UIButton!
     
     
     
@@ -83,6 +86,10 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
         addAssignmentTitle.delegate = self
         addAssignmentSimpleMark.addDoneCancelToolbar()
         addAssignmentSimpleWeight.addDoneCancelToolbar()
+        addAssignmentCancelButton.addTarget(self, action: #selector(OnAddAssignmentCancelButtonPress), for: .touchUpInside)
+        addAssignmentAddButton.addTarget(self, action: #selector(OnAddAssignmentAddButtonPress), for: .touchUpInside)
+        addAssignmentCancelButton.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner], radius: 5)
+        addAssignmentAddButton.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner], radius: 5)
         
         if vcTitle != nil{
             self.title = vcTitle!
@@ -152,11 +159,6 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
             
         }
         AverageBar.startProgress(to: CGFloat(Mark!), duration: 1.8)
-        var assignmentNumber = 0
-        for assignment in StackView.arrangedSubviews{
-            removedAssignments[assignment] = assignmentNumber
-            assignmentNumber += 1
-        }
         
         if refreshControl!.isRefreshing{
             refreshControl!.endRefreshing()
@@ -208,7 +210,6 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
         
     }
     @objc func OnAddAssignmentButtonPress(gesture: UIGestureRecognizer) {
-        print("Pressed Add Assignment Button")
         UIView.animate(withDuration: 0.1, animations: {
             self.AddAssignmentHeight.constant = 300
             self.addAssignmentBoxTitleAlignTop.isActive = true
@@ -218,13 +219,37 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
             self.addAssignmentSimpleWeight.isHidden = false
             self.addAssignmentMarkLabel.isHidden = false
             self.addAssignmentWeightLabel.isHidden = false
+            self.addAssignmentCancelButton.isHidden = false
+            self.addAssignmentAddButton.isHidden = false
         })
+        addAssignmentIsExpanded = true
+    }
+    @objc func OnAddAssignmentAddButtonPress(sender: UIButton) {
         let title = addAssignmentTitle.text
-        let mark = Double(addAssignmentSimpleMark.text!)
-        let weight = Double(addAssignmentSimpleWeight.text!)
-        if(title == nil || mark == nil || weight == nil){
-            //raise some error
-        }else{
+        var mark = Double(addAssignmentSimpleMark.text!)
+        var weight = Double(addAssignmentSimpleWeight.text!)
+        if(title == nil){
+            let alert = UIAlertController(title: "Error Adding Assignment", message: "Please enter a title for this assignment", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default))
+            self.present(alert, animated: true)
+        }
+        else if(mark == nil || weight == nil){
+            let alert = UIAlertController(title: "Error Adding Assignment", message: "Please enter a number for mark and weight. Avoid using any letters or percent symbols.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default))
+            self.present(alert, animated: true)
+        }else if(mark! < 0 || weight! < 0){
+            let alert = UIAlertController(title: "Error Adding Assignment", message: "Please enter a number for mark and weight that is greater than or equal to zero", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default))
+            self.present(alert, animated: true)
+        }else if(mark! > 1000){
+            let alert = UIAlertController(title: "lol yeah right", message: "no way you got a mark higher than 1000%", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default))
+            self.present(alert, animated: true)
+        }
+        
+        else{
+            mark = round(mark! * 10)/10
+            weight = round(weight! * 10)/10
             var dict = [String : [String : String]]()
             dict["K"] = ["category" : "K",
                          "mark" : String(mark!),
@@ -253,9 +278,44 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
             dict2["C"] = dict["C"]
             dict2["A"] = dict["A"]
             response![String(response!.count-1)] = dict2
+            UpdateMarkBars()
+            AverageBar.value = CGFloat((ta?.CalculateCourseAverage(markParam: response!))!)
+            UIView.animate(withDuration: 0.1, animations: {
+                self.AddAssignmentHeight.constant = 80
+                self.addAssignmentBoxTitleAlignTop.isActive = false
+                self.addAssignmentPlusButton.isHidden = false
+                self.addAssignmentTitle.isHidden = true
+                self.addAssignmentSimpleMark.isHidden = true
+                self.addAssignmentSimpleWeight.isHidden = true
+                self.addAssignmentMarkLabel.isHidden = true
+                self.addAssignmentWeightLabel.isHidden = true
+                self.addAssignmentCancelButton.isHidden = true
+                self.addAssignmentAddButton.isHidden = true
+            })
+            addAssignmentIsExpanded = false
+            self.addAssignmentTitle.text = nil
+            self.addAssignmentSimpleMark.text = nil
+            self.addAssignmentSimpleWeight.text = nil
         }
         
-        
+    }
+    @objc func OnAddAssignmentCancelButtonPress(sender: UIButton) {
+        UIView.animate(withDuration: 0.1, animations: {
+            self.AddAssignmentHeight.constant = 80
+            self.addAssignmentBoxTitleAlignTop.isActive = false
+            self.addAssignmentPlusButton.isHidden = false
+            self.addAssignmentTitle.isHidden = true
+            self.addAssignmentSimpleMark.isHidden = true
+            self.addAssignmentSimpleWeight.isHidden = true
+            self.addAssignmentMarkLabel.isHidden = true
+            self.addAssignmentWeightLabel.isHidden = true
+            self.addAssignmentCancelButton.isHidden = true
+            self.addAssignmentAddButton.isHidden = true
+            self.addAssignmentTitle.text = nil
+            self.addAssignmentSimpleMark.text = nil
+            self.addAssignmentSimpleWeight.text = nil
+        })
+        addAssignmentIsExpanded = false
     }
     
     
@@ -528,6 +588,12 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
         assignmentList.append(assignmentView)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(OnAssignmentSelected))
         assignmentView.addGestureRecognizer(tapGesture)
+        
+        var assignmentNumber = 0
+        for assignment in StackView.arrangedSubviews{
+            removedAssignments[assignment] = assignmentNumber
+            assignmentNumber += 1
+        }
         
     }
     
