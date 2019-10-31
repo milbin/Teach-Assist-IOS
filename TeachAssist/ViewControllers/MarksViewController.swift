@@ -57,10 +57,28 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var addAssignmentSimpleMark: UITextField!
     @IBOutlet weak var addAssignmentSimpleWeight: UITextField!
     @IBOutlet weak var addAssignmentMarkLabel: UILabel!
-    @IBOutlet weak var addAssignmentWeightLabel: UILabel!
     @IBOutlet weak var addAssignmentCancelButton: UIButton!
     @IBOutlet weak var addAssignmentAddButton: UIButton!
     
+    @IBOutlet weak var addAssignmentDividerLine: UIView!
+    @IBOutlet weak var addAssignmentAdvancedButton: UIButton!
+    @IBOutlet weak var addAssignmentAdvancedButtonLabel: UIButton!
+    @IBOutlet weak var addAssignmentKLabel: UILabel!
+    @IBOutlet weak var addAssignmentTLabel: UILabel!
+    @IBOutlet weak var addAssignmentCLabel: UILabel!
+    @IBOutlet weak var addAssignmentALabel: UILabel!
+    @IBOutlet weak var addAssignmentOLabel: UILabel!
+    
+    @IBOutlet weak var addAssignmentKMark: UITextField!
+    @IBOutlet weak var addAssignmentKWeight: UITextField!
+    @IBOutlet weak var addAssignmentTMark: UITextField!
+    @IBOutlet weak var addAssignmentTWeight: UITextField!
+    @IBOutlet weak var addAssignmentCMark: UITextField!
+    @IBOutlet weak var addAssignmentCWeight: UITextField!
+    @IBOutlet weak var addAssignmentAMark: UITextField!
+    @IBOutlet weak var addAssignmentAWeight: UITextField!
+    @IBOutlet weak var addAssignmentOMark: UITextField!
+    @IBOutlet weak var addAssignmentOWeight: UITextField!
     
     
     override func viewDidLoad() {
@@ -83,6 +101,16 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
         addAssignmentTitle.attributedPlaceholder = NSAttributedString(string:"Assignment Title", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red:61/255, green: 61/255, blue: 71/255, alpha: 1.0)]) //to make the colour of the placeholder gray
         addAssignmentSimpleMark.attributedPlaceholder = NSAttributedString(string:"Mark", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red:61/255, green: 61/255, blue: 71/255, alpha: 1.0)])
         addAssignmentSimpleWeight.attributedPlaceholder = NSAttributedString(string:"Weight", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red:61/255, green: 61/255, blue: 71/255, alpha: 1.0)])
+        addAssignmentKMark.attributedPlaceholder = NSAttributedString(string:"Mark", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red:61/255, green: 61/255, blue: 71/255, alpha: 1.0)])
+        addAssignmentKWeight.attributedPlaceholder = NSAttributedString(string:"Weight", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red:61/255, green: 61/255, blue: 71/255, alpha: 1.0)])
+        addAssignmentTMark.attributedPlaceholder = NSAttributedString(string:"Mark", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red:61/255, green: 61/255, blue: 71/255, alpha: 1.0)])
+        addAssignmentTWeight.attributedPlaceholder = NSAttributedString(string:"Weight", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red:61/255, green: 61/255, blue: 71/255, alpha: 1.0)])
+        addAssignmentCMark.attributedPlaceholder = NSAttributedString(string:"Mark", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red:61/255, green: 61/255, blue: 71/255, alpha: 1.0)])
+        addAssignmentCWeight.attributedPlaceholder = NSAttributedString(string:"Weight", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red:61/255, green: 61/255, blue: 71/255, alpha: 1.0)])
+        addAssignmentAMark.attributedPlaceholder = NSAttributedString(string:"Mark", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red:61/255, green: 61/255, blue: 71/255, alpha: 1.0)])
+        addAssignmentAWeight.attributedPlaceholder = NSAttributedString(string:"Weight", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red:61/255, green: 61/255, blue: 71/255, alpha: 1.0)])
+        addAssignmentOMark.attributedPlaceholder = NSAttributedString(string:"Mark", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red:61/255, green: 61/255, blue: 71/255, alpha: 1.0)])
+        addAssignmentOWeight.attributedPlaceholder = NSAttributedString(string:"Weight", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red:61/255, green: 61/255, blue: 71/255, alpha: 1.0)])
         addAssignmentTitle.delegate = self
         addAssignmentSimpleMark.addDoneCancelToolbar()
         addAssignmentSimpleWeight.addDoneCancelToolbar()
@@ -90,6 +118,8 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
         addAssignmentAddButton.addTarget(self, action: #selector(OnAddAssignmentAddButtonPress), for: .touchUpInside)
         addAssignmentCancelButton.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner], radius: 5)
         addAssignmentAddButton.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner], radius: 5)
+        addAssignmentAdvancedButton.addTarget(self, action: #selector(OnAddAssignmentAdvancedButtonPress), for: .touchUpInside)
+        addAssignmentAdvancedButtonLabel.addTarget(self, action: #selector(OnAddAssignmentAdvancedButtonPress), for: .touchUpInside)
         
         if vcTitle != nil{
             self.title = vcTitle!
@@ -221,6 +251,9 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
             self.addAssignmentMarkLabel.isHidden = false
             self.addAssignmentCancelButton.isHidden = false
             self.addAssignmentAddButton.isHidden = false
+            self.addAssignmentAdvancedButton.isHidden = false
+            self.addAssignmentAdvancedButtonLabel.isHidden = false
+            self.addAssignmentDividerLine.isHidden = false
         })
         addAssignmentIsExpanded = true
     }
@@ -290,6 +323,9 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
                 self.addAssignmentMarkLabel.isHidden = true
                 self.addAssignmentCancelButton.isHidden = true
                 self.addAssignmentAddButton.isHidden = true
+                self.addAssignmentAdvancedButton.isHidden = true
+                self.addAssignmentAdvancedButtonLabel.isHidden = true
+                self.addAssignmentDividerLine.isHidden = true
             })
             addAssignmentIsExpanded = false
             self.addAssignmentTitle.text = nil
@@ -309,11 +345,60 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
             self.addAssignmentMarkLabel.isHidden = true
             self.addAssignmentCancelButton.isHidden = true
             self.addAssignmentAddButton.isHidden = true
-            self.addAssignmentTitle.text = nil
-            self.addAssignmentSimpleMark.text = nil
-            self.addAssignmentSimpleWeight.text = nil
+            self.addAssignmentAdvancedButton.isHidden = true
+            self.addAssignmentAdvancedButtonLabel.isHidden = true
+            self.addAssignmentDividerLine.isHidden = true
+            
         })
         addAssignmentIsExpanded = false
+        self.addAssignmentTitle.text = nil
+        self.addAssignmentSimpleMark.text = nil
+        self.addAssignmentSimpleWeight.text = nil
+    }
+    @objc func OnAddAssignmentAdvancedButtonPress(sender: UIButton) {
+        if(self.addAssignmentAdvancedButton.isSelected){
+            self.addAssignmentAdvancedButton.isSelected = false
+            self.addAssignmentSimpleMark.isEnabled = true
+            self.addAssignmentSimpleWeight.isEnabled = true
+            UIView.animate(withDuration: 0.5, animations: {
+                self.addAssignmentKMark.isHidden = true
+                self.addAssignmentTMark.isHidden = true
+                self.addAssignmentCMark.isHidden = true
+                self.addAssignmentAMark.isHidden = true
+                self.addAssignmentOMark.isHidden = true
+                self.addAssignmentOWeight.isHidden = true
+                self.addAssignmentKWeight.isHidden = true
+                self.addAssignmentTWeight.isHidden = true
+                self.addAssignmentCWeight.isHidden = true
+                self.addAssignmentAWeight.isHidden = true
+                self.addAssignmentKLabel.isHidden = true
+                self.addAssignmentTLabel.isHidden = true
+                self.addAssignmentCLabel.isHidden = true
+                self.addAssignmentALabel.isHidden = true
+                self.addAssignmentOLabel.isHidden = true
+            })
+        }else{
+            self.addAssignmentAdvancedButton.isSelected = true
+            self.addAssignmentSimpleMark.isEnabled = false
+            self.addAssignmentSimpleWeight.isEnabled = false
+            UIView.animate(withDuration: 0.5, animations: {
+                self.addAssignmentKMark.isHidden = false
+                self.addAssignmentTMark.isHidden = false
+                self.addAssignmentCMark.isHidden = false
+                self.addAssignmentAMark.isHidden = false
+                self.addAssignmentOMark.isHidden = false
+                self.addAssignmentOWeight.isHidden = false
+                self.addAssignmentKWeight.isHidden = false
+                self.addAssignmentTWeight.isHidden = false
+                self.addAssignmentCWeight.isHidden = false
+                self.addAssignmentAWeight.isHidden = false
+                self.addAssignmentKLabel.isHidden = false
+                self.addAssignmentTLabel.isHidden = false
+                self.addAssignmentCLabel.isHidden = false
+                self.addAssignmentALabel.isHidden = false
+                self.addAssignmentOLabel.isHidden = false
+            })
+        }
     }
     
     
