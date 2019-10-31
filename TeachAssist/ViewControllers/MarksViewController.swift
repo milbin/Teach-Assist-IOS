@@ -212,7 +212,7 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
     }
     @objc func OnAddAssignmentButtonPress(gesture: UIGestureRecognizer) {
         UIView.animate(withDuration: 0.1, animations: {
-            self.AddAssignmentHeight.constant = 325
+            self.AddAssignmentHeight.constant = 450 //should be 139 when inactive, 325 when not in advanced, 450 when in advanced
             self.addAssignmentBoxTitleAlignTop.isActive = true
             self.addAssignmentPlusButton.isHidden = true
             self.addAssignmentTitle.isHidden = false
