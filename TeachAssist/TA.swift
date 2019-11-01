@@ -811,7 +811,7 @@ class TA{
         
         for category in categoryList{
             if assignment[category] != nil{
-                if assignment[category]!["mark"] != nil && assignment[category]!["mark"]! == "no mark" || assignment[category]!["mark"] == ""{
+                if assignment[category]!["mark"] != nil && assignment[category]!["mark"]! == "no mark" || assignment[category]!["mark"] == "" || assignment[category]!["mark"] == "0.93741"{ //from add assignment
                     weightList[category] = 0.0
                 }
                 if assignment[category]!["outOf"] != nil && assignment[category]!["outOf"]! != "0" && assignment[category]!["outOf"]! != "0.0" {

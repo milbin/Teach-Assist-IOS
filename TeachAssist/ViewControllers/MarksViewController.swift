@@ -70,14 +70,14 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var addAssignmentOLabel: UILabel!
     
     @IBOutlet weak var addAssignmentKMark: UITextField!
-    @IBOutlet weak var addAssignmentKWeight: UITextField!
     @IBOutlet weak var addAssignmentTMark: UITextField!
-    @IBOutlet weak var addAssignmentTWeight: UITextField!
     @IBOutlet weak var addAssignmentCMark: UITextField!
-    @IBOutlet weak var addAssignmentCWeight: UITextField!
     @IBOutlet weak var addAssignmentAMark: UITextField!
-    @IBOutlet weak var addAssignmentAWeight: UITextField!
     @IBOutlet weak var addAssignmentOMark: UITextField!
+    @IBOutlet weak var addAssignmentKWeight: UITextField!
+    @IBOutlet weak var addAssignmentTWeight: UITextField!
+    @IBOutlet weak var addAssignmentCWeight: UITextField!
+    @IBOutlet weak var addAssignmentAWeight: UITextField!
     @IBOutlet weak var addAssignmentOWeight: UITextField!
     
     
@@ -259,79 +259,146 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
     }
     @objc func OnAddAssignmentAddButtonPress(sender: UIButton) {
         let title = addAssignmentTitle.text
-        var mark = Double(addAssignmentSimpleMark.text!)
-        var weight = Double(addAssignmentSimpleWeight.text!)
-        if(title == nil){
+        if(title == nil || title == ""){
             let alert = UIAlertController(title: "Error Adding Assignment", message: "Please enter a title for this assignment", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .default))
             self.present(alert, animated: true)
+            return
         }
-        else if(mark == nil || weight == nil){
-            let alert = UIAlertController(title: "Error Adding Assignment", message: "Please enter a number for mark and weight. Avoid using any letters or percent symbols.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default))
-            self.present(alert, animated: true)
-        }else if(mark! < 0 || weight! < 0){
-            let alert = UIAlertController(title: "Error Adding Assignment", message: "Please enter a number for mark and weight that is greater than or equal to zero", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default))
-            self.present(alert, animated: true)
-        }else if(mark! > 150){
-            let alert = UIAlertController(title: "lol yeah right", message: "no way you got a mark higher than 150%", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default))
-            self.present(alert, animated: true)
+        var dict = [String : [String : String]]()
+        if(self.addAssignmentAdvancedButton.isSelected){ //advanced mode
+            let markK = Double(addAssignmentKMark.text!) ?? 0.93741
+            let markT = Double(addAssignmentTMark.text!) ?? 0.93741
+            let markC = Double(addAssignmentCMark.text!) ?? 0.93741
+            let markA = Double(addAssignmentAMark.text!) ?? 0.93741
+            let markO = Double(addAssignmentOMark.text!) ?? 0.93741
+            let weightK = Double(addAssignmentKWeight.text!) ?? 0.0
+            let weightT = Double(addAssignmentTWeight.text!) ?? 0.0
+            let weightC = Double(addAssignmentCWeight.text!) ?? 0.0
+            let weightA = Double(addAssignmentAWeight.text!) ?? 0.0
+            let weightO = Double(addAssignmentOWeight.text!) ?? 0.0
+            if(markK < 0 || markT < 0 || markC < 0 || markA < 0 || markO < 0 || weightK < 0 || weightT < 0 || weightC < 0 || weightA < 0 || weightO < 0){
+                let alert = UIAlertController(title: "Error Adding Assignment", message: "Please enter a number for mark and weight that is greater than or equal to zero", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default))
+                self.present(alert, animated: true)
+                return
+            }else if(markK == 0.93741 && markT == 0.93741 && markC == 0.93741 && markA == 0.93741 && markO == 0.93741){
+                let alert = UIAlertController(title: "Error Adding Assignment", message: "Please enter at least one mark. Avoid using letters or percent symbols.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default))
+                self.present(alert, animated: true)
+                return
+            }else if(markK > 150 || markT > 150 || markC > 150 || markA > 150 || markO > 150){
+                let alert = UIAlertController(title: "Error, Mark Too High", message: "Please enter a mark less than 150%", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default))
+                self.present(alert, animated: true)
+                return
+            }else{
+                dict["K"] = ["category" : "K",
+                             "mark" : String(markK),
+                             "outOf" : "100",
+                             "weight" : String(weightK)]
+                dict["T"] = ["category" : "T",
+                             "mark" : String(markT),
+                             "outOf" : "100",
+                             "weight" : String(weightT)]
+                dict["C"] = ["category" : "C",
+                             "mark" : String(markC),
+                             "outOf" : "100",
+                             "weight" : String(weightC)]
+                dict["A"] = ["category" : "A",
+                             "mark" : String(markA),
+                             "outOf" : "100",
+                             "weight" : String(weightA)]
+                dict[""] = ["category" : "",
+                            "mark" : String(markO),
+                            "outOf" : "100",
+                            "weight" : String(weightO)]
+            }
+        }else{ //simple mode
+            var mark = Double(addAssignmentSimpleMark.text!)
+            var weight = Double(addAssignmentSimpleWeight.text!)
+            if(mark == nil || weight == nil){
+                let alert = UIAlertController(title: "Error Adding Assignment", message: "Please enter a number for mark and weight. Avoid using any letters or percent symbols.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default))
+                self.present(alert, animated: true)
+                return
+            }else if(mark! < 0 || weight! < 0){
+                let alert = UIAlertController(title: "Error Adding Assignment", message: "Please enter a number for mark and weight that is greater than or equal to zero", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default))
+                self.present(alert, animated: true)
+                return
+            }else if(mark! > 150){
+                let alert = UIAlertController(title: "lol yeah right", message: "no way you got a mark higher than 150%", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default))
+                self.present(alert, animated: true)
+                return
+            }else{
+                mark = round(mark! * 10)/10
+                weight = round(weight! * 10)/10
+                dict["K"] = ["category" : "K",
+                             "mark" : String(mark!),
+                             "outOf" : "100",
+                             "weight" : String(weight!)]
+                dict["T"] = ["category" : "T",
+                             "mark" : String(mark!),
+                             "outOf" : "100",
+                             "weight" : String(weight!)]
+                dict["C"] = ["category" : "C",
+                             "mark" : String(mark!),
+                             "outOf" : "100",
+                             "weight" : String(weight!)]
+                dict["A"] = ["category" : "A",
+                             "mark" : String(mark!),
+                             "outOf" : "100",
+                             "weight" : String(weight!)]
+                
+            }
         }
+        addAssignmentToStackview(assignment: dict, feedback: "", title: title)
+        var dict2 = [String:Any]()
+        dict2["title"] = title!
+        dict2["feedback"] = ""
+        dict2["K"] = dict["K"]
+        dict2["T"] = dict["T"]
+        dict2["C"] = dict["C"]
+        dict2["A"] = dict["A"]
+        dict2[""] = dict[""]
+        response![String(response!.count-1)] = dict2
         
-        else{
-            mark = round(mark! * 10)/10
-            weight = round(weight! * 10)/10
-            var dict = [String : [String : String]]()
-            dict["K"] = ["category" : "K",
-                         "mark" : String(mark!),
-                         "outOf" : "100",
-                         "weight" : String(weight!)]
-            dict["T"] = ["category" : "T",
-                         "mark" : String(mark!),
-                         "outOf" : "100",
-                         "weight" : String(weight!)]
-            dict["C"] = ["category" : "C",
-                         "mark" : String(mark!),
-                         "outOf" : "100",
-                         "weight" : String(weight!)]
-            dict["A"] = ["category" : "A",
-                         "mark" : String(mark!),
-                         "outOf" : "100",
-                         "weight" : String(weight!)]
-            
-            print(response!)
-            addAssignmentToStackview(assignment: dict, feedback: "", title: title)
-            var dict2 = [String:Any]()
-            dict2["title"] = title!
-            dict2["feedback"] = ""
-            dict2["K"] = dict["K"]
-            dict2["T"] = dict["T"]
-            dict2["C"] = dict["C"]
-            dict2["A"] = dict["A"]
-            response![String(response!.count-1)] = dict2
-            UpdateMarkBars()
-            AverageBar.value = CGFloat((ta?.CalculateCourseAverage(markParam: response!))!)
-            UIView.animate(withDuration: 0.1, animations: {
-                self.AddAssignmentHeight.constant = 129
-                self.addAssignmentBoxTitleAlignTop.isActive = false
-                self.addAssignmentPlusButton.isHidden = false
-                self.addAssignmentTitle.isHidden = true
-                self.addAssignmentSimpleMark.isHidden = true
-                self.addAssignmentSimpleWeight.isHidden = true
-                self.addAssignmentMarkLabel.isHidden = true
-                self.addAssignmentCancelButton.isHidden = true
-                self.addAssignmentAddButton.isHidden = true
-                self.addAssignmentAdvancedButton.isHidden = true
-                self.addAssignmentAdvancedButtonLabel.isHidden = true
-                self.addAssignmentDividerLine.isHidden = true
-            })
-            addAssignmentIsExpanded = false
-            self.addAssignmentTitle.text = nil
-            self.addAssignmentSimpleMark.text = nil
-            self.addAssignmentSimpleWeight.text = nil
-        }
+        UpdateMarkBars()
+        AverageBar.value = CGFloat((ta?.CalculateCourseAverage(markParam: response!))!)
+        UIView.animate(withDuration: 0.1, animations: {
+            self.AddAssignmentHeight.constant = 129
+            self.addAssignmentBoxTitleAlignTop.isActive = false
+            self.addAssignmentPlusButton.isHidden = false
+            self.addAssignmentTitle.isHidden = true
+            self.addAssignmentSimpleMark.isHidden = true
+            self.addAssignmentSimpleWeight.isHidden = true
+            self.addAssignmentMarkLabel.isHidden = true
+            self.addAssignmentCancelButton.isHidden = true
+            self.addAssignmentAddButton.isHidden = true
+            self.addAssignmentAdvancedButton.isHidden = true
+            self.addAssignmentAdvancedButtonLabel.isHidden = true
+            self.addAssignmentDividerLine.isHidden = true
+        })
+        addAssignmentIsExpanded = false
+        self.addAssignmentTitle.text = nil
+        self.addAssignmentSimpleMark.text = nil
+        self.addAssignmentSimpleWeight.text = nil
+        self.addAssignmentKMark.text = nil
+        self.addAssignmentTMark.text = nil
+        self.addAssignmentCMark.text = nil
+        self.addAssignmentAMark.text = nil
+        self.addAssignmentOMark.text = nil
+        self.addAssignmentKWeight.text = nil
+        self.addAssignmentTWeight.text = nil
+        self.addAssignmentCWeight.text = nil
+        self.addAssignmentAWeight.text = nil
+        self.addAssignmentOWeight.text = nil
+        self.addAssignmentAdvancedButton.isSelected = true
+        OnAddAssignmentAdvancedButtonPress(sender: addAssignmentAdvancedButton)
+    
+        
         
     }
     @objc func OnAddAssignmentCancelButtonPress(sender: UIButton) {
@@ -354,6 +421,8 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
         self.addAssignmentTitle.text = nil
         self.addAssignmentSimpleMark.text = nil
         self.addAssignmentSimpleWeight.text = nil
+        self.addAssignmentAdvancedButton.isSelected = true
+        OnAddAssignmentAdvancedButtonPress(sender: addAssignmentAdvancedButton)
     }
     @objc func OnAddAssignmentAdvancedButtonPress(sender: UIButton) {
         if(self.addAssignmentAdvancedButton.isSelected){
@@ -551,16 +620,16 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
                     weightList[category] = Double(assignment[category]!["weight"]!)
                 }
                 if assignment[category]!["outOf"] != nil && assignment[category]!["outOf"] != "0" && assignment[category]!["outOf"] != "0.0"{
-                    if assignment[category]!["mark"] != nil{
+                    if assignment[category]!["mark"] != nil && assignment[category]!["mark"] != "0.93741"{
                         markList[category] = round(10 * (Double(assignment[category]!["mark"]!)! / Double(assignment[category]!["outOf"]!)! * 100)) / 10
                     }
                 }
-                if (assignment[category]!["mark"] != nil && assignment[category]!["mark"]! == "") || assignment[category]!["mark"] == nil{
+                if (assignment[category]!["mark"] != nil && assignment[category]!["mark"]! == "") || assignment[category]!["mark"] == nil || assignment[category]!["mark"] == "0.93741"{
                     stringFractionList[category] = "0/"
                 }else{
                     stringFractionList[category] = assignment[category]!["mark"]! + "/"
                 }
-                if (assignment[category]!["outOf"] != nil && assignment[category]!["outOf"]! == "") || assignment[category]!["outOf"] == nil{
+                if (assignment[category]!["outOf"] != nil && assignment[category]!["outOf"]! == "") || assignment[category]!["outOf"] == nil || assignment[category]!["outOf"] == "0.93741"{
                     stringFractionList[category] = stringFractionList[category]! + "0"
                 }else{
                     stringFractionList[category] = stringFractionList[category]! + assignment[category]!["outOf"]!
