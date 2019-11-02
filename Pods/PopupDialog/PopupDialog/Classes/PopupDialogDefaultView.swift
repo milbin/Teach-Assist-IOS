@@ -94,7 +94,7 @@ final public class PopupDialogDefaultView: UIView {
         let messageLabel = UILabel(frame: .zero)
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
         messageLabel.numberOfLines = 0
-        messageLabel.textAlignment = .center
+        messageLabel.textAlignment = .left
         messageLabel.textColor = UIColor(white: 0.6, alpha: 1)
         messageLabel.font = .systemFont(ofSize: 14)
         return messageLabel

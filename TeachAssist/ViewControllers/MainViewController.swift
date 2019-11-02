@@ -53,8 +53,15 @@ class MainViewController: UIViewController {
         let firstLaunch = Preferences.string(forKey: "firstLaunch")
         if(firstLaunch == nil || true){
             Preferences.set("true", forKey: "firstLaunch")
-            let title = "Teachassist app Version 2.1"
-            let message = "This is the message section of the popup dialog default view, This is the message section of the popup dialog default view, This is the message section of the popup dialog default view, This is the message section of the popup dialog default view, This is the message section of the popup dialog default view, This is the message section of the popup dialog default view, This is the message section of the popup dialog default view, This is the message section of the popup dialog default view, "
+            let title = "🎉 Announcing 2 New Features! 🎉"
+            let message = """
+            We've received a lot of positive feedback from this past Monday's redesign update, and we'd like to announce the addition of another 2 features:
+
+            LIGHT MODE
+            A MARKS CALCULATOR
+
+            The light mode option can be found in settings, while the marks calculator can be found at the bottom of each course page. We hope you enjoy!
+            """
             let image = UIImage(named: "ta_logo_v3")
             let popup = PopupDialog(title: title, message: message, image: image)
             let buttonOne = PopupDialogButton(title: "Ok", dismissOnTap: true) {
