@@ -22,7 +22,13 @@ class MainViewController: UIViewController {
     var refreshControl:UIRefreshControl? = nil
     let ta = TA()
     var numberOfRemovedCourses = 0
-
+    var lightThemeEnabled = false
+    var darkThemeBlackDark = UIColor(red: 39/255, green: 39/255, blue: 47/255, alpha: 1)
+    var darkThemeBlack = UIColor(red:51/255, green:51/255, blue: 61/255, alpha:1)
+    var darkThemeWhite = UIColor(red:255/255, green:255/255, blue: 255/255, alpha:1)
+    var darkThemeGreen = UIColor(red: 4/255, green: 93/255, blue: 86/255, alpha: 1)
+    var darkThemePink = UIColor(red: 255/255, green: 65/255, blue: 128/255, alpha: 1)
+    
     @IBOutlet weak var noCoursesTV: UITextView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var StackView: UIStackView!
@@ -31,15 +37,35 @@ class MainViewController: UIViewController {
     @IBOutlet weak var EditButton: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
+        //check for light theme
+        let Preferences = UserDefaults.standard
+        let currentPreferenceExists = Preferences.object(forKey: "LightThemeEnabled")
+        if currentPreferenceExists != nil{ //preference does exist
+            lightThemeEnabled = Preferences.bool(forKey: "LightThemeEnabled")
+            if(lightThemeEnabled){
+                //set colours
+                darkThemeBlackDark = UIColor(red: 55/255, green: 55/255, blue: 64/255, alpha: 1.0)
+                darkThemeBlack = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
+                darkThemeWhite = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0)
+                darkThemeGreen = UIColor(red: 55/255, green: 239/255, blue: 186/255, alpha: 1.0)
+                darkThemePink = UIColor(red: 114/255, green: 159/255, blue: 255/255, alpha: 1.0)
+                
+                self.navigationController?.navigationBar.barTintColor = darkThemeBlack
+                let textAttributes = [NSAttributedString.Key.foregroundColor:darkThemeWhite]
+                navigationController?.navigationBar.titleTextAttributes = textAttributes
+                self.AverageBar.outerRingColor = darkThemeBlackDark
+                self.AverageBar.innerRingColor = darkThemePink
+            }
+        }
         AverageBar.font = UIFont.boldSystemFont(ofSize: 25.0)
         AverageBar.valueFormatter = UICircularProgressRingFormatter(showFloatingPoint:true, decimalPlaces:1)
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(OnEditButtonPress))//add edit button as the onClick method
         navigationItem.rightBarButtonItem?.setTitleTextAttributes([
             NSAttributedString.Key.font: UIFont(name: "Gilroy-Regular", size: 17)!,
-            NSAttributedString.Key.foregroundColor: UIColor.white],
-        for: .normal)
+            NSAttributedString.Key.foregroundColor: darkThemeWhite],
+                                                                  for: .normal)
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "HamburgerIcon"), style: .plain, target: self, action: #selector(OnNavButtonPress))//add nav button as the onClick method
-        navigationItem.leftBarButtonItem?.tintColor = UIColor.white
+        navigationItem.leftBarButtonItem?.tintColor = darkThemeWhite
         
         //setup refresh controller to allow main view to be refreshed
         refreshControl = UIRefreshControl()
@@ -49,7 +75,6 @@ class MainViewController: UIViewController {
         scrollView.refreshControl = refreshControl
         
         //ask for ratings
-        let Preferences = UserDefaults.standard
         let firstLaunch = Preferences.string(forKey: "firstLaunch")
         if(firstLaunch == nil || true){
             Preferences.set("true", forKey: "firstLaunch")
@@ -85,10 +110,10 @@ class MainViewController: UIViewController {
         }
         
         AverageBar.font = UIFont(name: "Gilroy-Bold", size: 30)!
-        AverageBar.fontColor = UIColor.white
-        scrollView.backgroundColor = UIColor(red:51/255, green:51/255, blue: 61/255, alpha:1)
-        StackView.addBackground(color: UIColor(red:51/255, green:51/255, blue: 61/255, alpha:1))
-
+        AverageBar.fontColor = darkThemeWhite
+        scrollView.backgroundColor = darkThemeBlack
+        StackView.addBackground(color: darkThemeBlack)
+        
         hasViewStarted = true
         //get ta data
         let Preferences = UserDefaults.standard
@@ -165,6 +190,19 @@ class MainViewController: UIViewController {
                     courseView.CourseName.text = (course["Course_Name"] as! String)
                 }
             }
+            if(lightThemeEnabled){
+                courseView.CourseName.textColor = darkThemeWhite
+                courseView.CourseCode.textColor = darkThemeWhite
+                courseView.PeriodNumber.textColor = darkThemeWhite
+                courseView.RoomNumber.textColor = darkThemeWhite
+                courseView.NATextView.textColor = darkThemeWhite
+                courseView.contentView.backgroundColor = darkThemeBlack
+                courseView.ProgressBar.innerRingColor = darkThemeGreen
+                courseView.ProgressBar.outerRingColor = darkThemeBlackDark
+                courseView.ProgressBar.fontColor = darkThemeWhite
+                courseView.ProgressBar.value = 90
+            }
+            
             StackView.addArrangedSubview(courseView as UIView)
             
             courseView.TrashButton.addTarget(self, action: #selector(OnTrashButtonPress), for: .touchUpInside)
@@ -182,21 +220,21 @@ class MainViewController: UIViewController {
         
         self.AverageBar.startProgress(to: 0.0, duration: 0.01, completion: {
             var average = CGFloat(self.ta.CalculateAverage(response: self.response!))
-                if average.description != "nan"{
-                    self.AverageBar.startProgress(to: average, duration: 1)
-                    self.noCoursesTV.isHidden = true
-                }else if self.response!.count > 0{
-                    self.noCoursesTV.isHidden = true
-                }else{
-                    self.noCoursesTV.isHidden = false
+            if average.description != "nan"{
+                self.AverageBar.startProgress(to: average, duration: 1)
+                self.noCoursesTV.isHidden = true
+            }else if self.response!.count > 0{
+                self.noCoursesTV.isHidden = true
+            }else{
+                self.noCoursesTV.isHidden = false
             }
-            })
-
+        })
+        
         
         UIView.animate(withDuration: 0.4, animations: {
             self.StackView.layoutIfNeeded()
         })
-            
+        
         
         
         
@@ -226,8 +264,8 @@ class MainViewController: UIViewController {
         backItem.title = "Back"
         backItem.setTitleTextAttributes([
             NSAttributedString.Key.font: UIFont(name: "Gilroy-Regular", size: 17)!,
-            NSAttributedString.Key.foregroundColor: UIColor.white],
-        for: .normal)
+            NSAttributedString.Key.foregroundColor: darkThemeWhite],
+                                        for: .normal)
         navigationItem.backBarButtonItem = backItem
         // This will show in the next view controller being pushed
     }
@@ -246,7 +284,7 @@ class MainViewController: UIViewController {
             for course in courseList{
                 course.TrashButton.isHidden = false
             }
-        }       
+        }
         
     }
     
@@ -279,7 +317,7 @@ class MainViewController: UIViewController {
         
         
         
-        }
+    }
     
     @objc func OnRefresh() {
         print("refreshed")
