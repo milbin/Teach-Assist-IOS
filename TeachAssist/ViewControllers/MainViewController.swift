@@ -23,11 +23,11 @@ class MainViewController: UIViewController {
     let ta = TA()
     var numberOfRemovedCourses = 0
     var lightThemeEnabled = false
-    var darkThemeBlackDark = UIColor(red: 39/255, green: 39/255, blue: 47/255, alpha: 1)
-    var darkThemeBlack = UIColor(red:51/255, green:51/255, blue: 61/255, alpha:1)
-    var darkThemeWhite = UIColor(red:255/255, green:255/255, blue: 255/255, alpha:1)
-    var darkThemeGreen = UIColor(red: 4/255, green: 93/255, blue: 86/255, alpha: 1)
-    var darkThemePink = UIColor(red: 255/255, green: 65/255, blue: 128/255, alpha: 1)
+    var lightThemeLightBlack = UIColor(red: 39/255, green: 39/255, blue: 47/255, alpha: 1)
+    var lightThemeWhite = UIColor(red:51/255, green:51/255, blue: 61/255, alpha:1)
+    var lightThemeBlack = UIColor(red:255/255, green:255/255, blue: 255/255, alpha:1)
+    var lightThemeGreen = UIColor(red: 4/255, green: 93/255, blue: 86/255, alpha: 1)
+    var lightThemeBlue = UIColor(red: 255/255, green: 65/255, blue: 128/255, alpha: 1)
     
     @IBOutlet weak var noCoursesTV: UITextView!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -44,17 +44,17 @@ class MainViewController: UIViewController {
             lightThemeEnabled = Preferences.bool(forKey: "LightThemeEnabled")
             if(lightThemeEnabled){
                 //set colours
-                darkThemeBlackDark = UIColor(red: 55/255, green: 55/255, blue: 64/255, alpha: 1.0)
-                darkThemeBlack = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
-                darkThemeWhite = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0)
-                darkThemeGreen = UIColor(red: 55/255, green: 239/255, blue: 186/255, alpha: 1.0)
-                darkThemePink = UIColor(red: 114/255, green: 159/255, blue: 255/255, alpha: 1.0)
+                lightThemeLightBlack = UIColor(red: 55/255, green: 55/255, blue: 64/255, alpha: 1.0)
+                lightThemeWhite = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
+                lightThemeBlack = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0)
+                lightThemeGreen = UIColor(red: 55/255, green: 239/255, blue: 186/255, alpha: 1.0)
+                lightThemeBlue = UIColor(red: 114/255, green: 159/255, blue: 255/255, alpha: 1.0)
                 
-                self.navigationController?.navigationBar.barTintColor = darkThemeBlack
-                let textAttributes = [NSAttributedString.Key.foregroundColor:darkThemeWhite]
+                self.navigationController?.navigationBar.barTintColor = UIColor.white
+                let textAttributes = [NSAttributedString.Key.foregroundColor:lightThemeBlack]
                 navigationController?.navigationBar.titleTextAttributes = textAttributes
-                self.AverageBar.outerRingColor = darkThemeBlackDark
-                self.AverageBar.innerRingColor = darkThemePink
+                self.AverageBar.outerRingColor = lightThemeLightBlack
+                self.AverageBar.innerRingColor = lightThemeBlue
             }
         }
         AverageBar.font = UIFont.boldSystemFont(ofSize: 25.0)
@@ -62,10 +62,10 @@ class MainViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(OnEditButtonPress))//add edit button as the onClick method
         navigationItem.rightBarButtonItem?.setTitleTextAttributes([
             NSAttributedString.Key.font: UIFont(name: "Gilroy-Regular", size: 17)!,
-            NSAttributedString.Key.foregroundColor: darkThemeWhite],
+            NSAttributedString.Key.foregroundColor: lightThemeBlack],
                                                                   for: .normal)
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "HamburgerIcon"), style: .plain, target: self, action: #selector(OnNavButtonPress))//add nav button as the onClick method
-        navigationItem.leftBarButtonItem?.tintColor = darkThemeWhite
+        navigationItem.leftBarButtonItem?.tintColor = lightThemeBlack
         
         //setup refresh controller to allow main view to be refreshed
         refreshControl = UIRefreshControl()
@@ -110,9 +110,9 @@ class MainViewController: UIViewController {
         }
         
         AverageBar.font = UIFont(name: "Gilroy-Bold", size: 30)!
-        AverageBar.fontColor = darkThemeWhite
-        scrollView.backgroundColor = darkThemeBlack
-        StackView.addBackground(color: darkThemeBlack)
+        AverageBar.fontColor = lightThemeBlack
+        scrollView.backgroundColor = lightThemeWhite
+        StackView.addBackground(color: lightThemeWhite)
         
         hasViewStarted = true
         //get ta data
@@ -191,15 +191,15 @@ class MainViewController: UIViewController {
                 }
             }
             if(lightThemeEnabled){
-                courseView.CourseName.textColor = darkThemeWhite
-                courseView.CourseCode.textColor = darkThemeWhite
-                courseView.PeriodNumber.textColor = darkThemeWhite
-                courseView.RoomNumber.textColor = darkThemeWhite
-                courseView.NATextView.textColor = darkThemeWhite
-                courseView.contentView.backgroundColor = darkThemeBlack
-                courseView.ProgressBar.innerRingColor = darkThemeGreen
-                courseView.ProgressBar.outerRingColor = darkThemeBlackDark
-                courseView.ProgressBar.fontColor = darkThemeWhite
+                courseView.CourseName.textColor = lightThemeBlack
+                courseView.CourseCode.textColor = lightThemeBlack
+                courseView.PeriodNumber.textColor = lightThemeBlack
+                courseView.RoomNumber.textColor = lightThemeBlack
+                courseView.NATextView.textColor = lightThemeBlack
+                courseView.contentView.backgroundColor = lightThemeWhite
+                courseView.ProgressBar.innerRingColor = lightThemeGreen
+                courseView.ProgressBar.outerRingColor = lightThemeLightBlack
+                courseView.ProgressBar.fontColor = lightThemeBlack
                 courseView.ProgressBar.value = 90
             }
             
@@ -264,7 +264,7 @@ class MainViewController: UIViewController {
         backItem.title = "Back"
         backItem.setTitleTextAttributes([
             NSAttributedString.Key.font: UIFont(name: "Gilroy-Regular", size: 17)!,
-            NSAttributedString.Key.foregroundColor: darkThemeWhite],
+            NSAttributedString.Key.foregroundColor: lightThemeBlack],
                                         for: .normal)
         navigationItem.backBarButtonItem = backItem
         // This will show in the next view controller being pushed

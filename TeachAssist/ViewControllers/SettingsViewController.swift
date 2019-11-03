@@ -10,13 +10,38 @@ import UIKit
 
 class SettingsViewController: UITableViewController {
     var response:[NSMutableDictionary]?
+    var lightThemeEnabled = false
+    var lightThemeLightBlack = UIColor(red: 39/255, green: 39/255, blue: 47/255, alpha: 1)
+    var lightThemeWhite = UIColor(red:51/255, green:51/255, blue: 61/255, alpha:1)
+    var lightThemeBlack = UIColor(red:255/255, green:255/255, blue: 255/255, alpha:1)
+    var lightThemeBlue = UIColor(red: 4/255, green: 93/255, blue: 86/255, alpha: 1)
+    var lightThemePink = UIColor(red: 255/255, green: 65/255, blue: 128/255, alpha: 1)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        //check for light theme
+        let Preferences = UserDefaults.standard
+        let currentPreferenceExists = Preferences.object(forKey: "LightThemeEnabled")
+        if currentPreferenceExists != nil{ //preference does exist
+            lightThemeEnabled = Preferences.bool(forKey: "LightThemeEnabled")
+            if(lightThemeEnabled){
+                //set colours
+                lightThemeLightBlack = UIColor(red: 55/255, green: 55/255, blue: 64/255, alpha: 1.0)
+                lightThemeWhite = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
+                lightThemeBlack = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0)
+                lightThemeBlue = UIColor(red: 55/255, green: 239/255, blue: 186/255, alpha: 1.0)
+                lightThemePink = UIColor(red: 114/255, green: 159/255, blue: 255/255, alpha: 1.0)
+                
+                self.navigationController?.navigationBar.barTintColor = lightThemeWhite
+                navigationItem.backBarButtonItem?.tintColor = lightThemeBlack
+                navigationController!.navigationBar.barStyle = UIBarStyle.black
+                
+            }
+        }
+    }
     
     //number of cells in tableview
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if response == nil{
-            return 0
-        }
-        return response!.count
+        return 1
     }
     //number of headers
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -24,7 +49,7 @@ class SettingsViewController: UITableViewController {
     }
     //name of header
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?{
-        return "Notifications"
+        return "Theme"
     }
     //customize the header to make the background white and the text match the pinkish teachassist theme colour
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -46,15 +71,16 @@ class SettingsViewController: UITableViewController {
         let cell = Bundle.main.loadNibNamed("SettingsTableViewCell", owner: self, options: nil)?.first as! SettingsTableViewCell
         cell.initCheckbox()
         let Preferences = UserDefaults.standard
-        let currentPreferenceExists = Preferences.object(forKey: "Course" + String(indexPath.row))
+        let currentPreferenceExists = Preferences.object(forKey: "LightThemeEnabled")
         if currentPreferenceExists != nil{ //preference does exist
-            let currentPreferenceValue = Preferences.bool(forKey: "Course" + String(indexPath.row))
+            let currentPreferenceValue = Preferences.bool(forKey: "LightThemeEnabled")
             cell.setCheckBoxButton(value: currentPreferenceValue)
+        }else{
+            Preferences.set(false, forKey: "LightThemeEnabled")
         }
-        let dict = response![indexPath.row]
         
-        cell.Description.text = "Notification Toggle for: " + (dict["course"] as! String)
-        cell.Title.text = "Period " + String(indexPath.row + 1)
+        cell.Description.text = "Light theme enabled"
+        cell.Title.text = "Light Theme "
         cell.backgroundColor = UIColor(red:51/255, green: 51/255, blue: 61/255, alpha: 0.0)
         
         return cell
@@ -63,13 +89,10 @@ class SettingsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let Preferences = UserDefaults.standard
-        let currentPreferenceExists = Preferences.object(forKey: "Course" + String(indexPath.row))
+        let currentPreferenceExists = Preferences.object(forKey: "LightThemeEnabled")
         if currentPreferenceExists != nil{ //preference does exist
-            let currentPreferenceValue = Preferences.bool(forKey: "Course" + String(indexPath.row))
-            Preferences.set(!currentPreferenceValue, forKey: "Course" + String(indexPath.row))
-            print("Set " + "Course" + String(indexPath.row) + " as " + String(!currentPreferenceValue))
-        }else{
-            Preferences.set(true, forKey: "Course" + String(indexPath.row))
+            let currentPreferenceValue = Preferences.bool(forKey: "LightThemeEnabled")
+            Preferences.set(!currentPreferenceValue, forKey: "LightThemeEnabled")
         }
         Preferences.synchronize()
         let cell = tableView.cellForRow(at: indexPath) as! SettingsTableViewCell
