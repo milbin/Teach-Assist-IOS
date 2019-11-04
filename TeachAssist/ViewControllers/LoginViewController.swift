@@ -33,7 +33,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             lightThemeEnabled = Preferences.bool(forKey: "LightThemeEnabled")
             if(lightThemeEnabled){
                 //set colours
-                lightThemeLightBlack = UIColor(red: 55/255, green: 55/255, blue: 64/255, alpha: 1.0)
+                lightThemeLightBlack = UIColor(red: 228/255, green: 228/255, blue: 235/255, alpha: 1.0)
                 lightThemeWhite = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
                 lightThemeBlack = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0)
                 lightThemeBlue = UIColor(red: 55/255, green: 239/255, blue: 186/255, alpha: 1.0)
