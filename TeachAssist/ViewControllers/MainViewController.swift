@@ -113,6 +113,7 @@ class MainViewController: UIViewController {
         AverageBar.fontColor = lightThemeBlack
         scrollView.backgroundColor = lightThemeWhite
         StackView.addBackground(color: lightThemeWhite)
+        self.view.backgroundColor = lightThemeWhite
         
         hasViewStarted = true
         //get ta data

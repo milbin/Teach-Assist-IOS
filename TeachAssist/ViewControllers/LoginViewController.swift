@@ -11,13 +11,44 @@ import KYDrawerController
 
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
+    var lightThemeEnabled = false
+    var lightThemeLightBlack = UIColor(red: 39/255, green: 39/255, blue: 47/255, alpha: 1)
+    var lightThemeWhite = UIColor(red:51/255, green:51/255, blue: 61/255, alpha:1)
+    var lightThemeBlack = UIColor(red:255/255, green:255/255, blue: 255/255, alpha:1)
+    var lightThemeBlue = UIColor(red: 4/255, green: 93/255, blue: 86/255, alpha: 1)
+    var lightThemePink = UIColor(red: 255/255, green: 65/255, blue: 128/255, alpha: 1)
     
     
+    @IBOutlet weak var remeberMeLabel: UILabel!
+    @IBOutlet weak var teachassistTitle: UILabel!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
+        //check for light theme
+        let Preferences = UserDefaults.standard
+        let currentPreferenceExists = Preferences.object(forKey: "LightThemeEnabled")
+        if currentPreferenceExists != nil{ //preference does exist
+            lightThemeEnabled = Preferences.bool(forKey: "LightThemeEnabled")
+            if(lightThemeEnabled){
+                //set colours
+                lightThemeLightBlack = UIColor(red: 55/255, green: 55/255, blue: 64/255, alpha: 1.0)
+                lightThemeWhite = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
+                lightThemeBlack = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0)
+                lightThemeBlue = UIColor(red: 55/255, green: 239/255, blue: 186/255, alpha: 1.0)
+                lightThemePink = UIColor(red: 114/255, green: 159/255, blue: 255/255, alpha: 1.0)
+                
+                self.view.backgroundColor = lightThemeWhite
+                remeberMeLabel.textColor = lightThemeBlack
+                teachassistTitle.textColor = lightThemeBlack
+                usernameTextField.backgroundColor = lightThemeLightBlack
+                passwordTextField.backgroundColor = lightThemeLightBlack
+                usernameTextField.textColor = lightThemeBlack
+                passwordTextField.textColor = lightThemeBlack
+                
+            }
+        }
         loginButton.addTarget(self, action: #selector(LoginViewController.buttonPressed), for: .touchUpInside)
         // Do any additional setup after loading the view.
     }
@@ -32,9 +63,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         loginButton.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner], radius: 5)
         
-        usernameTextField.attributedPlaceholder = NSAttributedString(string:"Username", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red:51/255, green: 51/255, blue: 61/255, alpha: 1.0)]) //to make the colour of the placeholder gray
+        usernameTextField.attributedPlaceholder = NSAttributedString(string:"Username", attributes: [NSAttributedString.Key.foregroundColor: lightThemeWhite]) //to make the colour of the placeholder gray
         
-        passwordTextField.attributedPlaceholder = NSAttributedString(string:"Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red:51/255, green: 51/255, blue: 61/255, alpha: 1.0)])
+        passwordTextField.attributedPlaceholder = NSAttributedString(string:"Password", attributes: [NSAttributedString.Key.foregroundColor: lightThemeWhite])
         
         //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
         //tap.cancelsTouchesInView = false

@@ -34,6 +34,7 @@ class SettingsViewController: UITableViewController {
                 self.navigationController?.navigationBar.barTintColor = lightThemeWhite
                 navigationItem.backBarButtonItem?.tintColor = lightThemeBlack
                 navigationController!.navigationBar.barStyle = UIBarStyle.black
+                self.view.backgroundColor = lightThemeWhite
                 
             }
         }
@@ -53,10 +54,10 @@ class SettingsViewController: UITableViewController {
     }
     //customize the header to make the background white and the text match the pinkish teachassist theme colour
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        view.backgroundColor = UIColor(red:51/255, green: 51/255, blue: 61/255, alpha: 1.0)
-        view.tintColor = UIColor(red:0, green:0, blue:0, alpha:0) //gray colour w no tint
+        view.backgroundColor = lightThemeWhite
+        view.tintColor = UIColor(red:0, green:0, blue:0, alpha:0) //transparent
         let header = view as! UITableViewHeaderFooterView
-        header.textLabel?.textColor = UIColor(red:0.91, green:0.12, blue:0.39, alpha:1.0) //teachassist themed pink
+        header.textLabel?.textColor = lightThemePink //teachassist themed pink
     }
     //set the height of the tableview header bc it adds more whitespace at the top
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat{
@@ -81,7 +82,9 @@ class SettingsViewController: UITableViewController {
         
         cell.Description.text = "Light theme enabled"
         cell.Title.text = "Light Theme "
-        cell.backgroundColor = UIColor(red:51/255, green: 51/255, blue: 61/255, alpha: 0.0)
+        cell.Title.textColor = lightThemeBlack
+        cell.Description.textColor = lightThemeBlack
+        cell.backgroundColor = lightThemeWhite
         
         return cell
     }
@@ -97,10 +100,11 @@ class SettingsViewController: UITableViewController {
         Preferences.synchronize()
         let cell = tableView.cellForRow(at: indexPath) as! SettingsTableViewCell
         cell.toggleCheckbox()
+        //alert
+        let alert = UIAlertController(title: "Please Restart Application", message: "Theme changes will not come into effect until after the application is fully closed and restarted", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default))
+        self.present(alert, animated: true)
         
-    }
-
-
-    
+    }    
 
 }

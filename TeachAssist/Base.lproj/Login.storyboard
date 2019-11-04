@@ -99,7 +99,7 @@
                                 <state key="normal" title="Remeber Me" image="checkbox-marked"/>
                                 <state key="selected" title="Remember Me" image="checkbox-blank-outline"/>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ta_logo_v3" translatesAutoresizingMaskIntoConstraints="NO" id="JfH-d3-jRd">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ta_logo_transparent" translatesAutoresizingMaskIntoConstraints="NO" id="JfH-d3-jRd">
                                 <rect key="frame" x="159.66666666666666" y="60" width="95" height="95"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="95" id="6Fc-e7-d1i"/>
@@ -150,6 +150,8 @@
                     <connections>
                         <outlet property="loginButton" destination="fma-ZI-wm8" id="e2D-XJ-AX9"/>
                         <outlet property="passwordTextField" destination="rcy-Bo-jhQ" id="gUg-TO-mQu"/>
+                        <outlet property="remeberMeLabel" destination="KtX-hp-J7M" id="xHc-f1-9GB"/>
+                        <outlet property="teachassistTitle" destination="2bj-aP-m1T" id="cF1-1G-4C2"/>
                         <outlet property="usernameTextField" destination="aap-9L-fGT" id="u5P-3a-iUe"/>
                     </connections>
                 </viewController>
@@ -163,6 +165,6 @@
         <image name="checkbox-blank-outline" width="48" height="48"/>
         <image name="checkbox-marked" width="48" height="48"/>
         <image name="lock" width="48" height="48"/>
-        <image name="ta_logo_v3" width="563" height="563"/>
+        <image name="ta_logo_transparent" width="487" height="487"/>
     </resources>
 </document>
