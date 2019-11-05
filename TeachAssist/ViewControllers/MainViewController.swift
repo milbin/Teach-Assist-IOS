@@ -67,6 +67,7 @@ class MainViewController: UIViewController {
                                                                   for: .normal)
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "HamburgerIcon"), style: .plain, target: self, action: #selector(OnNavButtonPress))//add nav button as the onClick method
         navigationItem.leftBarButtonItem?.tintColor = lightThemeBlack
+        self.navigationController?.navigationBar.tintColor = lightThemeBlack
         
         //setup refresh controller to allow main view to be refreshed
         refreshControl = UIRefreshControl()
@@ -211,7 +212,6 @@ class MainViewController: UIViewController {
                 courseView.ProgressBar.outerRingColor = lightThemeLightBlack
                 courseView.ProgressBar.fontColor = lightThemeBlack
                 courseView.contentView.layer.borderColor = lightThemeLightBlack.cgColor
-                courseView.ProgressBar.value = 90
             }
             
             StackView.addArrangedSubview(courseView as UIView)
