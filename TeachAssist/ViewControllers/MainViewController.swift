@@ -57,7 +57,7 @@ class MainViewController: UIViewController {
                 self.AverageBar.innerRingColor = lightThemeBlue
             }
         }
-        self.setNeedsStatusBarAppearanceUpdate()
+        setNeedsStatusBarAppearanceUpdate()
         AverageBar.font = UIFont.boldSystemFont(ofSize: 25.0)
         AverageBar.valueFormatter = UICircularProgressRingFormatter(showFloatingPoint:true, decimalPlaces:1)
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(OnEditButtonPress))//add edit button as the onClick method
@@ -100,7 +100,7 @@ class MainViewController: UIViewController {
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         if(lightThemeEnabled){
-            return .default
+            return .`default`
         }else{
             return .lightContent
             
