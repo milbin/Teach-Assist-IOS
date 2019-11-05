@@ -36,8 +36,7 @@ class DrawerViewControllerParent: UIViewController {
                 self.navigationController?.navigationBar.barTintColor = lightThemeWhite
                 let textAttributes = [NSAttributedString.Key.foregroundColor:lightThemeBlack]
                 navigationController?.navigationBar.titleTextAttributes = textAttributes
-                self.view.backgroundColor = lightThemeWhite
-                dividerView.backgroundColor = lightThemeLightBlack
+                dividerView.backgroundColor = lightThemeWhite
                 appTitleLabel.textColor = lightThemeBlack
                 
             }
