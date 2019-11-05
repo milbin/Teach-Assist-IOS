@@ -57,6 +57,7 @@ class MainViewController: UIViewController {
                 self.AverageBar.innerRingColor = lightThemeBlue
             }
         }
+        self.setNeedsStatusBarAppearanceUpdate()
         AverageBar.font = UIFont.boldSystemFont(ofSize: 25.0)
         AverageBar.valueFormatter = UICircularProgressRingFormatter(showFloatingPoint:true, decimalPlaces:1)
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(OnEditButtonPress))//add edit button as the onClick method
@@ -97,7 +98,15 @@ class MainViewController: UIViewController {
         }
         
     }
-    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if(lightThemeEnabled){
+            return .default
+        }else{
+            return .lightContent
+            
+        }
+        
+    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         if hasViewStarted == true{
@@ -201,6 +210,7 @@ class MainViewController: UIViewController {
                 courseView.ProgressBar.innerRingColor = lightThemeGreen
                 courseView.ProgressBar.outerRingColor = lightThemeLightBlack
                 courseView.ProgressBar.fontColor = lightThemeBlack
+                courseView.contentView.layer.borderColor = lightThemeLightBlack.cgColor
                 courseView.ProgressBar.value = 90
             }
             
@@ -356,6 +366,9 @@ class MainViewController: UIViewController {
     
     
 }
+extension UINavigationController {   open override var preferredStatusBarStyle: UIStatusBarStyle {
+    return topViewController?.preferredStatusBarStyle ?? .default
+}}
 
 extension UIView {
     
