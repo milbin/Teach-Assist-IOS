@@ -43,8 +43,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 remeberMeLabel.textColor = lightThemeBlack
                 teachassistTitle.textColor = lightThemeBlack
                 usernameTextField.backgroundColor = lightThemeLightBlack
+                loginButton.backgroundColor = lightThemeBlue
                 passwordTextField.backgroundColor = lightThemeLightBlack
                 usernameTextField.textColor = lightThemeBlack
+                usernameTextField.layer.borderColor = lightThemeLightBlack.cgColor
+                usernameTextField.layer.borderWidth = 0
                 passwordTextField.textColor = lightThemeBlack
                 
             }
@@ -63,9 +66,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         loginButton.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner], radius: 5)
         
-        usernameTextField.attributedPlaceholder = NSAttributedString(string:"Username", attributes: [NSAttributedString.Key.foregroundColor: lightThemeWhite]) //to make the colour of the placeholder gray
+        usernameTextField.attributedPlaceholder = NSAttributedString(string:"  Username", attributes: [NSAttributedString.Key.foregroundColor: lightThemeWhite]) //to make the colour of the placeholder gray
+        usernameTextField.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner], radius: 5)
+
         
-        passwordTextField.attributedPlaceholder = NSAttributedString(string:"Password", attributes: [NSAttributedString.Key.foregroundColor: lightThemeWhite])
+        passwordTextField.attributedPlaceholder = NSAttributedString(string:"  Password", attributes: [NSAttributedString.Key.foregroundColor: lightThemeWhite])
+        passwordTextField.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner], radius: 5)
+
         
         //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
         //tap.cancelsTouchesInView = false
