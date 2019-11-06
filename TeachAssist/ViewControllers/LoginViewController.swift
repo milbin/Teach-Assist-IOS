@@ -66,12 +66,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         loginButton.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner], radius: 5)
         
-        usernameTextField.attributedPlaceholder = NSAttributedString(string:"  Username", attributes: [NSAttributedString.Key.foregroundColor: lightThemeWhite]) //to make the colour of the placeholder gray
+        usernameTextField.attributedPlaceholder = NSAttributedString(string:"Username", attributes: [NSAttributedString.Key.foregroundColor: lightThemeWhite]) //to make the colour of the placeholder gray
         usernameTextField.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner], radius: 5)
+        usernameTextField.setLeftPaddingPoints(5)
 
         
-        passwordTextField.attributedPlaceholder = NSAttributedString(string:"  Password", attributes: [NSAttributedString.Key.foregroundColor: lightThemeWhite])
+        passwordTextField.attributedPlaceholder = NSAttributedString(string:"Password", attributes: [NSAttributedString.Key.foregroundColor: lightThemeWhite])
         passwordTextField.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner], radius: 5)
+        passwordTextField.setLeftPaddingPoints(5)
+
 
         
         //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
@@ -167,4 +170,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     
     
+}
+
+extension UITextField {
+    func setLeftPaddingPoints(_ amount:CGFloat){
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
+        self.leftView = paddingView
+        self.leftViewMode = .always
+    }
+    func setRightPaddingPoints(_ amount:CGFloat) {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
+        self.rightView = paddingView
+        self.rightViewMode = .always
+    }
 }
