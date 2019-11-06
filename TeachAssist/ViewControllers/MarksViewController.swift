@@ -17,6 +17,13 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
     var numOfremovedViews = 0
     var addAssignmentIsExpanded = false
     
+    var lightThemeEnabled = false
+    var lightThemeLightBlack = UIColor(red: 39/255, green: 39/255, blue: 47/255, alpha: 1)
+    var lightThemeWhite = UIColor(red:51/255, green:51/255, blue: 61/255, alpha:1)
+    var lightThemeBlack = UIColor(red:255/255, green:255/255, blue: 255/255, alpha:1)
+    var lightThemeGreen = UIColor(red: 4/255, green: 93/255, blue: 86/255, alpha: 1)
+    var lightThemeBlue = UIColor(red: 255/255, green: 65/255, blue: 128/255, alpha: 1)
+    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var StackView: UIStackView!
     @IBOutlet weak var StackViewHeight: NSLayoutConstraint!
@@ -28,32 +35,38 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var KmarkAverage: UILabel!
     @IBOutlet weak var KbarAverageHeight: NSLayoutConstraint!
     @IBOutlet weak var KaverageWeight: UILabel!
+    @IBOutlet weak var KaverageLabel: UILabel!
     
     @IBOutlet weak var TbarAverage: UIView!
     @IBOutlet weak var TmarkAverage: UILabel!
     @IBOutlet weak var TbarAverageHeight: NSLayoutConstraint!
     @IBOutlet weak var TaverageWeight: UILabel!
+    @IBOutlet weak var TaverageLabel: UILabel!
     
     @IBOutlet weak var CbarAverage: UIView!
     @IBOutlet weak var CmarkAverage: UILabel!
     @IBOutlet weak var CbarAverageHeight: NSLayoutConstraint!
     @IBOutlet weak var CaverageWeight: UILabel!
+    @IBOutlet weak var CaverageLabel: UILabel!
     
     @IBOutlet weak var AbarAverage: UIView!
     @IBOutlet weak var AmarkAverage: UILabel!
     @IBOutlet weak var AbarAverageHeight: NSLayoutConstraint!
     @IBOutlet weak var AaverageWeight: UILabel!
+    @IBOutlet weak var AaverageLabel: UILabel!
     
     @IBOutlet weak var ObarAverage: UIView!
     @IBOutlet weak var OmarkAverage: UILabel!
     @IBOutlet weak var ObarAverageHeight: NSLayoutConstraint!
     @IBOutlet weak var OaverageWeight: UILabel!
+    @IBOutlet weak var OaverageLabel: UILabel!
     
     @IBOutlet weak var addAssignment: UIView!
     @IBOutlet weak var AddAssignmentHeight: NSLayoutConstraint!
     @IBOutlet weak var addAssignmentBoxTitleAlignTop: NSLayoutConstraint!
     @IBOutlet weak var addAssignmentPlusButton: UIImageView!
     @IBOutlet weak var addAssignmentTitle: UITextField!
+    @IBOutlet weak var addAssignmentTitleLabel: UILabel!
     @IBOutlet weak var addAssignmentSimpleMark: UITextField!
     @IBOutlet weak var addAssignmentSimpleWeight: UITextField!
     @IBOutlet weak var addAssignmentMarkLabel: UILabel!
@@ -81,36 +94,109 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var addAssignmentOWeight: UITextField!
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("MARKS VIEW")
+        //check for light theme
+        let Preferences = UserDefaults.standard
+        let currentPreferenceExists = Preferences.object(forKey: "LightThemeEnabled")
+        if currentPreferenceExists != nil{ //preference does exist
+            lightThemeEnabled = Preferences.bool(forKey: "LightThemeEnabled")
+            if(lightThemeEnabled){
+                //set colours
+                lightThemeLightBlack = UIColor(red: 228/255, green: 228/255, blue: 235/255, alpha: 1.0)
+                lightThemeWhite = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
+                lightThemeBlack = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0)
+                lightThemeGreen = UIColor(red: 55/255, green: 239/255, blue: 186/255, alpha: 1.0)
+                lightThemeBlue = UIColor(red: 114/255, green: 159/255, blue: 255/255, alpha: 1.0)
+                
+                self.navigationController?.navigationBar.barTintColor = UIColor.white
+                let textAttributes = [NSAttributedString.Key.foregroundColor:lightThemeBlack]
+                navigationController?.navigationBar.titleTextAttributes = textAttributes
+                self.AverageBar.outerRingColor = lightThemeLightBlack
+                self.AverageBar.innerRingColor = lightThemeBlue
+                self.AverageBar.superview?.backgroundColor = lightThemeWhite
+                addAssignmentKLabel.textColor = lightThemeBlack
+                addAssignmentTLabel.textColor = lightThemeBlack
+                addAssignmentCLabel.textColor = lightThemeBlack
+                addAssignmentALabel.textColor = lightThemeBlack
+                addAssignmentOLabel.textColor = lightThemeBlack
+                addAssignmentTitle.textColor = lightThemeBlack
+                addAssignmentSimpleMark.textColor = lightThemeBlack
+                addAssignmentSimpleWeight.textColor = lightThemeBlack
+                addAssignmentMarkLabel.textColor = lightThemeBlack
+                addAssignmentTitleLabel.textColor = lightThemeBlack
+                addAssignmentAdvancedButtonLabel.tintColor = lightThemeBlack
+                addAssignmentAdvancedButton.setImage(UIImage(named: "lock"), for: .normal)
+                addAssignmentPlusButton.image = UIImage(named: "lock")
+                addAssignmentCancelButton.backgroundColor = lightThemeBlue
+                addAssignmentAddButton.backgroundColor = lightThemeGreen
+                addAssignmentAddButton.tintColor = lightThemeBlack //for the text
+                
+                addAssignmentTitle.backgroundColor = lightThemeLightBlack
+                addAssignmentTitle.textColor = lightThemeBlack
+                addAssignmentSimpleMark.backgroundColor = lightThemeLightBlack
+                addAssignmentSimpleMark.textColor = lightThemeBlack
+                addAssignmentSimpleWeight.backgroundColor = lightThemeLightBlack
+                addAssignmentSimpleWeight.textColor = lightThemeBlack
+                
+                addAssignmentKMark.backgroundColor = lightThemeLightBlack
+                addAssignmentTMark.backgroundColor = lightThemeLightBlack
+                addAssignmentCMark.backgroundColor = lightThemeLightBlack
+                addAssignmentAMark.backgroundColor = lightThemeLightBlack
+                addAssignmentOMark.backgroundColor = lightThemeLightBlack
+                addAssignmentKMark.textColor = lightThemeBlack
+                addAssignmentTMark.textColor = lightThemeBlack
+                addAssignmentCMark.textColor = lightThemeBlack
+                addAssignmentAMark.textColor = lightThemeBlack
+                addAssignmentOMark.textColor = lightThemeBlack
+                addAssignmentOWeight.backgroundColor = lightThemeLightBlack
+                addAssignmentKWeight.backgroundColor = lightThemeLightBlack
+                addAssignmentTWeight.backgroundColor = lightThemeLightBlack
+                addAssignmentCWeight.backgroundColor = lightThemeLightBlack
+                addAssignmentAWeight.backgroundColor = lightThemeLightBlack
+                addAssignmentOWeight.textColor = lightThemeBlack
+                addAssignmentKWeight.textColor = lightThemeBlack
+                addAssignmentTWeight.textColor = lightThemeBlack
+                addAssignmentCWeight.textColor = lightThemeBlack
+                addAssignmentAWeight.textColor = lightThemeBlack
+
+
+
+                
+                
+            }
+        }
+        StackView.addBackground(color: lightThemeWhite)
+        self.view.backgroundColor = lightThemeWhite
+        scrollView.backgroundColor = lightThemeWhite
         AverageBar.font = UIFont(name: "Gilroy-Bold", size: 25)!
-        AverageBar.fontColor = UIColor.white
+        AverageBar.fontColor = lightThemeBlack
         AverageBar.valueFormatter = UICircularProgressRingFormatter(showFloatingPoint:true, decimalPlaces:1)
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(OnEditButtonPress))//add edit button as the onClick method
-        navigationItem.rightBarButtonItem?.tintColor = UIColor.white
         navigationItem.rightBarButtonItem?.setTitleTextAttributes([
             NSAttributedString.Key.font: UIFont(name: "Gilroy-Regular", size: 17)!,
-            NSAttributedString.Key.foregroundColor: UIColor.white],
+            NSAttributedString.Key.foregroundColor: lightThemeBlack],
                                                                   for: .normal)
         addAssignment.layer.borderWidth = 2
-        addAssignment.layer.borderColor = UIColor(red:39/255, green:39/255, blue: 47/255, alpha:1).cgColor
+        addAssignment.layer.borderColor = lightThemeLightBlack.cgColor
+        addAssignment.backgroundColor = lightThemeWhite
         addAssignment.layer.cornerRadius = 15
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(OnAddAssignmentButtonPress))
         addAssignment.addGestureRecognizer(tapGesture)
-        addAssignmentTitle.attributedPlaceholder = NSAttributedString(string:"Assignment Title", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red:61/255, green: 61/255, blue: 71/255, alpha: 1.0)]) //to make the colour of the placeholder gray
-        addAssignmentSimpleMark.attributedPlaceholder = NSAttributedString(string:"Mark", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red:61/255, green: 61/255, blue: 71/255, alpha: 1.0)])
-        addAssignmentSimpleWeight.attributedPlaceholder = NSAttributedString(string:"Weight", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red:61/255, green: 61/255, blue: 71/255, alpha: 1.0)])
-        addAssignmentKMark.attributedPlaceholder = NSAttributedString(string:"Mark", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red:61/255, green: 61/255, blue: 71/255, alpha: 1.0)])
-        addAssignmentKWeight.attributedPlaceholder = NSAttributedString(string:"Weight", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red:61/255, green: 61/255, blue: 71/255, alpha: 1.0)])
-        addAssignmentTMark.attributedPlaceholder = NSAttributedString(string:"Mark", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red:61/255, green: 61/255, blue: 71/255, alpha: 1.0)])
-        addAssignmentTWeight.attributedPlaceholder = NSAttributedString(string:"Weight", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red:61/255, green: 61/255, blue: 71/255, alpha: 1.0)])
-        addAssignmentCMark.attributedPlaceholder = NSAttributedString(string:"Mark", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red:61/255, green: 61/255, blue: 71/255, alpha: 1.0)])
-        addAssignmentCWeight.attributedPlaceholder = NSAttributedString(string:"Weight", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red:61/255, green: 61/255, blue: 71/255, alpha: 1.0)])
-        addAssignmentAMark.attributedPlaceholder = NSAttributedString(string:"Mark", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red:61/255, green: 61/255, blue: 71/255, alpha: 1.0)])
-        addAssignmentAWeight.attributedPlaceholder = NSAttributedString(string:"Weight", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red:61/255, green: 61/255, blue: 71/255, alpha: 1.0)])
-        addAssignmentOMark.attributedPlaceholder = NSAttributedString(string:"Mark", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red:61/255, green: 61/255, blue: 71/255, alpha: 1.0)])
-        addAssignmentOWeight.attributedPlaceholder = NSAttributedString(string:"Weight", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red:61/255, green: 61/255, blue: 71/255, alpha: 1.0)])
+        addAssignmentTitle.attributedPlaceholder = NSAttributedString(string:"Assignment Title", attributes: [NSAttributedString.Key.foregroundColor: lightThemeWhite]) //to make the colour of the placeholder gray
+        addAssignmentSimpleMark.attributedPlaceholder = NSAttributedString(string:"Mark", attributes: [NSAttributedString.Key.foregroundColor: lightThemeWhite])
+        addAssignmentSimpleWeight.attributedPlaceholder = NSAttributedString(string:"Weight", attributes: [NSAttributedString.Key.foregroundColor: lightThemeWhite])
+        addAssignmentKMark.attributedPlaceholder = NSAttributedString(string:"Mark", attributes: [NSAttributedString.Key.foregroundColor: lightThemeWhite])
+        addAssignmentKWeight.attributedPlaceholder = NSAttributedString(string:"Weight", attributes: [NSAttributedString.Key.foregroundColor: lightThemeWhite])
+        addAssignmentTMark.attributedPlaceholder = NSAttributedString(string:"Mark", attributes: [NSAttributedString.Key.foregroundColor: lightThemeWhite])
+        addAssignmentTWeight.attributedPlaceholder = NSAttributedString(string:"Weight", attributes: [NSAttributedString.Key.foregroundColor: lightThemeWhite])
+        addAssignmentCMark.attributedPlaceholder = NSAttributedString(string:"Mark", attributes: [NSAttributedString.Key.foregroundColor: lightThemeWhite])
+        addAssignmentCWeight.attributedPlaceholder = NSAttributedString(string:"Weight", attributes: [NSAttributedString.Key.foregroundColor: lightThemeWhite])
+        addAssignmentAMark.attributedPlaceholder = NSAttributedString(string:"Mark", attributes: [NSAttributedString.Key.foregroundColor: lightThemeWhite])
+        addAssignmentAWeight.attributedPlaceholder = NSAttributedString(string:"Weight", attributes: [NSAttributedString.Key.foregroundColor: lightThemeWhite])
+        addAssignmentOMark.attributedPlaceholder = NSAttributedString(string:"Mark", attributes: [NSAttributedString.Key.foregroundColor: lightThemeWhite])
+        addAssignmentOWeight.attributedPlaceholder = NSAttributedString(string:"Weight", attributes: [NSAttributedString.Key.foregroundColor: lightThemeWhite])
         addAssignmentTitle.delegate = self
         addAssignmentSimpleMark.addDoneCancelToolbar()
         addAssignmentSimpleWeight.addDoneCancelToolbar()
@@ -131,9 +217,6 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
-        
-        
         response = ta!.GetMarks(subjectNumber: courseNumber!)
         if response == nil{
             let alert = UIAlertController(title: "Could not reach Teachassist", message: "Please check your internet connection and try again", preferredStyle: .alert)
@@ -199,7 +282,6 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLayoutSubviews() {
         if hasViewBeenLayedOut == false && response != nil{
             hasViewBeenLayedOut = true
-            StackView.addBackground(color: UIColor(red:51/255, green: 51/255, blue: 61/255, alpha: 1.0))
             
             for assignment in StackView.arrangedSubviews{
                 assignment.invalidateIntrinsicContentSize()
@@ -241,21 +323,23 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
         
     }
     @objc func OnAddAssignmentButtonPress(gesture: UIGestureRecognizer) {
-        UIView.animate(withDuration: 0.1, animations: {
-            self.AddAssignmentHeight.constant = 550 //should be 139 when inactive, 325 when not in advanced, 550 when in advanced
-            self.addAssignmentBoxTitleAlignTop.isActive = true
-            self.addAssignmentPlusButton.isHidden = true
-            self.addAssignmentTitle.isHidden = false
-            self.addAssignmentSimpleMark.isHidden = false
-            self.addAssignmentSimpleWeight.isHidden = false
-            self.addAssignmentMarkLabel.isHidden = false
-            self.addAssignmentCancelButton.isHidden = false
-            self.addAssignmentAddButton.isHidden = false
-            self.addAssignmentAdvancedButton.isHidden = false
-            self.addAssignmentAdvancedButtonLabel.isHidden = false
-            self.addAssignmentDividerLine.isHidden = false
-        })
-        addAssignmentIsExpanded = true
+        if(!self.addAssignmentAdvancedButton.isSelected){
+            UIView.animate(withDuration: 0.1, animations: {
+                self.AddAssignmentHeight.constant = 325 //should be 139 when inactive, 325 when not in advanced, 550 when in advanced
+                self.addAssignmentBoxTitleAlignTop.isActive = true
+                self.addAssignmentPlusButton.isHidden = true
+                self.addAssignmentTitle.isHidden = false
+                self.addAssignmentSimpleMark.isHidden = false
+                self.addAssignmentSimpleWeight.isHidden = false
+                self.addAssignmentMarkLabel.isHidden = false
+                self.addAssignmentCancelButton.isHidden = false
+                self.addAssignmentAddButton.isHidden = false
+                self.addAssignmentAdvancedButton.isHidden = false
+                self.addAssignmentAdvancedButtonLabel.isHidden = false
+                self.addAssignmentDividerLine.isHidden = false
+            })
+            addAssignmentIsExpanded = true
+        }
     }
     @objc func OnAddAssignmentAddButtonPress(sender: UIButton) {
         let title = addAssignmentTitle.text
@@ -402,6 +486,12 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
         
     }
     @objc func OnAddAssignmentCancelButtonPress(sender: UIButton) {
+        addAssignmentIsExpanded = false
+        self.addAssignmentTitle.text = nil
+        self.addAssignmentSimpleMark.text = nil
+        self.addAssignmentSimpleWeight.text = nil
+        self.addAssignmentAdvancedButton.isSelected = true
+        OnAddAssignmentAdvancedButtonPress(sender: addAssignmentAdvancedButton)
         UIView.animate(withDuration: 0.1, animations: {
             self.AddAssignmentHeight.constant = 129
             self.addAssignmentBoxTitleAlignTop.isActive = false
@@ -417,12 +507,6 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
             self.addAssignmentDividerLine.isHidden = true
             
         })
-        addAssignmentIsExpanded = false
-        self.addAssignmentTitle.text = nil
-        self.addAssignmentSimpleMark.text = nil
-        self.addAssignmentSimpleWeight.text = nil
-        self.addAssignmentAdvancedButton.isSelected = true
-        OnAddAssignmentAdvancedButtonPress(sender: addAssignmentAdvancedButton)
     }
     @objc func OnAddAssignmentAdvancedButtonPress(sender: UIButton) {
         if(self.addAssignmentAdvancedButton.isSelected){
@@ -430,6 +514,7 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
             self.addAssignmentSimpleMark.isEnabled = true
             self.addAssignmentSimpleWeight.isEnabled = true
             UIView.animate(withDuration: 0.5, animations: {
+                self.AddAssignmentHeight.constant = 325
                 self.addAssignmentKMark.isHidden = true
                 self.addAssignmentTMark.isHidden = true
                 self.addAssignmentCMark.isHidden = true
@@ -451,6 +536,7 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
             self.addAssignmentSimpleMark.isEnabled = false
             self.addAssignmentSimpleWeight.isEnabled = false
             UIView.animate(withDuration: 0.5, animations: {
+                self.AddAssignmentHeight.constant = 550
                 self.addAssignmentKMark.isHidden = false
                 self.addAssignmentTMark.isHidden = false
                 self.addAssignmentCMark.isHidden = false
@@ -650,6 +736,33 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
             assignmentView.AssignmentMark.text =  average + "%"
         }
         StackViewHeight.constant = StackViewHeight.constant + 139
+        if(lightThemeEnabled){
+            assignmentView.contentView.backgroundColor = lightThemeWhite
+            assignmentView.KBar.backgroundColor = self.lightThemeGreen
+            assignmentView.TBar.backgroundColor = self.lightThemeGreen
+            assignmentView.CBar.backgroundColor = self.lightThemeGreen
+            assignmentView.ABar.backgroundColor = self.lightThemeGreen
+            assignmentView.OBar.backgroundColor = self.lightThemeGreen
+            assignmentView.AssignmentMark.textColor = self.lightThemeBlack
+            assignmentView.AssignmentTitle.textColor = self.lightThemeBlack
+            assignmentView.KFraction.textColor = self.lightThemeBlack
+            assignmentView.TFraction.textColor = self.lightThemeBlack
+            assignmentView.CFraction.textColor = self.lightThemeBlack
+            assignmentView.AFraction.textColor = self.lightThemeBlack
+            assignmentView.OFraction.textColor = self.lightThemeBlack
+            assignmentView.KMark.textColor = self.lightThemeBlack
+            assignmentView.TMark.textColor = self.lightThemeBlack
+            assignmentView.CMark.textColor = self.lightThemeBlack
+            assignmentView.AMark.textColor = self.lightThemeBlack
+            assignmentView.OMark.textColor = self.lightThemeBlack
+            assignmentView.KWeight.textColor = self.lightThemeBlack
+            assignmentView.TWeight.textColor = self.lightThemeBlack
+            assignmentView.CWeight.textColor = self.lightThemeBlack
+            assignmentView.AWeight.textColor = self.lightThemeBlack
+            assignmentView.OWeight.textColor = self.lightThemeBlack
+            assignmentView.feedback.textColor = self.lightThemeBlack
+            assignmentView.contentView.layer.borderColor = self.lightThemeLightBlack.cgColor
+        }
         StackView.addArrangedSubview(assignmentView as UIView)
         assignmentView.layoutIfNeeded()
         UIView.animate(withDuration: 1, animations: {
@@ -659,7 +772,8 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
             }else if markList["K"]! == 0.000000001{
                 assignmentView.KMark.text = "NA"
                 assignmentView.KBarHeight.constant = 15
-                assignmentView.KBar.backgroundColor = UIColor(red:0.91, green:0.12, blue:0.39, alpha:1.0) //teachassist themed pink
+                assignmentView.KBar.backgroundColor = self.lightThemeBlue //teachassist themed pink
+                assignmentView.KMark.textColor = self.lightThemeWhite
             }else{
                 assignmentView.KMark.text = String(markList["K"]!)
                 assignmentView.KBarHeight.constant = CGFloat(markList["K"]!) * 0.55 + 15
@@ -672,7 +786,8 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
             }else if markList["T"]! == 0.000000001{
                 assignmentView.TMark.text = "NA"
                 assignmentView.TBarHeight.constant = 15
-                assignmentView.TBar.backgroundColor = UIColor(red:0.91, green:0.12, blue:0.39, alpha:1.0) //teachassist themed pink
+                assignmentView.TBar.backgroundColor = self.lightThemeBlue //teachassist themed pink
+                assignmentView.TMark.textColor = self.lightThemeWhite
             }else{
                 assignmentView.TMark.text = String(markList["T"]!)
                 assignmentView.TBarHeight.constant = CGFloat(markList["T"]!) * 0.55 + 15
@@ -684,7 +799,8 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
             }else if markList["C"]! == 0.000000001{
                 assignmentView.CMark.text = "NA"
                 assignmentView.CBarHeight.constant = 15
-                assignmentView.CBar.backgroundColor = UIColor(red:0.91, green:0.12, blue:0.39, alpha:1.0) //teachassist themed pink
+                assignmentView.CBar.backgroundColor = self.lightThemeBlue //teachassist themed pink
+                assignmentView.CMark.textColor = self.lightThemeWhite
             }else{
                 assignmentView.CMark.text = String(markList["C"]!)
                 assignmentView.CBarHeight.constant = CGFloat(markList["C"]!) * 0.55 + 15
@@ -696,7 +812,8 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
             }else if markList["A"]! == 0.000000001{
                 assignmentView.AMark.text = "NA"
                 assignmentView.ABarHeight.constant = 15
-                assignmentView.ABar.backgroundColor = UIColor(red:0.91, green:0.12, blue:0.39, alpha:1.0) //teachassist themed pink
+                assignmentView.ABar.backgroundColor = self.lightThemeBlue //teachassist themed pink
+                assignmentView.AMark.textColor = self.lightThemeWhite
             }else{
                 assignmentView.AMark.text = String(markList["A"]!)
                 assignmentView.ABarHeight.constant = CGFloat(markList["A"]!) * 0.55 + 15
@@ -708,7 +825,8 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
             }else if markList[""]! == 0.000000001{
                 assignmentView.OMark.text = "NA"
                 assignmentView.OBarHeight.constant = 15
-                assignmentView.OBar.backgroundColor = UIColor(red:0.91, green:0.12, blue:0.39, alpha:1.0) //teachassist themed pink
+                assignmentView.OBar.backgroundColor = self.lightThemeBlue //teachassist themed pink
+                assignmentView.OMark.textColor = self.lightThemeWhite
             }else{
                 assignmentView.OMark.text = String(markList[""]!)
                 assignmentView.OBarHeight.constant = CGFloat(markList[""]!) * 0.55 + 15
@@ -722,6 +840,12 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
         assignmentView.CWeight.text = String(weightList["C"]!)
         assignmentView.AWeight.text = String(weightList["A"]!)
         assignmentView.OWeight.text = String(weightList[""]!)
+        
+        assignmentView.KLabel.textColor = lightThemeBlack
+        assignmentView.TLabel.textColor = lightThemeBlack
+        assignmentView.CLabel.textColor = lightThemeBlack
+        assignmentView.ALabel.textColor = lightThemeBlack
+        assignmentView.OLabel.textColor = lightThemeBlack
         
         assignmentView.KFraction.text = stringFractionList["K"]
         assignmentView.TFraction.text = stringFractionList["T"]
@@ -765,47 +889,54 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
         AbarAverage.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
         ObarAverage.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
         
-      
-        
-        
         if list[0] != 0{
             KmarkAverage.text = String(round(list[0]*1000)/1000)
-            KbarAverage.backgroundColor = UIColor(red:04/255, green:93/255, blue:86/255, alpha:1.0)
+            KbarAverage.backgroundColor = lightThemeGreen
+            KmarkAverage.textColor = lightThemeBlack
+            KaverageLabel.textColor = lightThemeBlack
         }else{
             KmarkAverage.text = "NA"
-            KbarAverage.backgroundColor = UIColor(red:0.91, green:0.12, blue:0.39, alpha:1.0)
+            KbarAverage.backgroundColor = lightThemeBlue
         }
         
         if list[1] != 0{
             TmarkAverage.text = String(round(list[1]*1000)/1000)
-            TbarAverage.backgroundColor = UIColor(red:04/255, green:93/255, blue:86/255, alpha:1.0)
+            TbarAverage.backgroundColor = lightThemeGreen
+            TmarkAverage.textColor = lightThemeBlack
+            TaverageLabel.textColor = lightThemeBlack
         }else{
             TmarkAverage.text = "NA"
-            TbarAverage.backgroundColor = UIColor(red:0.91, green:0.12, blue:0.39, alpha:1.0)
+            TbarAverage.backgroundColor = lightThemeBlue
         }
         
         if list[2] != 0{
             CmarkAverage.text = String(round(list[2]*1000)/1000)
-            CbarAverage.backgroundColor = UIColor(red:04/255, green:93/255, blue:86/255, alpha:1.0)
+            CbarAverage.backgroundColor = lightThemeGreen
+            CmarkAverage.textColor = lightThemeBlack
+            CaverageLabel.textColor = lightThemeBlack
         }else{
             CmarkAverage.text = "NA"
-            CbarAverage.backgroundColor = UIColor(red:0.91, green:0.12, blue:0.39, alpha:1.0)
+            CbarAverage.backgroundColor = lightThemeBlue
         }
         
         if list[3] != 0{
             AmarkAverage.text = String(round(list[3]*1000)/1000)
-            AbarAverage.backgroundColor = UIColor(red:04/255, green:93/255, blue:86/255, alpha:1.0)
+            AbarAverage.backgroundColor = lightThemeGreen
+            AmarkAverage.textColor = lightThemeBlack
+            AaverageLabel.textColor = lightThemeBlack
         }else{
             AmarkAverage.text = "NA"
-            AbarAverage.backgroundColor = UIColor(red:0.91, green:0.12, blue:0.39, alpha:1.0)
+            AbarAverage.backgroundColor = lightThemeBlue
         }
         
         if list[4] != 0{
             OmarkAverage.text = String(round(list[4]*1000)/1000)
-            ObarAverage.backgroundColor = UIColor(red:0.15, green:0.73, blue:0.22, alpha:1.0)
+            ObarAverage.backgroundColor = lightThemeGreen
+            OmarkAverage.textColor = lightThemeBlack
+            OaverageLabel.textColor = lightThemeBlack
         }else{
             OmarkAverage.text = "NA"
-            ObarAverage.backgroundColor = UIColor(red:0.91, green:0.12, blue:0.39, alpha:1.0)
+            ObarAverage.backgroundColor = lightThemeBlue
         }
         
         
@@ -814,6 +945,11 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
         CaverageWeight.text = String(list[7])
         AaverageWeight.text = String(list[8])
         OaverageWeight.text = String(list[9])
+        KaverageWeight.textColor = lightThemeBlack
+        TaverageWeight.textColor = lightThemeBlack
+        CaverageWeight.textColor = lightThemeBlack
+        AaverageWeight.textColor = lightThemeBlack
+        OaverageWeight.textColor = lightThemeBlack
         
         UIView.animate(withDuration: 0.1, animations: {
             self.MarkBarView.layoutIfNeeded()

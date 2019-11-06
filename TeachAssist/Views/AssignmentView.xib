@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,6 +25,7 @@
                 <outlet property="ABarHeight" destination="v1c-WS-QtY" id="aTr-l0-t4c"/>
                 <outlet property="ABarWidth" destination="ILO-1L-wmp" id="U3j-OQ-uAV"/>
                 <outlet property="AFraction" destination="T9K-ov-lZT" id="6Tn-F2-Lqo"/>
+                <outlet property="ALabel" destination="OOh-Au-9ZE" id="fjt-GK-CQJ"/>
                 <outlet property="AMark" destination="YrZ-qh-dT4" id="DaK-KD-sql"/>
                 <outlet property="AWeight" destination="FgI-i2-D1K" id="rjA-qY-6Rv"/>
                 <outlet property="AssignmentMark" destination="hHf-32-81c" id="b7h-nM-4VY"/>
@@ -32,6 +35,7 @@
                 <outlet property="CBarHeight" destination="f1A-cj-ThB" id="oOu-ZZ-dEo"/>
                 <outlet property="CBarWidth" destination="ULC-f1-HwW" id="m66-hB-tPh"/>
                 <outlet property="CFraction" destination="6YN-kD-fTp" id="ldU-hy-RVb"/>
+                <outlet property="CLabel" destination="Fhg-Vd-c1g" id="Eat-hN-DRb"/>
                 <outlet property="CMark" destination="DyN-an-qxY" id="5kc-qw-GFB"/>
                 <outlet property="CWeight" destination="a0Q-nu-kSQ" id="iz1-N0-yZA"/>
                 <outlet property="KBar" destination="bnu-Mn-GHr" id="Wxu-p7-wEB"/>
@@ -39,6 +43,7 @@
                 <outlet property="KBarHeight" destination="ghO-U2-eLc" id="iCa-On-O1W"/>
                 <outlet property="KBarWidth" destination="GIN-HS-f0c" id="jh7-eT-DFe"/>
                 <outlet property="KFraction" destination="4Oi-AP-89Z" id="Pun-Bz-BdC"/>
+                <outlet property="KLabel" destination="iiJ-q1-5i7" id="ESD-7v-QMw"/>
                 <outlet property="KMark" destination="Ay9-6o-tQT" id="4Li-H1-QlD"/>
                 <outlet property="KWeight" destination="kyG-Pm-Osa" id="r4S-KS-Yhp"/>
                 <outlet property="OBar" destination="MXn-Ts-eV3" id="QEl-Ky-1Nj"/>
@@ -46,6 +51,7 @@
                 <outlet property="OBarHeight" destination="wmu-Ye-cUR" id="9m8-Dz-3Pj"/>
                 <outlet property="OBarWidth" destination="KBv-Fs-Hxz" id="Ct6-7u-74G"/>
                 <outlet property="OFraction" destination="aju-mR-bfx" id="vQd-Q6-GEl"/>
+                <outlet property="OLabel" destination="4e3-3b-WNQ" id="hjQ-Ut-ZCv"/>
                 <outlet property="OMark" destination="PNf-As-yMT" id="OcA-TF-ZO1"/>
                 <outlet property="OWeight" destination="BqA-qI-r5Z" id="iWO-jm-0Cc"/>
                 <outlet property="TBar" destination="Kbe-NH-wQF" id="JZa-Aj-rX9"/>
@@ -53,6 +59,7 @@
                 <outlet property="TBarHeight" destination="z2g-H4-hND" id="AMf-sg-aST"/>
                 <outlet property="TBarWidth" destination="lmS-Wq-BnE" id="JqO-ba-UPE"/>
                 <outlet property="TFraction" destination="fNA-vs-qxK" id="pz4-4s-eze"/>
+                <outlet property="TLabel" destination="zd1-Ky-8Z6" id="axT-JT-6NU"/>
                 <outlet property="TMark" destination="55g-ld-Jbg" id="sdt-8K-gBm"/>
                 <outlet property="TWeight" destination="2z8-l3-fsi" id="LnH-EX-GV8"/>
                 <outlet property="TrashButton" destination="qrg-FF-cuE" id="yi5-hf-KIX"/>

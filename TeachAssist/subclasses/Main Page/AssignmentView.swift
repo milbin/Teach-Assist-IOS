@@ -17,6 +17,7 @@ class AssignmentView: UIView {
     @IBOutlet weak var TrashButton: UIButton!
     @IBOutlet weak var AssignmentMark: UILabel!
     
+    @IBOutlet weak var KLabel: UILabel!
     @IBOutlet weak var KBar: UIView!
     @IBOutlet weak var KBarWidth: NSLayoutConstraint!
     @IBOutlet weak var KBarBottomMargin: NSLayoutConstraint!
@@ -26,6 +27,7 @@ class AssignmentView: UIView {
     @IBOutlet weak var KFraction: UILabel!
 
     
+    @IBOutlet weak var TLabel: UILabel!
     @IBOutlet weak var TBar: UIView!
     @IBOutlet weak var TBarWidth: NSLayoutConstraint!
     @IBOutlet weak var TBarBottomMargin: NSLayoutConstraint!
@@ -34,6 +36,7 @@ class AssignmentView: UIView {
     @IBOutlet weak var TWeight: UILabel!
     @IBOutlet weak var TFraction: UILabel!
     
+    @IBOutlet weak var CLabel: UILabel!
     @IBOutlet weak var CBar: UIView!
     @IBOutlet weak var CBarWidth: NSLayoutConstraint!
     @IBOutlet weak var CBarBottomMargin: NSLayoutConstraint!
@@ -42,6 +45,7 @@ class AssignmentView: UIView {
     @IBOutlet weak var CWeight: UILabel!
     @IBOutlet weak var CFraction: UILabel!
     
+    @IBOutlet weak var ALabel: UILabel!
     @IBOutlet weak var ABar: UIView!
     @IBOutlet weak var ABarWidth: NSLayoutConstraint!
     @IBOutlet weak var ABarBottomMargin: NSLayoutConstraint!
@@ -50,6 +54,7 @@ class AssignmentView: UIView {
     @IBOutlet weak var AWeight: UILabel!
     @IBOutlet weak var AFraction: UILabel!
     
+    @IBOutlet weak var OLabel: UILabel!
     @IBOutlet weak var OBar: UIView!
     @IBOutlet weak var OBarWidth: NSLayoutConstraint!
     @IBOutlet weak var OBarBottomMargin: NSLayoutConstraint!
