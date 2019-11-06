@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,6 +23,7 @@
             <connections>
                 <outlet property="CourseCode" destination="8Bu-vs-iPh" id="QeE-Eg-amj"/>
                 <outlet property="CourseName" destination="0oe-SZ-O4K" id="XzC-zn-Xio"/>
+                <outlet property="ForwardButton" destination="D3O-SA-uVT" id="dnn-vs-pSl"/>
                 <outlet property="NATextView" destination="NFE-2L-frj" id="484-x4-Ul8"/>
                 <outlet property="PeriodNumber" destination="Qhe-n4-cNj" id="rZ3-fD-0A3"/>
                 <outlet property="ProgressBar" destination="INy-at-mkD" id="rYo-eH-PsN"/>

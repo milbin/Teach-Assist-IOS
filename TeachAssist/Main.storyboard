@@ -271,13 +271,13 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Teachassist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kkf-gX-D4h">
-                                <rect key="frame" x="138.5" y="125" width="98.5" height="32"/>
+                                <rect key="frame" x="140.5" y="125" width="94" height="21"/>
                                 <fontDescription key="fontDescription" name="Eczar-Bold" family="Eczar" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XFH-2V-VbQ">
-                                <rect key="frame" x="0.0" y="190" width="375" height="500"/>
+                                <rect key="frame" x="0.0" y="179" width="375" height="500"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="500" id="wAm-b2-KJ4"/>
                                 </constraints>
@@ -286,7 +286,7 @@
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DGu-6e-RMz" userLabel="Line View">
-                                <rect key="frame" x="20" y="172" width="335" height="3"/>
+                                <rect key="frame" x="20" y="161" width="335" height="3"/>
                                 <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="3" id="kdv-uv-kOF"/>
@@ -310,7 +310,8 @@
                     </view>
                     <connections>
                         <outlet property="appTitleLabel" destination="Kkf-gX-D4h" id="rEa-Hn-6yj"/>
-                        <outlet property="dividerView" destination="SSE-l6-BNh" id="dYM-XP-IMq"/>
+                        <outlet property="drawerView" destination="SSE-l6-BNh" id="dYM-XP-IMq"/>
+                        <outlet property="lineView" destination="DGu-6e-RMz" id="5JJ-Xr-I6V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DR1-PC-nEs" userLabel="First Responder" sceneMemberID="firstResponder"/>

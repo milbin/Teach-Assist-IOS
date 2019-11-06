@@ -11,7 +11,8 @@ import KYDrawerController
 
 class DrawerViewControllerParent: UIViewController {
     @IBOutlet weak var appTitleLabel: UILabel!
-    @IBOutlet var dividerView: UIView!
+    @IBOutlet var drawerView: UIView!
+    @IBOutlet weak var lineView: UIView!
     var lightThemeEnabled = false
     var lightThemeLightBlack = UIColor(red: 39/255, green: 39/255, blue: 47/255, alpha: 1)
     var lightThemeWhite = UIColor(red:51/255, green:51/255, blue: 61/255, alpha:1)
@@ -36,7 +37,8 @@ class DrawerViewControllerParent: UIViewController {
                 self.navigationController?.navigationBar.barTintColor = lightThemeWhite
                 let textAttributes = [NSAttributedString.Key.foregroundColor:lightThemeBlack]
                 navigationController?.navigationBar.titleTextAttributes = textAttributes
-                dividerView.backgroundColor = lightThemeWhite
+                drawerView.backgroundColor = lightThemeWhite
+                lineView.backgroundColor = lightThemeLightBlack
                 appTitleLabel.textColor = lightThemeBlack
                 
             }

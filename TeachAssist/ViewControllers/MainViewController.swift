@@ -57,6 +57,10 @@ class MainViewController: UIViewController {
                 self.AverageBar.innerRingColor = lightThemeBlue
             }
         }
+        scrollView.backgroundColor = lightThemeWhite
+        StackView.addBackground(color: lightThemeWhite)
+        self.view.backgroundColor = lightThemeWhite
+        
         setNeedsStatusBarAppearanceUpdate()
         AverageBar.font = UIFont.boldSystemFont(ofSize: 25.0)
         AverageBar.valueFormatter = UICircularProgressRingFormatter(showFloatingPoint:true, decimalPlaces:1)
@@ -121,9 +125,6 @@ class MainViewController: UIViewController {
         
         AverageBar.font = UIFont(name: "Gilroy-Bold", size: 30)!
         AverageBar.fontColor = lightThemeBlack
-        scrollView.backgroundColor = lightThemeWhite
-        StackView.addBackground(color: lightThemeWhite)
-        self.view.backgroundColor = lightThemeWhite
         
         hasViewStarted = true
         //get ta data

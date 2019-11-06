@@ -23,6 +23,7 @@ class CourseView: UIView {
     
     @IBOutlet weak var ProgressBarWidth: NSLayoutConstraint!
     @IBOutlet weak var ProgressBarHeight: NSLayoutConstraint!
+    @IBOutlet weak var ForwardButton: UIButton!
     
     
     
