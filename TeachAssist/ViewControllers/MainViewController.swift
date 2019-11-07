@@ -69,8 +69,7 @@ class MainViewController: UIViewController {
             NSAttributedString.Key.font: UIFont(name: "Gilroy-Regular", size: 17)!,
             NSAttributedString.Key.foregroundColor: lightThemeBlack],
                                                                   for: .normal)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "HamburgerIcon"), style: .plain, target: self, action: #selector(OnNavButtonPress))//add nav button as the onClick method
-        navigationItem.leftBarButtonItem?.tintColor = lightThemeBlack
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "hamburger"), style: .plain, target: self, action: #selector(OnNavButtonPress)) //add nav button as the onClick method
         self.navigationController?.navigationBar.tintColor = lightThemeBlack
         
         //setup refresh controller to allow main view to be refreshed
@@ -213,6 +212,7 @@ class MainViewController: UIViewController {
                 courseView.ProgressBar.outerRingColor = lightThemeLightBlack
                 courseView.ProgressBar.fontColor = lightThemeBlack
                 courseView.contentView.layer.borderColor = lightThemeLightBlack.cgColor
+                courseView.ForwardButton.setImage(UIImage(named: "forward-dark"), for: .normal)
             }
             
             StackView.addArrangedSubview(courseView as UIView)
@@ -367,6 +367,8 @@ class MainViewController: UIViewController {
     
     
 }
+
+
 extension UINavigationController {   open override var preferredStatusBarStyle: UIStatusBarStyle {
     return topViewController?.preferredStatusBarStyle ?? .default
 }}

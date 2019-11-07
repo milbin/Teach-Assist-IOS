@@ -19,8 +19,11 @@ class DrawerViewController: UITableViewController {
 
     @IBOutlet weak var settingsCell: UITableViewCell!
     @IBOutlet weak var settingsLabel: UILabel!
+    @IBOutlet weak var settingsIcon: UIImageView!
     @IBOutlet weak var logoutLabel: UILabel!
+    @IBOutlet weak var logoutIcon: UIImageView!
     @IBOutlet weak var feedbackLabel: UILabel!
+    @IBOutlet weak var feedbackIcon: UIImageView!
     var cells = ["settings":0, "logout":1, "bug report":2]
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,8 +44,11 @@ class DrawerViewController: UITableViewController {
                 let textAttributes = [NSAttributedString.Key.foregroundColor:lightThemeBlack]
                 navigationController?.navigationBar.titleTextAttributes = textAttributes
                 settingsLabel.textColor = lightThemeBlack
+                settingsIcon.image = UIImage(named: "settings-dark")
                 logoutLabel.textColor = lightThemeBlack
+                logoutIcon.image = UIImage(named: "logout-dark")
                 feedbackLabel.textColor = lightThemeBlack
+                feedbackIcon.image = UIImage(named: "bug-dark")
                 settingsLabel.superview?.backgroundColor = lightThemeWhite
                 logoutLabel.superview?.backgroundColor = lightThemeWhite
                 feedbackLabel.superview?.backgroundColor = lightThemeWhite

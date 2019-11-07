@@ -186,6 +186,6 @@
     </objects>
     <resources>
         <image name="forward" width="96" height="96"/>
-        <image name="ic_action_delete" width="96" height="96"/>
+        <image name="ic_action_delete" width="48" height="48"/>
     </resources>
 </document>

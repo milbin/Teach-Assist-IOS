@@ -127,9 +127,8 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
                 addAssignmentMarkLabel.textColor = lightThemeBlack
                 addAssignmentTitleLabel.textColor = lightThemeBlack
                 addAssignmentAdvancedButtonLabel.tintColor = lightThemeBlack
-                addAssignmentAdvancedButton.setImage(UIImage(named: "lock"), for: .normal)
-                addAssignmentPlusButton.image = UIImage(named: "lock")
-                addAssignmentCancelButton.backgroundColor = lightThemeBlue
+                addAssignmentAdvancedButton.setImage(UIImage(named: "down-dark"), for: .normal)
+                addAssignmentPlusButton.image = UIImage(named: "plus-dark")
                 addAssignmentAddButton.backgroundColor = lightThemeGreen
                 addAssignmentAddButton.tintColor = lightThemeBlack //for the text
                 
