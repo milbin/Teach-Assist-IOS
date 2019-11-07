@@ -266,7 +266,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ta_logo_transparent" translatesAutoresizingMaskIntoConstraints="NO" id="Aiu-NN-iMI">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ta_logo_v3" translatesAutoresizingMaskIntoConstraints="NO" id="Aiu-NN-iMI">
                                 <rect key="frame" x="140" y="20" width="95" height="95"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="95" id="GxH-WD-RtY"/>
@@ -1040,7 +1040,7 @@
         <image name="logout" width="48" height="48"/>
         <image name="plus" width="100" height="100"/>
         <image name="settings" width="48" height="48"/>
-        <image name="ta_logo_transparent" width="487" height="487"/>
+        <image name="ta_logo_v3" width="487" height="487"/>
         <image name="up" width="96" height="96"/>
     </resources>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
