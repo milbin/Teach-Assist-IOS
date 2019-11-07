@@ -21,9 +21,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var remeberMeLabel: UILabel!
     @IBOutlet weak var teachassistTitle: UILabel!
-    @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var usernameIcon: UIImageView!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var passwordIcon: UIImageView!
+    @IBOutlet weak var loginButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         //check for light theme
@@ -43,12 +45,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 remeberMeLabel.textColor = lightThemeBlack
                 teachassistTitle.textColor = lightThemeBlack
                 usernameTextField.backgroundColor = lightThemeLightBlack
-                loginButton.backgroundColor = lightThemeBlue
-                passwordTextField.backgroundColor = lightThemeLightBlack
                 usernameTextField.textColor = lightThemeBlack
-                usernameTextField.layer.borderColor = lightThemeLightBlack.cgColor
-                usernameTextField.layer.borderWidth = 0
+                usernameIcon.image = UIImage(named: "account-dark")
+                passwordTextField.backgroundColor = lightThemeLightBlack
                 passwordTextField.textColor = lightThemeBlack
+                passwordIcon.image = UIImage(named: "lock-dark")
+                loginButton.backgroundColor = lightThemeBlue
                 
             }
         }
@@ -67,14 +69,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         loginButton.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner], radius: 5)
         
         usernameTextField.attributedPlaceholder = NSAttributedString(string:"Username", attributes: [NSAttributedString.Key.foregroundColor: lightThemeWhite]) //to make the colour of the placeholder gray
-        usernameTextField.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner], radius: 5)
-        usernameTextField.setLeftPaddingPoints(5)
-
         
-        passwordTextField.attributedPlaceholder = NSAttributedString(string:"Password", attributes: [NSAttributedString.Key.foregroundColor: lightThemeWhite])
-        passwordTextField.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner], radius: 5)
-        passwordTextField.setLeftPaddingPoints(5)
-
+        passwordTextField.attributedPlaceholder = NSAttributedString(string:"Password", attributes: [NSAttributedString.Key.foregroundColor: lightThemeWhite]) //to make the colour of the placeholder gray
 
         
         //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
