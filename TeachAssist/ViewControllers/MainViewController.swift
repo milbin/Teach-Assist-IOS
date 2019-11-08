@@ -69,8 +69,24 @@ class MainViewController: UIViewController {
             NSAttributedString.Key.font: UIFont(name: "Gilroy-Regular", size: 17)!,
             NSAttributedString.Key.foregroundColor: lightThemeBlack],
                                                                   for: .normal)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "hamburger"), style: .plain, target: self, action: #selector(OnNavButtonPress)) //add nav button as the onClick method
+        
+        //navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "hamburger-dark"), style: .plain, target: self, action: #selector(OnNavButtonPress)) //add nav button as the onClick method
         self.navigationController?.navigationBar.tintColor = lightThemeBlack
+        //set right hamburger button
+        let menuBtn = UIButton(type: .custom)
+        menuBtn.frame = CGRect(x: 0.0, y: 0.0, width: 30, height: 30)
+        if(lightThemeEnabled){
+            menuBtn.setImage(UIImage(named:"hamburger-dark"), for: .normal)
+        }else{
+            menuBtn.setImage(UIImage(named:"hamburger"), for: .normal)
+        }
+        menuBtn.addTarget(self, action: #selector(OnNavButtonPress), for: UIControl.Event.touchUpInside)
+        let menuBarItem = UIBarButtonItem(customView: menuBtn)
+        let currWidth = menuBarItem.customView?.widthAnchor.constraint(equalToConstant: 24)
+        currWidth?.isActive = true
+        let currHeight = menuBarItem.customView?.heightAnchor.constraint(equalToConstant: 24)
+        currHeight?.isActive = true
+        self.navigationItem.leftBarButtonItem = menuBarItem
         
         //setup refresh controller to allow main view to be refreshed
         refreshControl = UIRefreshControl()

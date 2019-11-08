@@ -16,6 +16,8 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
     var hasViewBeenLayedOut = false
     var numOfremovedViews = 0
     var addAssignmentIsExpanded = false
+    var assignmentsHaveBeenAdded = false
+    
     
     var lightThemeEnabled = false
     var lightThemeLightBlack = UIColor(red: 39/255, green: 39/255, blue: 47/255, alpha: 1)
@@ -116,6 +118,11 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
                 self.AverageBar.outerRingColor = lightThemeLightBlack
                 self.AverageBar.innerRingColor = lightThemeBlue
                 self.AverageBar.superview?.backgroundColor = lightThemeWhite
+                KbarAverage.backgroundColor = lightThemeGreen
+                TbarAverage.backgroundColor = lightThemeGreen
+                CbarAverage.backgroundColor = lightThemeGreen
+                AbarAverage.backgroundColor = lightThemeGreen
+                ObarAverage.backgroundColor = lightThemeGreen
                 addAssignmentKLabel.textColor = lightThemeBlack
                 addAssignmentTLabel.textColor = lightThemeBlack
                 addAssignmentCLabel.textColor = lightThemeBlack
@@ -128,6 +135,7 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
                 addAssignmentTitleLabel.textColor = lightThemeBlack
                 addAssignmentAdvancedButtonLabel.tintColor = lightThemeBlack
                 addAssignmentAdvancedButton.setImage(UIImage(named: "down-dark"), for: .normal)
+                addAssignmentAdvancedButton.setImage(UIImage(named: "up-dark"), for: .selected)
                 addAssignmentPlusButton.image = UIImage(named: "plus-dark")
                 addAssignmentAddButton.backgroundColor = lightThemeGreen
                 addAssignmentAddButton.tintColor = lightThemeBlack //for the text
@@ -159,13 +167,9 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
                 addAssignmentTWeight.textColor = lightThemeBlack
                 addAssignmentCWeight.textColor = lightThemeBlack
                 addAssignmentAWeight.textColor = lightThemeBlack
-
-
-
-                
-                
             }
         }
+        //setup background color and navigation bar
         StackView.addBackground(color: lightThemeWhite)
         self.view.backgroundColor = lightThemeWhite
         scrollView.backgroundColor = lightThemeWhite
@@ -177,6 +181,14 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
             NSAttributedString.Key.font: UIFont(name: "Gilroy-Regular", size: 17)!,
             NSAttributedString.Key.foregroundColor: lightThemeBlack],
                                                                   for: .normal)
+        //setup mark bar height
+        KbarAverageHeight.constant = 40
+        TbarAverageHeight.constant = 40
+        CbarAverageHeight.constant = 40
+        AbarAverageHeight.constant = 40
+        ObarAverageHeight.constant = 40
+        
+        //setup add assignment including light mode for it
         addAssignment.layer.borderWidth = 2
         addAssignment.layer.borderColor = lightThemeLightBlack.cgColor
         addAssignment.backgroundColor = lightThemeWhite
@@ -267,7 +279,9 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
                 }
             }
             var assignment = assignmentWithFeedbackAndTitle as! [String:[String:String]]
-            addAssignmentToStackview(assignment: assignment, feedback: feedback, title: title)
+            if(!assignmentsHaveBeenAdded){ //to resolve the bug where assignemnts get added twice because the system calls this method when the user swips back
+                addAssignmentToStackview(assignment: assignment, feedback: feedback, title: title)
+            }
             
         }
         AverageBar.startProgress(to: CGFloat(Mark!), duration: 1.8)
@@ -275,6 +289,9 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
         
         if refreshControl!.isRefreshing{
             refreshControl!.endRefreshing()
+        }
+        if(!assignmentsHaveBeenAdded){
+            assignmentsHaveBeenAdded = true
         }
     }
     
@@ -450,20 +467,6 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
         
         UpdateMarkBars()
         AverageBar.value = CGFloat((ta?.CalculateCourseAverage(markParam: response!))!)
-        UIView.animate(withDuration: 0.1, animations: {
-            self.AddAssignmentHeight.constant = 129
-            self.addAssignmentBoxTitleAlignTop.isActive = false
-            self.addAssignmentPlusButton.isHidden = false
-            self.addAssignmentTitle.isHidden = true
-            self.addAssignmentSimpleMark.isHidden = true
-            self.addAssignmentSimpleWeight.isHidden = true
-            self.addAssignmentMarkLabel.isHidden = true
-            self.addAssignmentCancelButton.isHidden = true
-            self.addAssignmentAddButton.isHidden = true
-            self.addAssignmentAdvancedButton.isHidden = true
-            self.addAssignmentAdvancedButtonLabel.isHidden = true
-            self.addAssignmentDividerLine.isHidden = true
-        })
         addAssignmentIsExpanded = false
         self.addAssignmentTitle.text = nil
         self.addAssignmentSimpleMark.text = nil
@@ -480,6 +483,21 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
         self.addAssignmentOWeight.text = nil
         self.addAssignmentAdvancedButton.isSelected = true
         OnAddAssignmentAdvancedButtonPress(sender: addAssignmentAdvancedButton)
+        UIView.animate(withDuration: 0.1, animations: {
+            self.AddAssignmentHeight.constant = 129
+            self.addAssignmentBoxTitleAlignTop.isActive = false
+            self.addAssignmentPlusButton.isHidden = false
+            self.addAssignmentTitle.isHidden = true
+            self.addAssignmentSimpleMark.isHidden = true
+            self.addAssignmentSimpleWeight.isHidden = true
+            self.addAssignmentMarkLabel.isHidden = true
+            self.addAssignmentCancelButton.isHidden = true
+            self.addAssignmentAddButton.isHidden = true
+            self.addAssignmentAdvancedButton.isHidden = true
+            self.addAssignmentAdvancedButtonLabel.isHidden = true
+            self.addAssignmentDividerLine.isHidden = true
+        })
+        
     
         
         
@@ -673,6 +691,7 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
             view.isHidden = true
             view.removeFromSuperview()
         }
+        assignmentsHaveBeenAdded = false
         StackViewHeight.constant = 0
         StackView.layoutIfNeeded()
         AverageBar.startProgress(to: 0.0, duration: 0)
