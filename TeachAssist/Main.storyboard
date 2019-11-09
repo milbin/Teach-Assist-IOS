@@ -32,21 +32,11 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wOf-za-rGo" customClass="UICircularProgressRing" customModule="UICircularProgressRing">
                                         <rect key="frame" x="100" y="20" width="175" height="175"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Average:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RgN-Av-UF1">
-                                                <rect key="frame" x="57" y="49" width="61" height="17.5"/>
-                                                <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="15"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
                                         <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="tintColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.23921568627450981" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="175" id="8na-gN-Yzh"/>
                                             <constraint firstAttribute="height" constant="175" id="WGs-xf-Wdq"/>
-                                            <constraint firstItem="RgN-Av-UF1" firstAttribute="centerY" secondItem="wOf-za-rGo" secondAttribute="centerY" constant="-30" id="a7z-Y4-QVW"/>
-                                            <constraint firstItem="RgN-Av-UF1" firstAttribute="centerX" secondItem="wOf-za-rGo" secondAttribute="centerX" id="fWH-5i-naw"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="value">
@@ -389,22 +379,9 @@
                                         <subviews>
                                             <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="aTd-IU-EAV" customClass="UICircularProgressRing" customModule="UICircularProgressRing">
                                                 <rect key="frame" x="112.5" y="20" width="150" height="150"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Average:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yeV-un-ily">
-                                                        <rect key="frame" x="44.5" y="31" width="61" height="24"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="24" id="NdP-c1-Hqm"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="15"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
                                                 <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="centerY" secondItem="yeV-un-ily" secondAttribute="bottom" constant="20" id="AHg-WC-ux0"/>
                                                     <constraint firstAttribute="height" constant="150" id="SRz-oC-1je"/>
-                                                    <constraint firstItem="yeV-un-ily" firstAttribute="centerX" secondItem="aTd-IU-EAV" secondAttribute="centerX" id="aRP-2f-GCW"/>
                                                     <constraint firstAttribute="width" constant="150" id="wQe-Rb-cEy"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
