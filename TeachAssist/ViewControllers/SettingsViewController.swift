@@ -106,7 +106,7 @@ class SettingsViewController: UITableViewController {
             }else{
                 if #available(iOS 10.3, *) {
                     if UIApplication.shared.supportsAlternateIcons{
-                        UIApplication.shared.setAlternateIconName("dark", completionHandler: { (error) in
+                        UIApplication.shared.setAlternateIconName(nil, completionHandler: { (error) in
                         })
                     }
                 }

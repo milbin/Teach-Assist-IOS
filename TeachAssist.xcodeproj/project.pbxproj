@@ -31,6 +31,9 @@
 		49598EA9235F89BB0014D749 /* Eczar-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 49598EA6235F7DE30014D749 /* Eczar-Bold.ttf */; };
 		499BB5722362AC6C003ED59F /* Gilroy-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 499BB5712362AC6C003ED59F /* Gilroy-Light.ttf */; };
 		499BB5742362AC79003ED59F /* Gilroy-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 499BB5732362AC79003ED59F /* Gilroy-ExtraBold.ttf */; };
+		49DFDD55237754570062851F /* AppIconWhite@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49DFDD52237754570062851F /* AppIconWhite@3x.png */; };
+		49DFDD56237754570062851F /* AppIconWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49DFDD53237754570062851F /* AppIconWhite@2x.png */; };
+		49DFDD57237754570062851F /* AppIconWhite@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49DFDD54237754570062851F /* AppIconWhite@1x.png */; };
 		6E449D132204A26E00C0F0AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E449D122204A26E00C0F0AC /* AppDelegate.swift */; };
 		6E449D152204A26E00C0F0AC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E449D142204A26E00C0F0AC /* MainViewController.swift */; };
 		6E449D282204A27200C0F0AC /* TeachAssistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E449D272204A27200C0F0AC /* TeachAssistTests.swift */; };
@@ -52,10 +55,6 @@
 		EA37FD712371A9AE008E7109 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA37FD702371A9AE008E7109 /* NavigationController.swift */; };
 		EA94D82F2272628F00C27FB6 /* updateStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA94D82E2272628F00C27FB6 /* updateStackView.swift */; };
 		EA96E205229F441B006CA3E5 /* auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA96E204229F441B006CA3E5 /* auth.swift */; };
-		EA98C4C623765CE700E149D1 /* AppIconWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA98C4C523765CE700E149D1 /* AppIconWhite@2x.png */; };
-		EA98C4CA23765D2300E149D1 /* AppIconWhite@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA98C4C923765D2300E149D1 /* AppIconWhite@3x.png */; };
-		EA98C4CC23765E2500E149D1 /* AppIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA98C4CB23765E2500E149D1 /* AppIcon@2x.png */; };
-		EA98C4CE23765E3800E149D1 /* AppIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA98C4CD23765E3800E149D1 /* AppIcon@3x.png */; };
 		EAA02E54236E6E0500F76720 /* DrawerViewControllerParent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA02E53236E6E0500F76720 /* DrawerViewControllerParent.swift */; };
 		EAAF4B75234D55EF00308289 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EAAF4B74234D55EE00308289 /* GoogleService-Info.plist */; };
 		EAB209232220E519000686B3 /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB209222220E519000686B3 /* LoginButton.swift */; };
@@ -97,6 +96,9 @@
 		49598EA6235F7DE30014D749 /* Eczar-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Eczar-Bold.ttf"; sourceTree = "<group>"; };
 		499BB5712362AC6C003ED59F /* Gilroy-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Light.ttf"; sourceTree = "<group>"; };
 		499BB5732362AC79003ED59F /* Gilroy-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-ExtraBold.ttf"; sourceTree = "<group>"; };
+		49DFDD52237754570062851F /* AppIconWhite@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIconWhite@3x.png"; sourceTree = "<group>"; };
+		49DFDD53237754570062851F /* AppIconWhite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIconWhite@2x.png"; sourceTree = "<group>"; };
+		49DFDD54237754570062851F /* AppIconWhite@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIconWhite@1x.png"; sourceTree = "<group>"; };
 		5F38B4DEB25E275E6B3D94A4 /* Pods-TeachAssistUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeachAssistUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TeachAssistUITests/Pods-TeachAssistUITests.release.xcconfig"; sourceTree = "<group>"; };
 		61D508545975C28BFFF72A94 /* Pods-TeachAssist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeachAssist.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TeachAssist/Pods-TeachAssist.debug.xcconfig"; sourceTree = "<group>"; };
 		6E449D0F2204A26E00C0F0AC /* TeachAssist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeachAssist.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,10 +138,6 @@
 		EA7B4FB52296043100B79BC4 /* Pods_TeachAssistUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_TeachAssistUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA94D82E2272628F00C27FB6 /* updateStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = updateStackView.swift; sourceTree = "<group>"; };
 		EA96E204229F441B006CA3E5 /* auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = auth.swift; sourceTree = "<group>"; };
-		EA98C4C523765CE700E149D1 /* AppIconWhite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIconWhite@2x.png"; sourceTree = "<group>"; };
-		EA98C4C923765D2300E149D1 /* AppIconWhite@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIconWhite@3x.png"; sourceTree = "<group>"; };
-		EA98C4CB23765E2500E149D1 /* AppIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon@2x.png"; sourceTree = "<group>"; };
-		EA98C4CD23765E3800E149D1 /* AppIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon@3x.png"; sourceTree = "<group>"; };
 		EAA02E53236E6E0500F76720 /* DrawerViewControllerParent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerViewControllerParent.swift; sourceTree = "<group>"; };
 		EAAF4B74234D55EE00308289 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EAB209222220E519000686B3 /* LoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
@@ -198,6 +196,16 @@
 			path = fonts;
 			sourceTree = "<group>";
 		};
+		49DFDD59237755A20062851F /* alt icons */ = {
+			isa = PBXGroup;
+			children = (
+				49DFDD54237754570062851F /* AppIconWhite@1x.png */,
+				49DFDD53237754570062851F /* AppIconWhite@2x.png */,
+				49DFDD52237754570062851F /* AppIconWhite@3x.png */,
+			);
+			path = "alt icons";
+			sourceTree = "<group>";
+		};
 		4F9FC851004133565DB813E5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -241,10 +249,7 @@
 		6E449D112204A26E00C0F0AC /* TeachAssist */ = {
 			isa = PBXGroup;
 			children = (
-				EA98C4C523765CE700E149D1 /* AppIconWhite@2x.png */,
-				EA98C4C923765D2300E149D1 /* AppIconWhite@3x.png */,
-				EA98C4CD23765E3800E149D1 /* AppIcon@3x.png */,
-				EA98C4CB23765E2500E149D1 /* AppIcon@2x.png */,
+				49DFDD59237755A20062851F /* alt icons */,
 				EAAF4B74234D55EE00308289 /* GoogleService-Info.plist */,
 				EA649139228247790072E6C5 /* TeachAssist.entitlements */,
 				EA3624A5223D924B009E392D /* Views */,
@@ -475,24 +480,23 @@
 			files = (
 				EA007A4C2227175C00AD7AFE /* Main.storyboard in Resources */,
 				EA007A4622270D6A00AD7AFE /* Login.storyboard in Resources */,
-				EA98C4CE23765E3800E149D1 /* AppIcon@3x.png in Resources */,
 				6EDFB06422204DFE00640F87 /* Assets.xcassets in Resources */,
 				499BB5722362AC6C003ED59F /* Gilroy-Light.ttf in Resources */,
 				49598E9D235F7D260014D749 /* Eczar-SemiBold.ttf in Resources */,
 				49598E9A235F7D220014D749 /* Eczar-Regular.ttf in Resources */,
-				EA98C4C623765CE700E149D1 /* AppIconWhite@2x.png in Resources */,
 				49598E97235F7D1F0014D749 /* Eczar-Medium.ttf in Resources */,
+				49DFDD56237754570062851F /* AppIconWhite@2x.png in Resources */,
+				49DFDD55237754570062851F /* AppIconWhite@3x.png in Resources */,
 				EABD64CE2266B28E0029E464 /* SettingsTableViewCell.xib in Resources */,
 				499BB5742362AC79003ED59F /* Gilroy-ExtraBold.ttf in Resources */,
 				49598EA3235F7D2D0014D749 /* sandstone.otf in Resources */,
 				49598EA0235F7D290014D749 /* sandstone_bold.otf in Resources */,
-				EA98C4CC23765E2500E149D1 /* AppIcon@2x.png in Resources */,
 				EA3624AB223DD149009E392D /* CourseView.xib in Resources */,
 				EAE7AF7022693FC00056BC9A /* AssignmentView.xib in Resources */,
+				49DFDD57237754570062851F /* AppIconWhite@1x.png in Resources */,
 				49598EA7235F89B70014D749 /* Eczar-Bold.ttf in Resources */,
 				49598E94235F7D1C0014D749 /* Eczar-ExtraBold.ttf in Resources */,
 				EAAF4B75234D55EF00308289 /* GoogleService-Info.plist in Resources */,
-				EA98C4CA23765D2300E149D1 /* AppIconWhite@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
