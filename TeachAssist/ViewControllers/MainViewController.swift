@@ -194,8 +194,6 @@ class MainViewController: UIViewController {
             if let mark = (course["mark"] as? CGFloat){
                 print(mark)
                 courseView.ProgressBar.value = mark
-            }else if(i == 1){
-                courseView.ProgressBar.value = 90.5
             }else{
                 courseView.ProgressBar.isHidden = true
                 courseView.NATextView.isHidden = false
