@@ -108,7 +108,7 @@ class MainViewController: UIViewController {
 
             The light mode option can be found in settings, while the marks calculator can be found at the bottom of each course page. We hope you enjoy!
             """
-            let image = UIImage(named: "ta_logo_v3")
+            let image = UIImage(named: "popup")
             let popup = PopupDialog(title: title, message: message, image: image)
             let buttonOne = PopupDialogButton(title: "Ok", dismissOnTap: true) {
                 print("What a beauty!")
