@@ -103,8 +103,8 @@ class MainViewController: UIViewController {
             let message = """
             We've received a lot of positive feedback from this past Monday's redesign update, and we'd like to announce the addition of another 2 features:
 
-            LIGHT MODE
-            A MARKS CALCULATOR
+            • LIGHT MODE
+            • A MARKS CALCULATOR
 
             The light mode option can be found in settings, while the marks calculator can be found at the bottom of each course page. We hope you enjoy!
             """
