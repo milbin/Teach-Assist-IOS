@@ -96,6 +96,21 @@ class SettingsViewController: UITableViewController {
         if currentPreferenceExists != nil{ //preference does exist
             let currentPreferenceValue = Preferences.bool(forKey: "LightThemeEnabled")
             Preferences.set(!currentPreferenceValue, forKey: "LightThemeEnabled")
+            if(!currentPreferenceValue){ //light theme enabled
+                if #available(iOS 10.3, *) {
+                    if UIApplication.shared.supportsAlternateIcons{
+                        UIApplication.shared.setAlternateIconName("light", completionHandler: { (error) in
+                        })
+                    }
+                }
+            }else{
+                if #available(iOS 10.3, *) {
+                    if UIApplication.shared.supportsAlternateIcons{
+                        UIApplication.shared.setAlternateIconName("dark", completionHandler: { (error) in
+                        })
+                    }
+                }
+            }
         }
         Preferences.synchronize()
         let cell = tableView.cellForRow(at: indexPath) as! SettingsTableViewCell

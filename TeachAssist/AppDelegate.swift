@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //initialize fabric
         Fabric.with([Crashlytics.self])
         IQKeyboardManager.shared.enable = true //enable smart keyboard location so that it dosnt block edittext
-        UIApplication.shared.statusBarStyle = .lightContent //sets the time and battery wifi etc to light so its easier to see on the dark background
+        //UIApplication.shared.statusBarStyle = .lightContent //sets the time and battery wifi etc to light so its easier to see on the dark background
         
         
         
