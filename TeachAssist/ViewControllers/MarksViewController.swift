@@ -393,26 +393,36 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
                 self.present(alert, animated: true)
                 return
             }else{
-                dict["K"] = ["category" : "K",
-                             "mark" : String(markK),
-                             "outOf" : "100",
-                             "weight" : String(weightK)]
-                dict["T"] = ["category" : "T",
-                             "mark" : String(markT),
-                             "outOf" : "100",
-                             "weight" : String(weightT)]
-                dict["C"] = ["category" : "C",
-                             "mark" : String(markC),
-                             "outOf" : "100",
-                             "weight" : String(weightC)]
-                dict["A"] = ["category" : "A",
-                             "mark" : String(markA),
-                             "outOf" : "100",
-                             "weight" : String(weightA)]
-                dict[""] = ["category" : "",
-                            "mark" : String(markO),
-                            "outOf" : "100",
-                            "weight" : String(weightO)]
+                if(markK != 0.93741){
+                    dict["K"] = ["category" : "K",
+                                 "mark" : String(markK),
+                                 "outOf" : "100",
+                                 "weight" : String(weightK)]
+                }
+                if(markT != 0.93741){
+                    dict["T"] = ["category" : "T",
+                                 "mark" : String(markT),
+                                 "outOf" : "100",
+                                 "weight" : String(weightT)]
+                }
+                if(markC != 0.93741){
+                    dict["C"] = ["category" : "C",
+                                 "mark" : String(markC),
+                                 "outOf" : "100",
+                                 "weight" : String(weightC)]
+                }
+                if(markA != 0.93741){
+                    dict["A"] = ["category" : "A",
+                                 "mark" : String(markA),
+                                 "outOf" : "100",
+                                 "weight" : String(weightA)]
+                }
+                if(markO != 0.93741){
+                    dict[""] = ["category" : "",
+                                "mark" : String(markO),
+                                "outOf" : "100",
+                                "weight" : String(weightO)]
+                }
             }
         }else{ //simple mode
             var mark = Double(addAssignmentSimpleMark.text!)
@@ -529,7 +539,9 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
         if(self.addAssignmentAdvancedButton.isSelected){
             self.addAssignmentAdvancedButton.isSelected = false
             self.addAssignmentSimpleMark.isEnabled = true
+            self.addAssignmentSimpleMark.alpha = 1
             self.addAssignmentSimpleWeight.isEnabled = true
+            self.addAssignmentSimpleWeight.alpha = 1
             UIView.animate(withDuration: 0.5, animations: {
                 self.AddAssignmentHeight.constant = 325
                 self.addAssignmentKMark.isHidden = true
@@ -551,7 +563,11 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
         }else{
             self.addAssignmentAdvancedButton.isSelected = true
             self.addAssignmentSimpleMark.isEnabled = false
+            self.addAssignmentSimpleMark.alpha = 0.5
+            self.addAssignmentSimpleMark.text = ""
             self.addAssignmentSimpleWeight.isEnabled = false
+            self.addAssignmentSimpleWeight.text = ""
+            self.addAssignmentSimpleWeight.alpha = 0.5
             UIView.animate(withDuration: 0.5, animations: {
                 self.AddAssignmentHeight.constant = 550
                 self.addAssignmentKMark.isHidden = false
