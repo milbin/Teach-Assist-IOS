@@ -134,10 +134,10 @@
                             <constraint firstItem="aap-9L-fGT" firstAttribute="centerX" secondItem="p7T-5f-e8f" secondAttribute="centerX" id="I7C-tH-Kfn"/>
                             <constraint firstItem="2bj-aP-m1T" firstAttribute="top" secondItem="JfH-d3-jRd" secondAttribute="bottom" constant="10" id="MUA-vB-v73"/>
                             <constraint firstItem="jdP-vQ-dis" firstAttribute="leading" secondItem="rcy-Bo-jhQ" secondAttribute="leading" id="NIB-Yu-BxP"/>
-                            <constraint firstItem="aap-9L-fGT" firstAttribute="top" relation="greaterThanOrEqual" secondItem="2bj-aP-m1T" secondAttribute="bottom" priority="750" constant="60" id="NjP-Tm-E4P"/>
+                            <constraint firstItem="aap-9L-fGT" firstAttribute="top" relation="greaterThanOrEqual" secondItem="2bj-aP-m1T" secondAttribute="bottom" constant="40" id="NjP-Tm-E4P"/>
                             <constraint firstItem="Dze-Gm-3Nq" firstAttribute="centerY" secondItem="aap-9L-fGT" secondAttribute="centerY" id="Tzx-ld-hQA"/>
                             <constraint firstItem="fma-ZI-wm8" firstAttribute="leading" secondItem="aap-9L-fGT" secondAttribute="leading" id="Wtq-Oe-ZM5"/>
-                            <constraint firstItem="fma-ZI-wm8" firstAttribute="top" secondItem="jdP-vQ-dis" secondAttribute="bottom" priority="500" constant="125" id="Y3F-2w-X77"/>
+                            <constraint firstItem="fma-ZI-wm8" firstAttribute="top" secondItem="jdP-vQ-dis" secondAttribute="bottom" priority="250" constant="125" id="Y3F-2w-X77"/>
                             <constraint firstItem="rcy-Bo-jhQ" firstAttribute="centerY" secondItem="p7T-5f-e8f" secondAttribute="centerY" constant="-20" id="Zk2-Nt-b0z"/>
                             <constraint firstItem="JfH-d3-jRd" firstAttribute="top" relation="greaterThanOrEqual" secondItem="iDD-ri-EoP" secondAttribute="top" constant="40" id="a3k-NF-CEH"/>
                             <constraint firstItem="rcy-Bo-jhQ" firstAttribute="trailing" secondItem="aap-9L-fGT" secondAttribute="trailing" id="avX-qS-X5V"/>
