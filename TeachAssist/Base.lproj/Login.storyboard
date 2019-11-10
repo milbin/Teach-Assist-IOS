@@ -128,10 +128,12 @@
                             <constraint firstItem="iDD-ri-EoP" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="fma-ZI-wm8" secondAttribute="bottom" constant="40" id="5ju-Ew-OE4"/>
                             <constraint firstItem="aap-9L-fGT" firstAttribute="leading" secondItem="iDD-ri-EoP" secondAttribute="leading" priority="500" constant="100" id="6dT-Pd-9aW"/>
                             <constraint firstItem="aap-9L-fGT" firstAttribute="leading" secondItem="Dze-Gm-3Nq" secondAttribute="trailing" constant="10" id="8cQ-c4-ILK"/>
+                            <constraint firstItem="iDD-ri-EoP" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="fma-ZI-wm8" secondAttribute="bottom" constant="250" id="8l3-pc-C18"/>
                             <constraint firstItem="rcy-Bo-jhQ" firstAttribute="leading" secondItem="NIg-3U-eQ6" secondAttribute="trailing" constant="10" id="9ox-nt-fof"/>
                             <constraint firstItem="fma-ZI-wm8" firstAttribute="trailing" secondItem="aap-9L-fGT" secondAttribute="trailing" id="Bo1-nW-ayi"/>
                             <constraint firstItem="JfH-d3-jRd" firstAttribute="centerX" secondItem="p7T-5f-e8f" secondAttribute="centerX" id="D23-vl-qB4"/>
                             <constraint firstItem="aap-9L-fGT" firstAttribute="centerX" secondItem="p7T-5f-e8f" secondAttribute="centerX" id="I7C-tH-Kfn"/>
+                            <constraint firstItem="aap-9L-fGT" firstAttribute="top" relation="lessThanOrEqual" secondItem="2bj-aP-m1T" secondAttribute="bottom" constant="300" id="I9x-3c-uio"/>
                             <constraint firstItem="2bj-aP-m1T" firstAttribute="top" secondItem="JfH-d3-jRd" secondAttribute="bottom" constant="10" id="MUA-vB-v73"/>
                             <constraint firstItem="jdP-vQ-dis" firstAttribute="leading" secondItem="rcy-Bo-jhQ" secondAttribute="leading" id="NIB-Yu-BxP"/>
                             <constraint firstItem="aap-9L-fGT" firstAttribute="top" relation="greaterThanOrEqual" secondItem="2bj-aP-m1T" secondAttribute="bottom" constant="40" id="NjP-Tm-E4P"/>
