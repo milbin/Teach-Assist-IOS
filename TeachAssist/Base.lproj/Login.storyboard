@@ -117,6 +117,7 @@
                         <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.23921568627450979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="JfH-d3-jRd" firstAttribute="top" relation="lessThanOrEqual" secondItem="iDD-ri-EoP" secondAttribute="top" constant="150" id="04Z-jS-i1h"/>
                             <constraint firstItem="KtX-hp-J7M" firstAttribute="leading" secondItem="jdP-vQ-dis" secondAttribute="trailing" constant="8" id="1cX-E5-ITV"/>
                             <constraint firstItem="jdP-vQ-dis" firstAttribute="top" secondItem="rcy-Bo-jhQ" secondAttribute="bottom" constant="20" id="1nl-Am-AxQ"/>
                             <constraint firstItem="KtX-hp-J7M" firstAttribute="centerY" secondItem="jdP-vQ-dis" secondAttribute="centerY" id="3RR-uU-FCw"/>
@@ -137,7 +138,7 @@
                             <constraint firstItem="rcy-Bo-jhQ" firstAttribute="centerY" secondItem="p7T-5f-e8f" secondAttribute="centerY" constant="-20" id="Zk2-Nt-b0z"/>
                             <constraint firstItem="JfH-d3-jRd" firstAttribute="top" relation="greaterThanOrEqual" secondItem="iDD-ri-EoP" secondAttribute="top" constant="40" id="a3k-NF-CEH"/>
                             <constraint firstItem="rcy-Bo-jhQ" firstAttribute="trailing" secondItem="aap-9L-fGT" secondAttribute="trailing" id="avX-qS-X5V"/>
-                            <constraint firstItem="aap-9L-fGT" firstAttribute="top" secondItem="2bj-aP-m1T" secondAttribute="bottom" priority="500" constant="110" id="bJq-FF-vwz"/>
+                            <constraint firstItem="aap-9L-fGT" firstAttribute="top" secondItem="2bj-aP-m1T" secondAttribute="bottom" priority="250" constant="110" id="bJq-FF-vwz"/>
                             <constraint firstItem="NIg-3U-eQ6" firstAttribute="centerY" secondItem="rcy-Bo-jhQ" secondAttribute="centerY" id="bYX-q0-K85"/>
                             <constraint firstItem="rcy-Bo-jhQ" firstAttribute="top" secondItem="aap-9L-fGT" secondAttribute="bottom" constant="10" id="dE8-v0-yBN"/>
                             <constraint firstItem="iDD-ri-EoP" firstAttribute="trailing" secondItem="aap-9L-fGT" secondAttribute="trailing" priority="500" constant="100" id="eDO-zL-pvl"/>
