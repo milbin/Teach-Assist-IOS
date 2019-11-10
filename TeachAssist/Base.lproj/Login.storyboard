@@ -55,6 +55,7 @@
                                 <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="BRh-t7-P8g"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="Ia2-Sv-WWZ"/>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="600" id="Vlw-o3-0O0"/>
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -65,7 +66,6 @@
                                 <rect key="frame" x="100" y="331" width="214" height="34"/>
                                 <color key="backgroundColor" red="0.15294117647058825" green="0.15294117647058825" blue="0.18431372549019609" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="600" id="oVb-5b-KOh"/>
                                     <constraint firstAttribute="height" constant="34" id="sj2-OF-4r3"/>
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -121,6 +121,7 @@
                             <constraint firstItem="jdP-vQ-dis" firstAttribute="top" secondItem="rcy-Bo-jhQ" secondAttribute="bottom" constant="20" id="1nl-Am-AxQ"/>
                             <constraint firstItem="KtX-hp-J7M" firstAttribute="centerY" secondItem="jdP-vQ-dis" secondAttribute="centerY" id="3RR-uU-FCw"/>
                             <constraint firstItem="fma-ZI-wm8" firstAttribute="centerX" secondItem="p7T-5f-e8f" secondAttribute="centerX" id="4SC-62-3xo"/>
+                            <constraint firstItem="iDD-ri-EoP" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="fma-ZI-wm8" secondAttribute="bottom" constant="40" id="5ju-Ew-OE4"/>
                             <constraint firstItem="aap-9L-fGT" firstAttribute="leading" secondItem="iDD-ri-EoP" secondAttribute="leading" priority="500" constant="100" id="6dT-Pd-9aW"/>
                             <constraint firstItem="aap-9L-fGT" firstAttribute="leading" secondItem="Dze-Gm-3Nq" secondAttribute="trailing" constant="10" id="8cQ-c4-ILK"/>
                             <constraint firstItem="rcy-Bo-jhQ" firstAttribute="leading" secondItem="NIg-3U-eQ6" secondAttribute="trailing" constant="10" id="9ox-nt-fof"/>
@@ -129,10 +130,10 @@
                             <constraint firstItem="aap-9L-fGT" firstAttribute="centerX" secondItem="p7T-5f-e8f" secondAttribute="centerX" id="I7C-tH-Kfn"/>
                             <constraint firstItem="2bj-aP-m1T" firstAttribute="top" secondItem="JfH-d3-jRd" secondAttribute="bottom" constant="3" id="MUA-vB-v73"/>
                             <constraint firstItem="jdP-vQ-dis" firstAttribute="leading" secondItem="rcy-Bo-jhQ" secondAttribute="leading" id="NIB-Yu-BxP"/>
-                            <constraint firstItem="rcy-Bo-jhQ" firstAttribute="leading" secondItem="iDD-ri-EoP" secondAttribute="leading" priority="500" constant="100" id="P1e-lz-KF2"/>
+                            <constraint firstItem="aap-9L-fGT" firstAttribute="top" relation="greaterThanOrEqual" secondItem="2bj-aP-m1T" secondAttribute="bottom" constant="40" id="NjP-Tm-E4P"/>
                             <constraint firstItem="Dze-Gm-3Nq" firstAttribute="centerY" secondItem="aap-9L-fGT" secondAttribute="centerY" id="Tzx-ld-hQA"/>
                             <constraint firstItem="fma-ZI-wm8" firstAttribute="leading" secondItem="aap-9L-fGT" secondAttribute="leading" id="Wtq-Oe-ZM5"/>
-                            <constraint firstItem="fma-ZI-wm8" firstAttribute="top" secondItem="jdP-vQ-dis" secondAttribute="bottom" constant="125" id="Y3F-2w-X77"/>
+                            <constraint firstItem="fma-ZI-wm8" firstAttribute="top" secondItem="jdP-vQ-dis" secondAttribute="bottom" priority="500" constant="125" id="Y3F-2w-X77"/>
                             <constraint firstItem="rcy-Bo-jhQ" firstAttribute="centerY" secondItem="p7T-5f-e8f" secondAttribute="centerY" constant="-20" id="Zk2-Nt-b0z"/>
                             <constraint firstItem="JfH-d3-jRd" firstAttribute="top" relation="greaterThanOrEqual" secondItem="iDD-ri-EoP" secondAttribute="top" constant="40" id="a3k-NF-CEH"/>
                             <constraint firstItem="rcy-Bo-jhQ" firstAttribute="trailing" secondItem="aap-9L-fGT" secondAttribute="trailing" id="avX-qS-X5V"/>
@@ -141,7 +142,6 @@
                             <constraint firstItem="rcy-Bo-jhQ" firstAttribute="top" secondItem="aap-9L-fGT" secondAttribute="bottom" constant="10" id="dE8-v0-yBN"/>
                             <constraint firstItem="iDD-ri-EoP" firstAttribute="trailing" secondItem="aap-9L-fGT" secondAttribute="trailing" priority="500" constant="100" id="eDO-zL-pvl"/>
                             <constraint firstItem="2bj-aP-m1T" firstAttribute="centerX" secondItem="p7T-5f-e8f" secondAttribute="centerX" id="j0i-dK-DRD"/>
-                            <constraint firstItem="iDD-ri-EoP" firstAttribute="trailing" secondItem="rcy-Bo-jhQ" secondAttribute="trailing" priority="500" constant="100" id="ofd-fd-Ab4"/>
                             <constraint firstItem="rcy-Bo-jhQ" firstAttribute="centerX" secondItem="p7T-5f-e8f" secondAttribute="centerX" id="pRo-Je-9vF"/>
                             <constraint firstItem="rcy-Bo-jhQ" firstAttribute="leading" secondItem="aap-9L-fGT" secondAttribute="leading" id="uMd-nY-w4Q"/>
                         </constraints>
