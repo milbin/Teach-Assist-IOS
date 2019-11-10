@@ -120,7 +120,7 @@
                         <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.23921568627450979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="JfH-d3-jRd" firstAttribute="top" relation="lessThanOrEqual" secondItem="iDD-ri-EoP" secondAttribute="top" constant="150" id="04Z-jS-i1h"/>
+                            <constraint firstItem="JfH-d3-jRd" firstAttribute="top" relation="lessThanOrEqual" secondItem="iDD-ri-EoP" secondAttribute="top" constant="200" id="04Z-jS-i1h"/>
                             <constraint firstItem="KtX-hp-J7M" firstAttribute="leading" secondItem="jdP-vQ-dis" secondAttribute="trailing" constant="8" id="1cX-E5-ITV"/>
                             <constraint firstItem="jdP-vQ-dis" firstAttribute="top" secondItem="rcy-Bo-jhQ" secondAttribute="bottom" constant="20" id="1nl-Am-AxQ"/>
                             <constraint firstItem="KtX-hp-J7M" firstAttribute="centerY" secondItem="jdP-vQ-dis" secondAttribute="centerY" id="3RR-uU-FCw"/>
