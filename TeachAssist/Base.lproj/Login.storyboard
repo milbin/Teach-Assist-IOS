@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="da3-f6-13K">
-    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
@@ -24,17 +24,17 @@
             <objects>
                 <viewController storyboardIdentifier="LoginView" id="da3-f6-13K" customClass="LoginViewController" customModule="TeachAssist" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="p7T-5f-e8f">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Teachassist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2bj-aP-m1T">
-                                <rect key="frame" x="158" y="145" width="98.333333333333314" height="32"/>
+                                <rect key="frame" x="111" y="140" width="98" height="13"/>
                                 <fontDescription key="fontDescription" name="Eczar-Bold" family="Eczar" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fma-ZI-wm8" customClass="LoginButton" customModule="TeachAssist" customModuleProvider="target">
-                                <rect key="frame" x="100" y="534" width="214" height="40"/>
+                                <rect key="frame" x="85" y="450" width="150" height="40"/>
                                 <color key="backgroundColor" red="0.015686274509803921" green="0.36470588235294116" blue="0.33725490196078434" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="c0e-X1-TGB"/>
@@ -51,7 +51,7 @@
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aap-9L-fGT">
-                                <rect key="frame" x="100" y="287" width="214" height="34"/>
+                                <rect key="frame" x="85" y="203" width="150" height="34"/>
                                 <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="BRh-t7-P8g"/>
@@ -63,7 +63,7 @@
                                 <textInputTraits key="textInputTraits" returnKeyType="done" textContentType="username"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rcy-Bo-jhQ">
-                                <rect key="frame" x="100" y="331" width="214" height="34"/>
+                                <rect key="frame" x="85" y="247" width="150" height="34"/>
                                 <color key="backgroundColor" red="0.15294117647058825" green="0.15294117647058825" blue="0.18431372549019609" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="sj2-OF-4r3"/>
@@ -73,7 +73,7 @@
                                 <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lock" translatesAutoresizingMaskIntoConstraints="NO" id="NIg-3U-eQ6">
-                                <rect key="frame" x="68" y="337" width="22" height="22"/>
+                                <rect key="frame" x="53" y="253" width="22" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="22" id="HdZ-z6-EJ0"/>
                                     <constraint firstAttribute="height" constant="22" id="YW3-E5-HBK"/>
@@ -81,7 +81,7 @@
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="account" translatesAutoresizingMaskIntoConstraints="NO" id="Dze-Gm-3Nq">
-                                <rect key="frame" x="68" y="293" width="22" height="22"/>
+                                <rect key="frame" x="53" y="209" width="22" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Dze-Gm-3Nq" secondAttribute="height" multiplier="1:1" id="7D5-Gw-lep"/>
                                     <constraint firstAttribute="width" secondItem="Dze-Gm-3Nq" secondAttribute="height" multiplier="1:1" id="op1-p1-wTW"/>
@@ -90,7 +90,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jdP-vQ-dis" customClass="CheckboxButton" customModule="TeachAssist" customModuleProvider="target">
-                                <rect key="frame" x="100" y="385" width="24" height="24"/>
+                                <rect key="frame" x="85" y="301" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="hpf-kB-ITf"/>
                                     <constraint firstAttribute="width" constant="24" id="j19-9S-vCP"/>
@@ -100,7 +100,7 @@
                                 <state key="selected" title="Remember Me" image="checkbox-blank-outline"/>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ta_logo_v3" translatesAutoresizingMaskIntoConstraints="NO" id="JfH-d3-jRd">
-                                <rect key="frame" x="159.66666666666666" y="47" width="95" height="95"/>
+                                <rect key="frame" x="112.5" y="40" width="95" height="95"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="95" id="6Fc-e7-d1i"/>
                                     <constraint firstAttribute="width" secondItem="JfH-d3-jRd" secondAttribute="height" multiplier="1:1" id="WfX-6O-ee0"/>
@@ -108,7 +108,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remember Me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KtX-hp-J7M">
-                                <rect key="frame" x="132" y="389" width="92.666666666666686" height="16.333333333333314"/>
+                                <rect key="frame" x="117" y="305" width="93" height="16"/>
                                 <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -128,9 +128,9 @@
                             <constraint firstItem="fma-ZI-wm8" firstAttribute="trailing" secondItem="aap-9L-fGT" secondAttribute="trailing" id="Bo1-nW-ayi"/>
                             <constraint firstItem="JfH-d3-jRd" firstAttribute="centerX" secondItem="p7T-5f-e8f" secondAttribute="centerX" id="D23-vl-qB4"/>
                             <constraint firstItem="aap-9L-fGT" firstAttribute="centerX" secondItem="p7T-5f-e8f" secondAttribute="centerX" id="I7C-tH-Kfn"/>
-                            <constraint firstItem="2bj-aP-m1T" firstAttribute="top" secondItem="JfH-d3-jRd" secondAttribute="bottom" constant="3" id="MUA-vB-v73"/>
+                            <constraint firstItem="2bj-aP-m1T" firstAttribute="top" secondItem="JfH-d3-jRd" secondAttribute="bottom" constant="5" id="MUA-vB-v73"/>
                             <constraint firstItem="jdP-vQ-dis" firstAttribute="leading" secondItem="rcy-Bo-jhQ" secondAttribute="leading" id="NIB-Yu-BxP"/>
-                            <constraint firstItem="aap-9L-fGT" firstAttribute="top" relation="greaterThanOrEqual" secondItem="2bj-aP-m1T" secondAttribute="bottom" constant="40" id="NjP-Tm-E4P"/>
+                            <constraint firstItem="aap-9L-fGT" firstAttribute="top" relation="greaterThanOrEqual" secondItem="2bj-aP-m1T" secondAttribute="bottom" priority="750" constant="50" id="NjP-Tm-E4P"/>
                             <constraint firstItem="Dze-Gm-3Nq" firstAttribute="centerY" secondItem="aap-9L-fGT" secondAttribute="centerY" id="Tzx-ld-hQA"/>
                             <constraint firstItem="fma-ZI-wm8" firstAttribute="leading" secondItem="aap-9L-fGT" secondAttribute="leading" id="Wtq-Oe-ZM5"/>
                             <constraint firstItem="fma-ZI-wm8" firstAttribute="top" secondItem="jdP-vQ-dis" secondAttribute="bottom" priority="500" constant="125" id="Y3F-2w-X77"/>
