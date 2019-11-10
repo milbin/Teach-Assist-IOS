@@ -192,7 +192,6 @@ class TA{
     }
     
     func GetMarks(subjectNumber:Int) -> [String:Any]?{
-        return GetMarks2(subjectNumber: subjectNumber)
         var sr = SendRequest()
         var params = ["student_id": self.studentID, "token":self.sessionToken, "subject_id":courses[subjectNumber]]
         var respCheck = sr.SendJSON(url: "https://ta.yrdsb.ca/v4/students/json-20180628.php", parameters: params)

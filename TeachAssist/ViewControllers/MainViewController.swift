@@ -97,7 +97,7 @@ class MainViewController: UIViewController {
         
         //ask for ratings
         let firstLaunch = Preferences.string(forKey: "firstLaunch")
-        if(firstLaunch == nil || true){
+        if(firstLaunch == nil){
             Preferences.set("true", forKey: "firstLaunch")
             let title = "🎉 Announcing 2 New Features! 🎉"
             let message = """
