@@ -98,7 +98,9 @@ class AssignmentView: UIView {
         contentView.layer.borderColor = UIColor(red:39/255, green:39/255, blue: 47/255, alpha:1).cgColor
         contentView.layer.cornerRadius = 15
         
-        if(UIDevice.modelName == "iPhone SE" || UIDevice.modelName == "Simulator iPhone SE"){
+        if(UIDevice.modelName == "iPhone 5" || UIDevice.modelName == "iPhone 5s" || UIDevice.modelName == "iPhone 5c" ||
+            UIDevice.modelName == "iPod Touch 5" || UIDevice.modelName == "iPod Touch 6" || UIDevice.modelName == "iPod5,1" ||
+            UIDevice.modelName == "iPod7,1" || UIDevice.modelName == "iPhone SE"){
             AssignmentMark.font = UIFont(name: AssignmentMark.font.fontName, size: 45)
         }
         

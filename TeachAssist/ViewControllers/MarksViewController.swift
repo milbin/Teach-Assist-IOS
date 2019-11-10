@@ -217,6 +217,16 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
         addAssignmentAddButton.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner], radius: 5)
         addAssignmentAdvancedButton.addTarget(self, action: #selector(OnAddAssignmentAdvancedButtonPress), for: .touchUpInside)
         addAssignmentAdvancedButtonLabel.addTarget(self, action: #selector(OnAddAssignmentAdvancedButtonPress), for: .touchUpInside)
+        if(UIDevice.modelName == "iPhone 5" || UIDevice.modelName == "iPhone 5s" || UIDevice.modelName == "iPhone 5c" ||
+            UIDevice.modelName == "iPod Touch 5" || UIDevice.modelName == "iPod Touch 6" || UIDevice.modelName == "iPod5,1" ||
+            UIDevice.modelName == "iPod7,1" || UIDevice.modelName == "iPhone SE"){
+            addAssignmentKLabel.text = "K"
+            addAssignmentTLabel.text = "T"
+            addAssignmentCLabel.text = "C"
+            addAssignmentALabel.text = "A"
+            addAssignmentOLabel.text = "O"
+            
+        }
         
         if vcTitle != nil{
             self.title = vcTitle!
