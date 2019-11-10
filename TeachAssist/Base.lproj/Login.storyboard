@@ -28,7 +28,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Teachassist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2bj-aP-m1T">
-                                <rect key="frame" x="111" y="140" width="98" height="14"/>
+                                <rect key="frame" x="111" y="145" width="98" height="14"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="14" id="D8k-H8-Z55"/>
                                 </constraints>
@@ -132,7 +132,7 @@
                             <constraint firstItem="fma-ZI-wm8" firstAttribute="trailing" secondItem="aap-9L-fGT" secondAttribute="trailing" id="Bo1-nW-ayi"/>
                             <constraint firstItem="JfH-d3-jRd" firstAttribute="centerX" secondItem="p7T-5f-e8f" secondAttribute="centerX" id="D23-vl-qB4"/>
                             <constraint firstItem="aap-9L-fGT" firstAttribute="centerX" secondItem="p7T-5f-e8f" secondAttribute="centerX" id="I7C-tH-Kfn"/>
-                            <constraint firstItem="2bj-aP-m1T" firstAttribute="top" secondItem="JfH-d3-jRd" secondAttribute="bottom" constant="5" id="MUA-vB-v73"/>
+                            <constraint firstItem="2bj-aP-m1T" firstAttribute="top" secondItem="JfH-d3-jRd" secondAttribute="bottom" constant="10" id="MUA-vB-v73"/>
                             <constraint firstItem="jdP-vQ-dis" firstAttribute="leading" secondItem="rcy-Bo-jhQ" secondAttribute="leading" id="NIB-Yu-BxP"/>
                             <constraint firstItem="aap-9L-fGT" firstAttribute="top" relation="greaterThanOrEqual" secondItem="2bj-aP-m1T" secondAttribute="bottom" priority="750" constant="60" id="NjP-Tm-E4P"/>
                             <constraint firstItem="Dze-Gm-3Nq" firstAttribute="centerY" secondItem="aap-9L-fGT" secondAttribute="centerY" id="Tzx-ld-hQA"/>
