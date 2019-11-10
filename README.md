@@ -1,16 +1,22 @@
 # Teach-Assist-IOS
-The unofficial app for Teachassist aims to provide students with a friendly user experience, along with beautiful UI and improved loading times. Ever wanted to get notified when your teacher posted that new assignment? Well now you can! Want to know what you average would be without a certain course or assignment? Well now the edit feature allows you to see that! Want to know what you got on that last test? the Teachassist app will tell you your overall average. 
+The unofficial Teachassist app aims to provide YRDSB students with an convenient and accessible way to view their grades. Teachassist will automatically sync with the website to bring you your latest marks. Manage courses individually to easily identify your personal needs and strengths. Teachassist's assignment view brings feedback directly from teachers, to you.
 
-Note: This app may contain bugs or may not work entirely for some users. If that is the case we would appreciate an email to taappyrdsb@gmail.com highlighting the issue your having. We will try our best to fix the issue!
+
+If you encounter a bug, please report it using either the bug report button in the sideview, or by emailing the Teachassist app development team directly at taappyrdsb@gmail.com. If you have any suggestions on how the app could improve, we'd love to hear from you!
+
+This app is specifically designed for student use only and is not endorsed by either Teachassist or YRDSB.
 
 # Key features:
 
-  - No ads
-  - Notifications
-  - Course averages
-  - Assignment averages
-  - Semester averages
-  - Quick loading times
+• No ads
+• Dark and light theme
+• Course averages
+• Assignment averages
+• Assignment calculator
+• Faster loading times
+• Improved look and feel
+• Ability to temporarily remove assignments and courses to measure their impact
+• Device-side encrypted password
 
 
 
@@ -25,10 +31,10 @@ Avaliable now on the App Store
 
 # Screenshots
 <div style="display:flex;">
-  <img src="./Images/Screenshot1.jpg" width=160 height=284>
-  <img src="./Images/Screenshot2.jpg" width=160 height=284>
-  <img src="./Images/Screenshot3.jpg" width=160 height=284>
-  <img src="./Images/Screenshot4.jpg" width=160 height=284>
-  <img src="./Images/Screenshot5.jpg" width=160 height=284>
+  <img src="./Images/screenshots/complete/06942fff-3a03-4315-a369-326aa92b47b0ss.jpeg" width=160 height=284>
+  <img src="./Images/screenshots/complete/3005f14e-2b52-463f-9c85-38bb362ea526.jpeg" width=160 height=284>
+  <img src="./Images/screenshots/complete/1348cd0c-6b6c-499a-9785-43e9dea9ea8b.jpeg" width=160 height=284>
+  <img src="./Images/screenshots/complete/164dbe96-c911-4d98-91d5-6933c2620c69.jpeg" width=160 height=284>
+  <img src="./Images/screenshots/complete/102c0f3f-12ee-4aba-ad33-3e22828871bf.jpeg" width=160 height=284>
 </div> 
  
