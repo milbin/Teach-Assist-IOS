@@ -29,6 +29,9 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Teachassist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2bj-aP-m1T">
                                 <rect key="frame" x="111" y="140" width="98" height="13"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="13" id="D8k-H8-Z55"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Eczar-Bold" family="Eczar" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
