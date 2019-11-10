@@ -199,6 +199,7 @@ class TA{
         var sr = SendRequest()
         var params = ["student_id": self.studentID, "token":self.sessionToken, "subject_id":courses[subjectNumber]]
         var respCheck = sr.SendJSON(url: "https://ta.yrdsb.ca/v4/students/json-20180628.php", parameters: params)
+        return GetMarks2(subjectNumber: subjectNumber)
         if respCheck == nil{
             print("REQUEST FAILED")
             let resp2 = GetMarks2(subjectNumber: subjectNumber)
@@ -338,13 +339,18 @@ class TA{
             }
             
             if(html.components(separatedBy:"rowspan=").count == assignmentNumber+1){
-                let k = Double(i.components(separatedBy: "<td>Knowledge/Understanding</td>")[1].components(separatedBy: ">")[1].components(separatedBy: "%<")[0])!/100
-                let t = Double(i.components(separatedBy: "<td>Thinking</td>")[1].components(separatedBy: ">")[1].components(separatedBy: "%<")[0])!/100
-                let c = Double(i.components(separatedBy: "<td>Communication</td>")[1].components(separatedBy: ">")[1].components(separatedBy: "%<")[0])!/100
-                let a = Double(i.components(separatedBy: "<td>Application</td>")[1].components(separatedBy: ">")[1].components(separatedBy: "%<")[0])!/100
-                let categories = ["K":k, "T":t, "C":c, "A":a]
-                //print(categories)
-                assignments["categories"] = categories
+                if(i.contains("<td>Knowledge/Understanding</td>")){
+                    let k = Double(i.components(separatedBy: "<td>Knowledge/Understanding</td>")[1].components(separatedBy: ">")[1].components(separatedBy: "%<")[0])!/100
+                    let t = Double(i.components(separatedBy: "<td>Thinking</td>")[1].components(separatedBy: ">")[1].components(separatedBy: "%<")[0])!/100
+                    let c = Double(i.components(separatedBy: "<td>Communication</td>")[1].components(separatedBy: ">")[1].components(separatedBy: "%<")[0])!/100
+                    let a = Double(i.components(separatedBy: "<td>Application</td>")[1].components(separatedBy: ">")[1].components(separatedBy: "%<")[0])!/100
+                    let categories = ["K":k, "T":t, "C":c, "A":a]
+                    assignments["categories"] = categories
+                }else{
+                    let categories = ["K":0.25, "T":0.25, "C":0.25, "A":0.25]
+                    assignments["categories"] = categories
+                }
+                
             }
             //assignemnts["categories"]
             
