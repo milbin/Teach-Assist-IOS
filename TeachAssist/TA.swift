@@ -166,10 +166,6 @@ class TA{
         }else{
             return nil
         }
-        return nil
-        
-        
-        
     }
     
     func CheckCredentials(username:String, password:String)-> Bool{
@@ -196,10 +192,10 @@ class TA{
     }
     
     func GetMarks(subjectNumber:Int) -> [String:Any]?{
+        return GetMarks2(subjectNumber: subjectNumber)
         var sr = SendRequest()
         var params = ["student_id": self.studentID, "token":self.sessionToken, "subject_id":courses[subjectNumber]]
         var respCheck = sr.SendJSON(url: "https://ta.yrdsb.ca/v4/students/json-20180628.php", parameters: params)
-        return GetMarks2(subjectNumber: subjectNumber)
         if respCheck == nil{
             print("REQUEST FAILED")
             let resp2 = GetMarks2(subjectNumber: subjectNumber)
@@ -317,7 +313,9 @@ class TA{
                             }
                             
                         }else if(j.contains("No Mark") || j.contains("No mark") || j.contains("no Mark") || j.contains("no mark")){
-                            let emptyString:String? = ""
+                            dict[categoryList[categoryNumber]] = NSMutableDictionary()
+                            print(dict)
+                            let emptyString:String? = nil
                             (dict[categoryList[categoryNumber]]!as! NSMutableDictionary) ["mark"] = emptyString
                             (dict[categoryList[categoryNumber]]!as! NSMutableDictionary) ["outOf"] = emptyString
                             (dict[categoryList[categoryNumber]]!as! NSMutableDictionary) ["weight"] = emptyString
