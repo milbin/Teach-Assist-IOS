@@ -8,15 +8,13 @@ This app is specifically designed for student use only and is not endorsed by ei
 
 # Key features:
 
-• No ads
-• Dark and light theme
-• Course averages
-• Assignment averages
-• Assignment calculator
-• Faster loading times
-• Improved look and feel
-• Ability to temporarily remove assignments and courses to measure their impact
-• Device-side encrypted password
+• No ads  
+• Dark and light theme  
+• Course averages  
+• Assignment averages  
+• Assignment calculator  
+• Ability to temporarily remove assignments and courses to measure their impact  
+• Device-side encrypted password  
 
 
 
@@ -31,10 +29,14 @@ Avaliable now on the App Store
 
 # Screenshots
 <div style="display:flex;">
-  <img src="./Images/screenshots/complete/06942fff-3a03-4315-a369-326aa92b47b0ss.jpeg" width=160 height=284>
-  <img src="./Images/screenshots/complete/3005f14e-2b52-463f-9c85-38bb362ea526.jpeg" width=160 height=284>
-  <img src="./Images/screenshots/complete/1348cd0c-6b6c-499a-9785-43e9dea9ea8b.jpeg" width=160 height=284>
-  <img src="./Images/screenshots/complete/164dbe96-c911-4d98-91d5-6933c2620c69.jpeg" width=160 height=284>
-  <img src="./Images/screenshots/complete/102c0f3f-12ee-4aba-ad33-3e22828871bf.jpeg" width=160 height=284>
+  <img src="./Images/screenshots/complete/06942fff-3a03-4315-a369-326aa92b47b0ss.jpeg" width=207 height=448>
+   .
+  <img src="./Images/screenshots/complete/3005f14e-2b52-463f-9c85-38bb362ea526.jpeg" width=207 height=448>
+   .
+  <img src="./Images/screenshots/complete/1348cd0c-6b6c-499a-9785-43e9dea9ea8b.jpeg" width=207 height=448>
+   .
+  <img src="./Images/screenshots/complete/164dbe96-c911-4d98-91d5-6933c2620c69.jpeg" width=207 height=448>
+   .
+  <img src="./Images/screenshots/complete/102c0f3f-12ee-4aba-ad33-3e22828871bf.jpeg" width=207 height=448>
 </div> 
  
