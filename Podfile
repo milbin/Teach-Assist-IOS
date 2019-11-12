@@ -18,6 +18,7 @@ target 'TeachAssist' do
   pod 'Firebase/Auth'
   pod 'IQKeyboardManagerSwift'
   pod 'PopupDialog', '~> 1.0.0'
+  pod 'SwiftyJSON', '~> 4.0'
 
   target 'TeachAssistTests' do
     inherit! :search_paths

@@ -8,6 +8,7 @@
 
 import Foundation
 import HTMLString
+import SwiftyJSON
 
 class TA{
     var sessionToken:String = ""
@@ -849,9 +850,35 @@ class TA{
         }
         return String(average)
         
-        
-        
-        
-        
+    }
+    func convertDictToNSMutableDictionary(dict:JSON) -> [NSMutableDictionary]{
+        var response = [NSMutableDictionary]()
+        for (_, i) in dict{
+            let dict = NSMutableDictionary()
+            for (key, value) in i{
+                if(key == "mark"){
+                    if(value == "NA"){
+                        dict[key] = value.stringValue
+                    }else{
+                        dict[key] = value.doubleValue
+                    }
+                }else{
+                    dict[key] = value.stringValue
+                }
+            }
+            response.append(dict)
+        }
+        return response
+    }
+    func saveUserToJson(response:[NSMutableDictionary]?){
+        let dict = [username:response!]
+        let json = JSON(dict)
+        let str = json.description
+        let data = str.data(using: String.Encoding.utf8)!
+        if let filePath = Bundle.main.path(forResource: "userData", ofType: "json") {//userData file needs to be in root directory in order for this specific method to work
+            if let file = FileHandle(forWritingAtPath:filePath) {
+                file.write(data)
+            }
+        }
     }
 }

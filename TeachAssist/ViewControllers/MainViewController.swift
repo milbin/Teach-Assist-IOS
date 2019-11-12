@@ -12,6 +12,7 @@ import KYDrawerController
 import UserNotifications
 import Crashlytics
 import PopupDialog
+import SwiftyJSON
 
 class MainViewController: UIViewController {
     var courseList = [CourseView]()
@@ -155,17 +156,35 @@ class MainViewController: UIViewController {
             present(vc, animated: true, completion: nil)
             return
         }
+        
         response = ta.GetTaData(username: username!, password: password!) ?? nil
-        print(response)
+        ta.saveUserToJson(response: response)
+        response = nil
         self.navigationItem.title = "Student: "+username!
         if response == nil{
-            let alert = UIAlertController(title: "Could not reach Teachassist", message: "Please check your internet connection and try again", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { (action:UIAlertAction!) in
-                self.OnRefresh()
-            }))
-            self.present(alert, animated: true)
-            return
+            if let filePath = Bundle.main.path(forResource: "userData", ofType: "json") {
+                do{
+                    let jsonData = try String(contentsOfFile: filePath)
+                    response = ta.convertDictToNSMutableDictionary(dict: JSON(parseJSON: jsonData)[username!])
+                }catch{
+                    let alert = UIAlertController(title: "Could not reach Teachassist", message: "Please check your internet connection and try again", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { (action:UIAlertAction!) in
+                        self.OnRefresh()
+                    }))
+                    self.present(alert, animated: true)
+                    return
+                }
+            }else{
+                let alert = UIAlertController(title: "Could not reach Teachassist", message: "Please check your internet connection and try again", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { (action:UIAlertAction!) in
+                    self.OnRefresh()
+                }))
+                self.present(alert, animated: true)
+                return
+            }
+            
         }
+        print(response)
         
         //add default preferences for notifications
         for i in 0...response!.count{
@@ -241,6 +260,20 @@ class MainViewController: UIViewController {
             StackViewHeight.constant = StackViewHeight.constant + 140
             
         }
+        
+        //print file contents
+        /*
+        if let filePath = Bundle.main.path(forResource: "userData", ofType: "json") {
+            print(filePath)
+            do{
+                let jsonData = try String(contentsOfFile: filePath)
+                let json = JSON(parseJSON: jsonData)
+                print(json)
+                print("DATA HERE2")
+            }catch{print("Error")}
+        }
+        */
+        
         
         if refreshControl!.isRefreshing{
             refreshControl!.endRefreshing()
