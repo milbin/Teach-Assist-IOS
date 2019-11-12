@@ -851,26 +851,38 @@ class TA{
         return String(average)
         
     }
-    func convertDictToNSMutableDictionary(dict:JSON) -> [NSMutableDictionary]{
-        var response = [NSMutableDictionary]()
-        for (_, i) in dict{
-            let dict = NSMutableDictionary()
-            for (key, value) in i{
-                if(key == "mark"){
-                    if(value == "NA"){
-                        dict[key] = value.stringValue
-                    }else{
-                        dict[key] = value.doubleValue
-                    }
-                }else{
-                    dict[key] = value.stringValue
+    func getUserFromJson(username:String) -> [NSMutableDictionary]?{
+        if let filePath = Bundle.main.path(forResource: "userData", ofType: "json") {
+            do{
+                let jsonDataString = try String(contentsOfFile: filePath)
+                let jsonData = JSON(parseJSON: jsonDataString)[username]
+                if(jsonData.isEmpty){
+                    return nil
                 }
+                var response = [NSMutableDictionary]()
+                for (_, i) in jsonData{
+                    let dict = NSMutableDictionary()
+                    for (key, value) in i{
+                        if(key == "mark"){
+                            if(value == "NA"){
+                                dict[key] = value.stringValue
+                            }else{
+                                dict[key] = value.doubleValue
+                            }
+                        }else{
+                            dict[key] = value.stringValue
+                        }
+                    }
+                    response.append(dict)
+                }
+                return response
+            }catch{
+                return nil
             }
-            response.append(dict)
         }
-        return response
+        return nil
     }
-    func saveUserToJson(response:[NSMutableDictionary]?){
+    func saveUserToJson(username:String, response:[NSMutableDictionary]?){
         let dict = [username:response!]
         let json = JSON(dict)
         let str = json.description

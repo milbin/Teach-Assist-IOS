@@ -158,22 +158,10 @@ class MainViewController: UIViewController {
         }
         
         response = ta.GetTaData(username: username!, password: password!) ?? nil
-        ta.saveUserToJson(response: response)
-        response = nil
         self.navigationItem.title = "Student: "+username!
         if response == nil{
-            if let filePath = Bundle.main.path(forResource: "userData", ofType: "json") {
-                do{
-                    let jsonData = try String(contentsOfFile: filePath)
-                    response = ta.convertDictToNSMutableDictionary(dict: JSON(parseJSON: jsonData)[username!])
-                }catch{
-                    let alert = UIAlertController(title: "Could not reach Teachassist", message: "Please check your internet connection and try again", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { (action:UIAlertAction!) in
-                        self.OnRefresh()
-                    }))
-                    self.present(alert, animated: true)
-                    return
-                }
+            if let jsonData = ta.getUserFromJson(username: username!) {
+                    response = jsonData
             }else{
                 let alert = UIAlertController(title: "Could not reach Teachassist", message: "Please check your internet connection and try again", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { (action:UIAlertAction!) in
@@ -182,7 +170,6 @@ class MainViewController: UIViewController {
                 self.present(alert, animated: true)
                 return
             }
-            
         }
         print(response)
         
@@ -196,14 +183,6 @@ class MainViewController: UIViewController {
         Preferences.synchronize()
         
         //add courses to main view
-        if response == nil{
-            let alert = UIAlertController(title: "Could not reach Teachassist", message: "Please check your internet connection and try again", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { (action:UIAlertAction!) in
-                self.OnRefresh()
-            }))
-            self.present(alert, animated: true)
-            return
-        }
         let topBarHeight = UIApplication.shared.statusBarFrame.size.height +
             (self.navigationController?.navigationBar.frame.height ?? 0.0)
         
@@ -260,7 +239,7 @@ class MainViewController: UIViewController {
             StackViewHeight.constant = StackViewHeight.constant + 140
             
         }
-        
+        ta.saveUserToJson(username: username!, response: response)
         //print file contents
         /*
         if let filePath = Bundle.main.path(forResource: "userData", ofType: "json") {
