@@ -314,7 +314,6 @@ class TA{
                             
                         }else if(j.contains("No Mark") || j.contains("No mark") || j.contains("no Mark") || j.contains("no mark")){
                             dict[categoryList[categoryNumber]] = NSMutableDictionary()
-                            print(dict)
                             let emptyString:String? = nil
                             (dict[categoryList[categoryNumber]]!as! NSMutableDictionary) ["mark"] = emptyString
                             (dict[categoryList[categoryNumber]]!as! NSMutableDictionary) ["outOf"] = emptyString
@@ -851,11 +850,13 @@ class TA{
         return String(average)
         
     }
-    func getUserFromJson(username:String) -> [NSMutableDictionary]?{
-        if let filePath = Bundle.main.path(forResource: "userData", ofType: "json") {
+    func getCoursesFromJson(forUsername:String) -> [NSMutableDictionary]?{
+        if let filePath = Bundle.main.path(forResource: "userCourses", ofType: "json") {
             do{
                 let jsonDataString = try String(contentsOfFile: filePath)
-                let jsonData = JSON(parseJSON: jsonDataString)[username]
+                let jsonData = JSON(parseJSON: jsonDataString)[forUsername]
+                print(jsonDataString)
+                print("HERE")
                 if(jsonData.isEmpty){
                     return nil
                 }
@@ -882,14 +883,35 @@ class TA{
         }
         return nil
     }
-    func saveUserToJson(username:String, response:[NSMutableDictionary]?){
+    func getCourseFromJson(forUsername:String, courseNumber:Int) -> NSMutableDictionary?{
+        print(courseNumber)
+        if let response = self.getCoursesFromJson(forUsername: username){
+            return response[courseNumber]
+        }else{
+            return nil
+        }
+    }
+    func saveCoursesToJson(username:String, response:[NSMutableDictionary]?){
+        if let oldResponse = getCoursesFromJson(forUsername: username){
+            var courseNumber = 0
+            for course in response!{
+                if((course["mark"] as? String) == "NA"){
+                    course["mark"] = oldResponse[courseNumber]["mark"]
+                }
+                courseNumber += 1
+            }
+        }
+        
         let dict = [username:response!]
         let json = JSON(dict)
         let str = json.description
         let data = str.data(using: String.Encoding.utf8)!
-        if let filePath = Bundle.main.path(forResource: "userData", ofType: "json") {//userData file needs to be in root directory in order for this specific method to work
+        if let filePath = Bundle.main.path(forResource: "userCourses", ofType: "json") {//userData file needs to be in root directory in order for this specific method to work
             if let file = FileHandle(forWritingAtPath:filePath) {
+                file.truncateFile(atOffset: 0)//clear contents of file
                 file.write(data)
+                print("WRITING")
+                print(json)
             }
         }
     }

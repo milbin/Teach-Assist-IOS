@@ -53,7 +53,8 @@
 		EA3624AB223DD149009E392D /* CourseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA3624AA223DD149009E392D /* CourseView.xib */; };
 		EA3624AD223DD575009E392D /* CourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3624AC223DD575009E392D /* CourseView.swift */; };
 		EA37FD712371A9AE008E7109 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA37FD702371A9AE008E7109 /* NavigationController.swift */; };
-		EA83B72D237A5444008424AE /* userData.json in Resources */ = {isa = PBXBuildFile; fileRef = EA83B72C237A5444008424AE /* userData.json */; };
+		EA5BCF10237CD6A900BD8E4D /* userAssignments.json in Resources */ = {isa = PBXBuildFile; fileRef = EA5BCF0F237CD6A900BD8E4D /* userAssignments.json */; };
+		EA83B72D237A5444008424AE /* userCourses.json in Resources */ = {isa = PBXBuildFile; fileRef = EA83B72C237A5444008424AE /* userCourses.json */; };
 		EA94D82F2272628F00C27FB6 /* updateStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA94D82E2272628F00C27FB6 /* updateStackView.swift */; };
 		EA96E205229F441B006CA3E5 /* auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA96E204229F441B006CA3E5 /* auth.swift */; };
 		EAA02E54236E6E0500F76720 /* DrawerViewControllerParent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA02E53236E6E0500F76720 /* DrawerViewControllerParent.swift */; };
@@ -128,6 +129,7 @@
 		EA3624AA223DD149009E392D /* CourseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseView.xib; sourceTree = "<group>"; };
 		EA3624AC223DD575009E392D /* CourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseView.swift; sourceTree = "<group>"; };
 		EA37FD702371A9AE008E7109 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		EA5BCF0F237CD6A900BD8E4D /* userAssignments.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = userAssignments.json; sourceTree = "<group>"; };
 		EA649139228247790072E6C5 /* TeachAssist.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TeachAssist.entitlements; sourceTree = "<group>"; };
 		EA7B4FA72296008100B79BC4 /* KYDrawerController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KYDrawerController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA7B4FA92296012200B79BC4 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,7 +139,7 @@
 		EA7B4FB1229602A200B79BC4 /* PureLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PureLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA7B4FB32296042B00B79BC4 /* Pods_TeachAssistTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_TeachAssistTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA7B4FB52296043100B79BC4 /* Pods_TeachAssistUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_TeachAssistUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EA83B72C237A5444008424AE /* userData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = userData.json; sourceTree = "<group>"; };
+		EA83B72C237A5444008424AE /* userCourses.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = userCourses.json; sourceTree = "<group>"; };
 		EA94D82E2272628F00C27FB6 /* updateStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = updateStackView.swift; sourceTree = "<group>"; };
 		EA96E204229F441B006CA3E5 /* auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = auth.swift; sourceTree = "<group>"; };
 		EAA02E53236E6E0500F76720 /* DrawerViewControllerParent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerViewControllerParent.swift; sourceTree = "<group>"; };
@@ -265,7 +267,8 @@
 				6EE67E5D220DD8EE00010826 /* SendRequest.swift */,
 				6EF07E032210E58D00FFBFF4 /* TA.swift */,
 				EA96E204229F441B006CA3E5 /* auth.swift */,
-				EA83B72C237A5444008424AE /* userData.json */,
+				EA83B72C237A5444008424AE /* userCourses.json */,
+				EA5BCF0F237CD6A900BD8E4D /* userAssignments.json */,
 				49598E8D235F7CF40014D749 /* fonts */,
 			);
 			path = TeachAssist;
@@ -484,6 +487,7 @@
 				EA007A4C2227175C00AD7AFE /* Main.storyboard in Resources */,
 				EA007A4622270D6A00AD7AFE /* Login.storyboard in Resources */,
 				6EDFB06422204DFE00640F87 /* Assets.xcassets in Resources */,
+				EA5BCF10237CD6A900BD8E4D /* userAssignments.json in Resources */,
 				499BB5722362AC6C003ED59F /* Gilroy-Light.ttf in Resources */,
 				49598E9D235F7D260014D749 /* Eczar-SemiBold.ttf in Resources */,
 				49598E9A235F7D220014D749 /* Eczar-Regular.ttf in Resources */,
@@ -491,7 +495,7 @@
 				49DFDD56237754570062851F /* AppIconWhite@2x.png in Resources */,
 				49DFDD55237754570062851F /* AppIconWhite@3x.png in Resources */,
 				EABD64CE2266B28E0029E464 /* SettingsTableViewCell.xib in Resources */,
-				EA83B72D237A5444008424AE /* userData.json in Resources */,
+				EA83B72D237A5444008424AE /* userCourses.json in Resources */,
 				499BB5742362AC79003ED59F /* Gilroy-ExtraBold.ttf in Resources */,
 				49598EA3235F7D2D0014D749 /* sandstone.otf in Resources */,
 				49598EA0235F7D290014D749 /* sandstone_bold.otf in Resources */,

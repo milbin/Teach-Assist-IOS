@@ -239,6 +239,7 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         response = ta!.GetMarks(subjectNumber: courseNumber!)
+        print(response)
         if response == nil{
             let alert = UIAlertController(title: "Could not reach Teachassist", message: "Please check your internet connection and try again", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { (action:UIAlertAction!) in

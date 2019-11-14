@@ -160,7 +160,7 @@ class MainViewController: UIViewController {
         response = ta.GetTaData(username: username!, password: password!) ?? nil
         self.navigationItem.title = "Student: "+username!
         if response == nil{
-            if let jsonData = ta.getUserFromJson(username: username!) {
+            if let jsonData = ta.getCoursesFromJson(forUsername: username!) {
                     response = jsonData
             }else{
                 let alert = UIAlertController(title: "Could not reach Teachassist", message: "Please check your internet connection and try again", preferredStyle: .alert)
@@ -190,13 +190,16 @@ class MainViewController: UIViewController {
             
             var courseView = CourseView(frame: CGRect(x: 0, y: 0, width: 350, height: 130))
             if let mark = (course["mark"] as? CGFloat){
-                print(mark)
                 courseView.ProgressBar.value = mark
             }else{
+                let jsonCourse = ta.getCourseFromJson(forUsername: username!, courseNumber: i)
+                if let mark = (jsonCourse?["mark"] as? CGFloat), jsonCourse != nil{ //the comma simply adds another conditional to this statement so that the jsonCourse does not get unwrraped as a nil value
+                    courseView.ProgressBar.value = mark
+                }else{
                 courseView.ProgressBar.isHidden = true
                 courseView.NATextView.isHidden = false
                 courseView.isUserInteractionEnabled = false
-                
+                }
             }
             
             courseView.PeriodNumber.text = "Period \(i+1)"
@@ -239,7 +242,7 @@ class MainViewController: UIViewController {
             StackViewHeight.constant = StackViewHeight.constant + 140
             
         }
-        ta.saveUserToJson(username: username!, response: response)
+        ta.saveCoursesToJson(username: username!, response: response)
         //print file contents
         /*
         if let filePath = Bundle.main.path(forResource: "userData", ofType: "json") {
