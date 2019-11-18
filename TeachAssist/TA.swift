@@ -915,4 +915,62 @@ class TA{
             }
         }
     }
+    func saveAssignmentsToJson(username:String, courseNumber:Int, response:[String:Any]?){
+        var jsonData:JSON? = nil
+        if let filePath = Bundle.main.path(forResource: "userAssignments", ofType: "json") {
+            do{
+                let jsonDataString = try String(contentsOfFile: filePath)
+                if(!JSON(parseJSON: jsonDataString).isEmpty){
+                    jsonData = JSON(parseJSON: jsonDataString)
+                }
+            }catch{}
+        }
+        if(jsonData == nil){
+            jsonData = JSON([username:[courseNumber:response!]])
+        }else{
+            jsonData![username][courseNumber] = JSON(response!)
+        }
+        let str = jsonData!.debugDescription
+        let data = str.data(using: String.Encoding.utf8)!
+        if let filePath = Bundle.main.path(forResource: "userAssignments", ofType: "json") {//userData file needs to be in root directory in order for this specific method to work
+            if let file = FileHandle(forWritingAtPath:filePath) {
+                file.truncateFile(atOffset: 0)//clear contents of file
+                file.write(data)
+                
+            }
+        }
+    }
+    func getAssignmentsFromJson(forUsername:String) -> [NSMutableDictionary]?{
+        if let filePath = Bundle.main.path(forResource: "userAssignments", ofType: "json") {
+            do{
+                let jsonDataString = try String(contentsOfFile: filePath)
+                let jsonData = JSON(parseJSON: jsonDataString)[forUsername]
+                print(jsonDataString)
+                print("HERE")
+                if(jsonData.isEmpty){
+                    return nil
+                }
+                var response = [NSMutableDictionary]()
+                for (_, i) in jsonData{
+                    let dict = NSMutableDictionary()
+                    for (key, value) in i{
+                        if(key == "mark"){
+                            if(value == "NA"){
+                                dict[key] = value.stringValue
+                            }else{
+                                dict[key] = value.doubleValue
+                            }
+                        }else{
+                            dict[key] = value.stringValue
+                        }
+                    }
+                    response.append(dict)
+                }
+                return response
+            }catch{
+                return nil
+            }
+        }
+        return nil
+    }
 }

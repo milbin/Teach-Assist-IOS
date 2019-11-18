@@ -239,7 +239,7 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         response = ta!.GetMarks(subjectNumber: courseNumber!)
-        print(response)
+        //print(response)
         if response == nil{
             let alert = UIAlertController(title: "Could not reach Teachassist", message: "Please check your internet connection and try again", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { (action:UIAlertAction!) in
@@ -252,10 +252,10 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
             return
         }
         originalResponse = response!
-        
-        
-        
-        print(response)
+        let Preferences = UserDefaults.standard
+        let username = Preferences.string(forKey: "username")
+        ta!.saveAssignmentsToJson(username: username!, courseNumber: courseNumber!, response: response)
+        ta!.getAssignmentsFromJson(forUsername: username!)
         //setup refresh controller to allow main view to be refreshed
         refreshControl = UIRefreshControl()
         refreshControl!.addTarget(self,
