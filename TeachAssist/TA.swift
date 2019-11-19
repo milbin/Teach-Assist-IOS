@@ -855,8 +855,6 @@ class TA{
             do{
                 let jsonDataString = try String(contentsOfFile: filePath)
                 let jsonData = JSON(parseJSON: jsonDataString)[forUsername]
-                print(jsonDataString)
-                print("HERE")
                 if(jsonData.isEmpty){
                     return nil
                 }
@@ -884,7 +882,6 @@ class TA{
         return nil
     }
     func getCourseFromJson(forUsername:String, courseNumber:Int) -> NSMutableDictionary?{
-        print(courseNumber)
         if let response = self.getCoursesFromJson(forUsername: username){
             return response[courseNumber]
         }else{
@@ -910,8 +907,6 @@ class TA{
             if let file = FileHandle(forWritingAtPath:filePath) {
                 file.truncateFile(atOffset: 0)//clear contents of file
                 file.write(data)
-                print("WRITING")
-                print(json)
             }
         }
     }
@@ -925,12 +920,14 @@ class TA{
                 }
             }catch{}
         }
-        if(jsonData == nil){
-            jsonData = JSON([username:[courseNumber:response!]])
-        }else{
-            jsonData![username][courseNumber] = JSON(response!)
-        }
-        let str = jsonData!.debugDescription
+        do{
+            if(jsonData == nil){
+                jsonData = try JSON(JSONSerialization.data(withJSONObject: response!, options: .prettyPrinted))
+            }else{
+                jsonData![username][courseNumber] = try JSON(JSONSerialization.data(withJSONObject: response!, options: .prettyPrinted))
+            }
+        }catch{return}
+        let str = jsonData!.description
         let data = str.data(using: String.Encoding.utf8)!
         if let filePath = Bundle.main.path(forResource: "userAssignments", ofType: "json") {//userData file needs to be in root directory in order for this specific method to work
             if let file = FileHandle(forWritingAtPath:filePath) {
@@ -940,32 +937,17 @@ class TA{
             }
         }
     }
-    func getAssignmentsFromJson(forUsername:String) -> [NSMutableDictionary]?{
+    func getAssignmentsFromJson(forUsername:String) -> [String:Any]?{
         if let filePath = Bundle.main.path(forResource: "userAssignments", ofType: "json") {
             do{
                 let jsonDataString = try String(contentsOfFile: filePath)
                 let jsonData = JSON(parseJSON: jsonDataString)[forUsername]
-                print(jsonDataString)
-                print("HERE")
                 if(jsonData.isEmpty){
                     return nil
                 }
-                var response = [NSMutableDictionary]()
-                for (_, i) in jsonData{
-                    let dict = NSMutableDictionary()
-                    for (key, value) in i{
-                        if(key == "mark"){
-                            if(value == "NA"){
-                                dict[key] = value.stringValue
-                            }else{
-                                dict[key] = value.doubleValue
-                            }
-                        }else{
-                            dict[key] = value.stringValue
-                        }
-                    }
-                    response.append(dict)
-                }
+                print(jsonData.description)
+                let response = try JSONSerialization.jsonObject(with: jsonData.description.data(using: String.Encoding.utf8)!, options: []) as? [String:Any]
+                print(response)
                 return response
             }catch{
                 return nil
