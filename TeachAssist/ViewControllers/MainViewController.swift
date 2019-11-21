@@ -12,6 +12,7 @@ import KYDrawerController
 import UserNotifications
 import Crashlytics
 import PopupDialog
+import StoreKit
 
 class MainViewController: UIViewController {
     var courseList = [CourseView]()
@@ -96,26 +97,17 @@ class MainViewController: UIViewController {
         scrollView.refreshControl = refreshControl
         
         //ask for ratings
-        let firstLaunch = Preferences.string(forKey: "firstLaunch")
-        if(firstLaunch == nil){
-            Preferences.set("true", forKey: "firstLaunch")
-            let title = "🎉 Announcing 2 New Features! 🎉"
-            let message = """
-            We've received a lot of positive feedback from this past Monday's redesign update, and we'd like to announce the addition of another 2 features:
-
-            • LIGHT MODE
-            • A MARKS CALCULATOR
-
-            The light mode option can be found in settings, while the marks calculator can be found at the bottom of each course page. We hope you enjoy!
-            """
-            let image = UIImage(named: "popup")
-            let popup = PopupDialog(title: title, message: message, image: image)
-            let buttonOne = PopupDialogButton(title: "Ok", dismissOnTap: true) {
-                print("What a beauty!")
+        let didAskForRating = Preferences.string(forKey: "didAskForRating")
+        if(didAskForRating == nil){
+            Preferences.set(nil, forKey: "firstLaunch")
+            Preferences.set(true, forKey: "didAskForRating")
+            if #available(iOS 10.3, *) {
+                SKStoreReviewController.requestReview()
+            } else {
+                // Fallback on earlier versions
             }
-            popup.addButtons([buttonOne])
-            self.present(popup, animated: true, completion: nil)
         }
+        
         
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
