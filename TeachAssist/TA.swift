@@ -941,12 +941,16 @@ class TA{
         if let filePath = Bundle.main.path(forResource: "userAssignments", ofType: "json") {
             do{
                 let jsonDataString = try String(contentsOfFile: filePath)
-                let jsonData = JSON(parseJSON: jsonDataString)[forUsername]
-                if(jsonData.isEmpty){
+                print(jsonDataString)
+                //let jsonData = JSON(parseJSON: jsonDataString)[forUsername]
+                let jsonData = try (JSONSerialization.jsonObject(with: jsonDataString.data(using: String.Encoding.utf8)!, options: []) as? [String:Any])
+                if(jsonData == nil || jsonData!.isEmpty){
                     return nil
                 }
-                print(jsonData.description)
-                let response = try JSONSerialization.jsonObject(with: jsonData.description.data(using: String.Encoding.utf8)!, options: []) as? [String:Any]
+                let response = try jsonData![forUsername] as? [String:Any]
+                if(response == nil || response!.isEmpty){
+                    return nil
+                }
                 print(response)
                 return response
             }catch{
