@@ -16,7 +16,7 @@
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>AppIconWhite</string>
+					<string>AppIconDark</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
