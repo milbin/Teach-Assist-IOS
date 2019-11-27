@@ -239,23 +239,27 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         response = ta!.GetMarks(subjectNumber: courseNumber!)
-        //print(response)
-        if response == nil{
-            let alert = UIAlertController(title: "Could not reach Teachassist", message: "Please check your internet connection and try again", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { (action:UIAlertAction!) in
-                self.OnRefresh()
-            }))
-            alert.addAction(UIAlertAction(title: "Back", style: .default, handler: { (action:UIAlertAction!) in
-                _ = self.navigationController?.popViewController(animated: true)
-            }))
-            self.present(alert, animated: true)
-            return
-        }
-        originalResponse = response!
         let Preferences = UserDefaults.standard
         let username = Preferences.string(forKey: "username")
+        //print(response)
+        if response == nil{
+            if let offlineResp = ta!.getAssignmentsFromJson(forUsername: username!, forCourse: courseNumber!){
+                response = offlineResp
+            }else{
+                let alert = UIAlertController(title: "Could not reach Teachassist", message: "Please check your internet connection and try again", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { (action:UIAlertAction!) in
+                    self.OnRefresh()
+                }))
+                alert.addAction(UIAlertAction(title: "Back", style: .default, handler: { (action:UIAlertAction!) in
+                    _ = self.navigationController?.popViewController(animated: true)
+                }))
+                self.present(alert, animated: true)
+                return
+            }
+        }
+        originalResponse = response!
+        
         ta!.saveAssignmentsToJson(username: username!, courseNumber: courseNumber!, response: response)
-        ta!.getAssignmentsFromJson(forUsername: username!)
         //setup refresh controller to allow main view to be refreshed
         refreshControl = UIRefreshControl()
         refreshControl!.addTarget(self,

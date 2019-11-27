@@ -911,23 +911,20 @@ class TA{
         }
     }
     func saveAssignmentsToJson(username:String, courseNumber:Int, response:[String:Any]?){
-        var jsonData:JSON? = nil
+        var jsonData:JSON = JSON()
+        jsonData[username] = [:] //cant be nil so I used an empty dict instead
         if let filePath = Bundle.main.path(forResource: "userAssignments", ofType: "json") {
             do{
                 let jsonDataString = try String(contentsOfFile: filePath)
                 if(!JSON(parseJSON: jsonDataString).isEmpty){
-                    jsonData = JSON(parseJSON: jsonDataString)
+                    jsonData[username] = JSON(parseJSON: jsonDataString)[username]
                 }
             }catch{}
         }
         do{
-            if(jsonData == nil){
-                jsonData = try JSON(JSONSerialization.data(withJSONObject: response!, options: .prettyPrinted))
-            }else{
-                jsonData![username][courseNumber] = try JSON(JSONSerialization.data(withJSONObject: response!, options: .prettyPrinted))
-            }
+            jsonData[username][String(courseNumber)] = try JSON(JSONSerialization.data(withJSONObject: response!, options: .prettyPrinted)) //the course number cant be a integer because then accessing it would look like a list index
         }catch{return}
-        let str = jsonData!.description
+        let str = jsonData.description
         let data = str.data(using: String.Encoding.utf8)!
         if let filePath = Bundle.main.path(forResource: "userAssignments", ofType: "json") {//userData file needs to be in root directory in order for this specific method to work
             if let file = FileHandle(forWritingAtPath:filePath) {
@@ -937,22 +934,28 @@ class TA{
             }
         }
     }
-    func getAssignmentsFromJson(forUsername:String) -> [String:Any]?{
+    func getAssignmentsFromJson(forUsername:String, forCourse:Int) -> [String:Any]?{
         if let filePath = Bundle.main.path(forResource: "userAssignments", ofType: "json") {
             do{
                 let jsonDataString = try String(contentsOfFile: filePath)
-                print(jsonDataString)
-                //let jsonData = JSON(parseJSON: jsonDataString)[forUsername]
+                if(jsonDataString.data(using: String.Encoding.utf8) == nil){
+                    return nil
+                }
                 let jsonData = try (JSONSerialization.jsonObject(with: jsonDataString.data(using: String.Encoding.utf8)!, options: []) as? [String:Any])
                 if(jsonData == nil || jsonData!.isEmpty){
                     return nil
                 }
-                let response = try jsonData![forUsername] as? [String:Any]
+                let response = jsonData![forUsername] as? [String:Any]
                 if(response == nil || response!.isEmpty){
                     return nil
                 }
-                print(response)
-                return response
+                if((response![String(forCourse)] as? [String:Any]) != nil){
+                    return response![String(forCourse)] as? [String:Any]
+                }else if(((response! as [String:Any])[String(forCourse)] as? [String:Any]) != nil){
+                    return response![String(forCourse)] as? [String:Any]
+                }else{
+                    return nil
+                }
             }catch{
                 return nil
             }
