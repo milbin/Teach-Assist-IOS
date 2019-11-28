@@ -38,6 +38,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var EditButton: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //check for light theme
         let Preferences = UserDefaults.standard
         let currentPreferenceExists = Preferences.object(forKey: "LightThemeEnabled")
@@ -161,7 +162,8 @@ class MainViewController: UIViewController {
         self.navigationItem.title = "Student: "+username!
         if response == nil{
             if let jsonData = ta.getCoursesFromJson(forUsername: username!) {
-                    response = jsonData
+                response = jsonData
+                ta.addCoursesForOfflineMode(response: response!)
             }else{
                 let alert = UIAlertController(title: "Could not reach Teachassist", message: "Please check your internet connection and try again", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { (action:UIAlertAction!) in
@@ -240,6 +242,11 @@ class MainViewController: UIViewController {
             courseView.addGestureRecognizer(tapGesture)
             
             StackViewHeight.constant = StackViewHeight.constant + 140
+            if(ta.getAssignmentsFromJson(forUsername: username!, forCourse: i) == nil){
+                if let assignmentResp = ta.GetMarks(subjectNumber: i){
+                    ta.saveAssignmentsToJson(username: username!, courseNumber: i, response: assignmentResp)
+                }
+            }
             
         }
         ta.saveCoursesToJson(username: username!, response: response)

@@ -168,6 +168,15 @@ class TA{
             return nil
         }
     }
+    func addCoursesForOfflineMode(response:[NSMutableDictionary]){
+        for var course in response{
+            if course["subject_id"] != nil{
+                self.courses.append(course["subject_id"]! as! String)
+            }else{
+                self.courses.append("NA")
+            }
+        }
+    }
     
     func CheckCredentials(username:String, password:String)-> Bool{
         //TODO add crashlitics
