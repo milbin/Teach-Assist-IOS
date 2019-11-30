@@ -33,7 +33,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wOf-za-rGo" customClass="UICircularProgressRing" customModule="UICircularProgressRing">
-                                        <rect key="frame" x="100" y="35" width="175" height="175"/>
+                                        <rect key="frame" x="100" y="30" width="175" height="175"/>
                                         <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="tintColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.23921568627450981" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -70,7 +70,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <stackView contentMode="top" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" distribution="fillEqually" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W3t-Uk-hkX">
-                                        <rect key="frame" x="0.0" y="220" width="375" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="225" width="375" height="0.0"/>
                                         <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.23921568627450979" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="tintColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.23921568627450979" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -113,12 +113,12 @@
                                     <constraint firstAttribute="bottom" secondItem="W3t-Uk-hkX" secondAttribute="bottom" id="PWO-PS-9RQ"/>
                                     <constraint firstItem="VOq-ud-2gP" firstAttribute="top" secondItem="TWk-b4-WHp" secondAttribute="top" id="Tqm-J9-9DY"/>
                                     <constraint firstItem="W3t-Uk-hkX" firstAttribute="width" secondItem="TWk-b4-WHp" secondAttribute="width" id="XHb-9I-adN"/>
-                                    <constraint firstItem="W3t-Uk-hkX" firstAttribute="top" secondItem="wOf-za-rGo" secondAttribute="bottom" constant="10" id="ZPS-Ir-MuM"/>
+                                    <constraint firstItem="W3t-Uk-hkX" firstAttribute="top" secondItem="wOf-za-rGo" secondAttribute="bottom" constant="20" id="ZPS-Ir-MuM"/>
                                     <constraint firstItem="VOq-ud-2gP" firstAttribute="leading" secondItem="TWk-b4-WHp" secondAttribute="leading" id="bZX-3u-D0f"/>
                                     <constraint firstAttribute="trailing" secondItem="VOq-ud-2gP" secondAttribute="trailing" id="f1o-Wd-1T1"/>
                                     <constraint firstItem="qgR-DF-awk" firstAttribute="centerY" secondItem="TWk-b4-WHp" secondAttribute="centerY" id="uCU-YM-X01"/>
                                     <constraint firstItem="qgR-DF-awk" firstAttribute="centerX" secondItem="TWk-b4-WHp" secondAttribute="centerX" id="uVP-bg-0D8"/>
-                                    <constraint firstItem="wOf-za-rGo" firstAttribute="top" secondItem="TWk-b4-WHp" secondAttribute="top" constant="35" id="yFz-Oc-NLJ"/>
+                                    <constraint firstItem="wOf-za-rGo" firstAttribute="top" secondItem="TWk-b4-WHp" secondAttribute="top" constant="30" id="yFz-Oc-NLJ"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
