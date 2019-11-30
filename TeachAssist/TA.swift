@@ -971,4 +971,19 @@ class TA{
         }
         return nil
     }
+    func userDidLogout(forUsername:String){
+        //clear offline assignments
+        if let filePath = Bundle.main.path(forResource: "userCourses", ofType: "json") {
+            if let file = FileHandle(forWritingAtPath:filePath) {
+                file.truncateFile(atOffset: 0)//clear contents of file
+            }
+        }
+        //clear offline Courses
+        if let filePath = Bundle.main.path(forResource: "userAssignments", ofType: "json") {
+            if let file = FileHandle(forWritingAtPath:filePath) {
+                file.truncateFile(atOffset: 0)//clear contents of file
+            }
+        }
+        
+    }
 }

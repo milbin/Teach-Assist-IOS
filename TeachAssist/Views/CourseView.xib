@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -32,6 +34,7 @@
                 <outlet property="RoomNumber" destination="jcK-SG-vMM" id="mV4-1p-ZSk"/>
                 <outlet property="TrashButton" destination="Z6R-8b-y9P" id="tju-kf-LTM"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="Zcu-wP-Jrq"/>
+                <outlet property="hiddenCourseIndicator" destination="1LC-Lm-i7H" id="Zdl-Kl-EYN"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -72,6 +75,20 @@
                             <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="15"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
+                        <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1LC-Lm-i7H">
+                            <rect key="frame" x="7" y="23.5" width="8" height="8"/>
+                            <color key="backgroundColor" red="1" green="0.68235294120000001" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="8" id="5t7-U6-Z86"/>
+                                <constraint firstAttribute="height" constant="8" id="bHN-97-Ub3"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="4"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
                     </subviews>
                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -79,9 +96,11 @@
                         <constraint firstItem="jcK-SG-vMM" firstAttribute="bottom" secondItem="Qhe-n4-cNj" secondAttribute="bottom" constant="-3" id="Awo-k8-cJ0"/>
                         <constraint firstItem="0oe-SZ-O4K" firstAttribute="top" secondItem="8Bu-vs-iPh" secondAttribute="bottom" constant="-3" id="Fk8-CV-HfR"/>
                         <constraint firstAttribute="width" constant="240" id="L6x-KV-KP4"/>
+                        <constraint firstItem="Qhe-n4-cNj" firstAttribute="leading" secondItem="1LC-Lm-i7H" secondAttribute="trailing" constant="5" id="LWb-Oi-bAY"/>
                         <constraint firstItem="Qhe-n4-cNj" firstAttribute="top" secondItem="rIL-oU-AGX" secondAttribute="top" constant="15" id="RM4-7e-m9o"/>
                         <constraint firstItem="8Bu-vs-iPh" firstAttribute="top" secondItem="Qhe-n4-cNj" secondAttribute="bottom" constant="4" id="SGb-iC-tcB"/>
                         <constraint firstItem="Qhe-n4-cNj" firstAttribute="leading" secondItem="rIL-oU-AGX" secondAttribute="leading" constant="20" id="dSV-vc-NcD"/>
+                        <constraint firstItem="Qhe-n4-cNj" firstAttribute="centerY" secondItem="1LC-Lm-i7H" secondAttribute="centerY" id="fbY-M6-2H4"/>
                         <constraint firstItem="0oe-SZ-O4K" firstAttribute="leading" secondItem="rIL-oU-AGX" secondAttribute="leading" constant="15" id="pLH-WM-9we"/>
                         <constraint firstItem="jcK-SG-vMM" firstAttribute="leading" secondItem="Qhe-n4-cNj" secondAttribute="trailing" constant="5" id="u1x-49-o6r"/>
                     </constraints>

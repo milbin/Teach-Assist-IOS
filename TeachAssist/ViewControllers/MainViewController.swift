@@ -36,6 +36,9 @@ class MainViewController: UIViewController {
     @IBOutlet weak var StackViewHeight: NSLayoutConstraint!
     @IBOutlet weak var AverageBar: UICircularProgressRing!
     @IBOutlet weak var EditButton: UIBarButtonItem!
+    @IBOutlet weak var hiddenCoursesBanner: UIView!
+    @IBOutlet weak var hiddenCoursesBannerLabel: UILabel!
+    @IBOutlet weak var hiddenCoursesBannerHeight: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -162,6 +165,14 @@ class MainViewController: UIViewController {
         self.navigationItem.title = "Student: "+username!
         if response == nil{
             if let jsonData = ta.getCoursesFromJson(forUsername: username!) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    self.hiddenCoursesBanner.isHidden = false
+                    self.hiddenCoursesBannerLabel.text = "No connection. Marks may not be updated while offline."
+                    UIView.animate(withDuration: 0.5, animations: {
+                        self.hiddenCoursesBannerHeight.constant = 20
+                        self.view.layoutIfNeeded()
+                    })
+                }
                 response = jsonData
                 ta.addCoursesForOfflineMode(response: response!)
             }else{
@@ -189,7 +200,6 @@ class MainViewController: UIViewController {
             (self.navigationController?.navigationBar.frame.height ?? 0.0)
         
         for (i, course) in response!.enumerated(){
-            
             var courseView = CourseView(frame: CGRect(x: 0, y: 0, width: 350, height: 130))
             if let mark = (course["mark"] as? CGFloat){
                 courseView.ProgressBar.value = mark
@@ -197,10 +207,27 @@ class MainViewController: UIViewController {
                 let jsonCourse = ta.getCourseFromJson(forUsername: username!, courseNumber: i)
                 if let mark = (jsonCourse?["mark"] as? CGFloat), jsonCourse != nil{ //the comma simply adds another conditional to this statement so that the jsonCourse does not get unwrraped as a nil value
                     courseView.ProgressBar.value = mark
+                    courseView.hiddenCourseIndicator.isHidden = false
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        self.hiddenCoursesBanner.isHidden = false
+                        self.hiddenCoursesBannerLabel.text = "One or more courses are currently hidden by your teachers."
+                        UIView.animate(withDuration: 0.5, animations: {
+                            self.hiddenCoursesBannerHeight.constant = 20
+                            self.view.layoutIfNeeded()
+                        })
+                    }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 7) {
+                        UIView.animate(withDuration: 0.5, animations: {
+                            self.hiddenCoursesBannerHeight.constant = 0
+                            self.view.layoutIfNeeded()
+                        }, completion: { (finished: Bool) in
+                            self.hiddenCoursesBanner.isHidden = true
+                        })
+                    }
                 }else{
-                courseView.ProgressBar.isHidden = true
-                courseView.NATextView.isHidden = false
-                courseView.isUserInteractionEnabled = false
+                    courseView.ProgressBar.isHidden = true
+                    courseView.NATextView.isHidden = false
+                    courseView.isUserInteractionEnabled = false
                 }
             }
             
@@ -383,6 +410,8 @@ class MainViewController: UIViewController {
             courseNumber += 1
         }
         hasViewStarted = false
+        hiddenCoursesBanner.isHidden = true
+        hiddenCoursesBannerHeight.constant = 0
         StackView.layoutIfNeeded()
         viewDidAppear(false)
         

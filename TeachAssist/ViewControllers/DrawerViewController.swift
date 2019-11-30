@@ -81,7 +81,9 @@ class DrawerViewController: UITableViewController {
             
             //  Save to disk
             Preferences.synchronize()
-            //self.dismiss(animated: false, completion: nil)
+            let ta = TA()
+            let username = Preferences.string(forKey: "username")
+            ta.userDidLogout(forUsername: username!)
             let storyboard = UIStoryboard(name: "Login", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "LoginView") as UIViewController
             //present(vc, animated: true, completion: nil)
