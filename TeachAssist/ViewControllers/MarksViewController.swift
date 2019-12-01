@@ -775,7 +775,7 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
             
         }
         print(assignment)
-        var average = (ta?.calculateAssignmentAverage(assignment: assignment, weights: response!["categories"]! as! [String:Double]))!
+        var average = (ta?.calculateAssignmentAverage(assignment: assignment, courseWeights: response!["categories"]! as! [String:Double], assignmentWeights: weightList))!
         if average == "100.0"{
             average = "100"
             assignmentView.AssignmentMark.text = "100%"

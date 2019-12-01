@@ -391,6 +391,7 @@ class TA{
     
     func CalculateCourseAverage(subjectNumber:Int? = nil, markParam:[String:Any]? = nil) -> Double{
         var marks:[String:Any]?
+        var numberOfAssignments = 0
         if markParam == nil{
             marks = GetMarks(subjectNumber: subjectNumber!)
         }else{
@@ -421,6 +422,7 @@ class TA{
         }
         for (key, value) in marks!{
             if key != "categories"{
+                numberOfAssignments += 1
                 var temp = value as! [String:Any]
                 temp["feedback"] = nil
                 temp["title"] = nil
@@ -446,8 +448,8 @@ class TA{
                     }
                 }
                 if outOfK != 0.0 && weightK != 0.0{
-                    knowledge += markK / outOfK * weightK;
-                    totalWeightKnowledge += weightK;
+                    knowledge += markK / outOfK * weightK
+                    totalWeightKnowledge += weightK
                 }
                 
                 var markT = 0.0
@@ -469,8 +471,8 @@ class TA{
                     }
                 }
                 if outOfT != 0.0 && weightT != 0.0{
-                    thinking += markT / outOfT * weightT;
-                    totalWeightThinking += weightT;
+                    thinking += markT / outOfT * weightT
+                    totalWeightThinking += weightT
                 }
                 
                 var markC = 0.0
@@ -492,8 +494,8 @@ class TA{
                     }
                 }
                 if outOfC != 0.0 && weightC != 0.0{
-                    communication += markC / outOfC * weightC;
-                    totalWeightCommunication += weightC;
+                    communication += markC / outOfC * weightC
+                    totalWeightCommunication += weightC
                 }
                 
                 var markA = 0.0
@@ -515,8 +517,8 @@ class TA{
                     }
                 }
                 if outOfA != 0.0 && weightA != 0.0{
-                    application += markA / outOfA * weightA;
-                    totalWeightApplication += weightA;
+                    application += markA / outOfA * weightA
+                    totalWeightApplication += weightA
                 }
                 
                 var markO = 0.0
@@ -538,12 +540,36 @@ class TA{
                     }
                 }
                 if outOfO != 0.0 && weightO != 0.0{
-                    other += markO / outOfO * weightO;
-                    totalWeightOther += weightO;
+                    other += markO / outOfO * weightO
+                    totalWeightOther += weightO
                 }
                 
             }
         }
+        
+        if(numberOfAssignments == 1){
+            var assignmentNumber:String = "-1"
+            for i in 0...1000{
+                if(marks![String(i)] != nil){
+                    assignmentNumber = String(i)
+                    break
+                }
+            }
+            if(assignmentNumber != "-1"){
+                var temp = marks![assignmentNumber] as! [String:Any]
+                temp["feedback"] = nil
+                temp["title"] = nil
+                temp["categories"] = nil
+                print(temp)
+                let assignmentDict = temp as! [String : [String : String]]
+                if let returnVal = Double(self.calculateAssignmentAverage(assignment: assignmentDict , courseWeights: weights,
+                                                       assignmentWeights: ["K": totalWeightKnowledge, "T":totalWeightThinking,
+                                                                           "C":totalWeightCommunication, "A":totalWeightApplication, "":totalWeightOther])){
+                    return returnVal
+                }
+            }
+        }
+        
         
         var Knowledge = weights["K"]!
         var Thinking = weights["T"]!
@@ -752,7 +778,6 @@ class TA{
                 
             }
         }
-        
         var Knowledge = weights["K"]!
         var Thinking = weights["T"]!
         var Communication = weights["C"]!
@@ -814,11 +839,14 @@ class TA{
     
     }
     
-    func calculateAssignmentAverage(assignment:[String:[String:String]], weights:[String:Double]) -> String{
-        var weightList = ["K" : weights["K"]!*10*0.7, "T" : weights["T"]!*10*0.7, "C" : weights["C"]!*10*0.7, "A" : weights["A"]!*10*0.7, "":3.0]
+    func calculateAssignmentAverage(assignment:[String:[String:String]], courseWeights:[String:Double], assignmentWeights:[String:Double]) -> String{
+        var weightList = ["K" : courseWeights["K"]!*10*0.7, "T" : courseWeights["T"]!*10*0.7, "C" : courseWeights["C"]!*10*0.7, "A" : courseWeights["A"]!*10*0.7, "":3.0]
         var markList = ["K" : 0.0, "T" : 0.0, "C" : 0.0, "A" : 0.0, "" : 0.0]
         let categoryList = ["K", "T", "C", "A", ""]
         
+        for category in categoryList{
+            weightList[category] = (weightList[category]!/10) * assignmentWeights[category]!
+        }
         
         
         for category in categoryList{
@@ -849,7 +877,9 @@ class TA{
         average = average / (weightList["K"]! + weightList["T"]! + weightList["C"]! + weightList["A"]! + weightList[""]!)
         average = round(10 * average) / 10
         
-        
+        if(String(average) == "nan"){
+            return self.calculateAssignmentAverage(assignment: assignment, courseWeights: courseWeights, assignmentWeights: ["K" : 1.0, "T" : 1.0, "C" : 1.0, "A" : 1.0, "" : 1.0])
+        }
         if average == 0.0{
             average = 0
         }
