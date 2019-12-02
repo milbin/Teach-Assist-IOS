@@ -239,22 +239,27 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         response = ta!.GetMarks(subjectNumber: courseNumber!)
+        let Preferences = UserDefaults.standard
+        let username = Preferences.string(forKey: "username")
+        //print(response)
         if response == nil{
-            let alert = UIAlertController(title: "Could not reach Teachassist", message: "Please check your internet connection and try again", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { (action:UIAlertAction!) in
-                self.OnRefresh()
-            }))
-            alert.addAction(UIAlertAction(title: "Back", style: .default, handler: { (action:UIAlertAction!) in
-                _ = self.navigationController?.popViewController(animated: true)
-            }))
-            self.present(alert, animated: true)
-            return
+            if let offlineResp = ta!.getAssignmentsFromJson(forUsername: username!, forCourse: courseNumber!){
+                response = offlineResp
+            }else{
+                let alert = UIAlertController(title: "Could not reach Teachassist", message: "Please check your internet connection and try again", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { (action:UIAlertAction!) in
+                    self.OnRefresh()
+                }))
+                alert.addAction(UIAlertAction(title: "Back", style: .default, handler: { (action:UIAlertAction!) in
+                    _ = self.navigationController?.popViewController(animated: true)
+                }))
+                self.present(alert, animated: true)
+                return
+            }
         }
         originalResponse = response!
         
-        
-        
-        print(response)
+        ta!.saveAssignmentsToJson(username: username!, courseNumber: courseNumber!, response: response)
         //setup refresh controller to allow main view to be refreshed
         refreshControl = UIRefreshControl()
         refreshControl!.addTarget(self,
@@ -770,7 +775,7 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
             
         }
         print(assignment)
-        var average = (ta?.calculateAssignmentAverage(assignment: assignment, weights: response!["categories"]! as! [String:Double]))!
+        var average = (ta?.calculateAssignmentAverage(assignment: assignment, courseWeights: response!["categories"]! as! [String:Double], assignmentWeights: weightList))!
         if average == "100.0"{
             average = "100"
             assignmentView.AssignmentMark.text = "100%"

@@ -12,7 +12,7 @@ import KYDrawerController
 import UserNotifications
 import Crashlytics
 import PopupDialog
-import StoreKit
+import SwiftyJSON
 
 class MainViewController: UIViewController {
     var courseList = [CourseView]()
@@ -36,8 +36,12 @@ class MainViewController: UIViewController {
     @IBOutlet weak var StackViewHeight: NSLayoutConstraint!
     @IBOutlet weak var AverageBar: UICircularProgressRing!
     @IBOutlet weak var EditButton: UIBarButtonItem!
+    @IBOutlet weak var hiddenCoursesBanner: UIView!
+    @IBOutlet weak var hiddenCoursesBannerLabel: UILabel!
+    @IBOutlet weak var hiddenCoursesBannerHeight: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //check for light theme
         let Preferences = UserDefaults.standard
         let currentPreferenceExists = Preferences.object(forKey: "LightThemeEnabled")
@@ -147,17 +151,31 @@ class MainViewController: UIViewController {
             present(vc, animated: true, completion: nil)
             return
         }
+        
         response = ta.GetTaData(username: username!, password: password!) ?? nil
-        print(response)
         self.navigationItem.title = "Student: "+username!
         if response == nil{
-            let alert = UIAlertController(title: "Could not reach Teachassist", message: "Please check your internet connection and try again", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { (action:UIAlertAction!) in
-                self.OnRefresh()
-            }))
-            self.present(alert, animated: true)
-            return
+            if let jsonData = ta.getCoursesFromJson(forUsername: username!) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    self.hiddenCoursesBanner.isHidden = false
+                    self.hiddenCoursesBannerLabel.text = "No connection. Marks may not be updated while offline."
+                    UIView.animate(withDuration: 0.5, animations: {
+                        self.hiddenCoursesBannerHeight.constant = 20
+                        self.view.layoutIfNeeded()
+                    })
+                }
+                response = jsonData
+                ta.addCoursesForOfflineMode(response: response!)
+            }else{
+                let alert = UIAlertController(title: "Could not reach Teachassist", message: "Please check your internet connection and try again", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { (action:UIAlertAction!) in
+                    self.OnRefresh()
+                }))
+                self.present(alert, animated: true)
+                return
+            }
         }
+        print(response)
         
         //add default preferences for notifications
         for i in 0...response!.count{
@@ -169,28 +187,39 @@ class MainViewController: UIViewController {
         Preferences.synchronize()
         
         //add courses to main view
-        if response == nil{
-            let alert = UIAlertController(title: "Could not reach Teachassist", message: "Please check your internet connection and try again", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { (action:UIAlertAction!) in
-                self.OnRefresh()
-            }))
-            self.present(alert, animated: true)
-            return
-        }
         let topBarHeight = UIApplication.shared.statusBarFrame.size.height +
             (self.navigationController?.navigationBar.frame.height ?? 0.0)
         
         for (i, course) in response!.enumerated(){
-            
             var courseView = CourseView(frame: CGRect(x: 0, y: 0, width: 350, height: 130))
             if let mark = (course["mark"] as? CGFloat){
-                print(mark)
                 courseView.ProgressBar.value = mark
             }else{
-                courseView.ProgressBar.isHidden = true
-                courseView.NATextView.isHidden = false
-                courseView.isUserInteractionEnabled = false
-                
+                let jsonCourse = ta.getCourseFromJson(forUsername: username!, courseNumber: i)
+                if let mark = (jsonCourse?["mark"] as? CGFloat), jsonCourse != nil{ //the comma simply adds another conditional to this statement so that the jsonCourse does not get unwrraped as a nil value
+                    courseView.ProgressBar.value = mark
+                    courseView.hiddenCourseIndicator.isHidden = false
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        self.hiddenCoursesBanner.isHidden = false
+                        self.hiddenCoursesBannerLabel.text = "One or more courses are currently hidden by your teachers."
+                        UIView.animate(withDuration: 0.5, animations: {
+                            self.hiddenCoursesBannerHeight.constant = 20
+                            self.view.layoutIfNeeded()
+                        })
+                    }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 7) {
+                        UIView.animate(withDuration: 0.5, animations: {
+                            self.hiddenCoursesBannerHeight.constant = 0
+                            self.view.layoutIfNeeded()
+                        }, completion: { (finished: Bool) in
+                            self.hiddenCoursesBanner.isHidden = true
+                        })
+                    }
+                }else{
+                    courseView.ProgressBar.isHidden = true
+                    courseView.NATextView.isHidden = false
+                    courseView.isUserInteractionEnabled = false
+                }
             }
             
             courseView.PeriodNumber.text = "Period \(i+1)"
@@ -231,8 +260,27 @@ class MainViewController: UIViewController {
             courseView.addGestureRecognizer(tapGesture)
             
             StackViewHeight.constant = StackViewHeight.constant + 140
+            if(ta.getAssignmentsFromJson(forUsername: username!, forCourse: i) == nil){
+                if let assignmentResp = ta.GetMarks(subjectNumber: i){
+                    ta.saveAssignmentsToJson(username: username!, courseNumber: i, response: assignmentResp)
+                }
+            }
             
         }
+        ta.saveCoursesToJson(username: username!, response: response)
+        //print file contents
+        /*
+        if let filePath = Bundle.main.path(forResource: "userData", ofType: "json") {
+            print(filePath)
+            do{
+                let jsonData = try String(contentsOfFile: filePath)
+                let json = JSON(parseJSON: jsonData)
+                print(json)
+                print("DATA HERE2")
+            }catch{print("Error")}
+        }
+        */
+        
         
         if refreshControl!.isRefreshing{
             refreshControl!.endRefreshing()
@@ -353,6 +401,8 @@ class MainViewController: UIViewController {
             courseNumber += 1
         }
         hasViewStarted = false
+        hiddenCoursesBanner.isHidden = true
+        hiddenCoursesBannerHeight.constant = 0
         StackView.layoutIfNeeded()
         viewDidAppear(false)
         
