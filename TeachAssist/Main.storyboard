@@ -282,20 +282,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ta_logo_v3" translatesAutoresizingMaskIntoConstraints="NO" id="Aiu-NN-iMI">
-                                <rect key="frame" x="140" y="40" width="95" height="95"/>
+                                <rect key="frame" x="132.5" y="40" width="110" height="110"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="95" id="GxH-WD-RtY"/>
-                                    <constraint firstAttribute="width" constant="95" id="lE2-JS-Q90"/>
+                                    <constraint firstAttribute="height" constant="110" id="GxH-WD-RtY"/>
+                                    <constraint firstAttribute="width" constant="110" id="lE2-JS-Q90"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Teachassist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kkf-gX-D4h">
-                                <rect key="frame" x="140.5" y="145" width="94" height="21"/>
+                                <rect key="frame" x="138.5" y="155" width="98.5" height="32"/>
                                 <fontDescription key="fontDescription" name="Eczar-Bold" family="Eczar" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XFH-2V-VbQ">
-                                <rect key="frame" x="0.0" y="199" width="375" height="500"/>
+                                <rect key="frame" x="0.0" y="220" width="375" height="500"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="500" id="wAm-b2-KJ4"/>
                                 </constraints>
@@ -304,7 +304,7 @@
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DGu-6e-RMz" userLabel="Line View">
-                                <rect key="frame" x="20" y="181" width="335" height="3"/>
+                                <rect key="frame" x="20" y="202" width="335" height="3"/>
                                 <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="3" id="kdv-uv-kOF"/>
@@ -320,7 +320,7 @@
                             <constraint firstItem="DGu-6e-RMz" firstAttribute="leading" secondItem="odv-C7-WgD" secondAttribute="leading" constant="20" id="dLd-Ri-cuV"/>
                             <constraint firstItem="XFH-2V-VbQ" firstAttribute="trailing" secondItem="odv-C7-WgD" secondAttribute="trailing" id="iLc-Jr-Jhe"/>
                             <constraint firstItem="DGu-6e-RMz" firstAttribute="top" secondItem="Kkf-gX-D4h" secondAttribute="bottom" constant="15" id="icr-cw-fTX"/>
-                            <constraint firstItem="Kkf-gX-D4h" firstAttribute="top" secondItem="Aiu-NN-iMI" secondAttribute="bottom" constant="10" id="mjc-Bw-jpQ"/>
+                            <constraint firstItem="Kkf-gX-D4h" firstAttribute="top" secondItem="Aiu-NN-iMI" secondAttribute="bottom" constant="5" id="mjc-Bw-jpQ"/>
                             <constraint firstItem="XFH-2V-VbQ" firstAttribute="leading" secondItem="odv-C7-WgD" secondAttribute="leading" id="tpR-KW-3c1"/>
                             <constraint firstItem="XFH-2V-VbQ" firstAttribute="top" secondItem="DGu-6e-RMz" secondAttribute="bottom" constant="15" id="ubY-H5-pfr"/>
                         </constraints>
@@ -1043,7 +1043,7 @@
         <image name="logout" width="48" height="48"/>
         <image name="plus" width="100" height="100"/>
         <image name="settings" width="48" height="48"/>
-        <image name="ta_logo_v3" width="487" height="487"/>
+        <image name="ta_logo_v3" width="4096" height="4096"/>
         <image name="up" width="96" height="96"/>
     </resources>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

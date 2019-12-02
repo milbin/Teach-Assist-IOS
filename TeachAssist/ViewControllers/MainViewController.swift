@@ -12,6 +12,7 @@ import KYDrawerController
 import UserNotifications
 import Crashlytics
 import PopupDialog
+import StoreKit
 import SwiftyJSON
 
 class MainViewController: UIViewController {
