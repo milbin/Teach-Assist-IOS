@@ -101,7 +101,8 @@ class MainViewController: UIViewController {
                                   for: .valueChanged)
         scrollView.refreshControl = refreshControl
         
-        //ask for ratings
+        Preferences.set(nil, forKey: "didAskForRating")
+        /*//ask for ratings
         let didAskForRating = Preferences.string(forKey: "didAskForRating")
         if(didAskForRating == nil){
             Preferences.set(nil, forKey: "firstLaunch")
@@ -111,7 +112,7 @@ class MainViewController: UIViewController {
             } else {
                 // Fallback on earlier versions
             }
-        }
+        }*/
         
         
     }

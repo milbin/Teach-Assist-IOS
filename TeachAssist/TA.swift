@@ -16,6 +16,7 @@ class TA{
     var username:String = ""
     var password:String = ""
     var courses = [String]()
+    var didRecursivelyCallGetTaData = false
     
     func GetTaData(username:String, password:String) -> [NSMutableDictionary]?{
         //TODO add crashlitics
@@ -38,6 +39,10 @@ class TA{
         self.sessionToken = respToken!["token"] as! String
         let params = ["token":sessionToken, "student_id":self.studentID]
         if let resp:[[String:[Dictionary<String,String>]]]? = sr.SendJSON(url: URL, parameters: params)?["data"] as? [[String : [Dictionary<String,String>]]]{
+            if(resp![0]["subjects"] == nil && !didRecursivelyCallGetTaData){
+                didRecursivelyCallGetTaData = true
+                return GetTaData(username:username, password:password)
+            }
             var resp1 = resp![0]["subjects"]!
             var response = [NSMutableDictionary]()
             for course in resp1{
@@ -795,31 +800,31 @@ class TA{
             finalKnowledge = knowledge / totalWeightKnowledge;
         }else{
             finalKnowledge = 0.0;
-            Knowledge = 0.0;
+            //Knowledge = 0.0;
         }
         if totalWeightThinking != 0.0 {
             finalThinking = thinking/totalWeightThinking;
         }else{
             finalThinking = 0.0;
-            Thinking = 0.0;
+            //Thinking = 0.0;
         }
         if totalWeightCommunication != 0.0 {
             finalCommunication = communication/totalWeightCommunication;
         }else{
             finalCommunication = 0.0;
-            Communication = 0.0;
+            //Communication = 0.0;
         }
         if totalWeightApplication != 0.0 {
             finalApplication = application/totalWeightApplication;
         }else{
             finalApplication = 0.0;
-            Application = 0.0;
+            //Application = 0.0;
         }
         if totalWeightOther != 0.0 {
             finalOther = other/totalWeightOther;
         }else{
             finalOther = 0.0;
-            Other = 0.0;
+            //Other = 0.0;
         }
         //finalKnowledge = finalKnowledge*Knowledge
         //finalThinking = finalThinking*Thinking
