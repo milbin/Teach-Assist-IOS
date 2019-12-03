@@ -113,6 +113,11 @@ class MainViewController: UIViewController {
                 // Fallback on earlier versions
             }
         }*/
+        if(UIDevice.modelName == "iPhone 5" || UIDevice.modelName == "iPhone 5s" || UIDevice.modelName == "iPhone 5c" ||
+            UIDevice.modelName == "iPod Touch 5" || UIDevice.modelName == "iPod Touch 6" || UIDevice.modelName == "iPod5,1" ||
+            UIDevice.modelName == "iPod7,1" || UIDevice.modelName == "iPhone SE"){
+            hiddenCoursesBannerLabel.font = UIFont(name: hiddenCoursesBannerLabel.font.fontName, size: 12)
+        }
         
         
     }
