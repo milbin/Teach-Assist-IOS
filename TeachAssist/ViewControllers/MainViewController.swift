@@ -387,7 +387,7 @@ class MainViewController: UIViewController {
         view?.isHidden = true
         view?.removeFromSuperview()
         StackView.layoutIfNeeded()
-        StackViewHeight.constant -= 140
+        StackViewHeight.constant -= 135
         
         
         
