@@ -267,6 +267,7 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
                                   for: .valueChanged)
         scrollView.refreshControl = refreshControl
         UpdateMarkBars()
+        print(response)
         
         for i in 0...(response!.count - 2){
             var assignmentWithFeedbackAndTitle = response![String(i)]! as! [String:Any]

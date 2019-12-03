@@ -17,6 +17,7 @@ class TA{
     var password:String = ""
     var courses = [String]()
     var didRecursivelyCallGetTaData = false
+    var didRecursivelyCallCalculateAssignmentAverage = false
     
     func GetTaData(username:String, password:String) -> [NSMutableDictionary]?{
         //TODO add crashlitics
@@ -883,7 +884,12 @@ class TA{
         average = round(10 * average) / 10
         
         if(String(average) == "nan"){
-            return self.calculateAssignmentAverage(assignment: assignment, courseWeights: courseWeights, assignmentWeights: ["K" : 1.0, "T" : 1.0, "C" : 1.0, "A" : 1.0, "" : 1.0])
+            if(!didRecursivelyCallCalculateAssignmentAverage){
+                didRecursivelyCallCalculateAssignmentAverage = true
+                return self.calculateAssignmentAverage(assignment: assignment, courseWeights: courseWeights, assignmentWeights: ["K" : 1.0, "T" : 1.0, "C" : 1.0, "A" : 1.0, "" : 1.0])
+            }else{
+                return "nan"
+            }
         }
         if average == 0.0{
             average = 0
