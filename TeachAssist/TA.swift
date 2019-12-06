@@ -901,7 +901,9 @@ class TA{
         
     }
     func getCoursesFromJson(forUsername:String) -> [NSMutableDictionary]?{
-        if let filePath = Bundle.main.path(forResource: "userCourses", ofType: "json") {
+        let filemgr = FileManager.default
+        let path = filemgr.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).last?.appendingPathComponent("userCourse.json")
+        if let filePath = path?.path {
             do{
                 let jsonDataString = try String(contentsOfFile: filePath)
                 let jsonData = JSON(parseJSON: jsonDataString)[forUsername]
@@ -953,39 +955,49 @@ class TA{
         let json = JSON(dict)
         let str = json.description
         let data = str.data(using: String.Encoding.utf8)!
-        if let filePath = Bundle.main.path(forResource: "userCourses", ofType: "json") {//userData file needs to be in root directory in order for this specific method to work
-            if let file = FileHandle(forWritingAtPath:filePath) {
+        let filemgr = FileManager.default
+        let path = filemgr.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).last?.appendingPathComponent("userCourse.json")
+        if !filemgr.fileExists(atPath: (path?.path)!) { //create file if does not exist
+            filemgr.createFile(atPath: (path?.path)!, contents: data, attributes: nil)
+        }
+        if(path?.path != nil){
+            if let file = FileHandle(forWritingAtPath:path!.path) {
                 file.truncateFile(atOffset: 0)//clear contents of file
                 file.write(data)
             }
         }
+        
     }
     func saveAssignmentsToJson(username:String, courseNumber:Int, response:[String:Any]?){
         var jsonData:JSON = JSON()
         jsonData[username] = [:] //cant be nil so I used an empty dict instead
-        if let filePath = Bundle.main.path(forResource: "userAssignments", ofType: "json") {
-            do{
-                let jsonDataString = try String(contentsOfFile: filePath)
-                if(!JSON(parseJSON: jsonDataString).isEmpty){
-                    jsonData[username] = JSON(parseJSON: jsonDataString)[username]
-                }
-            }catch{}
-        }
+        let filemgr = FileManager.default
+        let path = filemgr.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).last?.appendingPathComponent("userAssignments.json")
+        do{
+            let jsonDataString = try String(contentsOfFile: path!.path)
+            if(!JSON(parseJSON: jsonDataString).isEmpty){
+                jsonData[username] = JSON(parseJSON: jsonDataString)[username]
+            }
+        }catch{}
+        
         do{
             jsonData[username][String(courseNumber)] = try JSON(JSONSerialization.data(withJSONObject: response!, options: .prettyPrinted)) //the course number cant be a integer because then accessing it would look like a list index
         }catch{return}
         let str = jsonData.description
         let data = str.data(using: String.Encoding.utf8)!
-        if let filePath = Bundle.main.path(forResource: "userAssignments", ofType: "json") {//userData file needs to be in root directory in order for this specific method to work
-            if let file = FileHandle(forWritingAtPath:filePath) {
-                file.truncateFile(atOffset: 0)//clear contents of file
-                file.write(data)
-                
-            }
+        if !filemgr.fileExists(atPath: (path?.path)!) { //create file if does not exist
+            filemgr.createFile(atPath: (path?.path)!, contents: data, attributes: nil)
         }
+        if let file = FileHandle(forWritingAtPath:path!.path) {
+            file.truncateFile(atOffset: 0)//clear contents of file
+            file.write(data)
+        }
+        
     }
     func getAssignmentsFromJson(forUsername:String, forCourse:Int) -> [String:Any]?{
-        if let filePath = Bundle.main.path(forResource: "userAssignments", ofType: "json") {
+        let filemgr = FileManager.default
+        let path = filemgr.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).last?.appendingPathComponent("userAssignments.json")
+        if let filePath = path?.path {
             do{
                 let jsonDataString = try String(contentsOfFile: filePath)
                 if(jsonDataString.data(using: String.Encoding.utf8) == nil){
@@ -1013,14 +1025,17 @@ class TA{
         return nil
     }
     func userDidLogout(forUsername:String){
-        //clear offline assignments
-        if let filePath = Bundle.main.path(forResource: "userCourses", ofType: "json") {
+        //clear offline courses
+        let filemgr = FileManager.default
+        let path = filemgr.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).last?.appendingPathComponent("userCourses.json")
+        if let filePath = path?.path {
             if let file = FileHandle(forWritingAtPath:filePath) {
                 file.truncateFile(atOffset: 0)//clear contents of file
             }
         }
-        //clear offline Courses
-        if let filePath = Bundle.main.path(forResource: "userAssignments", ofType: "json") {
+        //clear offline assignments
+        let path1 = filemgr.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).last?.appendingPathComponent("userAssignments.json")
+        if let filePath = path?.path {
             if let file = FileHandle(forWritingAtPath:filePath) {
                 file.truncateFile(atOffset: 0)//clear contents of file
             }
