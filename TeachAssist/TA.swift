@@ -974,9 +974,13 @@ class TA{
         let filemgr = FileManager.default
         let path = filemgr.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).last?.appendingPathComponent("userAssignments.json")
         do{
-            let jsonDataString = try String(contentsOfFile: path!.path)
-            if(!JSON(parseJSON: jsonDataString).isEmpty){
-                jsonData[username] = JSON(parseJSON: jsonDataString)[username]
+            if(path?.path != nil){
+                let jsonDataString = try String(contentsOfFile: path!.path)
+                if(!JSON(parseJSON: jsonDataString).isEmpty){
+                    jsonData[username] = JSON(parseJSON: jsonDataString)[username]
+                }
+            }else{
+                return
             }
         }catch{}
         
