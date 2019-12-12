@@ -242,7 +242,7 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
         let Preferences = UserDefaults.standard
         let username = Preferences.string(forKey: "username")
         //print(response)
-        if response == nil{
+        if(response == nil || (response?.count)! < 2){
             if let offlineResp = ta!.getAssignmentsFromJson(forUsername: username!, forCourse: courseNumber!){
                 response = offlineResp
             }else{

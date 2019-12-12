@@ -202,6 +202,7 @@ class MainViewController: UIViewController {
             if let mark = (course["mark"] as? CGFloat){
                 courseView.ProgressBar.value = mark
             }else{
+                print(ta.getCoursesFromJson(forUsername: username!))
                 let jsonCourse = ta.getCourseFromJson(forUsername: username!, courseNumber: i)
                 if let mark = (jsonCourse?["mark"] as? CGFloat), jsonCourse != nil{ //the comma simply adds another conditional to this statement so that the jsonCourse does not get unwrraped as a nil value
                     courseView.ProgressBar.value = mark
@@ -268,25 +269,13 @@ class MainViewController: UIViewController {
             
             StackViewHeight.constant = StackViewHeight.constant + 140
             if(ta.getAssignmentsFromJson(forUsername: username!, forCourse: i) == nil){
-                if let assignmentResp = ta.GetMarks(subjectNumber: i){
+                if let assignmentResp = ta.GetMarks(subjectNumber: i), assignmentResp.count > 1{
                     ta.saveAssignmentsToJson(username: username!, courseNumber: i, response: assignmentResp)
                 }
             }
             
         }
         ta.saveCoursesToJson(username: username!, response: response)
-        //print file contents
-        /*
-        if let filePath = Bundle.main.path(forResource: "userData", ofType: "json") {
-            print(filePath)
-            do{
-                let jsonData = try String(contentsOfFile: filePath)
-                let json = JSON(parseJSON: jsonData)
-                print(json)
-                print("DATA HERE2")
-            }catch{print("Error")}
-        }
-        */
         
         
         if refreshControl!.isRefreshing{

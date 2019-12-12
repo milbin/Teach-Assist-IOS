@@ -902,7 +902,7 @@ class TA{
     }
     func getCoursesFromJson(forUsername:String) -> [NSMutableDictionary]?{
         let filemgr = FileManager.default
-        let path = filemgr.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).last?.appendingPathComponent("userCourse.json")
+        let path = filemgr.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).last?.appendingPathComponent("userCourses.json")
         if let filePath = path?.path {
             do{
                 let jsonDataString = try String(contentsOfFile: filePath)
@@ -956,7 +956,7 @@ class TA{
         let str = json.description
         let data = str.data(using: String.Encoding.utf8)!
         let filemgr = FileManager.default
-        let path = filemgr.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).last?.appendingPathComponent("userCourse.json")
+        let path = filemgr.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).last?.appendingPathComponent("userCourses.json")
         if !filemgr.fileExists(atPath: (path?.path)!) { //create file if does not exist
             filemgr.createFile(atPath: (path?.path)!, contents: data, attributes: nil)
         }
@@ -1039,11 +1039,12 @@ class TA{
         }
         //clear offline assignments
         let path1 = filemgr.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).last?.appendingPathComponent("userAssignments.json")
-        if let filePath = path?.path {
+        if let filePath = path1?.path {
             if let file = FileHandle(forWritingAtPath:filePath) {
                 file.truncateFile(atOffset: 0)//clear contents of file
             }
         }
+        print(self.getCoursesFromJson(forUsername: forUsername))
         
     }
 }
