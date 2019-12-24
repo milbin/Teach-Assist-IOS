@@ -100,7 +100,7 @@ class DrawerViewController: UITableViewController {
             
             
         }else if indexPath.row == cells["bug report"]{
-            let email = "TaAppYRDSB@gmail.com"
+            let email = "taappyrdsb@gmail.com"
             if let url = URL(string: "mailto:\(email)") {
                 if #available(iOS 10.0, *) {
                     UIApplication.shared.open(url)
