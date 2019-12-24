@@ -29,14 +29,14 @@ Avaliable now on the App Store
 
 # Screenshots
 <div style="display:flex;">
-  <img src="./Images/screenshots/complete/06942fff-3a03-4315-a369-326aa92b47b0ss.jpeg" width=207 height=448>
+  <img src="./supplies/screenshots3/complete/49-6.5 inch - iPhone X.png" width=207 height=448>
    .
-  <img src="./Images/screenshots/complete/3005f14e-2b52-463f-9c85-38bb362ea526.jpeg" width=207 height=448>
+  <img src="./supplies/screenshots3/complete/1-6.5 inch - iPhone XS Max-screen__1.png" width=207 height=448>
    .
-  <img src="./Images/screenshots/complete/1348cd0c-6b6c-499a-9785-43e9dea9ea8b.jpeg" width=207 height=448>
+  <img src="./supplies/screenshots3/complete/3-6.5 inch - iPhone XS Max-screen__3.png" width=207 height=448>
    .
-  <img src="./Images/screenshots/complete/164dbe96-c911-4d98-91d5-6933c2620c69.jpeg" width=207 height=448>
+  <img src="./supplies/screenshots3/complete/2-6.5 inch - iPhone XS Max-screen__2.png" width=207 height=448>
    .
-  <img src="./Images/screenshots/complete/102c0f3f-12ee-4aba-ad33-3e22828871bf.jpeg" width=207 height=448>
+  <img src="./supplies/screenshots3/complete/4-6.5 inch - iPhone XS Max-screen__2.png" width=207 height=448>
 </div> 
  
