@@ -910,7 +910,7 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
         assignmentView.ABar.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
         assignmentView.OBar.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
         
-        assignmentView.feedback.text = "Feedback: " + feedback!
+        assignmentView.feedback.text = "Feedback: \n" + feedback!
         assignmentView.TrashButton.addTarget(self, action: #selector(OnTrashButtonPress), for: .touchUpInside)
         assignmentList.append(assignmentView)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(OnAssignmentSelected))
