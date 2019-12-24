@@ -30,13 +30,10 @@ Avaliable now on the App Store
 # Screenshots
 <div style="display:flex;">
   <img src="./supplies/screenshots3/complete/49-6.5 inch - iPhone X.png" width=207 height=448>
-   .
+  .
   <img src="./supplies/screenshots3/complete/1-6.5 inch - iPhone XS Max-screen__1.png" width=207 height=448>
-   .
   <img src="./supplies/screenshots3/complete/3-6.5 inch - iPhone XS Max-screen__3.png" width=207 height=448>
-   .
   <img src="./supplies/screenshots3/complete/2-6.5 inch - iPhone XS Max-screen__2.png" width=207 height=448>
-   .
   <img src="./supplies/screenshots3/complete/4-6.5 inch - iPhone XS Max-screen__2.png" width=207 height=448>
 </div> 
  
