@@ -71,7 +71,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="129"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
             <subviews>
-                <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Feedback: " textAlignment="justified" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g5x-mT-K3y">
+                <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Feedback: " textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="g5x-mT-K3y">
                     <rect key="frame" x="22.5" y="108" width="330" height="120"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="330" id="mcd-JU-ZiC"/>
