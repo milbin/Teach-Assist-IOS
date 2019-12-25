@@ -18,7 +18,7 @@ This app is specifically designed for student use only and is not endorsed by ei
 Avaliable now on the App Store.
 <p align="left">
   <a href="https://apps.apple.com/us/app/teachassist-yrdsb/id1462828920?ls=1">
-    <img src="./Images/Download_on_the_App_Store_Badge.png" height="80px"/>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Download_on_the_App_Store_Badge.svg/1280px-Download_on_the_App_Store_Badge.svg.png" height="80px"/>
   </a>
 </p>
 
@@ -30,4 +30,3 @@ Avaliable now on the App Store.
   <img src="./supplies/screenshots3/complete/2-6.5 inch - iPhone XS Max-screen__2.png" width=207 height=448>
   <img src="./supplies/screenshots3/complete/4-6.5 inch - iPhone XS Max-screen__2.png" width=207 height=448>
 </div> 
- 
