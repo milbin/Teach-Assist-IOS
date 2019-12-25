@@ -5,7 +5,7 @@ If you encounter a bug, please report it using either the bug report button in t
 
 This app is specifically designed for student use only and is not endorsed by either Teachassist or YRDSB.
 
-# Key features:
+# Key Features:
 • No ads  
 • Dark and light theme  
 • Course averages  
