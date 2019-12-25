@@ -233,8 +233,8 @@
                                                         <constraint firstAttribute="height" constant="20" id="TrC-wt-qcf"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Teachassist website" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PC5-Bu-G9J" userLabel="Open In Label">
-                                                    <rect key="frame" x="60" y="13" width="137" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Teachassist Website" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PC5-Bu-G9J" userLabel="Open In Label">
+                                                    <rect key="frame" x="60" y="13" width="139.5" height="18"/>
                                                     <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="15"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -292,6 +292,8 @@
                         <outlet property="feedbackLabel" destination="Cnb-SG-IB0" id="TWD-wg-V3g"/>
                         <outlet property="logoutIcon" destination="qEv-Cs-kg0" id="TZS-JY-0Ev"/>
                         <outlet property="logoutLabel" destination="OSx-M5-GhC" id="yXk-w5-Ltt"/>
+                        <outlet property="openInIcon" destination="tMm-Wh-Obf" id="X0S-sZ-CC5"/>
+                        <outlet property="openInLabel" destination="PC5-Bu-G9J" id="Qze-pN-q7O"/>
                         <outlet property="settingsCell" destination="a49-Sx-hfr" id="4vC-Ib-Fa4"/>
                         <outlet property="settingsIcon" destination="Aay-A5-hQC" id="6mv-0t-7Hn"/>
                         <outlet property="settingsLabel" destination="6ve-lu-tbX" id="KhI-Xm-U4y"/>

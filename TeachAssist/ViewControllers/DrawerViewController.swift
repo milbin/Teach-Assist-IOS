@@ -24,7 +24,10 @@ class DrawerViewController: UITableViewController {
     @IBOutlet weak var logoutIcon: UIImageView!
     @IBOutlet weak var feedbackLabel: UILabel!
     @IBOutlet weak var feedbackIcon: UIImageView!
-    var cells = ["settings":0, "logout":1, "bug report":2]
+    @IBOutlet weak var openInLabel: UILabel!
+    @IBOutlet weak var openInIcon: UIImageView!
+    
+    var cells = ["settings":0, "bug report":1, "open in":2, "logout":3]
     override func viewDidLoad() {
         super.viewDidLoad()
         //check for light theme
@@ -45,13 +48,16 @@ class DrawerViewController: UITableViewController {
                 navigationController?.navigationBar.titleTextAttributes = textAttributes
                 settingsLabel.textColor = lightThemeBlack
                 settingsIcon.image = UIImage(named: "settings-dark")
-                logoutLabel.textColor = lightThemeBlack
-                logoutIcon.image = UIImage(named: "logout-dark")
                 feedbackLabel.textColor = lightThemeBlack
                 feedbackIcon.image = UIImage(named: "bug-dark")
+                openInLabel.textColor = lightThemeBlack
+                openInIcon.image = UIImage(named: "open-in-dark")
+                logoutLabel.textColor = lightThemeBlack
+                logoutIcon.image = UIImage(named: "logout-dark")
                 settingsLabel.superview?.backgroundColor = lightThemeWhite
-                logoutLabel.superview?.backgroundColor = lightThemeWhite
                 feedbackLabel.superview?.backgroundColor = lightThemeWhite
+                openInLabel.superview?.backgroundColor = lightThemeWhite
+                logoutLabel.superview?.backgroundColor = lightThemeWhite
                 self.view.backgroundColor = lightThemeWhite
             }
         }
@@ -90,7 +96,7 @@ class DrawerViewController: UITableViewController {
             UIApplication.shared.keyWindow?.rootViewController = vc
             UIApplication.shared.keyWindow?.makeKeyAndVisible()
             
-        } else if indexPath.row == cells["settings"]{
+        }else if indexPath.row == cells["settings"]{
             print("settings pressed")
             
             if let drawerController = self.parent!.parent as? KYDrawerController {
@@ -100,6 +106,8 @@ class DrawerViewController: UITableViewController {
             
             
         }else if indexPath.row == cells["bug report"]{
+            print("bug report pressed")
+
             let email = "taappyrdsb@gmail.com"
             if let url = URL(string: "mailto:\(email)") {
                 if #available(iOS 10.0, *) {
@@ -108,9 +116,21 @@ class DrawerViewController: UITableViewController {
                     UIApplication.shared.openURL(url)
                 }
             }
-        }
+        }else if indexPath.row == cells["open in"]{
+            print ("open in pressed")
+            
+            func linkClicked(sender: Any) {
+                openUrl(urlStr: "https://ta.yrdsb.ca/yrdsb/")
+            }
+
+            func openUrl(urlStr: String!) {
+                if let url = URL(string:urlStr), !url.absoluteString.isEmpty {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                }
+            }
     
     }
-    
 
+}
+    
 }
