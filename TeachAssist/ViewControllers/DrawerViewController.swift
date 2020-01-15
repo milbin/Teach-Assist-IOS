@@ -119,18 +119,15 @@ class DrawerViewController: UITableViewController {
         }else if indexPath.row == cells["open in"]{
             print ("open in pressed")
             
-            func linkClicked(sender: Any) {
-                openUrl(urlStr: "https://ta.yrdsb.ca/yrdsb/")
+            let url = URL(string:"https://ta.yrdsb.ca/yrdsb/")!
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            } else {
+                // Fallback on earlier versions
+                UIApplication.shared.openURL(url)
             }
+        }
 
-            func openUrl(urlStr: String!) {
-                if let url = URL(string:urlStr), !url.absoluteString.isEmpty {
-                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                }
-            }
-    
     }
-
-}
     
 }

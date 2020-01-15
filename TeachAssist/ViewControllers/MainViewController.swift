@@ -269,8 +269,10 @@ class MainViewController: UIViewController {
             
             StackViewHeight.constant = StackViewHeight.constant + 140
             if(ta.getAssignmentsFromJson(forUsername: username!, forCourse: i) == nil){
-                if let assignmentResp = ta.GetMarks(subjectNumber: i), assignmentResp.count > 1{
-                    ta.saveAssignmentsToJson(username: username!, courseNumber: i, response: assignmentResp)
+                if((response![i]["mark"]) as? String != "NA" && (response![i]["subject_id"]) as? String != "NA"){ //this is to minimize network requests for the offline mode code block which tries to check every course that isint saved even when it is NA
+                    if let assignmentResp = ta.GetMarks(subjectNumber: i), assignmentResp.count > 1{
+                        ta.saveAssignmentsToJson(username: username!, courseNumber: i, response: assignmentResp)
+                    }
                 }
             }
             

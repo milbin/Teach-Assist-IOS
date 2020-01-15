@@ -54,6 +54,7 @@ class TA{
                 response.append(dict)
             }
             
+            
             var counter = 0
             for var course in response{
                 if course["subject_id"] != nil{
@@ -104,13 +105,13 @@ class TA{
                             dict["subject_id"] = "NA"
                             dict["course"] = course
                             response.append(dict)
+                            self.courses.append("NA")
                         }
                         courseNumber += 1
                     }
                     
                 }
             }
-            
             return response
         }else{
             let htmlResp = GetTaData2(username: username, password: password)
@@ -208,6 +209,9 @@ class TA{
     }
     
     func GetMarks(subjectNumber:Int) -> [String:Any]?{
+        if(courses[subjectNumber] == "NA"){
+            return nil //this is to minimize network requests for the offline mode code block which tries to check every course that isint saved even when it is NA
+        }
         var sr = SendRequest()
         var params = ["student_id": self.studentID, "token":self.sessionToken, "subject_id":courses[subjectNumber]]
         var respCheck = sr.SendJSON(url: "https://ta.yrdsb.ca/v4/students/json-20180628.php", parameters: params)
