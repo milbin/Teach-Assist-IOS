@@ -938,7 +938,7 @@ class TA{
         return nil
     }
     func getCourseFromJson(forUsername:String, courseNumber:Int) -> NSMutableDictionary?{
-        if let response = self.getCoursesFromJson(forUsername: username){
+        if let response = self.getCoursesFromJson(forUsername: username), response.count > courseNumber{
             return response[courseNumber]
         }else{
             return nil
@@ -948,7 +948,7 @@ class TA{
         if let oldResponse = getCoursesFromJson(forUsername: username){
             var courseNumber = 0
             for course in response!{
-                if((course["mark"] as? String) == "NA"){
+                if((course["mark"] as? String) == "NA" && oldResponse.count > courseNumber){
                     course["mark"] = oldResponse[courseNumber]["mark"]
                 }
                 courseNumber += 1
