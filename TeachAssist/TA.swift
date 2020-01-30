@@ -152,7 +152,7 @@ class TA{
                         dict["mark"] = Double(mark)
                         dict["subject_id"] = subjectID as? String
                         courses.append(subjectID)
-                    }else if(i.contains("Click Here") || i.contains("Level")){
+                    }else if((i.contains("Click Here") || i.contains("Level")) && (i.components(separatedBy: "subject_id=").count > 1)){ //sometimes somewhere else on the website will have a "click here" so we need to make sure that there is actually a subject id here
                         let subjectID = i.components(separatedBy: "subject_id=")[1].components(separatedBy:"&")[0].trimmingCharacters(in: .whitespacesAndNewlines).removingHTMLEntities
                         courses.append(subjectID)
                         let marks = GetMarks(subjectNumber: courseNumber)
@@ -288,7 +288,7 @@ class TA{
                 dict["title"] = title
                 dict["feedback"] = ""
                 do{
-                    let categoryList = ["K", "T", "C", "A", "O"]
+                    let categoryList = ["K", "T", "C", "A", ""]
                     var categoryNumber = -1
                     for j in i.components(separatedBy: " align=\"center\">"){ //each itteration is one category
                         if(categoryNumber < 0){
@@ -304,7 +304,8 @@ class TA{
                             }
                         }
                         let regexFloat = "[+-]?([0-9]*[.])?[0-9]+" //this will capture any number not just an int
-                        let regex1 = try NSRegularExpression(pattern: regexFloat+"\\s/\\s"+regexFloat+"\\s.\\s"+regexFloat) //https://www.rexegg.com/regex-quickstart.html
+                        //let regex1 = try NSRegularExpression(pattern: regexFloat+"\\s/\\s"+regexFloat+"\\s.\\s"+regexFloat) //https://www.rexegg.com/regex-quickstart.html
+                        let regex1 = try NSRegularExpression(pattern: regexFloat+"\\s/\\s"+regexFloat+"\\s.\\s")
                         let markString1 = regex1.matches(in: j, range:NSRange(location: 0, length: j.count)).map {
                             String(j[Range($0.range, in: j)!])
                         }
@@ -360,10 +361,10 @@ class TA{
                     let t = Double(i.components(separatedBy: "<td>Thinking</td>")[1].components(separatedBy: ">")[1].components(separatedBy: "%<")[0])!/100
                     let c = Double(i.components(separatedBy: "<td>Communication</td>")[1].components(separatedBy: ">")[1].components(separatedBy: "%<")[0])!/100
                     let a = Double(i.components(separatedBy: "<td>Application</td>")[1].components(separatedBy: ">")[1].components(separatedBy: "%<")[0])!/100
-                    let categories = ["K":k, "T":t, "C":c, "A":a]
+                    let categories = ["K":k, "T":t, "C":c, "A":a, "":0.3]
                     assignments["categories"] = categories
                 }else{
-                    let categories = ["K":0.25, "T":0.25, "C":0.25, "A":0.25]
+                    let categories = ["K":0.175, "T":0.175, "C":0.175, "A":0.175, "":0.3]
                     assignments["categories"] = categories
                 }
                 
