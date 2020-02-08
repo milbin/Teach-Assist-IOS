@@ -203,25 +203,32 @@ class MainViewController: UIViewController {
                 courseView.ProgressBar.value = mark
             }else{
                 print(ta.getCoursesFromJson(forUsername: username!))
+                print(response)
+                print("HERE")
                 let jsonCourse = ta.getCourseFromJson(forUsername: username!, courseNumber: i)
                 if let mark = (jsonCourse?["mark"] as? CGFloat), jsonCourse != nil{ //the comma simply adds another conditional to this statement so that the jsonCourse does not get unwrraped as a nil value
-                    courseView.ProgressBar.value = mark
-                    courseView.hiddenCourseIndicator.isHidden = false
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                        self.hiddenCoursesBanner.isHidden = false
-                        self.hiddenCoursesBannerLabel.text = "One or more courses are currently hidden by your teachers."
-                        UIView.animate(withDuration: 0.5, animations: {
-                            self.hiddenCoursesBannerHeight.constant = 20
-                            self.view.layoutIfNeeded()
-                        })
-                    }
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 7) {
-                        UIView.animate(withDuration: 0.5, animations: {
-                            self.hiddenCoursesBannerHeight.constant = 0
-                            self.view.layoutIfNeeded()
-                        }, completion: { (finished: Bool) in
-                            self.hiddenCoursesBanner.isHidden = true
-                        })
+                    if((response![i]["Course_Name"] as? String) != (jsonCourse!["Course_Name"] as? String)){
+                        ta.userDidLogout(forUsername: username!)
+                        print("OFFLINE WIPPED")
+                    }else{
+                        courseView.ProgressBar.value = mark
+                        courseView.hiddenCourseIndicator.isHidden = false
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            self.hiddenCoursesBanner.isHidden = false
+                            self.hiddenCoursesBannerLabel.text = "One or more courses are currently hidden by your teachers."
+                            UIView.animate(withDuration: 0.5, animations: {
+                                self.hiddenCoursesBannerHeight.constant = 20
+                                self.view.layoutIfNeeded()
+                            })
+                        }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 7) {
+                            UIView.animate(withDuration: 0.5, animations: {
+                                self.hiddenCoursesBannerHeight.constant = 0
+                                self.view.layoutIfNeeded()
+                            }, completion: { (finished: Bool) in
+                                self.hiddenCoursesBanner.isHidden = true
+                            })
+                        }
                     }
                 }else{
                     courseView.ProgressBar.isHidden = true

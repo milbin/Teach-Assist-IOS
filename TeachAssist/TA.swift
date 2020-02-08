@@ -20,7 +20,12 @@ class TA{
     var didRecursivelyCallCalculateAssignmentAverage = false
     
     func GetTaData(username:String, password:String) -> [NSMutableDictionary]?{
-        //TODO add crashlitics
+        let htmlResp = GetTaData2(username: username, password: password)
+        if(htmlResp != nil){
+            return htmlResp
+        }
+        return nil
+        /*//TODO add crashlitics
         self.username = username
         self.password = password
         let sr = SendRequest()
@@ -119,10 +124,7 @@ class TA{
                 return htmlResp
             }
             return nil
-        }
-            
-        
-        
+        }*/
     }
     
     func GetTaData2(username:String, password:String) -> [NSMutableDictionary]?{ //This is the html parsing method
@@ -212,6 +214,12 @@ class TA{
         if(courses[subjectNumber] == "NA"){
             return nil //this is to minimize network requests for the offline mode code block which tries to check every course that isint saved even when it is NA
         }
+        let resp2 = GetMarks2(subjectNumber: subjectNumber)
+        if(resp2 != nil){
+            return resp2
+        }
+        return nil
+        /*
         var sr = SendRequest()
         var params = ["student_id": self.studentID, "token":self.sessionToken, "subject_id":courses[subjectNumber]]
         var respCheck = sr.SendJSON(url: "https://ta.yrdsb.ca/v4/students/json-20180628.php", parameters: params)
@@ -251,7 +259,7 @@ class TA{
                 return resp2
             }
             return nil
-        }
+        }*/
     }
     
     func GetMarks2(subjectNumber:Int) -> [String:Any]?{
