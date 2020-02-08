@@ -160,7 +160,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "913"
             endingLineNumber = "913"
-            landmarkName = "getCoursesFromJson(forUsername:)"
+            landmarkName = "calculateAssignmentAverage(assignment:courseWeights:assignmentWeights:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -176,7 +176,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "906"
             endingLineNumber = "906"
-            landmarkName = "getCoursesFromJson(forUsername:)"
+            landmarkName = "calculateAssignmentAverage(assignment:courseWeights:assignmentWeights:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -192,7 +192,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "911"
             endingLineNumber = "911"
-            landmarkName = "getCoursesFromJson(forUsername:)"
+            landmarkName = "calculateAssignmentAverage(assignment:courseWeights:assignmentWeights:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -320,7 +320,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "944"
             endingLineNumber = "944"
-            landmarkName = "saveCoursesToJson(username:response:)"
+            landmarkName = "getCoursesFromJson(forUsername:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -336,7 +336,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "954"
             endingLineNumber = "954"
-            landmarkName = "saveCoursesToJson(username:response:)"
+            landmarkName = "getCourseFromJson(forUsername:courseNumber:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -352,7 +352,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "955"
             endingLineNumber = "955"
-            landmarkName = "saveCoursesToJson(username:response:)"
+            landmarkName = "getCourseFromJson(forUsername:courseNumber:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -382,8 +382,8 @@
             filePath = "TeachAssist/TA.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "969"
-            endingLineNumber = "969"
+            startingLineNumber = "970"
+            endingLineNumber = "970"
             landmarkName = "saveCoursesToJson(username:response:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -398,8 +398,8 @@
             filePath = "TeachAssist/TA.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "970"
-            endingLineNumber = "970"
+            startingLineNumber = "971"
+            endingLineNumber = "971"
             landmarkName = "saveCoursesToJson(username:response:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -414,9 +414,9 @@
             filePath = "TeachAssist/TA.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "971"
-            endingLineNumber = "971"
-            landmarkName = "saveAssignmentsToJson(username:courseNumber:response:)"
+            startingLineNumber = "972"
+            endingLineNumber = "972"
+            landmarkName = "saveCoursesToJson(username:response:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -446,8 +446,8 @@
             filePath = "TeachAssist/TA.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "966"
-            endingLineNumber = "966"
+            startingLineNumber = "967"
+            endingLineNumber = "967"
             landmarkName = "saveCoursesToJson(username:response:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -462,8 +462,8 @@
             filePath = "TeachAssist/TA.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "967"
-            endingLineNumber = "967"
+            startingLineNumber = "968"
+            endingLineNumber = "968"
             landmarkName = "saveCoursesToJson(username:response:)"
             landmarkType = "7">
          </BreakpointContent>
