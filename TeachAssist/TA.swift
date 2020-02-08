@@ -137,7 +137,8 @@ class TA{
         if httpResp != nil{
             self.studentID = httpResp![2]! as! String
             self.sessionToken = httpResp![1]! as! String
-            var html = httpResp![0]!
+            var html = httpResp![0]!            
+            
             var courseNumber = 0
             for i in html.components(separatedBy: "<td>"){
                 if((i.contains("current mark = ") || i.contains("Please see teacher for current status regarding achievement in the course")||i.contains("Click Here")||i.contains("Level")||i.contains("Block")) && !i.contains("0000-00-00")) {
@@ -172,6 +173,7 @@ class TA{
                 }
                 
             }
+            
             return response
         }else{
             return nil
@@ -191,15 +193,15 @@ class TA{
         //TODO add crashlitics
         let sr = SendRequest()
         let URL = "https://ta.yrdsb.ca/v4/students/json.php"
-        var resp1 = sr.SendJSON(url: URL, parameters: ["student_number":username, "password":password])
+        //var resp1 = sr.SendJSON(url: URL, parameters: ["student_number":username, "password":password])
         var resp2 = sr.Send(url: "https://ta.yrdsb.ca/live/index.php?", parameters: ["subject_id":"0", "username":username, "password":password, "submit": "Login"])
         
-        //get main activity data
+        /*//get main activity data
         if resp1 != nil{ //check if user is registered in the api
             if resp1!["ERROR"] == nil{
                 return true
             }
-        }
+        }*/
         if resp2 != nil{//check if user is registered on the website
             if !resp2!.contains("By logging in"){
                 return true
