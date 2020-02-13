@@ -24,20 +24,20 @@ Avaliable now on the App Store.
 </p>
 
 # Screenshots
-<div style="display:flex;">
-  <a href="">
+<p align="left">
+  <a href="https://github.com/milbin/Teach-Assist-IOS/blob/master/supplies/screenshots3/complete/49-6.5%20inch%20-%20iPhone%20X.png">
     <img src=https://github.com/milbin/Teach-Assist-IOS/blob/master/supplies/screenshots3/complete/49-6.5%20inch%20-%20iPhone%20X.png width=207 height=448>
   </a>
-  <a href="">
+  <a href="https://github.com/milbin/Teach-Assist-IOS/blob/master/supplies/screenshots3/complete/1-6.5%20inch%20-%20iPhone%20XS%20Max-screen__1.png">
     <img src=https://github.com/milbin/Teach-Assist-IOS/blob/master/supplies/screenshots3/complete/1-6.5%20inch%20-%20iPhone%20XS%20Max-screen__1.png width=207 height=448>
   </a>
-  <a href="">
+  <a href="https://github.com/milbin/Teach-Assist-IOS/blob/master/supplies/screenshots3/complete/3-6.5%20inch%20-%20iPhone%20XS%20Max-screen__3.png">
     <img src=https://github.com/milbin/Teach-Assist-IOS/blob/master/supplies/screenshots3/complete/3-6.5%20inch%20-%20iPhone%20XS%20Max-screen__3.png width=207 height=448>
   </a>
-  <a href="">
+  <a href="https://github.com/milbin/Teach-Assist-IOS/blob/master/supplies/screenshots3/complete/2-6.5%20inch%20-%20iPhone%20XS%20Max-screen__2.png">
     <img src=https://github.com/milbin/Teach-Assist-IOS/blob/master/supplies/screenshots3/complete/2-6.5%20inch%20-%20iPhone%20XS%20Max-screen__2.png width=207 height=448>
   </a>
-  <a href="">
+  <a href="https://github.com/milbin/Teach-Assist-IOS/blob/master/supplies/screenshots3/complete/4-6.5%20inch%20-%20iPhone%20XS%20Max-screen__2.png">
     <img src=https://github.com/milbin/Teach-Assist-IOS/blob/master/supplies/screenshots3/complete/4-6.5%20inch%20-%20iPhone%20XS%20Max-screen__2.png width=207 height=448>
   </a>
-</div> 
+ </p>
