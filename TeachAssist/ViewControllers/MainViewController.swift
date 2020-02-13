@@ -158,6 +158,17 @@ class MainViewController: UIViewController {
             present(vc, animated: true, completion: nil)
             return
         }
+        let didClearOfflineModeExists = Preferences.object(forKey: "didClearOfflineMode")
+        if didClearOfflineModeExists == nil{
+            Preferences.set(false, forKey: "didClearOfflineMode")
+        }
+        let didClearOfflineMode = Preferences.bool(forKey: "didClearOfflineMode")
+        print(didClearOfflineMode)
+        if !didClearOfflineMode{
+            ta.userDidLogout(forUsername: username!)
+            print("CLEARED OFFLINE")
+            Preferences.set(true, forKey: "didClearOfflineMode")
+        }
         
         response = ta.GetTaData(username: username!, password: password!) ?? nil
         self.navigationItem.title = "Student: "+username!
