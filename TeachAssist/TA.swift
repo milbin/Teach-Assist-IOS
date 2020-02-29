@@ -299,6 +299,7 @@ class TA{
                 dict["feedback"] = ""
                 do{
                     let categoryList = ["K", "T", "C", "A", ""]
+                    let categoryColourCodes = ["ffffaa", "c0fea4", "afafff", "ffd490"] //corresponding colours for K, T, C, A
                     var categoryNumber = -1
                     for j in i.components(separatedBy: " align=\"center\">"){ //each itteration is one category
                         if(categoryNumber < 0){
@@ -320,6 +321,18 @@ class TA{
                             String(j[Range($0.range, in: j)!])
                         }
                         if(markString1.count != 0){
+                            print(j)
+                            print("HERE")
+                            //in almost every case this for loop should not actually change the category number, however its purpose is to skip over categories that are not yet defined ex: an assignment contains K, T, A but is missing C, therefore the A mark will be counted as C
+                            if(!j.contains(categoryColourCodes[categoryNumber]+"\" align=")){
+                                var colourCodeIndex = 0
+                                for colourCode in categoryColourCodes{
+                                    if(j.contains(colourCode+"\" align=") && categoryList[categoryNumber] != ""){ // make sure the category we are incrementing is not the 'other' category, partly because it will always be the last one, and partly because I dont have the colour code for it right now.
+                                        categoryNumber = colourCodeIndex
+                                    }
+                                    colourCodeIndex += 1
+                                }
+                            }
                             dict[categoryList[categoryNumber]] = NSMutableDictionary()
                             var mark = markString1[0].components(separatedBy: " / ")[0]
                             var outOf = markString1[0].components(separatedBy: " / ")[1].components(separatedBy: "=")[0].trimmingCharacters(in: .whitespacesAndNewlines)

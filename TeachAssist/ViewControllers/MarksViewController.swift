@@ -351,13 +351,13 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
         view?.removeFromSuperview()
         UpdateMarkBars()
         
-        StackViewHeight.constant -= 139
+        StackViewHeight.constant -= 135
         
     }
     @objc func OnAddAssignmentButtonPress(gesture: UIGestureRecognizer) {
         if(!self.addAssignmentAdvancedButton.isSelected){
             UIView.animate(withDuration: 0.1, animations: {
-                self.AddAssignmentHeight.constant = 325 //should be 139 when inactive, 325 when not in advanced, 550 when in advanced
+                self.AddAssignmentHeight.constant = 325 //should be 135 when inactive, 325 when not in advanced, 550 when in advanced
                 self.addAssignmentBoxTitleAlignTop.isActive = true
                 self.addAssignmentPlusButton.isHidden = true
                 self.addAssignmentTitle.isHidden = false
@@ -786,7 +786,7 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
         }else{
             assignmentView.AssignmentMark.text =  average + "%"
         }
-        StackViewHeight.constant = StackViewHeight.constant + 139
+        StackViewHeight.constant = StackViewHeight.constant + 135
         if(lightThemeEnabled){
             assignmentView.contentView.backgroundColor = lightThemeWhite
             assignmentView.KBar.backgroundColor = self.lightThemeGreen
