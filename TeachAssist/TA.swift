@@ -299,7 +299,7 @@ class TA{
                 dict["feedback"] = ""
                 do{
                     let categoryList = ["K", "T", "C", "A", ""]
-                    let categoryColourCodes = ["ffffaa", "c0fea4", "afafff", "ffd490"] //corresponding colours for K, T, C, A
+                    let categoryColourCodes = ["ffffaa", "c0fea4", "afafff", "ffd490", "#dedede"] //corresponding colours for K, T, C, A
                     var categoryNumber = -1
                     for j in i.components(separatedBy: " align=\"center\">"){ //each itteration is one category
                         if(categoryNumber < 0){
