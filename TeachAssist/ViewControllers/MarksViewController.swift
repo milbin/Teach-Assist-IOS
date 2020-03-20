@@ -99,6 +99,10 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        let textAttributes = [NSAttributedString.Key.foregroundColor:lightThemeBlack]
+        self.parent?.navigationController?.navigationBar.titleTextAttributes = textAttributes
         //check for light theme
         let Preferences = UserDefaults.standard
         let currentPreferenceExists = Preferences.object(forKey: "LightThemeEnabled")
@@ -111,10 +115,11 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
                 lightThemeBlack = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0)
                 lightThemeGreen = UIColor(red: 55/255, green: 239/255, blue: 186/255, alpha: 1.0)
                 lightThemeBlue = UIColor(red: 114/255, green: 159/255, blue: 255/255, alpha: 1.0)
-                
-                self.navigationController?.navigationBar.barTintColor = UIColor.white
+                print(self.parent!.navigationController)
+                print("HERE123")
+                self.parent?.navigationController?.navigationBar.barTintColor = UIColor.white
                 let textAttributes = [NSAttributedString.Key.foregroundColor:lightThemeBlack]
-                navigationController?.navigationBar.titleTextAttributes = textAttributes
+                self.parent?.navigationController?.navigationBar.titleTextAttributes = textAttributes
                 self.AverageBar.outerRingColor = lightThemeLightBlack
                 self.AverageBar.innerRingColor = lightThemeBlue
                 self.AverageBar.superview?.backgroundColor = lightThemeWhite
@@ -176,8 +181,8 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
         AverageBar.font = UIFont(name: "Gilroy-Bold", size: 25)!
         AverageBar.fontColor = lightThemeBlack
         AverageBar.valueFormatter = UICircularProgressRingFormatter(showFloatingPoint:true, decimalPlaces:1)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(OnEditButtonPress))//add edit button as the onClick method
-        navigationItem.rightBarButtonItem?.setTitleTextAttributes([
+        parent!.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(OnEditButtonPress))//add edit button as the onClick method
+        parent!.navigationItem.rightBarButtonItem?.setTitleTextAttributes([
             NSAttributedString.Key.font: UIFont(name: "Gilroy-Regular", size: 17)!,
             NSAttributedString.Key.foregroundColor: lightThemeBlack],
                                                                   for: .normal)
@@ -229,7 +234,7 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
         }
         
         if vcTitle != nil{
-            self.title = vcTitle!
+            self.parent!.navigationItem.title = vcTitle!
         }
         
         
@@ -251,7 +256,7 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
                     self.OnRefresh()
                 }))
                 alert.addAction(UIAlertAction(title: "Back", style: .default, handler: { (action:UIAlertAction!) in
-                    _ = self.navigationController?.popViewController(animated: true)
+                    _ = self.parent!.navigationController?.popViewController(animated: true)
                 }))
                 self.present(alert, animated: true)
                 return

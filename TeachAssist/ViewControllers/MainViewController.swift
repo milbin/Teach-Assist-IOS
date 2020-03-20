@@ -42,7 +42,12 @@ class MainViewController: UIViewController {
     @IBOutlet weak var hiddenCoursesBannerHeight: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
+        //remove the 'shadow' property of the nav bar, this is the same as elevation in android
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
         
+        let textAttributes = [NSAttributedString.Key.foregroundColor:lightThemeBlack]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
         //check for light theme
         let Preferences = UserDefaults.standard
         let currentPreferenceExists = Preferences.object(forKey: "LightThemeEnabled")
@@ -342,6 +347,15 @@ class MainViewController: UIViewController {
                 vc?.vcTitle = senderList[2] as? String
             }
         }
+        else if segue.destination is CourseInfoPageViewController{
+            let vc = segue.destination as? CourseInfoPageViewController
+            if let senderList = (sender! as? [Any]){
+                vc?.Mark = senderList[0] as! Double
+                vc?.courseNumber = Int(senderList[1] as! Int)
+                vc?.ta = ta
+                vc?.vcTitle = senderList[2] as? String
+            }
+        }
         
         let backItem = UIBarButtonItem()
         backItem.title = "Back"
@@ -435,7 +449,7 @@ class MainViewController: UIViewController {
             }
             courseNumber += 1
         }
-        performSegue(withIdentifier: "MarksViewSegue", sender: [response![courseNumber]["mark"], Double(courseNumber+numberOfRemovedCourses), response![courseNumber]["course"]])
+        performSegue(withIdentifier: "CourseInfoViewSegue", sender: [response![courseNumber]["mark"], Double(courseNumber+numberOfRemovedCourses), response![courseNumber]["course"]])
     }
     
     

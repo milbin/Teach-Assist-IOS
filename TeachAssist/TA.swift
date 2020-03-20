@@ -321,8 +321,6 @@ class TA{
                             String(j[Range($0.range, in: j)!])
                         }
                         if(markString1.count != 0){
-                            print(j)
-                            print("HERE")
                             //in almost every case this for loop should not actually change the category number, however its purpose is to skip over categories that are not yet defined ex: an assignment contains K, T, A but is missing C, therefore the A mark will be counted as C
                             if(!j.contains(categoryColourCodes[categoryNumber]+"\" align=")){
                                 var colourCodeIndex = 0
