@@ -338,17 +338,9 @@ class MainViewController: UIViewController {
         if segue.destination is SettingsViewController{
             let vc = segue.destination as? SettingsViewController
             vc?.response = response
-        }else if segue.destination is MarksViewController{
-            let vc = segue.destination as? MarksViewController
-            if let senderList = (sender! as? [Any]){
-                vc?.Mark = senderList[0] as! Double
-                vc?.courseNumber = Int(senderList[1] as! Int)
-                vc?.ta = ta
-                vc?.vcTitle = senderList[2] as? String
-            }
         }
-        else if segue.destination is CourseInfoPageViewController{
-            let vc = segue.destination as? CourseInfoPageViewController
+        else if segue.destination is PageViewControllerContainer{
+            let vc = segue.destination as? PageViewControllerContainer
             if let senderList = (sender! as? [Any]){
                 vc?.Mark = senderList[0] as! Double
                 vc?.courseNumber = Int(senderList[1] as! Int)
@@ -449,7 +441,7 @@ class MainViewController: UIViewController {
             }
             courseNumber += 1
         }
-        performSegue(withIdentifier: "CourseInfoViewSegue", sender: [response![courseNumber]["mark"], Double(courseNumber+numberOfRemovedCourses), response![courseNumber]["course"]])
+        performSegue(withIdentifier: "PVCContainerSegue", sender: [response![courseNumber]["mark"], Double(courseNumber+numberOfRemovedCourses), response![courseNumber]["course"]])
     }
     
     

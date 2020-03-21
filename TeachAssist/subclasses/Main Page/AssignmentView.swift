@@ -96,7 +96,7 @@ class AssignmentView: UIView {
         addSubview(contentView!)
         contentView.layer.borderWidth = 2
         contentView.layer.borderColor = UIColor(red:39/255, green:39/255, blue: 47/255, alpha:1).cgColor
-        contentView.layer.cornerRadius = 15
+        contentView.layer.cornerRadius = 10
         
         if(UIDevice.modelName == "iPhone 5" || UIDevice.modelName == "iPhone 5s" || UIDevice.modelName == "iPhone 5c" ||
             UIDevice.modelName == "iPod Touch 5" || UIDevice.modelName == "iPod Touch 6" || UIDevice.modelName == "iPod5,1" ||

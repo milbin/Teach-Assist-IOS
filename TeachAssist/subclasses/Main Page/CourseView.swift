@@ -57,7 +57,7 @@ class CourseView: UIView {
         ProgressBar.fontColor = UIColor.white
         ProgressBar.valueFormatter = UICircularProgressRingFormatter(showFloatingPoint:true, decimalPlaces:1)
                     
-        self.layer.cornerRadius = 15
+        self.layer.cornerRadius = 10
         self.layer.masksToBounds = true
     }
     

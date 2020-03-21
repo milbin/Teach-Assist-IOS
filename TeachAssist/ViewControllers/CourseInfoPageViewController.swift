@@ -25,8 +25,6 @@ class CourseInfoPageViewController: UIPageViewController {
         super.viewDidLoad()
         
     
-        print(myViewControllers)
-        print("HERE")
         let assignmentsViewController = myViewControllers.first as? MarksViewController
         assignmentsViewController?.Mark = Mark
         assignmentsViewController?.courseNumber = courseNumber
@@ -70,8 +68,6 @@ extension CourseInfoPageViewController: UIPageViewControllerDataSource {
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        print(myViewControllers)
-        print("HHERE")
         guard let viewControllerIndex = myViewControllers.firstIndex(of:viewController) else {
             return nil
         }
