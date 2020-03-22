@@ -170,15 +170,24 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Statistics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0A-tf-s6i">
                                         <rect key="frame" x="267" y="10.5" width="68" height="19.5"/>
                                         <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="16"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" red="0.28235294117647058" green="0.28235294117647058" blue="0.3411764705882353" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BCC-Cb-Zwk">
+                                        <rect key="frame" x="20" y="5" width="130" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="130" id="JdI-81-1og"/>
+                                            <constraint firstAttribute="height" constant="30" id="UQY-Rt-1Uc"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" red="0.1529411765" green="0.1529411765" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="d0A-tf-s6i" firstAttribute="centerY" secondItem="DYD-hs-CUM" secondAttribute="centerY" id="3cd-Qy-Fvj"/>
                                     <constraint firstAttribute="height" constant="40" id="AuI-Ak-nPq"/>
+                                    <constraint firstItem="BCC-Cb-Zwk" firstAttribute="leading" secondItem="DYD-hs-CUM" secondAttribute="leading" constant="20" id="Cev-oC-sNi"/>
+                                    <constraint firstItem="BCC-Cb-Zwk" firstAttribute="centerY" secondItem="DYD-hs-CUM" secondAttribute="centerY" id="E5D-bb-UOR"/>
                                     <constraint firstItem="OYt-a0-H4m" firstAttribute="centerY" secondItem="DYD-hs-CUM" secondAttribute="centerY" id="Ubi-Xq-IG5"/>
                                     <constraint firstItem="OYt-a0-H4m" firstAttribute="leading" secondItem="DYD-hs-CUM" secondAttribute="leading" constant="40" id="XHG-Un-KnM"/>
                                     <constraint firstAttribute="trailing" secondItem="d0A-tf-s6i" secondAttribute="trailing" constant="40" id="q6k-w6-Huy"/>
@@ -202,7 +211,10 @@
                         <viewLayoutGuide key="safeArea" id="i1I-sV-Ga4"/>
                     </view>
                     <connections>
+                        <outlet property="assignmentsLabel" destination="OYt-a0-H4m" id="5uK-MW-UIj"/>
                         <outlet property="containerView" destination="jvV-wf-tPB" id="RES-eN-3bv"/>
+                        <outlet property="pageIndicator" destination="BCC-Cb-Zwk" id="Nns-Bb-8ix"/>
+                        <outlet property="statisticsLabel" destination="d0A-tf-s6i" id="YfN-hh-f9f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="REr-Ls-dZh" userLabel="First Responder" sceneMemberID="firstResponder"/>

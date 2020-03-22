@@ -41,6 +41,33 @@ class CourseInfoPageViewController: UIPageViewController {
                                completion: nil)
         }
         
+        let parentVC = (self.parent! as! PageViewControllerContainer)
+        let assignmentTGR = UITapGestureRecognizer(target: self, action: #selector(onAssignmentsPageButtonClick))
+        parentVC.assignmentsLabel.isUserInteractionEnabled = true
+        parentVC.assignmentsLabel.addGestureRecognizer(assignmentTGR)
+        
+        let statisticsTGR = UITapGestureRecognizer(target: self, action: #selector(onStatisticsPageButtonClick))
+        parentVC.statisticsLabel.isUserInteractionEnabled = true
+        parentVC.statisticsLabel.addGestureRecognizer(statisticsTGR)
+        
+    }
+    @objc func onAssignmentsPageButtonClick(sender:UITapGestureRecognizer) {
+        print("HERE")
+        setViewControllers([myViewControllers[0]],
+                           direction: .forward,
+                           animated: true,
+                           completion: { finished in
+                            self.scroll(right: false)
+        })
+    }
+    @objc func onStatisticsPageButtonClick(sender:UITapGestureRecognizer) {
+        print("HERE2")
+        setViewControllers([myViewControllers[1]],
+                           direction: .reverse,
+                           animated: true,
+                           completion: { finished in
+                            self.scroll(right: true)
+        })
     }
 }
 
@@ -87,4 +114,47 @@ extension CourseInfoPageViewController: UIPageViewControllerDataSource {
     }
     
 }
-extension CourseInfoPageViewController: UIPageViewControllerDelegate { }
+extension CourseInfoPageViewController: UIPageViewControllerDelegate {
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool){
+        if finished {
+            if previousViewControllers.first == myViewControllers[0]{
+                scroll(right: true)
+            }else{
+                scroll(right: false)
+            }
+        }
+    }
+    
+    func scroll(right:Bool){
+        if right{
+            UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseInOut, animations: {
+                let parentVC = (self.parent! as! PageViewControllerContainer)
+                
+                let pageIndicator = (self.parent! as! PageViewControllerContainer).pageIndicator
+                pageIndicator!.frame.origin.x += pageIndicator!.superview!.frame.width/1.75
+                
+                parentVC.assignmentsLabel.textColor = parentVC.unhighlightedTextColour
+                parentVC.statisticsLabel.textColor = parentVC.lightThemeBlack
+                
+            }, completion: { finished in
+                print("MOVED INDICATOR")
+            })
+        }else{
+            UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseInOut, animations: {
+                let parentVC = (self.parent! as! PageViewControllerContainer)
+                
+                let pageIndicator = (self.parent! as! PageViewControllerContainer).pageIndicator
+                pageIndicator!.frame.origin.x -= pageIndicator!.superview!.frame.width/1.75
+                
+                parentVC.assignmentsLabel.textColor = parentVC.lightThemeBlack
+                parentVC.statisticsLabel.textColor = parentVC.unhighlightedTextColour
+                
+            }, completion: { finished in
+                print("MOVED INDICATOR")
+            })
+        }
+    }
+    
+    
+    
+}
