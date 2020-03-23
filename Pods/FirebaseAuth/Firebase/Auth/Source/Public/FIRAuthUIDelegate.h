@@ -14,8 +14,12 @@
  * limitations under the License.
  */
 
+#include <TargetConditionals.h>
+#if !TARGET_OS_OSX
+
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+
+@class UIViewController;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -50,3 +54,5 @@ NS_SWIFT_NAME(AuthUIDelegate)
 @end
 
 NS_ASSUME_NONNULL_END
+
+#endif

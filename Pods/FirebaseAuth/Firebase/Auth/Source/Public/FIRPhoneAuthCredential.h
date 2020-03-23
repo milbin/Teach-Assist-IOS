@@ -14,6 +14,9 @@
  * limitations under the License.
  */
 
+#include <TargetConditionals.h>
+#if TARGET_OS_IOS
+
 #import <Foundation/Foundation.h>
 
 #import "FIRAuthCredential.h"
@@ -34,3 +37,5 @@ NS_SWIFT_NAME(PhoneAuthCredential)
 @end
 
 NS_ASSUME_NONNULL_END
+
+#endif

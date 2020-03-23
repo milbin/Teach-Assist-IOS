@@ -6,7 +6,7 @@ target 'TeachAssist' do
   use_frameworks!
 
   # Pods for TeachAssist
-  pod 'Alamofire', '~> 5.0.0-beta.2'
+  pod 'Alamofire', '~> 4.0'
   pod 'UICircularProgressRing'
   pod 'PureLayout', '~> 2.0.5'
   pod 'HTMLString', '~> 4.0'
@@ -19,7 +19,8 @@ target 'TeachAssist' do
   pod 'IQKeyboardManagerSwift'
   pod 'PopupDialog', '~> 1.0.0'
   pod 'SwiftyJSON', '~> 4.0'
-
+  pod 'Charts'
+  
   target 'TeachAssistTests' do
     inherit! :search_paths
     # Pods for testing

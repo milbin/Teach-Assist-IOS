@@ -14,6 +14,7 @@ class CourseInfoPageViewController: UIPageViewController {
     var ta:TA? = nil
     var vcTitle:String? = nil
     
+    
     internal lazy var myViewControllers: [UIViewController] = {
         return [
             UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AssignmentsView"),
@@ -126,7 +127,7 @@ extension CourseInfoPageViewController: UIPageViewControllerDelegate {
     }
     
     func scroll(right:Bool){
-        if right{
+        if right{ //transitioning to stats page
             UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseInOut, animations: {
                 let parentVC = (self.parent! as! PageViewControllerContainer)
                 
@@ -135,11 +136,14 @@ extension CourseInfoPageViewController: UIPageViewControllerDelegate {
                 
                 parentVC.assignmentsLabel.textColor = parentVC.unhighlightedTextColour
                 parentVC.statisticsLabel.textColor = parentVC.lightThemeBlack
+                print(self.parent!.navigationItem.rightBarButtonItem!)
+                self.parent!.navigationItem.rightBarButtonItem?.isEnabled = false
+                self.parent!.navigationItem.rightBarButtonItem?.tintColor = UIColor.clear
                 
             }, completion: { finished in
-                print("MOVED INDICATOR")
+                print("MOVED INDICATOR to stats")
             })
-        }else{
+        }else{ //transitioning to assignments page
             UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseInOut, animations: {
                 let parentVC = (self.parent! as! PageViewControllerContainer)
                 
@@ -148,7 +152,8 @@ extension CourseInfoPageViewController: UIPageViewControllerDelegate {
                 
                 parentVC.assignmentsLabel.textColor = parentVC.lightThemeBlack
                 parentVC.statisticsLabel.textColor = parentVC.unhighlightedTextColour
-                
+                self.parent!.navigationItem.rightBarButtonItem?.isEnabled = true
+                self.parent!.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
             }, completion: { finished in
                 print("MOVED INDICATOR")
             })

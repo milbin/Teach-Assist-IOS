@@ -1,7 +1,7 @@
 //
 //  Result.swift
 //
-//  Copyright (c) 2014-2018 Alamofire Software Foundation (http://alamofire.org/)
+//  Copyright (c) 2014 Alamofire Software Foundation (http://alamofire.org/)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -34,19 +34,6 @@ import Foundation
 public enum Result<Value> {
     case success(Value)
     case failure(Error)
-
-    /// Initializes a `Result` from value or error. Returns `.failure` if the error is non-nil, `.success` otherwise.
-    ///
-    /// - Parameters:
-    ///   - value: A value.
-    ///   - error: An `Error`.
-    init(value: Value, error: Error?) {
-        if let error = error {
-            self = .failure(error)
-        } else {
-            self = .success(value)
-        }
-    }
 
     /// Returns `true` if the result is a success, `false` otherwise.
     public var isSuccess: Bool {

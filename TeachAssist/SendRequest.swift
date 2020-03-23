@@ -18,7 +18,7 @@ class SendRequest{
         var resp:[[String:Any]]?
         var notificationResp:[String:Any]?
         
-        AF.request(url, method:.post, parameters:params, encoding:JSONEncoding.default).responseJSON(queue: DispatchQueue.global(qos: .default)) { response in
+        Alamofire.request(url, method:.post, parameters:params, encoding:JSONEncoding.default).responseJSON(queue: DispatchQueue.global(qos: .default)) { response in
             switch response.result {
             case .success(let value):
                 resp = value as? [[String:Any]]
@@ -52,7 +52,7 @@ class SendRequest{
         //var request = AF.request(url, method:.post, parameters:params, encoding:JSONEncoding.default)
         var resp:String?
         
-        AF.request(url, method:.post, parameters:parameters).responseString(queue: DispatchQueue.global(qos: .default)) { response in
+        Alamofire.request(url, method:.post, parameters:parameters).responseString(queue: DispatchQueue.global(qos: .default)) { response in
             switch response.result {
             case .success(let value):
                 resp = value
@@ -77,7 +77,7 @@ class SendRequest{
             HTTPCookieStorage.shared.setCookie(cookies!)
         }
         
-        AF.request(url, method:.post, parameters:parameters).responseString(queue: DispatchQueue.global(qos: .default)) { response in
+        Alamofire.request(url, method:.post, parameters:parameters).responseString(queue: DispatchQueue.global(qos: .default)) { response in
             switch response.result {
             case .success(let value):
                 resp.append(value)

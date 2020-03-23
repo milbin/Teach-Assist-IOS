@@ -38,9 +38,15 @@
 
 - [Barstool Sports](https://itunes.apple.com/us/app/barstool-sports/id456805313) by Barstool Sports
 
+- [88 Days](http://88-days.com) by Stijn Kramer
+
+- [Bookbot](https://www.bookbotkids.com) by Bookbot
+
 ## Installation
 
 *NOTE: Objective-C support: Support for Objective-C has been dropped in version 5.0.0, use version 4 or lower if you are using Objective-C.*
+
+⚠️ **There is currently work being done to re-write this library in SwiftUI, check out [features/swift-ui](https://github.com/luispadron/UICircularProgressRing/tree/features/swift-ui) branch for more info!** ⚠️
 
 ### CocoaPods (Recommended)
 
@@ -75,15 +81,6 @@ To use with [Carthage](https://github.com/Carthage/Carthage)
 	`carthage update --platform iOS`
 
 ## Usage
-
-
-### Interface Builder
-
-Simply drag a `UIView` into your storyboard. Make sure to subclass `UICircularProgressRing` and that the module points to `UICircularProgressRing`.
-
-Design your heart out
-
-![ib-demo.gif](https://raw.githubusercontent.com/luispadron/UICircularProgressRing/master/.github/ib-demo.gif)
 
 ### UICircularProgressRing Example
 

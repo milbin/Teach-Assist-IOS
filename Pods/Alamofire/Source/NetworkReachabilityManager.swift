@@ -1,7 +1,7 @@
 //
 //  NetworkReachabilityManager.swift
 //
-//  Copyright (c) 2014-2018 Alamofire Software Foundation (http://alamofire.org/)
+//  Copyright (c) 2014 Alamofire Software Foundation (http://alamofire.org/)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -159,7 +159,10 @@ open class NetworkReachabilityManager {
         let queueEnabled = SCNetworkReachabilitySetDispatchQueue(reachability, listenerQueue)
 
         listenerQueue.async {
+            self.previousFlags = SCNetworkReachabilityFlags(rawValue: 1 << 30)
+
             guard let flags = self.flags else { return }
+
             self.notifyListener(flags)
         }
 
