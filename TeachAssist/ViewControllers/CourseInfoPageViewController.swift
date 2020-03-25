@@ -25,6 +25,8 @@ class CourseInfoPageViewController: UIPageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
     
         let assignmentsViewController = myViewControllers.first as? MarksViewController
         assignmentsViewController?.Mark = Mark
@@ -55,7 +57,7 @@ class CourseInfoPageViewController: UIPageViewController {
     @objc func onAssignmentsPageButtonClick(sender:UITapGestureRecognizer) {
         print("HERE")
         setViewControllers([myViewControllers[0]],
-                           direction: .forward,
+                           direction: .reverse,
                            animated: true,
                            completion: { finished in
                             self.scroll(right: false)
@@ -64,7 +66,7 @@ class CourseInfoPageViewController: UIPageViewController {
     @objc func onStatisticsPageButtonClick(sender:UITapGestureRecognizer) {
         print("HERE2")
         setViewControllers([myViewControllers[1]],
-                           direction: .reverse,
+                           direction: .forward,
                            animated: true,
                            completion: { finished in
                             self.scroll(right: true)
