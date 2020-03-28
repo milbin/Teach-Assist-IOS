@@ -262,6 +262,7 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
             }
         }
         originalResponse = response!
+        (parent as! CourseInfoPageViewController).response = response
         
         ta!.saveAssignmentsToJson(username: username!, courseNumber: courseNumber!, response: response)
         //setup refresh controller to allow main view to be refreshed

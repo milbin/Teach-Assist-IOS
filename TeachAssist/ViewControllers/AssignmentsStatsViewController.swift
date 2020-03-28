@@ -34,12 +34,17 @@ class AssignmentsStatsViewController: UIViewController{
         }
         backgroundView.backgroundColor = lightThemeWhite
         
+        
+        var response = (parent as! CourseInfoPageViewController).response
+        var assignmentsSoFar = [String:Any]()
+        assignmentsSoFar["categories"] = response!["categories"]
         var dataEntries: [ChartDataEntry] = []
-        for x in 1...10 {
-            let i = Double(x)/10.0
-            let dataEntry = ChartDataEntry(x: Double(x), y: Double(i))
+        let ta = TA()
+        for i in 0...response!.count-2 {
+            assignmentsSoFar[String(i)] = response![String(i)]
+            let averageSoFar = ta.CalculateCourseAverage(markParam: assignmentsSoFar)/100.0
+            let dataEntry = ChartDataEntry(x: Double(i+1), y: averageSoFar)
             dataEntries.append(dataEntry)
-            dataEntries.append(ChartDataEntry(x: Double(x)+0.5, y: Double(i) - 0.3))
         }
         let lineChartDataSet = LineChartDataSet(entries: dataEntries, label: nil)
         lineChartDataSet.circleColors = [lightThemeBlue]

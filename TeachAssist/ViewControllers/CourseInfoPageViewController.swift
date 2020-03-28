@@ -13,6 +13,7 @@ class CourseInfoPageViewController: UIPageViewController {
     var courseNumber:Int? = nil
     var ta:TA? = nil
     var vcTitle:String? = nil
+    var response:[String:Any]? = nil
     
     
     internal lazy var myViewControllers: [UIViewController] = {
@@ -26,8 +27,6 @@ class CourseInfoPageViewController: UIPageViewController {
         super.viewDidLoad()
         
         
-        
-    
         let assignmentsViewController = myViewControllers.first as? MarksViewController
         assignmentsViewController?.Mark = Mark
         assignmentsViewController?.courseNumber = courseNumber
