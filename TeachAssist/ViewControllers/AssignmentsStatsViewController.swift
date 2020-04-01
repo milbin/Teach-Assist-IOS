@@ -20,6 +20,10 @@ class AssignmentsStatsViewController: UIViewController{
     var lightThemeBlue = UIColor(red: 255/255, green: 65/255, blue: 128/255, alpha: 1)
     
     @IBOutlet weak var courseAverageChart: LineChartView!
+    @IBOutlet weak var knowledgeChart: LineChartView!
+    @IBOutlet weak var thinkingChart: LineChartView!
+    @IBOutlet weak var communicationChart: LineChartView!
+    @IBOutlet weak var applicationChart: LineChartView!
     @IBOutlet var backgroundView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,16 +40,24 @@ class AssignmentsStatsViewController: UIViewController{
         
         
         var response = (parent as! CourseInfoPageViewController).response
-        var assignmentsSoFar = [String:Any]()
-        assignmentsSoFar["categories"] = response!["categories"]
-        var dataEntries: [ChartDataEntry] = []
-        let ta = TA()
-        for i in 0...response!.count-2 {
-            assignmentsSoFar[String(i)] = response![String(i)]
-            let averageSoFar = ta.CalculateCourseAverage(markParam: assignmentsSoFar)/100.0
-            let dataEntry = ChartDataEntry(x: Double(i+1), y: averageSoFar)
-            dataEntries.append(dataEntry)
+        if response != nil{
+            var assignmentsSoFar = [String:Any]()
+            assignmentsSoFar["categories"] = response!["categories"]
+            var dataEntries: [ChartDataEntry] = []
+            let ta = TA()
+            for i in 0...response!.count-2 {
+                assignmentsSoFar[String(i)] = response![String(i)]
+                let averageSoFar = ta.CalculateCourseAverage(markParam: assignmentsSoFar)/100.0
+                let dataEntry = ChartDataEntry(x: Double(i+1), y: averageSoFar)
+                dataEntries.append(dataEntry)
+            }
+            setupChartTheme(chart: courseAverageChart, dataEntries: dataEntries, isCourseAverageChart: true)
+            for chart in [knowledgeChart, thinkingChart, communicationChart, applicationChart]{
+                setupChartTheme(chart: chart!, dataEntries: dataEntries, isCourseAverageChart: false)
+            }
         }
+    }
+    func setupChartTheme(chart: LineChartView, dataEntries: [ChartDataEntry], isCourseAverageChart:Bool){
         let lineChartDataSet = LineChartDataSet(entries: dataEntries, label: nil)
         lineChartDataSet.circleColors = [lightThemeBlue]
         lineChartDataSet.circleHoleColor = lightThemeWhite
@@ -60,26 +72,33 @@ class AssignmentsStatsViewController: UIViewController{
         //dont draw the percent values of each of the assignments above each assignment
         lineChartDataSet.drawValuesEnabled = false
         
+        //check if chart is the course average chart and format colorurs accordinly
+        if !isCourseAverageChart{
+            lineChartDataSet.circleColors = [lightThemeGreen]
+            lineChartDataSet.setColor(lightThemeGreen)
+        }
+        
         //format xAxis to show percent
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .percent
         numberFormatter.locale = Locale.current
         let percentFormatter = ChartValueFormatter(numberFormatter: numberFormatter)
         lineChartDataSet.valueFormatter = percentFormatter
+    
         
         let lineChartData = LineChartData(dataSet: lineChartDataSet)
-        courseAverageChart.data = lineChartData
+        chart.data = lineChartData
         
-        courseAverageChart.xAxis.drawGridLinesEnabled = false
-        courseAverageChart.xAxis.drawLabelsEnabled = false
-        courseAverageChart.getAxis(YAxis.AxisDependency.right).enabled = false
-        //courseAverageChart.getAxis(YAxis.AxisDependency.left).axisMinimum = 0.0
-        courseAverageChart.getAxis(YAxis.AxisDependency.left).valueFormatter = DefaultAxisValueFormatter.init(formatter: numberFormatter)
-        courseAverageChart.getAxis(YAxis.AxisDependency.left).labelTextColor = lightThemeBlack
-        courseAverageChart.getAxis(YAxis.AxisDependency.left).labelFont = UIFont(name: "Gilroy-Regular", size: 10)!
+        chart.xAxis.drawGridLinesEnabled = false
+        chart.xAxis.drawLabelsEnabled = false
+        chart.getAxis(YAxis.AxisDependency.right).enabled = false
+        //chart.getAxis(YAxis.AxisDependency.left).axisMinimum = 0.0
+        chart.getAxis(YAxis.AxisDependency.left).valueFormatter = DefaultAxisValueFormatter.init(formatter: numberFormatter)
+        chart.getAxis(YAxis.AxisDependency.left).labelTextColor = lightThemeBlack
+        chart.getAxis(YAxis.AxisDependency.left).labelFont = UIFont(name: "Gilroy-Regular", size: 10)!
         
-        courseAverageChart.legend.enabled = false
-        courseAverageChart.animate(xAxisDuration: 2, easingOption: .easeInCubic)
+        chart.legend.enabled = false
+        chart.animate(xAxisDuration: 2, easingOption: .easeInCubic)
         
     }
 }
