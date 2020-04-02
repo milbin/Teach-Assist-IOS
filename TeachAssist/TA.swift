@@ -421,7 +421,7 @@ class TA{
         return Average
     }
     
-    func CalculateCourseAverage(subjectNumber:Int? = nil, markParam:[String:Any]? = nil) -> Double{
+    func CalculateCourseAverage(subjectNumber:Int? = nil, markParam:[String:Any]? = nil, averageCategory:String? = nil) -> Double{
         var marks:[String:Any]?
         var numberOfAssignments = 0
         if markParam == nil{
@@ -579,7 +579,7 @@ class TA{
             }
         }
         
-        if(numberOfAssignments == 1){
+        if(numberOfAssignments == 1 && averageCategory == nil){
             var assignmentNumber:String = "-1"
             for i in 0...1000{
                 if(marks![String(i)] != nil){
@@ -592,7 +592,6 @@ class TA{
                 temp["feedback"] = nil
                 temp["title"] = nil
                 temp["categories"] = nil
-                print(temp)
                 let assignmentDict = temp as! [String : [String : String]]
                 if let returnVal = Double(self.calculateAssignmentAverage(assignment: assignmentDict , courseWeights: weights,
                                                        assignmentWeights: ["K": totalWeightKnowledge, "T":totalWeightThinking,
@@ -646,6 +645,40 @@ class TA{
             finalOther = 0.0;
             Other = 0.0;
         }
+        
+        if averageCategory == "K"{
+            if totalWeightKnowledge != 0.0{
+                return finalKnowledge * 100.0
+            }else{
+                return -1.0
+            }
+        }
+        if averageCategory == "T"{
+            if totalWeightThinking != 0.0{
+                return finalThinking * 100.0
+            }else{
+                return -1.0
+            }
+        }
+        if averageCategory == "C"{
+            if totalWeightCommunication != 0.0{
+                return finalCommunication * 100.0
+            }else{
+                return -1.0
+            }
+        }
+        if averageCategory == "A"{
+            if totalWeightApplication != 0.0{
+                return finalApplication * 100.0
+            }else{
+                return -1.0
+            }
+        }
+        
+        
+        
+        
+        
         finalKnowledge = finalKnowledge*Knowledge
         finalThinking = finalThinking*Thinking
         finalCommunication = finalCommunication*Communication

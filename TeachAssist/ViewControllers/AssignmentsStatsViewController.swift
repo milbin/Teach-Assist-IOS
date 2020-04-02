@@ -39,22 +39,42 @@ class AssignmentsStatsViewController: UIViewController{
         backgroundView.backgroundColor = lightThemeWhite
         
         
-        var response = (parent as! CourseInfoPageViewController).response
+        let response = (parent as! CourseInfoPageViewController).response
         if response != nil{
-            var assignmentsSoFar = [String:Any]()
-            assignmentsSoFar["categories"] = response!["categories"]
-            var dataEntries: [ChartDataEntry] = []
-            let ta = TA()
-            for i in 0...response!.count-2 {
-                assignmentsSoFar[String(i)] = response![String(i)]
-                let averageSoFar = ta.CalculateCourseAverage(markParam: assignmentsSoFar)/100.0
+            if let dataEntries = generateChartData(response: response){
+                setupChartTheme(chart: courseAverageChart, dataEntries: dataEntries, isCourseAverageChart: true)
+            }
+            
+            let categoryList = ["K", "T", "C", "A"]
+            var categoryIndex = 0
+            for chart in [knowledgeChart, thinkingChart, communicationChart, applicationChart]{
+                let category = categoryList[categoryIndex]
+                if let categoryDataEntries = generateChartData(forCategory: category, response: response){
+                    setupChartTheme(chart: chart!, dataEntries: categoryDataEntries, isCourseAverageChart: false)
+                }
+                categoryIndex += 1
+            }
+        }
+    }
+    
+    func generateChartData(forCategory:String? = nil, response:[String:Any]?) -> [ChartDataEntry]?{
+        var assignmentsSoFar = [String:Any]()
+        assignmentsSoFar["categories"] = response!["categories"]
+        var dataEntries: [ChartDataEntry] = []
+        let ta = TA()
+        for i in 0...response!.count-2 {
+            assignmentsSoFar[String(i)] = response![String(i)]
+            let averageSoFar = ta.CalculateCourseAverage(markParam: assignmentsSoFar, averageCategory: forCategory)/100.0
+            if averageSoFar*100.0 != -1.0{
+                print(averageSoFar)
                 let dataEntry = ChartDataEntry(x: Double(i+1), y: averageSoFar)
                 dataEntries.append(dataEntry)
             }
-            setupChartTheme(chart: courseAverageChart, dataEntries: dataEntries, isCourseAverageChart: true)
-            for chart in [knowledgeChart, thinkingChart, communicationChart, applicationChart]{
-                setupChartTheme(chart: chart!, dataEntries: dataEntries, isCourseAverageChart: false)
-            }
+        }
+        if dataEntries.count != 0{
+            return dataEntries
+        }else{
+            return nil
         }
     }
     func setupChartTheme(chart: LineChartView, dataEntries: [ChartDataEntry], isCourseAverageChart:Bool){

@@ -54,7 +54,6 @@ class CourseInfoPageViewController: UIPageViewController {
         
     }
     @objc func onAssignmentsPageButtonClick(sender:UITapGestureRecognizer) {
-        print("HERE")
         setViewControllers([myViewControllers[0]],
                            direction: .reverse,
                            animated: true,
@@ -63,7 +62,6 @@ class CourseInfoPageViewController: UIPageViewController {
         })
     }
     @objc func onStatisticsPageButtonClick(sender:UITapGestureRecognizer) {
-        print("HERE2")
         setViewControllers([myViewControllers[1]],
                            direction: .forward,
                            animated: true,
