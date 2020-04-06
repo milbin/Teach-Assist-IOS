@@ -20,6 +20,8 @@ target 'TeachAssist' do
   pod 'PopupDialog', '~> 1.0.0'
   pod 'SwiftyJSON', '~> 4.0'
   pod 'Charts'
+  pod 'Google-Mobile-Ads-SDK'
+
   
   target 'TeachAssistTests' do
     inherit! :search_paths

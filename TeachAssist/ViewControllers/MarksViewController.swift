@@ -1,6 +1,7 @@
 import UIKit
 import UICircularProgressRing
 import HTMLEntities
+import GoogleMobileAds
 
 class MarksViewController: UIViewController, UITextFieldDelegate {
     var Mark:Double? = nil
@@ -94,6 +95,10 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var addAssignmentCWeight: UITextField!
     @IBOutlet weak var addAssignmentAWeight: UITextField!
     @IBOutlet weak var addAssignmentOWeight: UITextField!
+    
+    @IBOutlet weak var topAdView: GADBannerView!
+    @IBOutlet weak var bottomAdView: GADBannerView!
+    
     
     
     
@@ -236,7 +241,23 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
             self.parent?.parent!.navigationItem.title = vcTitle!
         }
         
+        //setup admob ad views
+        topAdView.superview!.layer.borderWidth = 2
+        topAdView.superview!.layer.borderColor = lightThemeLightBlack.cgColor
+        topAdView.superview!.layer.cornerRadius = 10
         
+        bottomAdView.superview!.layer.borderWidth = 2
+        bottomAdView.superview!.layer.borderColor = lightThemeLightBlack.cgColor
+        bottomAdView.superview!.layer.cornerRadius = 10
+        
+        topAdView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        topAdView.rootViewController = self
+        topAdView.load(GADRequest())
+        
+        bottomAdView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bottomAdView.rootViewController = self
+        bottomAdView.load(GADRequest())
+
         
         
     }
@@ -272,7 +293,7 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
                                   for: .valueChanged)
         scrollView.refreshControl = refreshControl
         UpdateMarkBars()
-        print(response)
+        
         
         for i in 0...(response!.count - 2){
             var assignmentWithFeedbackAndTitle = response![String(i)]! as! [String:Any]

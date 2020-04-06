@@ -14,6 +14,7 @@ import Crashlytics
 import PopupDialog
 import StoreKit
 import SwiftyJSON
+import GoogleMobileAds
 
 class MainViewController: UIViewController {
     var courseList = [CourseView]()
@@ -40,6 +41,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var hiddenCoursesBanner: UIView!
     @IBOutlet weak var hiddenCoursesBannerLabel: UILabel!
     @IBOutlet weak var hiddenCoursesBannerHeight: NSLayoutConstraint!
+    @IBOutlet weak var adView: GADBannerView!
     override func viewDidLoad() {
         super.viewDidLoad()
         //remove the 'shadow' property of the nav bar, this is the same as elevation in android
@@ -124,6 +126,11 @@ class MainViewController: UIViewController {
             hiddenCoursesBannerLabel.font = UIFont(name: hiddenCoursesBannerLabel.font.fontName, size: 12)
         }
         
+        //setup Admob banner ad palcement
+        adView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        adView.rootViewController = self
+
+        
         
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -141,6 +148,8 @@ class MainViewController: UIViewController {
             return
         }
         
+        //load ad in banner view
+        loadBannerAd()
         
         for view in StackView.arrangedSubviews{
             view.layoutIfNeeded()
@@ -322,16 +331,31 @@ class MainViewController: UIViewController {
         UIView.animate(withDuration: 0.4, animations: {
             self.StackView.layoutIfNeeded()
         })
-        
-        
-        
-        
-        
-        
-        
-        
-        
     }
+    
+    func loadBannerAd() {
+        // Step 2 - Determine the view width to use for the ad width.
+        let frame = { () -> CGRect in
+            // Here safe area is taken into account, hence the view frame is used
+            // after the view has been laid out.
+            if #available(iOS 11.0, *) {
+                return view.frame.inset(by: view.safeAreaInsets)
+            } else {
+                return view.frame
+            }
+        }()
+        let viewWidth = frame.size.width
+        
+        // Step 3 - Get Adaptive GADAdSize and set the ad view.
+        // Here the current interface orientation is used. If the ad is being preloaded
+        // for a future orientation change or different orientation, the function for the
+        // relevant orientation should be used.
+        adView.adSize = GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(viewWidth)
+        
+        // Step 4 - Create an ad request and load the adaptive banner ad.
+        adView.load(GADRequest())
+    }
+
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {

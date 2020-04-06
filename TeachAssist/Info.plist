@@ -97,6 +97,8 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-6294253616632635~3008873077</string>
 	<key>supportsAlternateIcon</key>
 	<string>YES</string>
 </dict>

@@ -66,7 +66,6 @@ class AssignmentsStatsViewController: UIViewController{
             assignmentsSoFar[String(i)] = response![String(i)]
             let averageSoFar = ta.CalculateCourseAverage(markParam: assignmentsSoFar, averageCategory: forCategory)/100.0
             if averageSoFar*100.0 != -1.0{
-                print(averageSoFar)
                 let dataEntry = ChartDataEntry(x: Double(i+1), y: averageSoFar)
                 dataEntries.append(dataEntry)
             }
