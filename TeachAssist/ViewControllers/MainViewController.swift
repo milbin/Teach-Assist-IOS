@@ -359,11 +359,7 @@ class MainViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
-        if segue.destination is SettingsViewController{
-            let vc = segue.destination as? SettingsViewController
-            vc?.response = response
-        }
-        else if segue.destination is PageViewControllerContainer{
+        if segue.destination is PageViewControllerContainer{
             let vc = segue.destination as? PageViewControllerContainer
             if let senderList = (sender! as? [Any]){
                 vc?.Mark = senderList[0] as! Double

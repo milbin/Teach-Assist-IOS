@@ -63,13 +63,14 @@
 		EAB209262220E6B7000686B3 /* CheckboxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB209252220E6B7000686B3 /* CheckboxButton.swift */; };
 		EABD64CC2266A13E0029E464 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABD64CB2266A13E0029E464 /* SettingsTableViewCell.swift */; };
 		EABD64CE2266B28E0029E464 /* SettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EABD64CD2266B28E0029E464 /* SettingsTableViewCell.xib */; };
-		EAC0318F22559F6600AF78DD /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC0318E22559F6600AF78DD /* SettingsViewController.swift */; };
+		EAC0318F22559F6600AF78DD /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC0318E22559F6600AF78DD /* SettingsTableViewController.swift */; };
 		EADB525624252BCA009612E3 /* CourseInfoPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADB525524252BCA009612E3 /* CourseInfoPageViewController.swift */; };
 		EADB5258242545E7009612E3 /* AssignmentsStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADB5257242545E7009612E3 /* AssignmentsStatsViewController.swift */; };
 		EADB525A24267D72009612E3 /* PageViewControllerContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADB525924267D72009612E3 /* PageViewControllerContainer.swift */; };
 		EAE7AF6C22693F0B0056BC9A /* MarksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE7AF6B22693F0B0056BC9A /* MarksViewController.swift */; };
 		EAE7AF7022693FC00056BC9A /* AssignmentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAE7AF6F22693FC00056BC9A /* AssignmentView.xib */; };
 		EAE7AF72226A2DBA0056BC9A /* AssignmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE7AF71226A2DBA0056BC9A /* AssignmentView.swift */; };
+		EAE7B981243CF474007C68A3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE7B980243CF474007C68A3 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -151,13 +152,14 @@
 		EAB209252220E6B7000686B3 /* CheckboxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxButton.swift; sourceTree = "<group>"; };
 		EABD64CB2266A13E0029E464 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		EABD64CD2266B28E0029E464 /* SettingsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsTableViewCell.xib; sourceTree = "<group>"; };
-		EAC0318E22559F6600AF78DD /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		EAC0318E22559F6600AF78DD /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		EADB525524252BCA009612E3 /* CourseInfoPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseInfoPageViewController.swift; sourceTree = "<group>"; };
 		EADB5257242545E7009612E3 /* AssignmentsStatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentsStatsViewController.swift; sourceTree = "<group>"; };
 		EADB525924267D72009612E3 /* PageViewControllerContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewControllerContainer.swift; sourceTree = "<group>"; };
 		EAE7AF6B22693F0B0056BC9A /* MarksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarksViewController.swift; sourceTree = "<group>"; };
 		EAE7AF6F22693FC00056BC9A /* AssignmentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AssignmentView.xib; sourceTree = "<group>"; };
 		EAE7AF71226A2DBA0056BC9A /* AssignmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentView.swift; sourceTree = "<group>"; };
+		EAE7B980243CF474007C68A3 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -347,13 +349,14 @@
 				EA007A47222712ED00AD7AFE /* LoginViewController.swift */,
 				EA2A93BB222A15D900C4100E /* CourseViewController.swift */,
 				EA2BEE682251559200F085E2 /* DrawerViewController.swift */,
-				EAC0318E22559F6600AF78DD /* SettingsViewController.swift */,
+				EAC0318E22559F6600AF78DD /* SettingsTableViewController.swift */,
 				EAE7AF6B22693F0B0056BC9A /* MarksViewController.swift */,
 				EAA02E53236E6E0500F76720 /* DrawerViewControllerParent.swift */,
 				EA37FD702371A9AE008E7109 /* NavigationController.swift */,
 				EADB525524252BCA009612E3 /* CourseInfoPageViewController.swift */,
 				EADB5257242545E7009612E3 /* AssignmentsStatsViewController.swift */,
 				EADB525924267D72009612E3 /* PageViewControllerContainer.swift */,
+				EAE7B980243CF474007C68A3 /* SettingsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -687,13 +690,14 @@
 				6EF07E042210E58D00FFBFF4 /* TA.swift in Sources */,
 				EABD64CC2266A13E0029E464 /* SettingsTableViewCell.swift in Sources */,
 				EAE7AF72226A2DBA0056BC9A /* AssignmentView.swift in Sources */,
-				EAC0318F22559F6600AF78DD /* SettingsViewController.swift in Sources */,
+				EAC0318F22559F6600AF78DD /* SettingsTableViewController.swift in Sources */,
 				EA94D82F2272628F00C27FB6 /* updateStackView.swift in Sources */,
 				EA3624AD223DD575009E392D /* CourseView.swift in Sources */,
 				EA96E205229F441B006CA3E5 /* auth.swift in Sources */,
 				EAB209262220E6B7000686B3 /* CheckboxButton.swift in Sources */,
 				6EE67E5E220DD8EE00010826 /* SendRequest.swift in Sources */,
 				EAB209232220E519000686B3 /* LoginButton.swift in Sources */,
+				EAE7B981243CF474007C68A3 /* SettingsViewController.swift in Sources */,
 				EA2A93BC222A15D900C4100E /* CourseViewController.swift in Sources */,
 				EAA02E54236E6E0500F76720 /* DrawerViewControllerParent.swift in Sources */,
 				EA37FD712371A9AE008E7109 /* NavigationController.swift in Sources */,
