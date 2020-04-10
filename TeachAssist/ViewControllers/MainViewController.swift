@@ -148,8 +148,11 @@ class MainViewController: UIViewController {
             return
         }
         
-        //load ad in banner view
-        loadBannerAd()
+        let Preferences = UserDefaults.standard
+        if (Preferences.object(forKey: "isProUser") as? Bool) != true{
+            //load ad in banner view
+            loadBannerAd()
+        }
         
         for view in StackView.arrangedSubviews{
             view.layoutIfNeeded()
@@ -160,7 +163,6 @@ class MainViewController: UIViewController {
         
         hasViewStarted = true
         //get ta data
-        let Preferences = UserDefaults.standard
         let username = Preferences.string(forKey: "username")
         let password = Preferences.string(forKey: "password")
         print(username)

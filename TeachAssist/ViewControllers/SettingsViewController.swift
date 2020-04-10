@@ -50,12 +50,38 @@ class SettingsViewController: UIViewController {
         gradientLayer.frame = upgradeButton.bounds
         gradientLayer.cornerRadius = 5
         upgradeButton.layer.insertSublayer(gradientLayer, at: 0)
+        upgradeButton.setTitleColor(lightThemeBlack, for: .normal)
+        
+        if (Preferences.object(forKey: "isProUser") as? Bool) == true{
+            upgradeButton.setTitle("Thank for your support!", for: .normal)
+            teachassistProLabel.isHidden = true
+            teachassistProDescLabel.isHidden = true
+        }else{
+            upgradeButton.addTarget(self, action: #selector(OnUpgradeButtonPress), for: .touchUpInside)
+        }
+        
+        //debug remove pro, COMMENT OUT IN PRODUCTION
+        Preferences.set(false, forKey: "isProUser")
+        Preferences.synchronize()
+        
         
         //setup Ta pro labels
         teachassistProLabel.superview?.backgroundColor = lightThemeWhite
         teachassistProLabel.textColor = lightThemeBlack
         teachassistProDescLabel.textColor = lightThemeBlack
         
+        
+    }
+    
+    @objc func OnUpgradeButtonPress(sender: UIButton) {
+        let Preferences = UserDefaults.standard
+        Preferences.set(true, forKey: "isProUser")
+        Preferences.synchronize()
+        
+        upgradeButton.setTitle("Thank for your support!", for: .normal)
+        teachassistProLabel.isHidden = true
+        teachassistProDescLabel.isHidden = true
+        print("USER IS NOW PRO")
         
     }
     

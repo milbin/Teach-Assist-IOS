@@ -25,6 +25,13 @@ class AssignmentsStatsViewController: UIViewController{
     @IBOutlet weak var communicationChart: LineChartView!
     @IBOutlet weak var applicationChart: LineChartView!
     @IBOutlet var backgroundView: UIView!
+    
+    @IBOutlet weak var courseAverageLabel: UILabel!
+    @IBOutlet weak var kLabel: UILabel!
+    @IBOutlet weak var tLabel: UILabel!
+    @IBOutlet weak var cLabel: UILabel!
+    @IBOutlet weak var aLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,6 +44,11 @@ class AssignmentsStatsViewController: UIViewController{
             lightThemeBlue = UIColor(red: 114/255, green: 159/255, blue: 255/255, alpha: 1.0)
         }
         backgroundView.backgroundColor = lightThemeWhite
+        courseAverageLabel.textColor = lightThemeBlack
+        kLabel.textColor = lightThemeBlack
+        tLabel.textColor = lightThemeBlack
+        cLabel.textColor = lightThemeBlack
+        aLabel.textColor = lightThemeBlack
         
         
         let response = (parent as! CourseInfoPageViewController).response

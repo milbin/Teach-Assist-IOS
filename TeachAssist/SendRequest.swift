@@ -35,7 +35,6 @@ class SendRequest{
             semaphore.signal()
         }
         _ = semaphore.wait(timeout: DispatchTime.distantFuture)
-        print("REQUEST FINISHED")
         if notificationResp != nil{
             return notificationResp
         }
@@ -63,7 +62,6 @@ class SendRequest{
             semaphore.signal()
         }
         _ = semaphore.wait(timeout: DispatchTime.distantFuture)
-        print("REQUEST FINISHED")
         if resp == nil{
             return nil
         }
@@ -90,7 +88,6 @@ class SendRequest{
             semaphore.signal()
         }
         _ = semaphore.wait(timeout: DispatchTime.distantFuture)
-        print("REQUEST FINISHED")
         if resp.count == 0{
             return nil
         }

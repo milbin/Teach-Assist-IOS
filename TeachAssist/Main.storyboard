@@ -281,7 +281,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feedback / Bug Report" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cnb-SG-IB0">
-                                                    <rect key="frame" x="60" y="13" width="157" height="18"/>
+                                                    <rect key="frame" x="60" y="13" width="163" height="18"/>
                                                     <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="15"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -318,7 +318,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Teachassist Website" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PC5-Bu-G9J" userLabel="Open In Label">
-                                                    <rect key="frame" x="60" y="13" width="136" height="18"/>
+                                                    <rect key="frame" x="60" y="13" width="139.5" height="18"/>
                                                     <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="15"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -341,7 +341,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OSx-M5-GhC">
-                                                    <rect key="frame" x="60" y="13.5" width="47.5" height="17.5"/>
+                                                    <rect key="frame" x="60" y="13.5" width="49" height="17.5"/>
                                                     <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="15"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -842,9 +842,11 @@
                                             <constraint firstItem="X0S-Mo-TBF" firstAttribute="leading" secondItem="apU-Uu-CAA" secondAttribute="leading" constant="10" id="8P2-mM-CgS"/>
                                             <constraint firstItem="X0S-Mo-TBF" firstAttribute="top" secondItem="1F6-Y1-DUx" secondAttribute="bottom" constant="10" id="FOI-5r-gpX"/>
                                             <constraint firstAttribute="bottom" secondItem="X0S-Mo-TBF" secondAttribute="bottom" id="NZ8-Zf-Dsw"/>
-                                            <constraint firstAttribute="height" constant="600" id="Ok8-lS-Dxa"/>
+                                            <constraint firstAttribute="height" priority="500" constant="600" id="Ok8-lS-Dxa"/>
                                             <constraint firstItem="aTd-IU-EAV" firstAttribute="top" secondItem="apU-Uu-CAA" secondAttribute="top" constant="20" id="Rr9-GB-xIC"/>
+                                            <constraint firstItem="1F6-Y1-DUx" firstAttribute="top" secondItem="aTd-IU-EAV" secondAttribute="bottom" constant="10" id="Ugp-8Y-1l9"/>
                                             <constraint firstAttribute="trailing" secondItem="X0S-Mo-TBF" secondAttribute="trailing" constant="10" id="Xzb-4K-7uI"/>
+                                            <constraint firstAttribute="bottom" secondItem="1F6-Y1-DUx" secondAttribute="bottom" priority="750" constant="10" id="azw-C5-TsR"/>
                                             <constraint firstItem="1F6-Y1-DUx" firstAttribute="leading" secondItem="apU-Uu-CAA" secondAttribute="leading" id="fm5-dY-nqf"/>
                                             <constraint firstAttribute="trailing" secondItem="1F6-Y1-DUx" secondAttribute="trailing" id="jMv-fm-KFa"/>
                                         </constraints>
@@ -1180,6 +1182,7 @@
                                     <constraint firstItem="apU-Uu-CAA" firstAttribute="leading" secondItem="nqq-Tp-y36" secondAttribute="leading" id="JEl-Nc-gts"/>
                                     <constraint firstAttribute="trailing" secondItem="apU-Uu-CAA" secondAttribute="trailing" id="JmU-b1-pzB"/>
                                     <constraint firstItem="Wbi-ua-Tav" firstAttribute="leading" secondItem="nqq-Tp-y36" secondAttribute="leading" id="KV6-uJ-DKp"/>
+                                    <constraint firstItem="yKE-FW-LrY" firstAttribute="top" secondItem="Wbi-ua-Tav" secondAttribute="bottom" priority="500" constant="10" id="KdM-mj-g2G"/>
                                     <constraint firstItem="yKE-FW-LrY" firstAttribute="top" secondItem="IJ0-pZ-XLO" secondAttribute="bottom" constant="10" id="MFu-RV-bnC"/>
                                     <constraint firstItem="Wbi-ua-Tav" firstAttribute="top" secondItem="apU-Uu-CAA" secondAttribute="bottom" constant="10" id="WOD-Y9-XkH"/>
                                     <constraint firstItem="yKE-FW-LrY" firstAttribute="leading" secondItem="nqq-Tp-y36" secondAttribute="leading" constant="10" id="X3k-1I-wot"/>
@@ -1263,8 +1266,10 @@
                         <outlet property="addAssignmentTitle" destination="Xkg-1Q-ddw" id="ZEA-y4-Fod"/>
                         <outlet property="addAssignmentTitleLabel" destination="yEu-dX-DWu" id="S88-ob-xvk"/>
                         <outlet property="bottomAdView" destination="yyR-eP-BOl" id="Agh-4h-Nly"/>
+                        <outlet property="bottomAdViewContainer" destination="IJ0-pZ-XLO" id="r5M-T2-jDC"/>
                         <outlet property="scrollView" destination="nqq-Tp-y36" id="3ZL-qY-FON"/>
                         <outlet property="topAdView" destination="RMr-im-zJt" id="THS-Jh-Qjc"/>
+                        <outlet property="topAdViewContainer" destination="X0S-Mo-TBF" id="dWs-ki-EgB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mfb-DX-xXM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1386,10 +1391,15 @@
                     </view>
                     <connections>
                         <outlet property="KnowledgeChart" destination="4ol-DQ-Dz4" id="nDe-Ag-jK4"/>
+                        <outlet property="aLabel" destination="Qgd-YL-htX" id="khD-1x-kKC"/>
                         <outlet property="applicationChart" destination="ARa-CT-xJg" id="FaB-ng-7zs"/>
                         <outlet property="backgroundView" destination="e0M-eK-H0L" id="kn9-X3-PKL"/>
+                        <outlet property="cLabel" destination="tVj-Cb-tbQ" id="Nly-UM-3in"/>
                         <outlet property="communicationChart" destination="k6M-0L-O3n" id="4PQ-5o-GBv"/>
                         <outlet property="courseAverageChart" destination="5I4-w2-elX" id="qP8-et-teQ"/>
+                        <outlet property="courseAverageLabel" destination="AkQ-QG-uCV" id="ujp-MX-ZwC"/>
+                        <outlet property="kLabel" destination="spf-X1-00s" id="vEe-by-LSW"/>
+                        <outlet property="tLabel" destination="NNg-v7-6hY" id="Mke-7b-stP"/>
                         <outlet property="thinkingChart" destination="mJh-LT-VNY" id="l8f-Wn-6mT"/>
                     </connections>
                 </viewController>

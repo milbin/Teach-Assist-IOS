@@ -97,7 +97,9 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var addAssignmentOWeight: UITextField!
     
     @IBOutlet weak var topAdView: GADBannerView!
+    @IBOutlet weak var topAdViewContainer: UIView!
     @IBOutlet weak var bottomAdView: GADBannerView!
+    @IBOutlet weak var bottomAdViewContainer: UIView!
     
     
     
@@ -241,22 +243,29 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
             self.parent?.parent!.navigationItem.title = vcTitle!
         }
         
-        //setup admob ad views
-        topAdView.superview!.layer.borderWidth = 2
-        topAdView.superview!.layer.borderColor = lightThemeLightBlack.cgColor
-        topAdView.superview!.layer.cornerRadius = 10
-        
-        bottomAdView.superview!.layer.borderWidth = 2
-        bottomAdView.superview!.layer.borderColor = lightThemeLightBlack.cgColor
-        bottomAdView.superview!.layer.cornerRadius = 10
-        
-        topAdView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-        topAdView.rootViewController = self
-        topAdView.load(GADRequest())
-        
-        bottomAdView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-        bottomAdView.rootViewController = self
-        bottomAdView.load(GADRequest())
+        //setup ad views if the user is not pro
+        if (Preferences.object(forKey: "isProUser") as? Bool) != true{
+            //setup admob ad views
+            topAdView.superview!.layer.borderWidth = 2
+            topAdView.superview!.layer.borderColor = lightThemeLightBlack.cgColor
+            topAdView.superview!.layer.cornerRadius = 10
+            
+            bottomAdView.superview!.layer.borderWidth = 2
+            bottomAdView.superview!.layer.borderColor = lightThemeLightBlack.cgColor
+            bottomAdView.superview!.layer.cornerRadius = 10
+            
+            topAdView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+            topAdView.rootViewController = self
+            topAdView.load(GADRequest())
+            
+            bottomAdView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+            bottomAdView.rootViewController = self //bottom ad view is loaded later depending on number of assignments
+        }else{
+            topAdViewContainer.removeFromSuperview()
+            topAdView.removeFromSuperview()
+            bottomAdViewContainer.removeFromSuperview()
+            bottomAdView.removeFromSuperview()
+        }
 
         
         
@@ -324,7 +333,16 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
             if(!assignmentsHaveBeenAdded){ //to resolve the bug where assignemnts get added twice because the system calls this method when the user swips back
                 addAssignmentToStackview(assignment: assignment, feedback: feedback, title: title)
             }
-            
+        }
+        
+        //only show bottom ad view if it is there are 5 or more assignments present and the use is not pro
+        if (Preferences.object(forKey: "isProUser") as? Bool) != true{
+            if(assignmentList.count < 5){
+                bottomAdViewContainer.removeFromSuperview()
+                bottomAdView.removeFromSuperview()
+            }else{
+                bottomAdView.load(GADRequest())
+            }
         }
         AverageBar.startProgress(to: CGFloat(Mark!), duration: 1.8)
         addAssignment.isHidden = false
