@@ -61,6 +61,9 @@
 		EAAF4B75234D55EF00308289 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EAAF4B74234D55EE00308289 /* GoogleService-Info.plist */; };
 		EAB209232220E519000686B3 /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB209222220E519000686B3 /* LoginButton.swift */; };
 		EAB209262220E6B7000686B3 /* CheckboxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB209252220E6B7000686B3 /* CheckboxButton.swift */; };
+		EAB36EE424427B1200725AEA /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB36EE324427B1200725AEA /* StoreKit.framework */; };
+		EAB36EE82442855900725AEA /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB36EE72442855900725AEA /* IAPHelper.swift */; };
+		EAB36EEA24428D5F00725AEA /* PaidProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB36EE924428D5F00725AEA /* PaidProducts.swift */; };
 		EABD64CC2266A13E0029E464 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABD64CB2266A13E0029E464 /* SettingsTableViewCell.swift */; };
 		EABD64CE2266B28E0029E464 /* SettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EABD64CD2266B28E0029E464 /* SettingsTableViewCell.xib */; };
 		EAC0318F22559F6600AF78DD /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC0318E22559F6600AF78DD /* SettingsTableViewController.swift */; };
@@ -150,6 +153,9 @@
 		EAAF4B74234D55EE00308289 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EAB209222220E519000686B3 /* LoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
 		EAB209252220E6B7000686B3 /* CheckboxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxButton.swift; sourceTree = "<group>"; };
+		EAB36EE324427B1200725AEA /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		EAB36EE72442855900725AEA /* IAPHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
+		EAB36EE924428D5F00725AEA /* PaidProducts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaidProducts.swift; sourceTree = "<group>"; };
 		EABD64CB2266A13E0029E464 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		EABD64CD2266B28E0029E464 /* SettingsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsTableViewCell.xib; sourceTree = "<group>"; };
 		EAC0318E22559F6600AF78DD /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
@@ -168,6 +174,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9080080941CEB4B9E0679128 /* Pods_TeachAssist.framework in Frameworks */,
+				EAB36EE424427B1200725AEA /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,6 +218,7 @@
 		4F9FC851004133565DB813E5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EAB36EE324427B1200725AEA /* StoreKit.framework */,
 				EA7B4FB52296043100B79BC4 /* Pods_TeachAssistUITests.framework */,
 				EA7B4FB32296042B00B79BC4 /* Pods_TeachAssistTests.framework */,
 				EA7B4FB1229602A200B79BC4 /* PureLayout.framework */,
@@ -357,6 +365,8 @@
 				EADB5257242545E7009612E3 /* AssignmentsStatsViewController.swift */,
 				EADB525924267D72009612E3 /* PageViewControllerContainer.swift */,
 				EAE7B980243CF474007C68A3 /* SettingsViewController.swift */,
+				EAB36EE72442855900725AEA /* IAPHelper.swift */,
+				EAB36EE924428D5F00725AEA /* PaidProducts.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -446,6 +456,9 @@
 						CreatedOnToolsVersion = 10.1;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.InAppPurchase = {
 								enabled = 1;
 							};
 							com.apple.Push = {
@@ -699,6 +712,8 @@
 				EAB209232220E519000686B3 /* LoginButton.swift in Sources */,
 				EAE7B981243CF474007C68A3 /* SettingsViewController.swift in Sources */,
 				EA2A93BC222A15D900C4100E /* CourseViewController.swift in Sources */,
+				EAB36EEA24428D5F00725AEA /* PaidProducts.swift in Sources */,
+				EAB36EE82442855900725AEA /* IAPHelper.swift in Sources */,
 				EAA02E54236E6E0500F76720 /* DrawerViewControllerParent.swift in Sources */,
 				EA37FD712371A9AE008E7109 /* NavigationController.swift in Sources */,
 				EA2BEE692251559200F085E2 /* DrawerViewController.swift in Sources */,

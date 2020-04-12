@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import StoreKit
 
 class SettingsViewController: UIViewController {
     var lightThemeEnabled = false
@@ -16,6 +17,8 @@ class SettingsViewController: UIViewController {
     var lightThemeBlack = UIColor(red:255/255, green:255/255, blue: 255/255, alpha:1)
     var lightThemeBlue = UIColor(red: 4/255, green: 93/255, blue: 86/255, alpha: 1)
     var lightThemePink = UIColor(red: 255/255, green: 65/255, blue: 128/255, alpha: 1)
+    
+    var products: [SKProduct] = []
     
     @IBOutlet weak var upgradeButton: UIButton!
     @IBOutlet weak var teachassistProLabel: UILabel!
@@ -42,6 +45,20 @@ class SettingsViewController: UIViewController {
                 
             }
         }
+        
+        //get all currently active products form the store
+        PaidProducts.store.requestProducts{ [weak self] success, products in
+            guard let self = self else { return }
+            if success {
+                self.products = products!
+                print(products)
+                print("HERE")
+            }else{
+                print("Failed to get products from the app store!")
+            }
+            
+        }
+        
         //setup upgrade button
         let gradientColors: [CGColor] = [lightThemeBlue.cgColor, lightThemePink.cgColor]
         let gradientLayer: CAGradientLayer = CAGradientLayer()
@@ -74,6 +91,45 @@ class SettingsViewController: UIViewController {
     }
     
     @objc func OnUpgradeButtonPress(sender: UIButton) {
+        if IAPHelper.canMakePayments(){
+            if products.count >= 1{
+                let removeAdsProduct = products[0]
+                let priceFormatter = NumberFormatter()
+                priceFormatter.formatterBehavior = .behavior10_4
+                priceFormatter.numberStyle = .currency
+                priceFormatter.locale = removeAdsProduct.priceLocale
+                if PaidProducts.store.isProductPurchased(removeAdsProduct.productIdentifier){
+                    makeUserPro()
+                    let alert = UIAlertController(title: "Your purchase has been restored!", message: "Thank you!", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action:UIAlertAction!) in
+                    }))
+                    self.present(alert, animated: true)
+                }else{
+                    let price = priceFormatter.string(from: removeAdsProduct.price)
+                    let alert = UIAlertController(title: "Purchase Item?", message: "Are you sure you want to Remove Ads for \(price!)?", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Buy", style: .default, handler: { (action:UIAlertAction!) in
+                        PaidProducts.store.buyProduct(removeAdsProduct)
+                    }))
+                    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action:UIAlertAction!) in
+                    }))
+                    self.present(alert, animated: true)
+                }
+            }else{
+                let alert = UIAlertController(title: "Could not connect to Apple", message: "Please check your internet connection and try again.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action:UIAlertAction!) in
+                }))
+                self.present(alert, animated: true)
+            }
+        }else{
+            let alert = UIAlertController(title: "In App Purchases Disabled", message: "Please check your parental controls and try again.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action:UIAlertAction!) in
+            }))
+            self.present(alert, animated: true)
+        }
+        
+    }
+    
+    public func makeUserPro(){ //should be called in the IAB helper file after the purchase is succesfully completed
         let Preferences = UserDefaults.standard
         Preferences.set(true, forKey: "isProUser")
         Preferences.synchronize()
@@ -82,8 +138,33 @@ class SettingsViewController: UIViewController {
         teachassistProLabel.isHidden = true
         teachassistProDescLabel.isHidden = true
         print("USER IS NOW PRO")
-        
     }
     
     
+}
+
+extension UIAlertController {
+    
+    func show() {
+        present(animated: true, completion: nil)
+    }
+    
+    func present(animated: Bool, completion: (() -> Void)?) {
+        if let rootVC = UIApplication.shared.keyWindow?.rootViewController {
+            presentFromController(controller: rootVC, animated: animated, completion: completion)
+        }
+    }
+    
+    private func presentFromController(controller: UIViewController, animated: Bool, completion: (() -> Void)?) {
+        if let navVC = controller as? UINavigationController,
+            let visibleVC = navVC.visibleViewController {
+            presentFromController(controller: visibleVC, animated: animated, completion: completion)
+        } else
+            if let tabVC = controller as? UITabBarController,
+                let selectedVC = tabVC.selectedViewController {
+                presentFromController(controller: selectedVC, animated: animated, completion: completion)
+            } else {
+                controller.present(self, animated: animated, completion: completion);
+        }
+    }
 }
