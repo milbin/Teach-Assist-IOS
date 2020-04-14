@@ -122,9 +122,9 @@
                                 </constraints>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ORY-iO-xOT" customClass="GADBannerView">
-                                <rect key="frame" x="0.0" y="543" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="553" width="375" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="cyN-Z3-Dwm"/>
+                                    <constraint firstAttribute="height" constant="50" id="cyN-Z3-Dwm"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -137,6 +137,7 @@
                             <constraint firstItem="TWk-b4-WHp" firstAttribute="top" secondItem="oQE-1m-0dc" secondAttribute="top" id="Q8b-kr-3Id"/>
                             <constraint firstItem="ORY-iO-xOT" firstAttribute="trailing" secondItem="oQE-1m-0dc" secondAttribute="trailing" id="j53-HX-Uuy"/>
                             <constraint firstItem="oQE-1m-0dc" firstAttribute="bottom" secondItem="ORY-iO-xOT" secondAttribute="bottom" id="qKa-mz-bFA"/>
+                            <constraint firstItem="ORY-iO-xOT" firstAttribute="centerX" secondItem="LTq-if-LMk" secondAttribute="centerX" id="rLf-ne-6LP"/>
                             <constraint firstItem="ORY-iO-xOT" firstAttribute="leading" secondItem="oQE-1m-0dc" secondAttribute="leading" id="rsO-c8-jrf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="oQE-1m-0dc"/>
@@ -821,6 +822,12 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X0S-Mo-TBF">
                                                 <rect key="frame" x="10" y="340" width="355" height="260"/>
                                                 <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading ad..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Vq-PU-MPS">
+                                                        <rect key="frame" x="136" y="122" width="83.5" height="16.5"/>
+                                                        <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="14"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RMr-im-zJt" customClass="GADBannerView">
                                                         <rect key="frame" x="27.5" y="5" width="300" height="250"/>
                                                         <constraints>
@@ -828,18 +835,12 @@
                                                             <constraint firstAttribute="width" constant="300" id="aD4-DM-Saa"/>
                                                         </constraints>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading ad..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Vq-PU-MPS">
-                                                        <rect key="frame" x="136" y="122" width="83.5" height="16.5"/>
-                                                        <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="14"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstItem="6Vq-PU-MPS" firstAttribute="centerX" secondItem="X0S-Mo-TBF" secondAttribute="centerX" id="6zD-cz-Mzp"/>
+                                                    <constraint firstItem="6Vq-PU-MPS" firstAttribute="centerY" secondItem="X0S-Mo-TBF" secondAttribute="centerY" id="4BY-Pi-UDS"/>
+                                                    <constraint firstItem="6Vq-PU-MPS" firstAttribute="centerX" secondItem="X0S-Mo-TBF" secondAttribute="centerX" id="MAE-q9-gei"/>
                                                     <constraint firstItem="RMr-im-zJt" firstAttribute="centerY" secondItem="X0S-Mo-TBF" secondAttribute="centerY" id="Qsh-EH-2ih"/>
                                                     <constraint firstItem="RMr-im-zJt" firstAttribute="centerX" secondItem="X0S-Mo-TBF" secondAttribute="centerX" id="WiO-Nd-2re"/>
-                                                    <constraint firstItem="6Vq-PU-MPS" firstAttribute="centerY" secondItem="X0S-Mo-TBF" secondAttribute="centerY" id="Ygl-Pl-dTH"/>
                                                     <constraint firstAttribute="height" constant="260" id="bu9-Gd-DQW"/>
                                                 </constraints>
                                             </view>
@@ -871,6 +872,12 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IJ0-pZ-XLO">
                                         <rect key="frame" x="10" y="620" width="355" height="260"/>
                                         <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading ad..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ple-oK-9lM">
+                                                <rect key="frame" x="136" y="122" width="83.5" height="16.5"/>
+                                                <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="14"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yyR-eP-BOl" customClass="GADBannerView">
                                                 <rect key="frame" x="27.5" y="5" width="300" height="250"/>
                                                 <constraints>
@@ -880,17 +887,13 @@
                                             </view>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="ple-oK-9lM" firstAttribute="centerY" secondItem="IJ0-pZ-XLO" secondAttribute="centerY" id="3rS-T1-cdg"/>
+                                            <constraint firstItem="ple-oK-9lM" firstAttribute="centerX" secondItem="IJ0-pZ-XLO" secondAttribute="centerX" id="4pD-iH-PfQ"/>
                                             <constraint firstItem="yyR-eP-BOl" firstAttribute="centerY" secondItem="IJ0-pZ-XLO" secondAttribute="centerY" id="H5S-dV-aHt"/>
                                             <constraint firstItem="yyR-eP-BOl" firstAttribute="centerX" secondItem="IJ0-pZ-XLO" secondAttribute="centerX" id="lF4-cT-rTC"/>
                                             <constraint firstAttribute="height" constant="260" id="vrD-NW-qTW"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading ad..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ple-oK-9lM">
-                                        <rect key="frame" x="146" y="742" width="83.5" height="16.5"/>
-                                        <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="14"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yKE-FW-LrY">
                                         <rect key="frame" x="10" y="890" width="355" height="129"/>
                                         <subviews>
@@ -1193,7 +1196,6 @@
                                     <constraint firstItem="Wbi-ua-Tav" firstAttribute="width" secondItem="nqq-Tp-y36" secondAttribute="width" id="3OE-Pw-7tD"/>
                                     <constraint firstAttribute="trailing" secondItem="IJ0-pZ-XLO" secondAttribute="trailing" constant="10" id="BGk-Nf-7ee"/>
                                     <constraint firstAttribute="bottom" secondItem="yKE-FW-LrY" secondAttribute="bottom" constant="250" id="ED0-BZ-Fwm"/>
-                                    <constraint firstItem="IJ0-pZ-XLO" firstAttribute="centerY" secondItem="ple-oK-9lM" secondAttribute="centerY" id="HOt-N4-221"/>
                                     <constraint firstItem="apU-Uu-CAA" firstAttribute="leading" secondItem="nqq-Tp-y36" secondAttribute="leading" id="JEl-Nc-gts"/>
                                     <constraint firstAttribute="trailing" secondItem="apU-Uu-CAA" secondAttribute="trailing" id="JmU-b1-pzB"/>
                                     <constraint firstItem="Wbi-ua-Tav" firstAttribute="leading" secondItem="nqq-Tp-y36" secondAttribute="leading" id="KV6-uJ-DKp"/>
@@ -1206,7 +1208,6 @@
                                     <constraint firstItem="IJ0-pZ-XLO" firstAttribute="top" secondItem="Wbi-ua-Tav" secondAttribute="bottom" constant="10" id="e2V-4e-Y2N"/>
                                     <constraint firstItem="IJ0-pZ-XLO" firstAttribute="leading" secondItem="nqq-Tp-y36" secondAttribute="leading" constant="10" id="qvA-ca-E5A"/>
                                     <constraint firstItem="apU-Uu-CAA" firstAttribute="top" secondItem="nqq-Tp-y36" secondAttribute="top" id="vDP-Iu-4Dp"/>
-                                    <constraint firstItem="ple-oK-9lM" firstAttribute="centerX" secondItem="IJ0-pZ-XLO" secondAttribute="centerX" id="yYK-dR-kXw"/>
                                 </constraints>
                             </scrollView>
                         </subviews>

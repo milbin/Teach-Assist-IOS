@@ -67,6 +67,10 @@ PODS:
   - GoogleMobileAdsMediationFacebook (5.6.0.0):
     - FBAudienceNetwork (= 5.6.0)
     - Google-Mobile-Ads-SDK (>= 7.51.0)
+  - GoogleMobileAdsMediationMoPub (5.11.0.0):
+    - Google-Mobile-Ads-SDK (>= 7.56.0)
+    - mopub-ios-sdk/Core (= 5.11.0)
+    - mopub-ios-sdk/NativeAds (= 5.11.0)
   - GoogleUtilities/AppDelegateSwizzler (6.5.2):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
@@ -90,6 +94,9 @@ PODS:
   - HTMLString (4.0.2)
   - IQKeyboardManagerSwift (6.5.5)
   - KYDrawerController (2.1.0)
+  - mopub-ios-sdk/Core (5.11.0)
+  - mopub-ios-sdk/NativeAds (5.11.0):
+    - mopub-ios-sdk/Core
   - nanopb (0.3.9011):
     - nanopb/decode (= 0.3.9011)
     - nanopb/encode (= 0.3.9011)
@@ -111,6 +118,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Google-Mobile-Ads-SDK
   - GoogleMobileAdsMediationFacebook (~> 5.6.0.0)
+  - GoogleMobileAdsMediationMoPub
   - HTMLEntities (from `https://github.com/IBM-Swift/swift-html-entities.git`)
   - HTMLString (~> 4.0)
   - IQKeyboardManagerSwift
@@ -142,11 +150,13 @@ SPEC REPOS:
     - GoogleDataTransport
     - GoogleDataTransportCCTSupport
     - GoogleMobileAdsMediationFacebook
+    - GoogleMobileAdsMediationMoPub
     - GoogleUtilities
     - GTMSessionFetcher
     - HTMLString
     - IQKeyboardManagerSwift
     - KYDrawerController
+    - mopub-ios-sdk
     - nanopb
     - PopupDialog
     - PromisesObjC
@@ -184,12 +194,14 @@ SPEC CHECKSUMS:
   GoogleDataTransport: a857c6a002d201b524dd4bc2ed7e7355ed07e785
   GoogleDataTransportCCTSupport: 32f75fbe904c82772fcbb6b6bd4525bfb6f2a862
   GoogleMobileAdsMediationFacebook: 2306b9822775e4ddb50c29fc758d6b45efcf6a72
+  GoogleMobileAdsMediationMoPub: 5799a5f4a192705533478fbe0bc65061c5294edb
   GoogleUtilities: ad0f3b691c67909d03a3327cc205222ab8f42e0e
   GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
   HTMLEntities: 83738511518b3f29cf9644d0877505b8d3d1a849
   HTMLString: d346ba551d1b7e687190c948ec0c2ddaf4057544
   IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
   KYDrawerController: baad0e63b09c0cb564bd48f0f7f70f45d9176ebc
+  mopub-ios-sdk: 292b8e9a55a2e72a34afc04ec01e85486af46240
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   PopupDialog: 28f29a1ffe9e1fab32fb258b53d56ca31670e8a2
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
@@ -197,6 +209,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
   UICircularProgressRing: e6852e8f88e296cbbbe2720cccb55241acda6708
 
-PODFILE CHECKSUM: 63d13bc70d3e02ac1f96ce46c19a8d96fa573889
+PODFILE CHECKSUM: c47253bacc9a0467c5edb6237ff2b446f6537098
 
 COCOAPODS: 1.6.1

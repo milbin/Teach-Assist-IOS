@@ -14,6 +14,7 @@ import Crashlytics
 import Firebase
 import IQKeyboardManagerSwift
 import GoogleMobileAds
+import MoPub
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -34,6 +35,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Fabric.with([Crashlytics.self])
         IQKeyboardManager.shared.enable = true //enable smart keyboard location so that it dosnt block edittext
         //UIApplication.shared.statusBarStyle = .lightContent //sets the time and battery wifi etc to light so its easier to see on the dark background
+        
+        //initilize mopub sdk
+        let sdkConfig = MPMoPubConfiguration.init(adUnitIdForAppInitialization: "bbe85a101e1c4358ad29a22b6f9e29ef")
+        MoPub.sharedInstance().initializeSdk(with: sdkConfig, completion: nil)
         
         
         

@@ -22,6 +22,8 @@ target 'TeachAssist' do
   pod 'Charts'
   pod 'Google-Mobile-Ads-SDK'
   pod 'GoogleMobileAdsMediationFacebook', '~> 5.6.0.0'
+  pod 'GoogleMobileAdsMediationMoPub'
+
 
 
   
