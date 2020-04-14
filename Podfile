@@ -21,6 +21,8 @@ target 'TeachAssist' do
   pod 'SwiftyJSON', '~> 4.0'
   pod 'Charts'
   pod 'Google-Mobile-Ads-SDK'
+  pod 'GoogleMobileAdsMediationFacebook', '~> 5.6.0.0'
+
 
   
   target 'TeachAssistTests' do

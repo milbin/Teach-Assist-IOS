@@ -98,8 +98,10 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var topAdView: GADBannerView!
     @IBOutlet weak var topAdViewContainer: UIView!
+    @IBOutlet weak var topAdLoadingLabel: UILabel!
     @IBOutlet weak var bottomAdView: GADBannerView!
     @IBOutlet weak var bottomAdViewContainer: UIView!
+    @IBOutlet weak var bottomAdLoadingLabel: UILabel!
     
     
     
@@ -249,16 +251,18 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
             topAdView.superview!.layer.borderWidth = 2
             topAdView.superview!.layer.borderColor = lightThemeLightBlack.cgColor
             topAdView.superview!.layer.cornerRadius = 10
+            topAdLoadingLabel.textColor = lightThemeBlack
             
             bottomAdView.superview!.layer.borderWidth = 2
             bottomAdView.superview!.layer.borderColor = lightThemeLightBlack.cgColor
             bottomAdView.superview!.layer.cornerRadius = 10
+            bottomAdLoadingLabel.textColor = lightThemeBlack
             
-            topAdView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+            topAdView.adUnitID = "ca-app-pub-6294253616632635/1695791404"
             topAdView.rootViewController = self
             topAdView.load(GADRequest())
             
-            bottomAdView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+            bottomAdView.adUnitID = "ca-app-pub-6294253616632635/1695791404"
             bottomAdView.rootViewController = self //bottom ad view is loaded later depending on number of assignments
         }else{
             topAdViewContainer.removeFromSuperview()

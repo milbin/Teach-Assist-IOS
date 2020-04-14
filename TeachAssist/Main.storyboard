@@ -828,10 +828,18 @@
                                                             <constraint firstAttribute="width" constant="300" id="aD4-DM-Saa"/>
                                                         </constraints>
                                                     </view>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading ad..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Vq-PU-MPS">
+                                                        <rect key="frame" x="136" y="122" width="83.5" height="16.5"/>
+                                                        <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="14"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                 </subviews>
                                                 <constraints>
+                                                    <constraint firstItem="6Vq-PU-MPS" firstAttribute="centerX" secondItem="X0S-Mo-TBF" secondAttribute="centerX" id="6zD-cz-Mzp"/>
                                                     <constraint firstItem="RMr-im-zJt" firstAttribute="centerY" secondItem="X0S-Mo-TBF" secondAttribute="centerY" id="Qsh-EH-2ih"/>
                                                     <constraint firstItem="RMr-im-zJt" firstAttribute="centerX" secondItem="X0S-Mo-TBF" secondAttribute="centerX" id="WiO-Nd-2re"/>
+                                                    <constraint firstItem="6Vq-PU-MPS" firstAttribute="centerY" secondItem="X0S-Mo-TBF" secondAttribute="centerY" id="Ygl-Pl-dTH"/>
                                                     <constraint firstAttribute="height" constant="260" id="bu9-Gd-DQW"/>
                                                 </constraints>
                                             </view>
@@ -877,6 +885,12 @@
                                             <constraint firstAttribute="height" constant="260" id="vrD-NW-qTW"/>
                                         </constraints>
                                     </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading ad..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ple-oK-9lM">
+                                        <rect key="frame" x="146" y="742" width="83.5" height="16.5"/>
+                                        <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="14"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yKE-FW-LrY">
                                         <rect key="frame" x="10" y="890" width="355" height="129"/>
                                         <subviews>
@@ -1179,6 +1193,7 @@
                                     <constraint firstItem="Wbi-ua-Tav" firstAttribute="width" secondItem="nqq-Tp-y36" secondAttribute="width" id="3OE-Pw-7tD"/>
                                     <constraint firstAttribute="trailing" secondItem="IJ0-pZ-XLO" secondAttribute="trailing" constant="10" id="BGk-Nf-7ee"/>
                                     <constraint firstAttribute="bottom" secondItem="yKE-FW-LrY" secondAttribute="bottom" constant="250" id="ED0-BZ-Fwm"/>
+                                    <constraint firstItem="IJ0-pZ-XLO" firstAttribute="centerY" secondItem="ple-oK-9lM" secondAttribute="centerY" id="HOt-N4-221"/>
                                     <constraint firstItem="apU-Uu-CAA" firstAttribute="leading" secondItem="nqq-Tp-y36" secondAttribute="leading" id="JEl-Nc-gts"/>
                                     <constraint firstAttribute="trailing" secondItem="apU-Uu-CAA" secondAttribute="trailing" id="JmU-b1-pzB"/>
                                     <constraint firstItem="Wbi-ua-Tav" firstAttribute="leading" secondItem="nqq-Tp-y36" secondAttribute="leading" id="KV6-uJ-DKp"/>
@@ -1191,6 +1206,7 @@
                                     <constraint firstItem="IJ0-pZ-XLO" firstAttribute="top" secondItem="Wbi-ua-Tav" secondAttribute="bottom" constant="10" id="e2V-4e-Y2N"/>
                                     <constraint firstItem="IJ0-pZ-XLO" firstAttribute="leading" secondItem="nqq-Tp-y36" secondAttribute="leading" constant="10" id="qvA-ca-E5A"/>
                                     <constraint firstItem="apU-Uu-CAA" firstAttribute="top" secondItem="nqq-Tp-y36" secondAttribute="top" id="vDP-Iu-4Dp"/>
+                                    <constraint firstItem="ple-oK-9lM" firstAttribute="centerX" secondItem="IJ0-pZ-XLO" secondAttribute="centerX" id="yYK-dR-kXw"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -1265,9 +1281,11 @@
                         <outlet property="addAssignmentTWeight" destination="5Y7-iC-Jqd" id="OIL-Vm-aam"/>
                         <outlet property="addAssignmentTitle" destination="Xkg-1Q-ddw" id="ZEA-y4-Fod"/>
                         <outlet property="addAssignmentTitleLabel" destination="yEu-dX-DWu" id="S88-ob-xvk"/>
+                        <outlet property="bottomAdLoadingLabel" destination="ple-oK-9lM" id="kHR-5q-j2q"/>
                         <outlet property="bottomAdView" destination="yyR-eP-BOl" id="Agh-4h-Nly"/>
                         <outlet property="bottomAdViewContainer" destination="IJ0-pZ-XLO" id="r5M-T2-jDC"/>
                         <outlet property="scrollView" destination="nqq-Tp-y36" id="3ZL-qY-FON"/>
+                        <outlet property="topAdLoadingLabel" destination="6Vq-PU-MPS" id="DEk-1d-UKf"/>
                         <outlet property="topAdView" destination="RMr-im-zJt" id="THS-Jh-Qjc"/>
                         <outlet property="topAdViewContainer" destination="X0S-Mo-TBF" id="dWs-ki-EgB"/>
                     </connections>

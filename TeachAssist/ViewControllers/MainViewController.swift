@@ -15,6 +15,7 @@ import PopupDialog
 import StoreKit
 import SwiftyJSON
 import GoogleMobileAds
+import AdSupport
 
 class MainViewController: UIViewController {
     var courseList = [CourseView]()
@@ -127,8 +128,11 @@ class MainViewController: UIViewController {
         }
         
         //setup Admob banner ad palcement
-        adView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        //adView.adUnitID = "ca-app-pub-3940256099942544/2934735716" //Admob test unit ID
+        adView.adUnitID = "ca-app-pub-6294253616632635/9795920506"
         adView.rootViewController = self
+        print(ASIdentifierManager.shared().advertisingIdentifier)
+        print("HERE")
 
         
         

@@ -24,6 +24,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>FBAudienceNetwork.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FBSDKCoreKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Fabric.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -90,6 +100,11 @@
 			<false/>
 		</dict>
 		<key>GoogleDataTransportCCTSupport.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>GoogleMobileAdsMediationFacebook.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
