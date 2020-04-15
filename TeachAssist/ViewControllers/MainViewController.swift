@@ -190,6 +190,12 @@ class MainViewController: UIViewController {
             Preferences.set(true, forKey: "didClearOfflineMode")
         }
         
+        //release notes popup dialog
+        let firstLaunch = Preferences.string(forKey: "release notes 2.2.8")
+        if(firstLaunch == nil || true){
+            showReleaseNotes()
+        }
+        
         response = ta.GetTaData(username: username!, password: password!) ?? nil
         self.navigationItem.title = "Student: "+username!
         if response == nil{
@@ -337,6 +343,31 @@ class MainViewController: UIViewController {
         UIView.animate(withDuration: 0.4, animations: {
             self.StackView.layoutIfNeeded()
         })
+    }
+    
+    public func showReleaseNotes(){
+        let Preferences = UserDefaults.standard
+        Preferences.set("true", forKey: "release notes 2.2.8")
+        let title = "A message from the developers"
+        let message = """
+            Unfortunately, we've decided that the next step in improving our app is to show banner ads. It's a sad day in the history of Teachassist.
+            \n On the bright side, we wanted to soften the blow with a couple of new features: offline mode, and a statistics view. We also have a couple of other features that should arrive in the near future.
+            \n But for those of you who can't stand this development, we've included an option to remove all ads for $2.79.
+            \n Please accept our condolences, and we hope you enjoy :)
+            """
+        let image = UIImage(named: "adUpdateBanner")
+        let popup = PopupDialog(title: title, message: message, image: image)
+        let buttonOne = PopupDialogButton(title: "Dismiss", dismissOnTap: true) {
+            print("What a beauty!")
+        }
+        let buttonTwo = PopupDialogButton(title: "Upgrade!", dismissOnTap: true) {
+            if let drawerController = (self.navigationController?.parent as? KYDrawerController) {
+                drawerController.setDrawerState(.closed, animated: true)
+                (drawerController.mainViewController as! UINavigationController).viewControllers[0].performSegue(withIdentifier: "settingsSegue", sender: nil)
+            }
+        }
+        popup.addButtons([buttonOne, buttonTwo])
+        self.present(popup, animated: true, completion: nil)
     }
     
     func loadBannerAd() {

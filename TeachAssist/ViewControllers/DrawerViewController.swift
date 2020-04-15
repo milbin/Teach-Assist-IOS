@@ -26,8 +26,10 @@ class DrawerViewController: UITableViewController {
     @IBOutlet weak var feedbackIcon: UIImageView!
     @IBOutlet weak var openInLabel: UILabel!
     @IBOutlet weak var openInIcon: UIImageView!
+    @IBOutlet weak var releaseNotesIcon: UIImageView!
+    @IBOutlet weak var releaseNotesLabel: UILabel!
     
-    var cells = ["settings":0, "bug report":1, "open in":2, "logout":3]
+    var cells = ["settings":0, "bug report":1, "open in":2, "release notes":3, "logout":4]
     override func viewDidLoad() {
         super.viewDidLoad()
         //check for light theme
@@ -52,12 +54,15 @@ class DrawerViewController: UITableViewController {
                 feedbackIcon.image = UIImage(named: "bug-dark")
                 openInLabel.textColor = lightThemeBlack
                 openInIcon.image = UIImage(named: "open-in-dark")
+                releaseNotesLabel.textColor = lightThemeBlack
+                releaseNotesIcon.image = UIImage(named: "info-dark")
                 logoutLabel.textColor = lightThemeBlack
                 logoutIcon.image = UIImage(named: "logout-dark")
                 settingsLabel.superview?.backgroundColor = lightThemeWhite
                 feedbackLabel.superview?.backgroundColor = lightThemeWhite
                 openInLabel.superview?.backgroundColor = lightThemeWhite
                 logoutLabel.superview?.backgroundColor = lightThemeWhite
+                releaseNotesLabel.superview?.backgroundColor = lightThemeWhite
                 self.view.backgroundColor = lightThemeWhite
             }
         }
@@ -125,6 +130,11 @@ class DrawerViewController: UITableViewController {
             } else {
                 // Fallback on earlier versions
                 UIApplication.shared.openURL(url)
+            }
+        }else if indexPath.row == cells["release notes"]{
+            if let drawerController = self.parent!.parent as? KYDrawerController {
+                drawerController.setDrawerState(.closed, animated: true)
+                ((drawerController.mainViewController as! UINavigationController).viewControllers[0] as? MainViewController)?.showReleaseNotes()
             }
         }
 

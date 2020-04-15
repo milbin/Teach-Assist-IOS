@@ -334,8 +334,39 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="OFE-lo-dTj" userLabel="Logout Cell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="zgu-oe-hyP" userLabel="Open In Cell">
                                         <rect key="frame" x="0.0" y="132" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zgu-oe-hyP" id="LCP-Ub-QhE">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="info" translatesAutoresizingMaskIntoConstraints="NO" id="IKK-tN-Bl1" userLabel="Open In Icon">
+                                                    <rect key="frame" x="20" y="12" width="20" height="20"/>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="fSk-ab-NaT"/>
+                                                        <constraint firstAttribute="height" constant="20" id="ior-ao-Mh5"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Release Notes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zvt-8A-9aV" userLabel="Open In Label">
+                                                    <rect key="frame" x="60" y="13" width="98" height="18"/>
+                                                    <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="15"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="Zvt-8A-9aV" firstAttribute="leading" secondItem="IKK-tN-Bl1" secondAttribute="trailing" constant="20" id="IhK-uh-ZSx"/>
+                                                <constraint firstItem="IKK-tN-Bl1" firstAttribute="centerY" secondItem="LCP-Ub-QhE" secondAttribute="centerY" id="OL0-l1-JBm"/>
+                                                <constraint firstItem="Zvt-8A-9aV" firstAttribute="centerY" secondItem="LCP-Ub-QhE" secondAttribute="centerY" id="X0s-Qt-LT3"/>
+                                                <constraint firstItem="IKK-tN-Bl1" firstAttribute="leading" secondItem="LCP-Ub-QhE" secondAttribute="leading" constant="20" id="xVt-ic-BCR"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="OFE-lo-dTj" userLabel="Logout Cell">
+                                        <rect key="frame" x="0.0" y="176" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OFE-lo-dTj" id="N1M-i2-Z9l">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -379,6 +410,8 @@
                         <outlet property="logoutLabel" destination="OSx-M5-GhC" id="yXk-w5-Ltt"/>
                         <outlet property="openInIcon" destination="tMm-Wh-Obf" id="X0S-sZ-CC5"/>
                         <outlet property="openInLabel" destination="PC5-Bu-G9J" id="Qze-pN-q7O"/>
+                        <outlet property="releaseNotesIcon" destination="IKK-tN-Bl1" id="pco-LF-WXq"/>
+                        <outlet property="releaseNotesLabel" destination="Zvt-8A-9aV" id="e61-PC-Dwu"/>
                         <outlet property="settingsCell" destination="a49-Sx-hfr" id="4vC-Ib-Fa4"/>
                         <outlet property="settingsIcon" destination="Aay-A5-hQC" id="6mv-0t-7Hn"/>
                         <outlet property="settingsLabel" destination="6ve-lu-tbX" id="KhI-Xm-U4y"/>
@@ -1430,6 +1463,7 @@
     <resources>
         <image name="bug" width="48" height="48"/>
         <image name="down" width="96" height="96"/>
+        <image name="info" width="144" height="144"/>
         <image name="logout" width="48" height="48"/>
         <image name="open-in" width="96" height="96"/>
         <image name="plus" width="100" height="100"/>
