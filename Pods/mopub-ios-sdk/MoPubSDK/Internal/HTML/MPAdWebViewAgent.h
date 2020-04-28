@@ -42,8 +42,6 @@ typedef NSUInteger MPAdWebViewEvent;
 
 @protocol MPAdWebViewAgentDelegate <NSObject>
 
-- (NSString *)adUnitId;
-- (CLLocation *)location;
 - (UIViewController *)viewControllerForPresentingModalView;
 - (void)adDidClose:(MPWebView *)ad;
 - (void)adDidFinishLoadingAd:(MPWebView *)ad;

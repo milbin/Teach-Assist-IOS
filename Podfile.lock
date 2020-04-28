@@ -1,101 +1,103 @@
 PODS:
   - Alamofire (4.9.1)
-  - Charts (3.4.0):
-    - Charts/Core (= 3.4.0)
-  - Charts/Core (3.4.0)
+  - Charts (3.5.0):
+    - Charts/Core (= 3.5.0)
+  - Charts/Core (3.5.0)
   - Crashlytics (3.14.0):
     - Fabric (~> 1.10.2)
   - DynamicBlurView (3.0.1)
   - Fabric (1.10.2)
   - FBAudienceNetwork (5.6.0):
     - FBSDKCoreKit/Basics (>= 5.6.0)
-  - FBSDKCoreKit/Basics (6.3.0)
-  - Firebase/Analytics (6.20.0):
+  - FBSDKCoreKit/Basics (6.5.1)
+  - Firebase/Analytics (6.23.0):
     - Firebase/Core
-  - Firebase/Auth (6.20.0):
+  - Firebase/Auth (6.23.0):
     - Firebase/CoreOnly
-    - FirebaseAuth (~> 6.5.0)
-  - Firebase/Core (6.20.0):
+    - FirebaseAuth (~> 6.5.2)
+  - Firebase/Core (6.23.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 6.3.1)
-  - Firebase/CoreOnly (6.20.0):
-    - FirebaseCore (= 6.6.4)
-  - FirebaseAnalytics (6.3.1):
+    - FirebaseAnalytics (= 6.4.2)
+  - Firebase/CoreOnly (6.23.0):
+    - FirebaseCore (= 6.6.7)
+  - FirebaseAnalytics (6.4.2):
     - FirebaseCore (~> 6.6)
-    - FirebaseInstallations (~> 1.1)
-    - GoogleAppMeasurement (= 6.3.1)
+    - FirebaseInstallations (~> 1.2)
+    - GoogleAppMeasurement (= 6.4.2)
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
     - GoogleUtilities/Network (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (= 0.3.9011)
-  - FirebaseAuth (6.5.0):
+  - FirebaseAuth (6.5.2):
     - FirebaseAuthInterop (~> 1.0)
     - FirebaseCore (~> 6.6)
     - GoogleUtilities/AppDelegateSwizzler (~> 6.5)
     - GoogleUtilities/Environment (~> 6.5)
     - GTMSessionFetcher/Core (~> 1.1)
   - FirebaseAuthInterop (1.1.0)
-  - FirebaseCore (6.6.4):
+  - FirebaseCore (6.6.7):
     - FirebaseCoreDiagnostics (~> 1.2)
     - FirebaseCoreDiagnosticsInterop (~> 1.2)
     - GoogleUtilities/Environment (~> 6.5)
     - GoogleUtilities/Logger (~> 6.5)
-  - FirebaseCoreDiagnostics (1.2.2):
+  - FirebaseCoreDiagnostics (1.2.4):
     - FirebaseCoreDiagnosticsInterop (~> 1.2)
-    - GoogleDataTransportCCTSupport (~> 2.0)
+    - GoogleDataTransportCCTSupport (~> 3.0)
     - GoogleUtilities/Environment (~> 6.5)
     - GoogleUtilities/Logger (~> 6.5)
     - nanopb (~> 0.3.901)
   - FirebaseCoreDiagnosticsInterop (1.2.0)
-  - FirebaseInstallations (1.1.0):
+  - FirebaseInstallations (1.2.0):
     - FirebaseCore (~> 6.6)
-    - GoogleUtilities/UserDefaults (~> 6.5)
+    - GoogleUtilities/Environment (~> 6.6)
+    - GoogleUtilities/UserDefaults (~> 6.6)
     - PromisesObjC (~> 1.2)
-  - Google-Mobile-Ads-SDK (7.57.0):
+  - Google-Mobile-Ads-SDK (7.58.0):
     - GoogleAppMeasurement (~> 6.0)
-  - GoogleAppMeasurement (6.3.1):
+  - GoogleAppMeasurement (6.4.2):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
     - GoogleUtilities/Network (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (= 0.3.9011)
-  - GoogleDataTransport (5.0.0)
-  - GoogleDataTransportCCTSupport (2.0.0):
-    - GoogleDataTransport (~> 5.0)
+  - GoogleDataTransport (6.0.0)
+  - GoogleDataTransportCCTSupport (3.0.0):
+    - GoogleDataTransport (~> 6.0)
     - nanopb (~> 0.3.901)
   - GoogleMobileAdsMediationFacebook (5.6.0.0):
     - FBAudienceNetwork (= 5.6.0)
     - Google-Mobile-Ads-SDK (>= 7.51.0)
-  - GoogleMobileAdsMediationMoPub (5.11.0.0):
-    - Google-Mobile-Ads-SDK (>= 7.56.0)
-    - mopub-ios-sdk/Core (= 5.11.0)
-    - mopub-ios-sdk/NativeAds (= 5.11.0)
-  - GoogleUtilities/AppDelegateSwizzler (6.5.2):
+  - GoogleMobileAdsMediationMoPub (5.12.0.0):
+    - Google-Mobile-Ads-SDK (>= 7.58.0)
+    - mopub-ios-sdk/Core (= 5.12.0)
+    - mopub-ios-sdk/NativeAds (= 5.12.0)
+  - GoogleUtilities/AppDelegateSwizzler (6.6.0):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (6.5.2)
-  - GoogleUtilities/Logger (6.5.2):
+  - GoogleUtilities/Environment (6.6.0):
+    - PromisesObjC (~> 1.2)
+  - GoogleUtilities/Logger (6.6.0):
     - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (6.5.2):
+  - GoogleUtilities/MethodSwizzler (6.6.0):
     - GoogleUtilities/Logger
-  - GoogleUtilities/Network (6.5.2):
+  - GoogleUtilities/Network (6.6.0):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (6.5.2)"
-  - GoogleUtilities/Reachability (6.5.2):
+  - "GoogleUtilities/NSData+zlib (6.6.0)"
+  - GoogleUtilities/Reachability (6.6.0):
     - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (6.5.2):
+  - GoogleUtilities/UserDefaults (6.6.0):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.3.1)
   - HTMLEntities (3.0.13)
   - HTMLString (4.0.2)
   - IQKeyboardManagerSwift (6.5.5)
   - KYDrawerController (2.1.0)
-  - mopub-ios-sdk/Core (5.11.0)
-  - mopub-ios-sdk/NativeAds (5.11.0):
+  - mopub-ios-sdk/Core (5.12.0)
+  - mopub-ios-sdk/NativeAds (5.12.0):
     - mopub-ios-sdk/Core
   - nanopb (0.3.9011):
     - nanopb/decode (= 0.3.9011)
@@ -106,6 +108,7 @@ PODS:
     - DynamicBlurView (~> 3.0.1)
   - PromisesObjC (1.2.8)
   - PureLayout (2.0.6)
+  - SnapKit (5.0.1)
   - SwiftyJSON (4.3.0)
   - UICircularProgressRing (6.5.0)
 
@@ -125,11 +128,12 @@ DEPENDENCIES:
   - KYDrawerController
   - PopupDialog (~> 1.0.0)
   - PureLayout (~> 2.0.5)
+  - SnapKit (~> 5.0.0)
   - SwiftyJSON (~> 4.0)
   - UICircularProgressRing
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - Alamofire
     - Charts
     - Crashlytics
@@ -161,6 +165,7 @@ SPEC REPOS:
     - PopupDialog
     - PromisesObjC
     - PureLayout
+    - SnapKit
     - SwiftyJSON
     - UICircularProgressRing
 
@@ -175,40 +180,41 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
-  Charts: 74c9f256eaf0460c0c416522d1cf8c634ea6b286
+  Charts: 40a08591df1f8ad5c223ddedfb1a06da92f24f7c
   Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
   DynamicBlurView: b1df5415f9bd31897549e5d7077e5ec120a4d636
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
   FBAudienceNetwork: 1ea63543665445a3a5b4a059e8210a343b6ab3c1
-  FBSDKCoreKit: 5d55c8f3007c9c49b793617b9102e46355fc7e17
-  Firebase: fe7f74012742ab403451dd283e6909b8f1fb348a
-  FirebaseAnalytics: 572e467f3d977825266e8ccd52674aa3e6f47eac
-  FirebaseAuth: 648892fd0afeb27ef97c1d2e667329855f1004bc
+  FBSDKCoreKit: 3ecb604427e115bd90ff7fc62ee1e30ebd12285b
+  Firebase: 585ae467b3edda6a5444e788fda6888f024d8d6f
+  FirebaseAnalytics: 558f7a03d19de451093032c806f39d5f9dff096e
+  FirebaseAuth: e50319ecc114acf93c2b9581e15d6604ddd7eeb2
   FirebaseAuthInterop: a0f37ae05833af156e72028f648d313f7e7592e9
-  FirebaseCore: ed0a24c758a57c2b88c5efa8e6a8195e868af589
-  FirebaseCoreDiagnostics: e9b4cd8ba60dee0f2d13347332e4b7898cca5b61
+  FirebaseCore: a2788a0d5f6c1dff17b8f79b4a73654a8d4bfdbd
+  FirebaseCoreDiagnostics: b59c024493a409f8aecba02c99928d0d8431d159
   FirebaseCoreDiagnosticsInterop: 296e2c5f5314500a850ad0b83e9e7c10b011a850
-  FirebaseInstallations: 575cd32f2aec0feeb0e44f5d0110a09e5e60b47b
-  Google-Mobile-Ads-SDK: ec897018b9ab9b447e7aa4876e7f75aba13ba2de
-  GoogleAppMeasurement: c29d405ff76e18551b5d158eaba6753fda8c7542
-  GoogleDataTransport: a857c6a002d201b524dd4bc2ed7e7355ed07e785
-  GoogleDataTransportCCTSupport: 32f75fbe904c82772fcbb6b6bd4525bfb6f2a862
+  FirebaseInstallations: 2119fb3e46b0a88bfdbf12562f855ee3252462fa
+  Google-Mobile-Ads-SDK: 7052557293c75c676db55feb707ace9b790f32c1
+  GoogleAppMeasurement: 2253e99c1f22638cf234c059144660c338ad76c3
+  GoogleDataTransport: 061fe7d9b476710e3cd8ea51e8e07d8b67c2b420
+  GoogleDataTransportCCTSupport: 0f39025e8cf51f168711bd3fb773938d7e62ddb5
   GoogleMobileAdsMediationFacebook: 2306b9822775e4ddb50c29fc758d6b45efcf6a72
-  GoogleMobileAdsMediationMoPub: 5799a5f4a192705533478fbe0bc65061c5294edb
-  GoogleUtilities: ad0f3b691c67909d03a3327cc205222ab8f42e0e
+  GoogleMobileAdsMediationMoPub: 56a395e7459d7b70a1e58ae1f0e256dfe63a11ad
+  GoogleUtilities: 39530bc0ad980530298e9c4af8549e991fd033b1
   GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
   HTMLEntities: 83738511518b3f29cf9644d0877505b8d3d1a849
   HTMLString: d346ba551d1b7e687190c948ec0c2ddaf4057544
   IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
   KYDrawerController: baad0e63b09c0cb564bd48f0f7f70f45d9176ebc
-  mopub-ios-sdk: 292b8e9a55a2e72a34afc04ec01e85486af46240
+  mopub-ios-sdk: bb61d5741ba16c6a78e5a54e37bc60ef8c9a80a8
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   PopupDialog: 28f29a1ffe9e1fab32fb258b53d56ca31670e8a2
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   PureLayout: f25f0bb904d5ccfe6e31da3cb869185259f02e0d
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
   UICircularProgressRing: e6852e8f88e296cbbbe2720cccb55241acda6708
 
-PODFILE CHECKSUM: c47253bacc9a0467c5edb6237ff2b446f6537098
+PODFILE CHECKSUM: 83e861ebb73d4fe40dad47c61800722243885ddc
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.9.1

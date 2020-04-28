@@ -21,7 +21,6 @@
 @property (nonatomic, readonly) NSURL *clickThroughURL;
 @property (nonatomic, readonly) MPVASTDurationOffset *skipOffset;
 @property (nonatomic, readonly) NSString *callToActionButtonTitle;
-@property (nonatomic, readonly) NSString *skipButtonTitle;
 @property (nonatomic, readonly) NSArray<MPVASTIndustryIcon *> *industryIcons;
 @property (nonatomic, assign) BOOL isRewarded; // default is NO
 @property (nonatomic, assign) BOOL enableEarlyClickthroughForNonRewardedVideo; // default is NO

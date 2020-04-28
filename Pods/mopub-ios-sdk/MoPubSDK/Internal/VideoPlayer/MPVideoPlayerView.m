@@ -35,6 +35,7 @@ NSTimeInterval const kPlayTimeTolerance = 0.1;
 @property (nonatomic, assign) BOOL hasStartedPlaying; // set to YES after `play` is called for the first time; never set back to NO again
 @property (nonatomic, assign) BOOL didPlayToEndTime; // set to YES after the video ended
 @property (nonatomic, assign) BOOL isAutoPlayPauseEnabled;
+@property (nonatomic, assign) BOOL didFireStartEvent;
 @property (nonatomic, strong) UIProgressView *progressBar;
 @property (nonatomic, strong) NSLayoutConstraint *progressBarTopConstraint;
 
@@ -60,11 +61,11 @@ NSTimeInterval const kPlayTimeTolerance = 0.1;
     [self.notificationCenter removeObserver:self];
     [self.notificationCenter removeObserver:self.endTimeObserverToken];
     [self.notificationCenter removeObserver:self.audioSessionInterruptionObserverToken];
-    
+
     // Note: disable KVO for the layer before `[self.player replaceCurrentItemWithPlayerItem:nil];`
     // otherwise app will crash because the progress bar would have been deallocated.
     [self.playerLayer removeObserver:self forKeyPath:NSStringFromSelector(@selector(videoRect))];
-    
+
     // Audio session might be messed up without setting current item to nil.
     // Note: remove current item from KVO first to avoid crash!
     [self.player.currentItem removeObserver:self forKeyPath:NSStringFromSelector(@selector(duration))];
@@ -96,7 +97,7 @@ NSTimeInterval const kPlayTimeTolerance = 0.1;
         return;
     }
     self.didLoadVideo = YES;
-    
+
     [self setUpVideoPlayer];
     [self setUpProgressBar];
 }
@@ -104,14 +105,14 @@ NSTimeInterval const kPlayTimeTolerance = 0.1;
 - (void)play {
     if (self.hasStartedPlaying == NO) {
         self.hasStartedPlaying = YES;
-        
+
         [self observeProgressTimeForTracking];
         [self observeBoundaryTimeForTracking];
         [self observeBoundaryTimeForIndustryIcons:self.videoConfig.industryIcons
                                     videoDuration:self.videoDuration];
         [self enableAppLifeCycleEventObservationForAutoPlayPause];
     }
-    
+
     [self.player play];
 }
 
@@ -172,7 +173,7 @@ NSTimeInterval const kPlayTimeTolerance = 0.1;
         MPLogDebug(@"video player has been set up");
         return;
     }
-    
+
     AVPlayer *player = [AVPlayer playerWithURL:self.videoURL];
     // `AVPlayerStatusReadyToPlay` alone is not reliable for observing video duration (could
     // still be NaN when ready to play). Observe the duration of the player item instead.
@@ -182,7 +183,7 @@ NSTimeInterval const kPlayTimeTolerance = 0.1;
                             context:KVOContext];
     self.playerLayer.player = player;
     self.playerLayer.videoGravity = AVLayerVideoGravityResizeAspect;
-    
+
     [self observeProgressTimeForProgressBar];
 }
 
@@ -191,17 +192,17 @@ NSTimeInterval const kPlayTimeTolerance = 0.1;
         MPLogDebug(@"video player progress bar has been set up");
         return;
     }
-    
+
     // KVO for porgress bar layout
     [self.playerLayer addObserver:self
                        forKeyPath:NSStringFromSelector(@selector(videoRect))
                           options:0
                           context:KVOContext];
-    
+
     UIProgressView *progressBar = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
     self.progressBar = progressBar;
     self.progressBar.progressTintColor = [UIColor mp_colorFromHexString:kProgressBarFillColor alpha:1];
-    
+
     // Progress bar ignores the safe area of the player view because the video player uses the whole
     // area that could be more than the safe area (very likely in landscape mode), and we don't want
     // the progress bar being somewhere in the middle of the video.
@@ -217,11 +218,11 @@ NSTimeInterval const kPlayTimeTolerance = 0.1;
 - (void)updateProgressBarProgress {
     NSTimeInterval progress = CMTimeGetSeconds(self.player.currentItem.currentTime);
     NSTimeInterval duration = CMTimeGetSeconds(self.player.currentItem.duration);
-    
+
     if (duration <= 0) {
         return;
     }
-    
+
     [self.progressBar setProgress:(progress / duration) animated:YES];
 }
 
@@ -235,7 +236,7 @@ NSTimeInterval const kPlayTimeTolerance = 0.1;
         MPLogError(@"KVO context not expected");
         return;
     }
-    
+
     if (object == self.player.currentItem
         && [keyPath isEqualToString:NSStringFromSelector(@selector(duration))]) {
         // `AVPlayerStatusReadyToPlay` alone is not reliable for observing video duration (could
@@ -262,7 +263,7 @@ NSTimeInterval const kPlayTimeTolerance = 0.1;
                && [keyPath isEqualToString:NSStringFromSelector(@selector(videoRect))]) {
         dispatch_async(dispatch_get_main_queue(), ^{
             self.progressBar.hidden = NO;
-            
+
             // put progress to the bottom of the video
             CGFloat y = CGRectGetMaxY(self.playerLayer.videoRect) - self.progressBar.frame.size.height;
             self.progressBarTopConstraint.constant = y;
@@ -278,7 +279,7 @@ NSTimeInterval const kPlayTimeTolerance = 0.1;
         MPLogDebug(@"Player progress time has been observed for progress bar");
         return;
     }
-    
+
     __weak __typeof__(self) weakSelf = self;
     [self.player addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(0.1, kPreferredTimescale)
                                               queue:dispatch_get_main_queue()
@@ -295,32 +296,32 @@ NSTimeInterval const kPlayTimeTolerance = 0.1;
         MPLogDebug(@"Player progress time has been observed for tracking");
         return;
     }
-    
+
     NSTimeInterval duration = CMTimeGetSeconds(self.player.currentItem.duration);
     NSMutableArray<NSValue *> *checkpoints = [NSMutableArray new];
-    
+
     for (MPVASTTrackingEvent *event in [self.videoConfig trackingEventsForKey:MPVideoEventProgress]) {
         NSTimeInterval time = [event.progressOffset timeIntervalForVideoWithDuration:duration];
         [checkpoints addObject:[NSValue valueWithCMTime:CMTimeMakeWithSeconds(time, kPreferredTimescale)]];
     }
-    
+
     // if `checkpoints` is empty, `addBoundaryTimeObserverForTimes:queue:usingBlock:` will crash
     if (checkpoints.count == 0) {
         return;
     }
-    
+
     __weak __typeof__(self) weakSelf = self;
     void (^observationHandler)(void) = ^void() {
         __typeof__(self) strongSelf = weakSelf;
         if (strongSelf == nil) {
             return;
         }
-        
+
         [strongSelf.delegate videoPlayerView:strongSelf
                    videoDidReachProgressTime:CMTimeGetSeconds(strongSelf.player.currentTime)
                                     duration:CMTimeGetSeconds(strongSelf.player.currentItem.duration)];
     };
-    
+
     // `addBoundaryTimeObserverForTimes` has undefined behavior with concurrent queue obtained
     // from `dispatch_get_global_queue`, thus use the main queue here since it's serial.
     self.progressTrackingTimeObserver = [self.player addBoundaryTimeObserverForTimes:checkpoints
@@ -336,7 +337,7 @@ NSTimeInterval const kPlayTimeTolerance = 0.1;
         MPLogDebug(@"Player boundary time has been observed");
         return;
     }
-    
+
     // `addBoundaryTimeObserverForTimes` might skip event when observing the ending moment (playing
     // the last frame). This is probably similar to how `NSTimer` works with run loop. As a result,
     // `AVPlayerItemDidPlayToEndTimeNotification` is observed instead, and `duration` is not added
@@ -351,22 +352,24 @@ NSTimeInterval const kPlayTimeTolerance = 0.1;
                                         [NSValue valueWithCMTime:firstQuarterTime],
                                         [NSValue valueWithCMTime:halfTime],
                                         [NSValue valueWithCMTime:thirdQuarterTime]];
-    
+
     __weak __typeof__(self) weakSelf = self;
     void (^observationHandler)(void) = ^void() {
         __typeof__(self) strongSelf = weakSelf;
-        if (strongSelf) {
-            NSTimeInterval videoProgress = CMTimeGetSeconds(strongSelf.player.currentTime);
-            if (ABS(videoProgress - CMTimeGetSeconds(startTime)) < kPlayTimeTolerance) {
-                [strongSelf.delegate videoPlayerViewDidStartVideo:strongSelf duration:durationInSeconds];
-            } else {
-                [strongSelf.delegate videoPlayerView:strongSelf
-                           videoDidReachProgressTime:videoProgress
-                                            duration:durationInSeconds];
-            }
+        if (strongSelf == nil) {
+            return;
         }
+
+        if (strongSelf.didFireStartEvent == NO) { // fire Start at first and once only
+            strongSelf.didFireStartEvent = YES;
+            [strongSelf.delegate videoPlayerViewDidStartVideo:strongSelf duration:durationInSeconds];
+        }
+
+        [strongSelf.delegate videoPlayerView:strongSelf
+                   videoDidReachProgressTime:CMTimeGetSeconds(strongSelf.player.currentTime)
+                                    duration:durationInSeconds];
     };
-    
+
     // `addBoundaryTimeObserverForTimes` has undefined behavior with concurrent queue obtained
     // from `dispatch_get_global_queue`, thus use the main queue here since it's serial.
     self.boundaryTrackingTimeObserver = [self.player addBoundaryTimeObserverForTimes:checkpoints
@@ -381,7 +384,7 @@ NSTimeInterval const kPlayTimeTolerance = 0.1;
         weakSelf.didPlayToEndTime = YES;
         [weakSelf.delegate videoPlayerViewDidCompleteVideo:weakSelf duration:durationInSeconds];
     }];
-    
+
     self.audioSessionInterruptionObserverToken
     = [self.notificationCenter
        addObserverForName:AVAudioSessionInterruptionNotification
@@ -407,7 +410,7 @@ NSTimeInterval const kPlayTimeTolerance = 0.1;
     if (industryIcons.count == 0) {
         return;
     }
-    
+
     // guarantee the icons are shown in chronological order
     NSMutableArray<MPVASTIndustryIcon *> *sortedIndustryIcons = [[NSMutableArray alloc] initWithArray:industryIcons];
     [sortedIndustryIcons sortUsingComparator:^NSComparisonResult(MPVASTIndustryIcon *a, MPVASTIndustryIcon *b) {
@@ -421,10 +424,10 @@ NSTimeInterval const kPlayTimeTolerance = 0.1;
             return NSOrderedSame;
         }
     }];
-    
+
     NSMutableArray<NSValue *> *showIconCheckpoints = [NSMutableArray new];
     NSMutableArray<NSValue *> *hideIconCheckpoints = [NSMutableArray new];
-    
+
     for (MPVASTIndustryIcon *icon in sortedIndustryIcons) {
         NSTimeInterval timeToShowIcon = [icon.offset timeIntervalForVideoWithDuration:videoDuration];
         if (timeToShowIcon == 0) {
@@ -432,13 +435,13 @@ NSTimeInterval const kPlayTimeTolerance = 0.1;
         }
         CMTime showIconTime = CMTimeMakeWithSeconds(timeToShowIcon, kPreferredTimescale);
         [showIconCheckpoints addObject:[NSValue valueWithCMTime:showIconTime]];
-        
+
         if (icon.duration > 0) { // duration is optional and can be 0
             CMTime hideIconTime = CMTimeMakeWithSeconds(timeToShowIcon + icon.duration, kPreferredTimescale);
             [hideIconCheckpoints addObject:[NSValue valueWithCMTime:hideIconTime]];
         }
     }
-    
+
     __weak __typeof__(self) weakSelf = self;
     __block NSUInteger iconIndex = 0;
     void (^showIconHandler)(void) = ^void() {
@@ -446,11 +449,11 @@ NSTimeInterval const kPlayTimeTolerance = 0.1;
         if (strongSelf == nil || iconIndex >= sortedIndustryIcons.count) {
             return;
         }
-        
+
         [strongSelf.delegate videoPlayerView:strongSelf showIndustryIcon:sortedIndustryIcons[iconIndex]];
         iconIndex++;
     };
-    
+
     void (^hideIconHandler)(void) = ^void() {
         __typeof__(self) strongSelf = weakSelf;
         if (strongSelf == nil) {
@@ -458,7 +461,7 @@ NSTimeInterval const kPlayTimeTolerance = 0.1;
         }
         [strongSelf.delegate videoPlayerViewHideIndustryIcon:strongSelf];
     };
-    
+
     // `addBoundaryTimeObserverForTimes` has undefined behavior with concurrent queue obtained
     // from `dispatch_get_global_queue`, thus use the main queue here since it's serial.
     self.industryIconShowTimeObserver = [self.player addBoundaryTimeObserverForTimes:showIconCheckpoints

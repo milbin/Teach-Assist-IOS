@@ -8,7 +8,6 @@
 
 #import "MPNativePositionSource.h"
 #import "MPConstants.h"
-#import "MPIdentityProvider.h"
 #import "MPAdPositioning.h"
 #import "MPClientAdPositioning.h"
 #import "MPLogging.h"

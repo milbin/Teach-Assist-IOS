@@ -120,5 +120,6 @@ NSString * const kImpressionDataCurrencyKey           = @"currency";
 NSString * const kImpressionDataCountryKey            = @"country";
 NSString * const kImpressionDataNetworkNameKey        = @"network_name";
 NSString * const kImpressionDataNetworkPlacementIDKey = @"network_placement_id";
+NSString * const kImpressionDataAppVersionKey         = @"app_version";
 NSString * const kImpressionDataPublisherRevenueKey   = @"publisher_revenue";
 NSString * const kImpressionDataPrecisionKey          = @"precision";

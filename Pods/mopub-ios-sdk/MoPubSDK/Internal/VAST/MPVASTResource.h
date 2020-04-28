@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "MPVASTModel.h"
 
 /**
@@ -47,5 +48,17 @@ typedef NS_ENUM(NSUInteger, MPVASTResourceType) {
 - (BOOL)isStaticCreativeTypeImage;
 
 - (BOOL)isStaticCreativeTypeJavaScript;
+
+/**
+ Some types of VAST resource content need to be embedded into an HTML template before it can be
+ loaded into a web page as HTML source. The returned value is the embedded ready-to-load version
+ of the VAST resource.
+
+ Note: For static image resource, add a tap gesture recognizer to handle click-through. For all
+ other resource types, let the web view navigtion delegate handle the click-through.
+ */
++ (NSString *)fullHTMLRespresentationForContent:(NSString *)content
+                                           type:(MPVASTResourceType)type
+                                  containerSize:(CGSize)containerSize;
 
 @end

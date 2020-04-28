@@ -37,6 +37,7 @@ typedef NS_ENUM(NSInteger, MPImpressionDataPrecision) {
 @property (nonatomic, assign, readonly) MPImpressionDataPrecision precision;
 @property (nonatomic, copy, readonly) NSString * _Nullable networkName;
 @property (nonatomic, copy, readonly) NSString * _Nullable networkPlacementID;
+@property (nonatomic, copy, readonly) NSString * _Nullable appVersion;
 
 @property (nonatomic, copy, readonly) NSData * _Nullable jsonRepresentation;
 

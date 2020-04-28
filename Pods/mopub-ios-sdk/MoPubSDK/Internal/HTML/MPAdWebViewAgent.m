@@ -32,7 +32,6 @@
 @property (nonatomic, strong) MPAdConfiguration *configuration;
 @property (nonatomic, strong) id<MPAdDestinationDisplayAgent> destinationDisplayAgent;
 @property (nonatomic, assign) BOOL shouldHandleRequests;
-@property (nonatomic, strong) id<MPAdAlertManagerProtocol> adAlertManager;
 @property (nonatomic, assign) BOOL userInteractedWithWebView;
 @property (nonatomic, strong) MPUserInteractionGestureRecognizer *userInteractionRecognizer;
 @property (nonatomic, assign) CGRect frame;
@@ -57,7 +56,6 @@
         self.delegate = delegate;
         self.shouldHandleRequests = YES;
         self.didFireClickImpression = NO;
-        self.adAlertManager = [[MPCoreInstanceProvider sharedProvider] buildMPAdAlertManagerWithDelegate:self];
 
         self.userInteractionRecognizer = [[MPUserInteractionGestureRecognizer alloc] initWithTarget:self action:@selector(handleInteraction:)];
         self.userInteractionRecognizer.cancelsTouchesInView = NO;
@@ -88,18 +86,6 @@
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
     return YES;
-}
-
-#pragma mark - <MPAdAlertManagerDelegate>
-
-- (UIViewController *)viewControllerForPresentingMailVC
-{
-    return [self.delegate viewControllerForPresentingModalView];
-}
-
-- (void)adAlertManagerDidTriggerAlert:(MPAdAlertManager *)manager
-{
-    [self.adAlertManager processAdAlertOnce];
 }
 
 #pragma mark - Public
@@ -139,17 +125,15 @@
     [self.view loadHTMLString:[configuration adResponseHTMLString]
                       baseURL:[NSURL URLWithString:[MPAPIEndpoints baseURL]]
      ];
-
-    [self initAdAlertManager];
 }
 
 - (void)invokeJavaScriptForEvent:(MPAdWebViewEvent)event
 {
     switch (event) {
         case MPAdWebViewEventAdDidAppear:
-            // For banner, viewability tracker is handled right after adView is initialized (not here).
+            // For banner, viewability tracker is handled in @c MPBannerCustomEventAdapter (not here).
             // For interstitial (handled here), we start tracking viewability if it's not started during adView initialization.
-            if (![self shouldStartViewabilityDuringInitialization]) {
+            if ([self isInterstitialAd]) {
                 [self startViewabilityTracker];
             }
 
@@ -296,32 +280,12 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     self.viewabilityTracker = [[MPViewabilityTracker alloc]
                                initWithWebView:self.view
                                isVideo:self.configuration.isVastVideoPlayer
-                               startTrackingImmediately:[self shouldStartViewabilityDuringInitialization]];
-}
-
-- (BOOL)shouldStartViewabilityDuringInitialization
-{
-    // If viewabile impression tracking experiment is enabled, we defer viewability trackers until
-    // ad view is at least x pixels on screen for y seconds, where x and y are configurable values defined in server.
-    if (self.adConfiguration.visibleImpressionTrackingEnabled) {
-        return NO;
-    }
-
-    return ![self isInterstitialAd];
+                               startTrackingImmediately:NO];
 }
 
 - (BOOL)isInterstitialAd
 {
     return self.configuration.isFullscreenAd;
-}
-
-- (void)initAdAlertManager
-{
-    self.adAlertManager.adConfiguration = self.configuration;
-    self.adAlertManager.adUnitId = [self.delegate adUnitId];
-    self.adAlertManager.targetAdView = self.view;
-    self.adAlertManager.location = [self.delegate location];
-    [self.adAlertManager beginMonitoringAlerts];
 }
 
 @end

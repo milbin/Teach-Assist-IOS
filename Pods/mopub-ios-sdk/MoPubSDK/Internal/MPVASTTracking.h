@@ -10,6 +10,8 @@
 #import "MPVASTError.h"
 #import "MPVideoConfig.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @protocol MPVASTTracking <NSObject>
 
 - (instancetype)initWithVideoConfig:(MPVideoConfig *)videoConfig videoURL:(NSURL *)videoURL;
@@ -44,6 +46,12 @@ Register the video view for viewability tracking.
 - (void)handleVideoProgressEvent:(NSTimeInterval)videoTimeOffset videoDuration:(NSTimeInterval)videoDuration;
 
 /**
+ Send tracking URL's that are not defined in @c MPVideoConfig, such as the click tracking and impression
+ tracking URL's defined in a @c MPAdConfiguration that is not available in @c MPVideoConfig.
+ */
+- (void)uniquelySendURLs:(NSArray<NSURL *> *)urls;
+
+/**
  Call this when a VAST related error happens.
  */
 - (void)handleVASTError:(MPVASTError)error videoTimeOffset:(NSTimeInterval)videoTimeOffset;
@@ -52,3 +60,5 @@ Register the video view for viewability tracking.
 
 @interface MPVASTTracking : NSObject <MPVASTTracking>
 @end
+
+NS_ASSUME_NONNULL_END

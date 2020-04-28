@@ -27,7 +27,7 @@
 
 - (BOOL)enableAutomaticImpressionAndClickTracking
 {
-    return NO;
+    return YES;
 }
 
 - (void)requestAdWithSize:(CGSize)size customEventInfo:(NSDictionary *)info adMarkup:(NSString *)adMarkup
@@ -47,11 +47,6 @@
 }
 
 #pragma mark - MPAdWebViewAgentDelegate
-
-- (CLLocation *)location
-{
-    return [self.delegate location];
-}
 
 - (NSString *)adUnitId
 {

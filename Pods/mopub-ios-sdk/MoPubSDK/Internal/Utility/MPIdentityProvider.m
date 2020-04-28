@@ -113,9 +113,7 @@ static BOOL gFrequencyCappingIdUsageEnabled = YES;
 
     NSString * identifier = [[NSUserDefaults standardUserDefaults] objectForKey:MOPUB_IDENTIFIER_DEFAULTS_KEY];
     if (identifier == nil) {
-        CFUUIDRef uuidObject = CFUUIDCreate(kCFAllocatorDefault);
-        NSString *uuidStr = (NSString *)CFBridgingRelease(CFUUIDCreateString(kCFAllocatorDefault, uuidObject));
-        CFRelease(uuidObject);
+        NSString *uuidStr = [[NSUUID UUID] UUIDString];
 
         identifier = [mopubPrefix stringByAppendingString:[uuidStr uppercaseString]];
         [[NSUserDefaults standardUserDefaults] setObject:identifier forKey:MOPUB_IDENTIFIER_DEFAULTS_KEY];

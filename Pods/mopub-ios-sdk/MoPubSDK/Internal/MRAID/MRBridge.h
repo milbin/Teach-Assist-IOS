@@ -28,6 +28,7 @@
 - (instancetype)initWithWebView:(MPWebView *)webView delegate:(id<MRBridgeDelegate>)delegate;
 
 - (void)loadHTMLString:(NSString *)HTML baseURL:(NSURL *)baseURL;
+- (void)loadHTMLUrl:(NSURL *)url;
 
 - (void)fireReadyEvent;
 - (void)fireChangeEventForProperty:(MRProperty *)property;

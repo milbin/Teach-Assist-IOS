@@ -77,8 +77,9 @@
 /**
  * A `CLLocation` object representing a user's location that should be passed to the MoPub ad server
  * to receive more relevant advertising.
+ * @deprecated This API is deprecated and will be removed in a future version.
  */
-@property (nonatomic, copy) CLLocation *location;
+@property (nonatomic, copy) CLLocation *location __attribute__((deprecated("This API is deprecated and will be removed in a future version.")));
 
 /**
  * An optional dictionary containing extra local data.

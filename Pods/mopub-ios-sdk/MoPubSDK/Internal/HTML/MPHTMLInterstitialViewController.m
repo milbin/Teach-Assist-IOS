@@ -94,16 +94,6 @@
 
 #pragma mark - MPAdWebViewAgentDelegate
 
-- (CLLocation *)location
-{
-    return [self.delegate location];
-}
-
-- (NSString *)adUnitId
-{
-    return [self.delegate adUnitId];
-}
-
 - (UIViewController *)viewControllerForPresentingModalView
 {
     return self;

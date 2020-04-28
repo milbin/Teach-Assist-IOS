@@ -39,8 +39,10 @@
  * into `MPAdView`.
  *
  * You may use this to inform third-party ad networks of the user's location.
+ *
+ * @deprecated This API is deprecated and will be removed in a future version.
  */
-- (CLLocation *)location;
+- (CLLocation *)location __attribute__((deprecated("This API is deprecated and will be removed in a future version.")));
 
 /** @name Banner Ad Event Callbacks - Fetching Ads */
 

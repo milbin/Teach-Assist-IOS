@@ -9,8 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "MPGlobal.h"
 #import "MPImpressionData.h"
+#import "MPVideoEvent.h"
 
 @class MPRewardedVideoReward;
+@class MPVASTTrackingEvent;
 
 typedef NS_ENUM(NSUInteger, MPAfterLoadResult) {
     MPAfterLoadResultMissingAdapter,
@@ -49,6 +51,7 @@ extern NSString * const kRewardedCurrenciesMetadataKey;
 extern NSString * const kRewardedPlayableDurationMetadataKey;
 extern NSString * const kRewardedPlayableRewardOnClickMetadataKey;
 extern NSString * const kImpressionDataMetadataKey;
+extern NSString * const kVASTVideoTrackersMetadataKey;
 
 extern NSString * const kFullAdTypeMetadataKey;
 extern NSString * const kOrientationTypeMetadataKey;
@@ -102,7 +105,7 @@ extern NSString * const kBannerImpressionMinPixelMetadataKey;
 @property (nonatomic, assign) NSInteger nativeImpressionMinVisiblePercent; // The pixels Metadata takes priority over percentage, but percentage is left for backwards compatibility
 @property (nonatomic, assign) NSTimeInterval nativeImpressionMinVisibleTimeInterval;
 @property (nonatomic, assign) NSTimeInterval nativeVideoMaxBufferingTime;
-@property (nonatomic) NSDictionary *nativeVideoTrackers;
+@property (nonatomic) NSDictionary<MPVideoEvent, NSArray<MPVASTTrackingEvent *> *> *vastVideoTrackers;
 @property (nonatomic, readonly) NSArray<MPRewardedVideoReward *> *availableRewards;
 @property (nonatomic, strong) MPRewardedVideoReward *selectedReward;
 @property (nonatomic, copy) NSString *rewardedVideoCompletionUrl;
@@ -111,16 +114,20 @@ extern NSString * const kBannerImpressionMinPixelMetadataKey;
 @property (nonatomic, copy) NSString *advancedBidPayload;
 @property (nonatomic, strong) MPImpressionData *impressionData;
 @property (nonatomic, assign) BOOL enableEarlyClickthroughForNonRewardedVideo;
+@property (nonatomic, readonly) BOOL isMoVideo;
+/**
+ MRAID `useCustomClose()` functionality is available for use.
+ */
+@property (nonatomic, readonly) BOOL mraidAllowCustomClose;
 
 /**
  Unified ad unit format in its raw string representation.
  */
 @property (nonatomic, copy) NSString *format;
 
-// viewable impression tracking experiment
+// viewable impression tracking
 @property (nonatomic) NSTimeInterval impressionMinVisibleTimeInSec;
 @property (nonatomic) CGFloat impressionMinVisiblePixels;
-@property (nonatomic) BOOL visibleImpressionTrackingEnabled;
 
 /**
  When there is no actual reward, `availableRewards` contains a default reward with the type

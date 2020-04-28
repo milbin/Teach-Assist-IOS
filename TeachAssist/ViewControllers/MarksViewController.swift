@@ -2,6 +2,7 @@ import UIKit
 import UICircularProgressRing
 import HTMLEntities
 import GoogleMobileAds
+import SnapKit
 
 class MarksViewController: UIViewController, UITextFieldDelegate {
     var Mark:Double? = nil
@@ -270,7 +271,12 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
             bottomAdViewContainer.removeFromSuperview()
             bottomAdView.removeFromSuperview()
         }
-
+        
+        
+        scrollView.snp.makeConstraints { (make) -> Void in
+            make.leading.equalTo(self.view.snp.leading)
+            make.trailing.equalTo(self.view.snp.trailing).offset(50)
+        }
         
         
     }

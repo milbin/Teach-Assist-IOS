@@ -34,7 +34,6 @@ extern NSString *const kAdPrivacyIconClickUrlKey;
 
 extern NSString *const kPrivacyIconImageName;
 extern NSString *const kPrivacyIconTapDestinationURL;
-extern NSString *const kImpressionTrackerURLsKey;
 extern NSString *const kDefaultActionURLKey;
 extern NSString *const kClickTrackerURLKey;
 

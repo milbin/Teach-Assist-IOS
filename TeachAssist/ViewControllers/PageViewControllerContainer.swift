@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SnapKit
 class PageViewControllerContainer: UIViewController{
     var Mark:Double? = nil
     var courseNumber:Int? = nil
@@ -61,8 +62,18 @@ class PageViewControllerContainer: UIViewController{
         vc.ta = ta
         vc.vcTitle = vcTitle
         addChild(vc)
-        //vc.view.frame = ...  // or, better, turn off `translatesAutoresizingMaskIntoConstraints` and then define constraints for this subview
+        
         containerView.addSubview(vc.view)
+        vc.view.frame = containerView.frame
+        vc.view.translatesAutoresizingMaskIntoConstraints = false
+        vc.view.snp.makeConstraints { (make) in
+            make.top.equalTo(containerView.snp.top)
+            make.bottom.equalTo(containerView.snp.bottom)
+            make.leading.equalTo(containerView.snp.leading)
+            make.trailing.equalTo(containerView.snp.trailing)
+            
+        }
+        //vc.view.frame = ...  // or, better, turn off `translatesAutoresizingMaskIntoConstraints` and then define constraints for this subview
         vc.didMove(toParent: self)
     }
     

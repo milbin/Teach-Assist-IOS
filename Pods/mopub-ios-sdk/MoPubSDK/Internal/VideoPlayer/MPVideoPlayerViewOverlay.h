@@ -26,11 +26,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) NSString *callToActionButtonTitle;
 
 /**
- Title of the Skip button. If nil or empty, the button is hidden.
- */
-@property (nonatomic, readonly) NSString *skipButtonTitle;
-
-/**
  Whether this overlay is for a rewarded video.
  */
 @property (nonatomic, readonly) BOOL isRewarded;
@@ -54,7 +49,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) BOOL enableEarlyClickthroughForNonRewardedVideo;
 
 - (instancetype)initWithCallToActionButtonTitle:(NSString * _Nullable)callToActionButtonTitle
-                                skipButtonTitle:(NSString * _Nullable)skipButtonTitle
                                      isRewarded:(BOOL)isRewarded
                           isClickthroughAllowed:(BOOL)isClickthroughAllowed
                                  hasCompanionAd:(BOOL)hasCompanionAd
@@ -66,7 +60,7 @@ NS_ASSUME_NONNULL_BEGIN
  @c MPVideoPlayerView has an overlay with a subset of video progress indicator, skip button, close
  button, and other UI elements. Since there are different kinds of overlay in different scenarios,
  this @c MPVideoPlayerViewOverlay protocol is here to provide a common interface for all the overlays.
- 
+
  See documentation at https://developers.mopub.com/dsps/ad-formats/video/
  */
 @protocol MPVideoPlayerViewOverlay <NSObject>
@@ -90,7 +84,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  @c MPVideoPlayerView calls this when the first frame of the video is played.
- 
+
  Note: The provided video duration is the duration of the actual video instead of the duration
  provided in the ad response meta data (which could be inaccurate or totally wrong).
  */

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "MPActivityViewControllerHelper+TweetShare.h"
+#import "MPAdConfiguration.h"
 #import "MPURLResolver.h"
 #import "MPProgressOverlayView.h"
 #import "MOPUBDisplayAgentType.h"

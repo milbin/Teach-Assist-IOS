@@ -23,6 +23,7 @@ target 'TeachAssist' do
   pod 'Google-Mobile-Ads-SDK'
   pod 'GoogleMobileAdsMediationFacebook', '~> 5.6.0.0'
   pod 'GoogleMobileAdsMediationMoPub'
+  pod 'SnapKit', '~> 5.0.0'
 
 
 

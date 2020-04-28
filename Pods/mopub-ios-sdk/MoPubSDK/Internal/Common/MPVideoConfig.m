@@ -23,7 +23,6 @@
 @property (nonatomic, strong) NSArray<NSURL *> *impressionURLs;
 @property (nonatomic, strong) MPVASTDurationOffset *skipOffset;
 @property (nonatomic, strong) NSString *callToActionButtonTitle;
-@property (nonatomic, strong) NSString *skipButtonTitle;
 @property (nonatomic, strong) NSArray<MPVASTCompanionAd *> *companionAds;
 
 @end
@@ -102,16 +101,6 @@
         _callToActionButtonTitle = kVASTDefaultCallToActionButtonTitle;
     }
 
-    if (candidate.skipOffset == nil) {
-        _skipButtonTitle = nil;
-    } else {
-        if (candidate.skipButtonTitle.length > 0) {
-            _skipButtonTitle = candidate.skipButtonTitle;
-        } else {
-            _skipButtonTitle = kVASTDefaultSkipButtonTitle;
-        }
-    }
-
     // set up the tracking event table
     NSMutableDictionary<MPVideoEvent, NSArray<MPVASTTrackingEvent *> *> *table
     = [NSMutableDictionary dictionaryWithDictionary:candidate.linearAd.trackingEvents];
@@ -158,7 +147,6 @@
             MPVASTInline *inlineAd = ad.inlineAd;
             MPVideoPlaybackCandidate *candidate = [[MPVideoPlaybackCandidate alloc] init];
             candidate.callToActionButtonTitle = [self extensionFromInlineAd:inlineAd forKey:kVASTMoPubCTATextKey][kVASTAdTextKey];
-            candidate.skipButtonTitle = [self extensionFromInlineAd:inlineAd forKey:kVASTMoPubSkipTextKey][kVASTAdTextKey];
 
             for (MPVASTCreative *creative in inlineAd.creatives) {
                 if (creative.linearAd && [creative.linearAd.mediaFiles count]) {

@@ -20,7 +20,6 @@ extern NSTimeInterval const kVASTVideoOffsetToShowSkipButtonForSkippableVideo;
 extern NSString * const kVASTDefaultCallToActionButtonTitle;
 extern NSString * const kVASTDefaultSkipButtonTitle;
 extern NSString * const kVASTMoPubCTATextKey;
-extern NSString * const kVASTMoPubSkipTextKey;
 extern NSString * const kVASTAdTextKey;
 
 NS_ASSUME_NONNULL_END

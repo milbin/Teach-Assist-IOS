@@ -57,13 +57,6 @@ static const CGFloat kMoPubRequiredViewVisibilityPercentage = 0.5;
         }
 
         BOOL valid = YES;
-        NSArray *impressionTrackers = [properties objectForKey:kImpressionTrackerURLsKey];
-        if (![impressionTrackers isKindOfClass:[NSArray class]] || [impressionTrackers count] < 1) {
-            valid = NO;
-        } else {
-            _impressionTrackerURLs = MPConvertStringArrayToURLArray(impressionTrackers);
-        }
-
         NSObject *clickTracker = [properties objectForKey:kClickTrackerURLKey];
 
         // The click tracker could either be a single URL or an array of URLS.
@@ -96,7 +89,7 @@ static const CGFloat kMoPubRequiredViewVisibilityPercentage = 0.5;
         }
         _impressionTimer.delegate = self;
 
-        [properties removeObjectsForKeys:@[kImpressionTrackerURLsKey, kClickTrackerURLKey, kDefaultActionURLKey, kNativeAdConfigKey]];
+        [properties removeObjectsForKeys:@[kClickTrackerURLKey, kDefaultActionURLKey, kNativeAdConfigKey]];
         _properties = properties;
 
         if (!valid) {

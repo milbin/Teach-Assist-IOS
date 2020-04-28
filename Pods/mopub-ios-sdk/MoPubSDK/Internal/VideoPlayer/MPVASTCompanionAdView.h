@@ -15,11 +15,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol MPVASTCompanionAdViewDelegate <NSObject>
 
+- (UIViewController *)viewControllerForPresentingModalMRAIDExpandedView;
+
 - (void)companionAdView:(MPVASTCompanionAdView *)companionAdView
         didTriggerEvent:(MPVASTResourceViewEvent)event;
 
 - (void)companionAdView:(MPVASTCompanionAdView *)companionAdView
 didTriggerOverridingClickThrough:(NSURL *)url;
+
+- (void)companionAdViewRequestDismiss:(MPVASTCompanionAdView *)companionAdView;
 
 @end
 
@@ -27,10 +31,12 @@ didTriggerOverridingClickThrough:(NSURL *)url;
  This view is for showing the companion ad of a VAST video.
  See VAST spec for expected behavior: https://www.iab.com/guidelines/digital-video-ad-serving-template-vast-3-0/
  */
-@interface MPVASTCompanionAdView : MPVASTResourceView
+@interface MPVASTCompanionAdView : UIView
 
 @property (nonatomic, readonly) MPVASTCompanionAd *ad;
-@property (nonatomic, weak) id<MPVASTCompanionAdViewDelegate> adViewDelegate;
+@property (nonatomic, readonly) BOOL isLoaded;
+@property (nonatomic, readonly) BOOL isWebContent;
+@property (nonatomic, weak) id<MPVASTCompanionAdViewDelegate> delegate;
 
 - (instancetype)initWithCompanionAd:(MPVASTCompanionAd *)ad;
 

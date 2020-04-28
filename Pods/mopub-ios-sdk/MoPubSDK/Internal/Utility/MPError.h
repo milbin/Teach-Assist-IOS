@@ -38,7 +38,9 @@ typedef enum {
     MOPUBErrorTooManyRequests,
     MOPUBErrorFrameWidthNotSetForFlexibleSize,
     MOPUBErrorFrameHeightNotSetForFlexibleSize,
-    MOPUBErrorVideoPlayerFailedToPlay
+    MOPUBErrorVideoPlayerFailedToPlay,
+    MOPUBErrorNoHTMLToLoad,
+    MOPUBErrorNoHTMLUrlToLoad,
 } MOPUBErrorCode;
 
 @interface NSError (MoPub)

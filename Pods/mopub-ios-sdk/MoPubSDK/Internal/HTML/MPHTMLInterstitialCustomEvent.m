@@ -28,6 +28,11 @@
 // `id<MPInterstitialCustomEventDelegate>` and this `delegate` is `id<MPPrivateInterstitialCustomEventDelegate>`
 @synthesize delegate;
 
+- (NSString *)adUnitId
+{
+    return [self.delegate adUnitId];
+}
+
 - (BOOL)enableAutomaticImpressionAndClickTracking
 {
     // An HTML interstitial tracks its own clicks. Turn off automatic tracking to prevent the tap event callback
@@ -67,16 +72,6 @@
 #pragma mark - MPInterstitialViewControllerDelegate
 
 @implementation MPHTMLInterstitialCustomEvent (MPInterstitialViewControllerDelegate)
-
-- (CLLocation *)location
-{
-    return [self.delegate location];
-}
-
-- (NSString *)adUnitId
-{
-    return [self.delegate adUnitId];
-}
 
 - (void)interstitialDidLoadAd:(id<MPInterstitialViewController>)interstitial
 {

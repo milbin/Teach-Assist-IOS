@@ -54,14 +54,13 @@
 
 @protocol MPInterstitialViewControllerDelegate <MPInterstitialViewControllerAppearanceDelegate>
 
-- (NSString *)adUnitId;
 - (void)interstitialDidLoadAd:(id<MPInterstitialViewController>)interstitial;
 - (void)interstitialDidFailToLoadAd:(id<MPInterstitialViewController>)interstitial;
 - (void)interstitialDidReceiveTapEvent:(id<MPInterstitialViewController>)interstitial;
 - (void)interstitialWillLeaveApplication:(id<MPInterstitialViewController>)interstitial;
 
 @optional
-- (CLLocation *)location;
+
 - (void)interstitialRewardedVideoEnded;
 
 @end
