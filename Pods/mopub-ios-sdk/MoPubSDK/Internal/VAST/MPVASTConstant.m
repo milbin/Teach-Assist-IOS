@@ -14,5 +14,4 @@ NSTimeInterval const kVASTVideoOffsetToShowSkipButtonForSkippableVideo = 5;
 NSString * const kVASTDefaultCallToActionButtonTitle = @"Learn More";
 NSString * const kVASTDefaultSkipButtonTitle = @"Skip";
 NSString * const kVASTMoPubCTATextKey = @"MoPubCtaText";
-NSString * const kVASTMoPubSkipTextKey = @"MoPubSkipText";
 NSString * const kVASTAdTextKey = @"text";

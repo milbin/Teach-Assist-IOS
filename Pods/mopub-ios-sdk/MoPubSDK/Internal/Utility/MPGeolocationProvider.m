@@ -9,7 +9,6 @@
 #import "MPGeolocationProvider.h"
 
 #import "MPCoreInstanceProvider.h"
-#import "MPIdentityProvider.h"
 #import "MPLogging.h"
 #import "MPTimer.h"
 #import "MPConsentManager.h"
@@ -63,7 +62,7 @@ const NSTimeInterval kMPLocationUpdateInterval = 10.0 * 60.0;
     if (self) {
         _rawLocationUpdatesEnabled = YES;
 
-        _locationManager = [[MPCoreInstanceProvider sharedProvider] buildCLLocationManager];
+        _locationManager = CLLocationManager.new;
         _locationManager.delegate = self;
         _locationManager.distanceFilter = kMPCityBlockDistanceFilter;
 

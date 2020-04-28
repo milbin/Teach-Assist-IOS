@@ -87,24 +87,6 @@
 
 #pragma mark - MRControllerDelegate
 
-- (CLLocation *)location
-{
-    if ([self.delegate respondsToSelector:@selector(location)]) {
-        return [self.delegate location];
-    }
-    return nil;
-}
-
-- (NSString *)adUnitId
-{
-    return [self.delegate adUnitId];
-}
-
-- (MPAdConfiguration *)adConfiguration
-{
-    return self.configuration;
-}
-
 - (UIViewController *)viewControllerForPresentingModalView
 {
     return self;
@@ -148,14 +130,19 @@
     // TODO:
 }
 
-- (void)appShouldSuspendForAd:(UIView *)adView
+- (void)adDidReceiveClickthrough:(NSURL *)url
 {
     [self.delegate interstitialDidReceiveTapEvent:self];
 }
 
+- (void)appShouldSuspendForAd:(UIView *)adView
+{
+    // no op
+}
+
 - (void)appShouldResumeFromAd:(UIView *)adView
 {
-
+    // no op
 }
 
 - (void)setSupportedOrientationMask:(UIInterfaceOrientationMask)supportedOrientationMask

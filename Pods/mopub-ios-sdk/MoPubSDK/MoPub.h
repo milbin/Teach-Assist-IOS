@@ -26,7 +26,6 @@
 #import "MPEngineInfo.h"
 #import "MPError.h"
 #import "MPGlobal.h"
-#import "MPIdentityProvider.h"
 #import "MPImpressionData.h"
 #import "MPImpressionTrackedNotification.h"
 #import "MPInterstitialAdController.h"

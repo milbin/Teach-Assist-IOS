@@ -59,23 +59,3 @@ UIInterfaceOrientationMask MPInterstitialOrientationTypeToUIInterfaceOrientation
 - (BOOL)mp_doesOrientation:(UIInterfaceOrientation)orientation matchOrientationMask:(UIInterfaceOrientationMask)orientationMask;
 
 @end
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// Optional Class Forward Def Protocols
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-@class MPAdConfiguration, CLLocation;
-
-@protocol MPAdAlertManagerProtocol <NSObject>
-
-@property (nonatomic, strong) MPAdConfiguration *adConfiguration;
-@property (nonatomic, copy) NSString *adUnitId;
-@property (nonatomic, copy) CLLocation *location;
-@property (nonatomic, weak) UIView *targetAdView;
-@property (nonatomic, weak) id delegate;
-
-- (void)beginMonitoringAlerts;
-- (void)endMonitoringAlerts;
-- (void)processAdAlertOnce;
-
-@end

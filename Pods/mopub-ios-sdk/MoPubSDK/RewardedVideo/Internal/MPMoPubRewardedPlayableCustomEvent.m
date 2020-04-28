@@ -32,6 +32,10 @@ const NSTimeInterval kDefaultCountdownTimerIntervalInSeconds = 30;
 
 @implementation MPMoPubRewardedPlayableCustomEvent
 
+- (NSString *)adUnitId {
+    return [self.delegate adUnitId];
+}
+
 - (void)dealloc {
     [_timerView stopAndSignalCompletion:NO];
 }
@@ -156,10 +160,6 @@ const NSTimeInterval kDefaultCountdownTimerIntervalInSeconds = 30;
 #pragma mark - MPInterstitialViewControllerDelegate
 
 @implementation MPMoPubRewardedPlayableCustomEvent (MPInterstitialViewControllerDelegate)
-
-- (NSString *)adUnitId {
-    return [self.delegate adUnitId];
-}
 
 - (void)interstitialDidLoadAd:(id<MPInterstitialViewController>)interstitial {
     MPLogAdEvent([MPLogEvent adLoadSuccessForAdapter:NSStringFromClass(self.class)], self.adUnitId);

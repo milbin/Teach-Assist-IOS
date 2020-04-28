@@ -30,6 +30,11 @@
 
 @dynamic delegate;
 
+- (NSString *)adUnitId
+{
+    return [self.delegate adUnitId];
+}
+
 - (void)requestRewardedVideoWithCustomEventInfo:(NSDictionary *)info adMarkup:(NSString *)adMarkup
 {
     MPAdConfiguration * configuration = self.delegate.configuration;
@@ -94,11 +99,6 @@
 #pragma mark - MPInterstitialViewControllerDelegate
 
 @implementation MPMoPubRewardedVideoCustomEvent (MPInterstitialViewControllerDelegate)
-
-- (NSString *)adUnitId
-{
-    return [self.delegate adUnitId];
-}
 
 - (void)interstitialDidLoadAd:(id<MPInterstitialViewController>)interstitial
 {

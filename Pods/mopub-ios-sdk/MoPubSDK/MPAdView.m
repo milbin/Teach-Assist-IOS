@@ -229,7 +229,6 @@
     MPAdTargeting * targeting = [MPAdTargeting targetingWithCreativeSafeSize:realSize];
     targeting.keywords = self.keywords;
     targeting.localExtras = self.localExtras;
-    targeting.location = self.location;
     targeting.userDataKeywords = self.userDataKeywords;
 
     return targeting;

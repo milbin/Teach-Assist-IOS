@@ -120,5 +120,6 @@ extern NSString * const kImpressionDataCurrencyKey;
 extern NSString * const kImpressionDataCountryKey;
 extern NSString * const kImpressionDataNetworkNameKey;
 extern NSString * const kImpressionDataNetworkPlacementIDKey;
+extern NSString * const kImpressionDataAppVersionKey;
 extern NSString * const kImpressionDataPublisherRevenueKey;
 extern NSString * const kImpressionDataPrecisionKey;

@@ -37,6 +37,7 @@ didTriggerOverridingClickThrough:(NSURL *)url;
 
 @interface MPVASTResourceView : MPWebView
 
+@property (nonatomic, readonly) BOOL isLoaded;
 @property (nonatomic, weak) id<MPVASTResourceViewDelegate> resourceViewDelegate; // not `MPWebView.delegate`
 
 - (void)loadResource:(MPVASTResource *)resource containerSize:(CGSize)containerSize;

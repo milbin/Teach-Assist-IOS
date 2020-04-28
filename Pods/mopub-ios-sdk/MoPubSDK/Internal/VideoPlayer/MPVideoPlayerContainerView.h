@@ -27,6 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - video player view
 
+- (UIViewController *)viewControllerForPresentingModalMRAIDExpandedView;
+
 - (void)videoPlayerContainerViewDidLoadVideo:(MPVideoPlayerContainerView *)videoPlayerContainerView;
 
 - (void)videoPlayerContainerViewDidFailToLoadVideo:(MPVideoPlayerContainerView *)videoPlayerContainerView
@@ -66,6 +68,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)videoPlayerContainerView:(MPVideoPlayerContainerView *)videoPlayerContainerView
     didFailToLoadCompanionAdView:(MPVASTCompanionAdView *)companionAdView;
+
+- (void)videoPlayerContainerView:(MPVideoPlayerContainerView *)videoPlayerContainerView
+   companionAdViewRequestDismiss:(MPVASTCompanionAdView *)companionAdView;
 
 @end
 

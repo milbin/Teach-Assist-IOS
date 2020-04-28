@@ -84,7 +84,7 @@ static CGFloat const kRoundButtonPadding = 8;
         MPLogError(@"Video duration [%.2f] is not positive" ,videoDuration);
         return;
     }
-    
+
     // See the definition of "skippable" at https://developers.mopub.com/dsps/ad-formats/video/
     NSTimeInterval requestedSkipOffset = [skipOffset timeIntervalForVideoWithDuration:videoDuration];
     NSTimeInterval actualSkipOffset;
@@ -101,10 +101,10 @@ static CGFloat const kRoundButtonPadding = 8;
             actualSkipOffset = kVASTVideoOffsetToShowSkipButtonForSkippableVideo;
         }
     }
-    
+
     [self showTimerViewForSkipOffset:(skipOffset == nil ? videoDuration : actualSkipOffset)
                        videoDuration:videoDuration];
-    
+
     if (self.config.isRewarded) {
         [self setUpClickthroughForOffset:actualSkipOffset videoDuration:videoDuration];
     } else { // non-rewarded video
@@ -114,7 +114,7 @@ static CGFloat const kRoundButtonPadding = 8;
             [self setUpClickthroughForOffset:actualSkipOffset videoDuration:videoDuration];
         }
     }
-    
+
     [self.notificationCenter addObserver:self
                                 selector:@selector(pauseTimer)
                                     name:UIApplicationDidEnterBackgroundNotification
@@ -127,14 +127,14 @@ static CGFloat const kRoundButtonPadding = 8;
 
 - (void)handleVideoComplete {
     [self showCloseButton];
-    
+
     if (self.config.hasCompanionAd) {
         self.allowPassthroughForTouches = YES;
-        
+
         // companion ad and CTA button are mutually exclusive
         [self.callToActionButton removeFromSuperview];
         self.callToActionButton = nil;
-        
+
         // companion ad and industry icon are mutually exclusive
         [self.iconView removeFromSuperview];
         self.iconView = nil;
@@ -164,7 +164,7 @@ static CGFloat const kRoundButtonPadding = 8;
     if (self.timerView) {
         return;
     }
-    
+
     __weak __typeof__(self) weakSelf = self;
     MPCountdownTimerView *timerView = [[MPCountdownTimerView alloc] initWithDuration:skipOffset timerCompletion:^(BOOL hasElapsed) {
         if (skipOffset < videoDuration) {
@@ -174,14 +174,14 @@ static CGFloat const kRoundButtonPadding = 8;
         }
         [weakSelf.timerView removeFromSuperview];
     }];
-    
+
     self.timerView = timerView;
-    
+
     [self addSubview:timerView];
     timerView.translatesAutoresizingMaskIntoConstraints = NO;
     [[timerView.topAnchor constraintEqualToAnchor:self.mp_safeTopAnchor constant:kRoundButtonPadding] setActive:YES];
     [[timerView.trailingAnchor constraintEqualToAnchor:self.mp_safeTrailingAnchor constant:-kRoundButtonPadding] setActive:YES];
-    
+
     [timerView start];
 }
 
@@ -191,7 +191,7 @@ static CGFloat const kRoundButtonPadding = 8;
     if (self.config.isClickthroughAllowed == NO) {
         return;
     }
-    
+
     // See click-through timing definition at https://developers.mopub.com/dsps/ad-formats/video/
     self.clickThroughEnablingTimer = [MPTimer timerWithTimeInterval:MIN(skipOffset, videoDuration)
                                                              target:self
@@ -204,7 +204,7 @@ static CGFloat const kRoundButtonPadding = 8;
     if (self.config.isClickthroughAllowed == NO) {
         return;
     }
-    
+
     [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleClickThrough)]];
     [self showCallToActionButton];
 }
@@ -212,22 +212,22 @@ static CGFloat const kRoundButtonPadding = 8;
 - (void)showCallToActionButton {
     // Per Format Unification Phase 2 item 1.2.1, for rewarded video, do not consider companion
     // ad for showing the CTA button - just show it after the skip threshold }
-    
+
     if (self.config.isClickthroughAllowed == NO || self.config.callToActionButtonTitle.length == 0) {
         return;
     }
-    
+
     if (self.callToActionButton) {
         [self.callToActionButton setHidden:NO];
         return;
     }
-    
+
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     self.callToActionButton = button;
     button.accessibilityLabel = @"Call To Action Button";
     [button addTarget:self action:@selector(handleClickThrough) forControlEvents:UIControlEventTouchUpInside];
     [button applyMPVideoPlayerBorderedStyleWithTitle:self.config.callToActionButtonTitle];
-    
+
     [self addSubview:button];
     button.translatesAutoresizingMaskIntoConstraints = NO;
     [[button.bottomAnchor constraintEqualToAnchor:self.mp_safeBottomAnchor constant:-kRectangleButtonPadding] setActive:YES];
@@ -241,20 +241,16 @@ static CGFloat const kRoundButtonPadding = 8;
 #pragma mark - Skip Button
 
 - (void)showSkipButton {
-    if (self.config.skipButtonTitle.length == 0) {
-        return;
-    }
-    
     if (self.skipButton) {
         return;
     }
-    
+
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     self.skipButton = button;
     button.accessibilityLabel = @"Skip Button";
     [button addTarget:self action:@selector(didHitSkipButton) forControlEvents:UIControlEventTouchUpInside];
-    [button applyMPVideoPlayerBorderedStyleWithTitle:self.config.skipButtonTitle];
-    
+    [button applyMPVideoPlayerBorderedStyleWithTitle:kVASTDefaultSkipButtonTitle];
+
     [self addSubview:button];
     button.translatesAutoresizingMaskIntoConstraints = NO;
     [[button.topAnchor constraintEqualToAnchor:self.mp_safeTopAnchor constant:kRectangleButtonPadding] setActive:YES];
@@ -271,17 +267,17 @@ static CGFloat const kRoundButtonPadding = 8;
     if (self.closeButton) {
         return;
     }
-    
+
     // timer view and Skip button should disappear when Close button is shown
     [self.timerView removeFromSuperview];
     [self.skipButton removeFromSuperview];
-    
+
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     self.closeButton = button;
     button.accessibilityLabel = @"Close Button";
     [button addTarget:self action:@selector(didHitCloseButton) forControlEvents:UIControlEventTouchUpInside];
     [button setImage:[UIImage imageNamed:MPResourcePathForResource(@"MPCloseButtonX.png")] forState:UIControlStateNormal];
-    
+
     [self addSubview:button];
     button.translatesAutoresizingMaskIntoConstraints = NO;
     [[button.topAnchor constraintEqualToAnchor:self.mp_safeTopAnchor constant:kRoundButtonPadding] setActive:YES];
@@ -300,7 +296,7 @@ static CGFloat const kRoundButtonPadding = 8;
         self.iconView.iconViewDelegate = self;
         self.iconViewWidthConstraint = [self.iconView.mp_safeWidthAnchor constraintEqualToConstant:icon.width];
         self.iconViewHeightConstraint = [self.iconView.mp_safeHeightAnchor constraintEqualToConstant:icon.height];
-        
+
         [self addSubview:self.iconView];
         self.iconView.translatesAutoresizingMaskIntoConstraints = NO;
         [[self.iconView.mp_safeTopAnchor constraintEqualToAnchor:self.mp_safeTopAnchor] setActive:YES];
@@ -312,7 +308,7 @@ static CGFloat const kRoundButtonPadding = 8;
         self.iconViewWidthConstraint.constant = icon.width;
         self.iconViewHeightConstraint.constant = icon.height;
     }
-    
+
     [self.iconView setHidden:YES]; // hidden by default, only show after loaded
     [self.iconView loadIcon:icon]; // delegate will handle load status updates
 }
@@ -343,7 +339,7 @@ static CGFloat const kRoundButtonPadding = 8;
             break;
         }
     }
-    
+
     [self.delegate industryIconView:iconView didTriggerEvent:event];
 }
 

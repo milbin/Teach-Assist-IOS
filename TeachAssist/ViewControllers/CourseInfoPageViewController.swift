@@ -131,7 +131,7 @@ extension CourseInfoPageViewController: UIPageViewControllerDelegate {
                 let parentVC = (self.parent! as! PageViewControllerContainer)
                 
                 let pageIndicator = (self.parent! as! PageViewControllerContainer).pageIndicator
-                pageIndicator!.frame.origin.x += pageIndicator!.superview!.frame.width/1.75
+                pageIndicator!.frame.origin.x += pageIndicator!.superview!.frame.width - 159
                 
                 parentVC.assignmentsLabel.textColor = parentVC.unhighlightedTextColour
                 parentVC.statisticsLabel.textColor = parentVC.lightThemeBlack
@@ -147,7 +147,7 @@ extension CourseInfoPageViewController: UIPageViewControllerDelegate {
                 let parentVC = (self.parent! as! PageViewControllerContainer)
                 
                 let pageIndicator = (self.parent! as! PageViewControllerContainer).pageIndicator
-                pageIndicator!.frame.origin.x -= pageIndicator!.superview!.frame.width/1.75
+                pageIndicator!.frame.origin.x -= pageIndicator!.superview!.frame.width - 159
                 
                 parentVC.assignmentsLabel.textColor = parentVC.lightThemeBlack
                 parentVC.statisticsLabel.textColor = parentVC.unhighlightedTextColour

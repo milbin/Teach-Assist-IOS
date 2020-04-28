@@ -11,8 +11,6 @@
 #import "MPEngineInfo.h"
 #import "MPURL.h"
 
-@class CLLocation;
-
 @interface MPAdServerURLBuilder : NSObject
 
 /**

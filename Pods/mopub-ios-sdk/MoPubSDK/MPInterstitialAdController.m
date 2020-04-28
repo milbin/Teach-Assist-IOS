@@ -70,7 +70,6 @@
     MPAdTargeting * targeting = [MPAdTargeting targetingWithCreativeSafeSize:MPApplicationFrame(YES).size];
     targeting.keywords = self.keywords;
     targeting.localExtras = self.localExtras;
-    targeting.location = self.location;
     targeting.userDataKeywords = self.userDataKeywords;
 
     [self.manager loadInterstitialWithAdUnitID:self.adUnitId targeting:targeting];

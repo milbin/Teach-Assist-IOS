@@ -27,6 +27,11 @@
 // `id<MPInterstitialCustomEventDelegate>` and this `delegate` is `id<MPPrivateInterstitialCustomEventDelegate>`
 @synthesize delegate;
 
+- (NSString *)adUnitId
+{
+    return [self.delegate adUnitId];
+}
+
 - (void)requestInterstitialWithCustomEventInfo:(NSDictionary *)info adMarkup:(NSString *)adMarkup
 {
     MPAdConfiguration * configuration = self.delegate.configuration;
@@ -58,16 +63,6 @@
 #pragma mark - MPInterstitialViewControllerDelegate
 
 @implementation MPMRAIDInterstitialCustomEvent (MPInterstitialViewControllerDelegate)
-
-- (CLLocation *)location
-{
-    return [self.delegate location];
-}
-
-- (NSString *)adUnitId
-{
-    return [self.delegate adUnitId];
-}
 
 - (void)interstitialDidLoadAd:(id<MPInterstitialViewController>)interstitial
 {

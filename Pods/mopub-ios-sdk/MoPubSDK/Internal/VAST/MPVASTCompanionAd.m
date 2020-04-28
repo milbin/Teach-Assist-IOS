@@ -68,16 +68,19 @@
              @"identifier":         @"id",
              @"HTMLResources":      @[@"HTMLResource", MPParseArrayOf(MPParseClass([MPVASTResource class]))],
              @"iframeResources":    @[@"IFrameResource", MPParseArrayOf(MPParseClass([MPVASTResource class]))],
-             @"staticResources":    @[@"StaticResource", MPParseArrayOf(MPParseClass([MPVASTResource class]))]};
+             @"staticResources":    @[@"StaticResource", MPParseArrayOf(MPParseClass([MPVASTResource class]))],
+             @"apiFramework":       @"apiFramework"
+    };
+}
+
+- (CGRect)safeAdViewBounds {
+    return CGRectMake(0, 0, MAX(1, self.width), MAX(1, self.height));
 }
 
 - (MPVASTResource *)resourceToDisplay {
+    // format score = 1, display priority = A
     for (MPVASTResource *resource in self.staticResources) {
         if (resource.content.length > 0) {
-            if (resource.isStaticCreativeTypeImage) {
-                resource.type = MPVASTResourceType_StaticImage;
-                return resource;
-            }
             if (resource.isStaticCreativeTypeJavaScript) {
                 resource.type = MPVASTResourceType_StaticScript;
                 return resource;
@@ -85,6 +88,7 @@
         }
     }
 
+    // format score = 1, display priority = B
     for (MPVASTResource *resource in self.HTMLResources) {
         if (resource.content.length > 0) {
             resource.type = MPVASTResourceType_HTML;
@@ -92,10 +96,21 @@
         }
     }
 
+    // format score = 1, display priority = C
     for (MPVASTResource *resource in self.iframeResources) {
         if (resource.content.length > 0) {
             resource.type = MPVASTResourceType_Iframe;
             return resource;
+        }
+    }
+
+    // format score = 0.8, display priority = D
+    for (MPVASTResource *resource in self.staticResources) {
+        if (resource.content.length > 0) {
+            if (resource.isStaticCreativeTypeImage) {
+                resource.type = MPVASTResourceType_StaticImage;
+                return resource;
+            }
         }
     }
 
@@ -111,10 +126,10 @@
     CGFloat highestScore = CGFLOAT_MIN;
     MPVASTCompanionAd *result;
 
+    // It is possible that none of the candidate fits into the screen perfectly, but we will pick the
+    // best one and then aspect fit it
     for (MPVASTCompanionAd *candidate in candidates) {
-        if (candidate.width <= containerSize.width
-            && candidate.height <= containerSize.height
-            && candidate.resourceToDisplay != nil) {
+        if (candidate.resourceToDisplay != nil) {
             CGFloat score = [candidate selectionScoreForContainerSize:containerSize];
             if (highestScore < score) {
                 highestScore = score;
@@ -126,9 +141,56 @@
     return result;
 }
 
+#pragma mark - Private
+
+- (BOOL)hasStaticImageResource {
+    for (MPVASTResource *resource in self.staticResources) {
+        if (resource.content.length > 0 && resource.isStaticCreativeTypeImage) {
+            return YES;
+        }
+    }
+
+    return NO;
+}
+
+/// Note: Static image resource is not considered as a web markup (HTML) resource.
+- (BOOL)hasWebMarkupResource {
+    for (MPVASTResource *resource in self.staticResources) {
+        if (resource.content.length > 0 && resource.isStaticCreativeTypeJavaScript) {
+            return YES;
+        }
+    }
+
+    for (MPVASTResource *resource in self.iframeResources) {
+        if (resource.content.length > 0) {
+            return YES;
+        }
+    }
+
+    for (MPVASTResource *resource in self.HTMLResources) {
+        if (resource.content.length > 0) {
+            return YES;
+        }
+    }
+
+    return NO;
+}
+
+- (CGFloat)formatScore {
+    if (self.hasWebMarkupResource) {
+        return 1;
+    }
+    else if (self.hasStaticImageResource) {
+        return 0.8;
+    }
+    else {
+        return 0; // Flash resource or unknown resource
+    }
+}
+
 /**
  See scoring algorithm documentation at http://go/adf-vast-video-selection.
-*/
+ */
 - (CGFloat)selectionScoreForContainerSize:(CGSize)containerSize {
     if (self.width == 0 || self.height == 0) {
         return 0;
@@ -137,7 +199,7 @@
     CGFloat aspectRatioScore = ABS(containerSize.width / containerSize.height - self.width / self.height);
     CGFloat widthScore = ABS((containerSize.width - self.width) / containerSize.width);
     CGFloat fitScore = aspectRatioScore + widthScore;
-    return 1 / (1 + fitScore);
+    return self.formatScore / (1 + fitScore);
 }
 
 @end

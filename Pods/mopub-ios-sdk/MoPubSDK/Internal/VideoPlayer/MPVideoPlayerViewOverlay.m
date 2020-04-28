@@ -12,7 +12,6 @@
 @interface MPVideoPlayerViewOverlayConfig ()
 
 @property (nonatomic, strong) NSString *callToActionButtonTitle;
-@property (nonatomic, strong) NSString *skipButtonTitle;
 @property (nonatomic, assign) BOOL isRewarded;
 @property (nonatomic, assign) BOOL isClickthroughAllowed;
 @property (nonatomic, assign) BOOL hasCompanionAd;
@@ -23,7 +22,6 @@
 @implementation MPVideoPlayerViewOverlayConfig
 
 - (instancetype)initWithCallToActionButtonTitle:(NSString *)callToActionButtonTitle
-                                skipButtonTitle:(NSString *)skipButtonTitle
                                      isRewarded:(BOOL)isRewarded
                           isClickthroughAllowed:(BOOL)isClickthroughAllowed
                                  hasCompanionAd:(BOOL)hasCompanionAd
@@ -31,7 +29,6 @@
     self = [super init];
     if (self) {
         _callToActionButtonTitle = callToActionButtonTitle;
-        _skipButtonTitle = skipButtonTitle;
         _isRewarded = isRewarded;
         _isClickthroughAllowed = isClickthroughAllowed;
         _hasCompanionAd = hasCompanionAd;

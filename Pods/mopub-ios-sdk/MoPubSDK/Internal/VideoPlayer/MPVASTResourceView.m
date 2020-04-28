@@ -14,7 +14,7 @@
  thus we need to explicitly specify it in the `meta` tag.
  Note: One "pixel" in `WKWebView` is actually one "point".
  Warning: As a format string, remember to escape the "%" character as "%%", not "\%". Otherwise,
- 100% will recognized as 100px.
+ 100% will be recognized as 100px.
  */
 @interface MPVASTResourceView ()
 
@@ -44,33 +44,19 @@
         [self.resourceViewDelegate vastResourceView:self didTriggerEvent:MPVASTResourceViewEvent_FailedToLoadView];
         return;
     }
-    
-    [self removeTapGestureRecognizer];
-    
+
     // For static image resource, add a tap gesture recognizer to handle click-through. For all
     // other resource types, let the web view navigtion delegate handle the click-through.
-    switch (resource.type) {
-        case MPVASTResourceType_Undetermined: {
-            break;
-        }
-        case MPVASTResourceType_StaticImage: {
-            [self addTapGestureRecognizer];
-            [self loadStaticImageResource:resource.content containerSize:containerSize];
-            break;
-        }
-        case MPVASTResourceType_StaticScript: {
-            [self loadStaticJavaScriptResource:resource.content];
-            break;
-        }
-        case MPVASTResourceType_HTML: {
-            [self loadHTMLString:resource.content baseURL:nil];
-            break;
-        }
-        case MPVASTResourceType_Iframe: {
-            [self loadIframeResource:resource.content containerSize:containerSize];
-            break;
-        }
+    if (resource.type == MPVASTResourceType_StaticImage) {
+        [self addTapGestureRecognizer];
+    } else {
+        [self removeTapGestureRecognizer]; // in case of the view is reused
     }
+
+    NSString *htmlString = [MPVASTResource fullHTMLRespresentationForContent:resource.content
+                                                                        type:resource.type
+                                                               containerSize:containerSize];
+    [self loadHTMLString:htmlString baseURL:nil];
 }
 
 #pragma mark - Private
@@ -96,75 +82,6 @@
     [self.resourceViewDelegate vastResourceView:self didTriggerEvent:MPVASTResourceViewEvent_ClickThrough];
 }
 
-- (void)loadStaticImageResource:(NSString *)imageURL containerSize:(CGSize)containerSize {
-    NSString *staticImageResourceFormat =
-    @"<html>\
-        <head>\
-            <title>Static Image Resource</title>\
-            <meta name=\"viewport\" content=\"initial-scale=1.0, maximum-scale=1.0, user-scalable=no\">\
-            <style type=\"text/css\">\
-                html, body { margin: 0; padding: 0; overflow: hidden; }\
-                #content { width: %.2fpx; height: %.2fpx; }\
-            </style>\
-        </head>\
-        <body scrolling=\"no\">\
-            <div id=\"content\">\
-                <img src=\"%@\">\
-            </div>\
-        </body>\
-    </html>";
-    NSString *htmlString = [NSString stringWithFormat:staticImageResourceFormat,
-                            containerSize.width, containerSize.height, imageURL];
-    [self loadHTMLString:htmlString baseURL:nil];
-}
-
-- (void)loadStaticJavaScriptResource:(NSString *)javaScript {
-    NSString *javaScriptResourceFormat =
-    @"<html>\
-        <head>\
-            <title>Static JavaScript Resource</title>\
-            <meta name=\"viewport\" content=\"initial-scale=1.0, maximum-scale=1.0, user-scalable=no\">\
-            <style type=\"text/css\">\
-                html, body { margin: 0; padding: 0; overflow: hidden; }\
-            </style>\
-            <script type=\"text/javascript\" src=\"%@\"></script>\
-        </head>\
-        <body scrolling=\"no\"></body>\
-    </html>";
-    NSString *htmlString = [NSString stringWithFormat:javaScriptResourceFormat, javaScript];
-    [self loadHTMLString:htmlString baseURL:nil];
-}
-
-- (void)loadIframeResource:(NSString *)iframe containerSize:(CGSize)containerSize {
-    /*
-     To make the iframe taking full body area, margin and padding have to set to 0 to override the
-     original value; the iframe tag has to be contained in a div that position itself absolutely;
-     set "marginwidth" and "marginheight" as 0 since these two are not controlled by CSS styling.
-     WARNING: As a format string, remember to escape the "%" character as "%%", not "\%".
-     */
-    NSString *iframeResourceFormat =
-    @"<html>\
-        <head>\
-            <title>Iframe Resource</title>\
-            <meta name=\"viewport\" content=\"initial-scale=1.0, maximum-scale=1.0, user-scalable=no\">\
-            <style type=\"text/css\">\
-                html, body { margin: 0; padding: 0; overflow: hidden; }\
-                #content { position:absolute; top: 0; left: 0; width: %.2f; height: %.2f; }\
-            </style>\
-        </head>\
-        <body scrolling=\"no\">\
-            <div id=\"content\">\
-                <iframe src=\"%@\" width=\"100%%\" height=\"100%%\"\
-                frameborder=0 marginwidth=0 marginheight=0 scrolling=\"no\">\
-                </iframe>\
-            </div>\
-        </body>\
-    </html>";
-    NSString *htmlString = [NSString stringWithFormat:iframeResourceFormat,
-                            containerSize.width, containerSize.height, iframe];
-    [self loadHTMLString:htmlString baseURL:nil];
-}
-
 @end
 
 #pragma mark - MPWebViewDelegate
@@ -183,6 +100,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 }
 
 - (void)webViewDidFinishLoad:(MPWebView *)webView {
+    _isLoaded = YES;
     [self.resourceViewDelegate vastResourceView:self didTriggerEvent:MPVASTResourceViewEvent_DidLoadView];
 }
 

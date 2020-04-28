@@ -54,13 +54,6 @@
         }
 
         BOOL valid = YES;
-        NSArray *impressionTrackers = [properties objectForKey:kImpressionTrackerURLsKey];
-        if (![impressionTrackers isKindOfClass:[NSArray class]] || [impressionTrackers count] < 1) {
-            valid = NO;
-        } else {
-            _impressionTrackerURLs = MPConvertStringArrayToURLArray(impressionTrackers);
-        }
-
         NSObject *clickTracker = [properties objectForKey:kClickTrackerURLKey];
 
         // The click tracker could either be a single URL or an array of URLS.
@@ -79,7 +72,7 @@
 
         _defaultActionURL = [NSURL URLWithString:[properties objectForKey:kDefaultActionURLKey]];
 
-        [properties removeObjectsForKeys:[NSArray arrayWithObjects:kImpressionTrackerURLsKey, kClickTrackerURLKey, kDefaultActionURLKey, nil]];
+        [properties removeObjectsForKeys:[NSArray arrayWithObjects:kClickTrackerURLKey, kDefaultActionURLKey, nil]];
         _properties = properties;
 
         if (!valid) {

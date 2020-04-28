@@ -8,10 +8,6 @@
 
 #import "MPSessionTracker.h"
 #import "MPConstants.h"
-#import "MPIdentityProvider.h"
-#import "MPGlobal.h"
-#import "MPCoreInstanceProvider.h"
-#import "MPAPIEndpoints.h"
 #import "MPHTTPNetworkSession.h"
 #import "MPURLRequest.h"
 #import "MPAdServerURLBuilder.h"

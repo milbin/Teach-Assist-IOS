@@ -192,7 +192,7 @@ class MainViewController: UIViewController {
         
         //release notes popup dialog
         let firstLaunch = Preferences.string(forKey: "release notes 2.2.8")
-        if(firstLaunch == nil || true){
+        if(firstLaunch == nil){
             showReleaseNotes()
         }
         

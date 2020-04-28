@@ -22,12 +22,14 @@
 
 #import <UIKit/UIKit.h>
 
+#include <signal.h>
+
 #import "FBSDKLibAnalyzer.h"
 
 #define FBSDK_MAX_CRASH_LOGS 5
 #define FBSDK_CRASH_PATH_NAME @"instrument"
 #ifndef FBSDK_VERSION_STRING
-#define FBSDK_VERSION_STRING @"6.3.0"
+#define FBSDK_VERSION_STRING @"6.5.1"
 #endif
 
 static NSUncaughtExceptionHandler *previousExceptionHandler = NULL;
@@ -50,6 +52,8 @@ static NSHashTable<id<FBSDKCrashObserving>> *_observers;
 static NSArray<NSDictionary<NSString *, id> *> *_processedCrashLogs;
 static BOOL _isTurnedOff;
 
+void FBSDKSignalHandler(int signal);
+
 # pragma mark - Class Methods
 
 + (void)initialize
@@ -69,16 +73,17 @@ static BOOL _isTurnedOff;
   NSArray<id<FBSDKCrashObserving>> *observers = [_observers copy];
   for (id<FBSDKCrashObserving> observer in observers) {
     if (observer && [observer respondsToSelector:@selector(didReceiveCrashLogs:)]) {
-      NSArray<NSDictionary<NSString *, id> *> *filteredCrashLogs = [self filterCrashLogs:observer.prefixes];
+      NSArray<NSDictionary<NSString *, id> *> *filteredCrashLogs = [self filterCrashLogs:observer.prefixes processedCrashLogs:_processedCrashLogs];
       [observer didReceiveCrashLogs:filteredCrashLogs];
     }
   }
 }
 
 + (NSArray<NSDictionary<NSString *, id> *> *)filterCrashLogs:(NSArray<NSString *> *)prefixList
+                                          processedCrashLogs:(NSArray<NSDictionary<NSString *, id> *> *)processedCrashLogs
 {
   NSMutableArray<NSDictionary<NSString *, id> *> *crashLogs = [NSMutableArray array];
-  for (NSDictionary<NSString *, id> *crashLog in _processedCrashLogs) {
+  for (NSDictionary<NSString *, id> *crashLog in processedCrashLogs) {
     NSArray<NSString *> *callstack = crashLog[kFBSDKCallstack];
     if ([self callstack:callstack containsPrefix:prefixList]) {
       [crashLogs addObject:crashLog];
@@ -114,6 +119,7 @@ static BOOL _isTurnedOff;
   static dispatch_once_t onceToken = 0;
   dispatch_once(&onceToken, ^{
     [FBSDKCrashHandler installExceptionsHandler];
+    [FBSDKCrashHandler installSignalHandler];
     _processedCrashLogs = [self getProcessedCrashLogs];
   });
   if (![_observers containsObject:observer]) {
@@ -157,6 +163,33 @@ static void FBSDKExceptionHandler(NSException *exception)
   if (previousExceptionHandler) {
     previousExceptionHandler(exception);
   }
+}
+
++ (void)installSignalHandler
+{
+  signal(SIGBUS, FBSDKSignalHandler);
+  signal(SIGFPE, FBSDKSignalHandler);
+  signal(SIGILL, FBSDKSignalHandler);
+  signal(SIGPIPE, FBSDKSignalHandler);
+  signal(SIGSEGV, FBSDKSignalHandler);
+  signal(SIGSYS, FBSDKSignalHandler);
+}
+
+void FBSDKSignalHandler(int sig)
+{
+  NSMutableArray<NSString *> *callStack = [[NSThread callStackSymbols] mutableCopy];
+  if (callStack) {
+    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)];
+    if (callStack.count > 2 && [callStack objectsAtIndexes:indexSet]) {
+      [callStack removeObjectsAtIndexes:indexSet];
+    }
+  }
+  [FBSDKCrashHandler saveSignal:sig withCallStack:callStack];
+
+  // reset to default handler
+  signal(sig, SIG_DFL);
+  // re-signal to default handler
+  raise(sig);
 }
 
 #pragma mark - Storage

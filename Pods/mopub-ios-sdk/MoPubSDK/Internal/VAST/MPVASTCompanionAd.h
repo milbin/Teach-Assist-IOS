@@ -32,6 +32,7 @@
 @property (nonatomic, readonly) CGFloat height; // point height
 @property (nonatomic, readonly) CGFloat assetHeight; // optional attribute
 @property (nonatomic, readonly) CGFloat assetWidth; // optional attribute
+@property (nonatomic, copy, readonly) NSString *apiFramework; // optional attribute
 
 @property (nonatomic, strong, readonly) NSURL *clickThroughURL;
 @property (nonatomic, strong, readonly) NSArray<NSURL *> *clickTrackingURLs;
@@ -43,6 +44,15 @@
  because impressions are only counted for the Ad and the Companion is only one part of the Ad.
  */
 @property (nonatomic, strong, readonly) NSArray<MPVASTTrackingEvent *> *creativeViewTrackers;
+
+/**
+ Per VAST 3.0 specification, section 2.3.3.5 Companion Attributes, `width` and `height` are required
+ attributes for a companion ad. However, if `width` or `height` does not exist or being less than 1
+ for any reason, the companion ad view might appear to be empty and causes issue. To ensure the
+ bounds of the companion ad view represents at least one pixel, the returned safe ad boudns as
+ `CGRect` guarantees the value of `width` and `height` to be at least 1.
+ */
+- (CGRect)safeAdViewBounds;
 
 /**
  Return the best @c MPVASTResource that should be displayed. Per VAST specification

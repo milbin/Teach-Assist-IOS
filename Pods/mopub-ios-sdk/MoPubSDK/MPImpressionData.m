@@ -90,6 +90,10 @@ static NSString * const kPrecisionOptionUndisclosedKey      = @"undisclosed";
     return [self nullableImpressionDataObjectForKey:kImpressionDataNetworkPlacementIDKey];
 }
 
+- (NSString *)appVersion {
+    return [self nullableImpressionDataObjectForKey:kImpressionDataAppVersionKey];
+}
+
 - (NSNumber *)publisherRevenue {
     return [self nullableImpressionDataObjectForKey:kImpressionDataPublisherRevenueKey];
 }
@@ -181,9 +185,10 @@ static NSString * const kPrecisionOptionUndisclosedKey      = @"undisclosed";
                                                                                     options:0
                                                                                       error:nil];
 
-    return [NSString stringWithFormat:@"Impression Data %@:\n\nImpression ID: %@\nPublisher Revenue: %@\nCurrency: %@\nAd Unit ID: %@\nAd Unit Name: %@\nAd Unit Format: %@\nAd Group ID: %@\nAd Group Name: %@\nAd Group Type: %@\nAd Group Priority: %@\nPrecision: %@\nCountry: %@\nNetwork Name: %@\nNetwork Placement ID: %@\n\nJSON Representation:\n%@",
+    return [NSString stringWithFormat:@"Impression Data %@:\n\nImpression ID: %@\nApp Version: %@\nPublisher Revenue: %@\nCurrency: %@\nAd Unit ID: %@\nAd Unit Name: %@\nAd Unit Format: %@\nAd Group ID: %@\nAd Group Name: %@\nAd Group Type: %@\nAd Group Priority: %@\nPrecision: %@\nCountry: %@\nNetwork Name: %@\nNetwork Placement ID: %@\n\nJSON Representation:\n%@",
             [super description],
             self.impressionID,
+            self.appVersion,
             self.publisherRevenue,
             self.currency,
             self.adUnitID,
