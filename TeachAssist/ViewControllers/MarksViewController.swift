@@ -259,11 +259,13 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
             bottomAdView.superview!.layer.cornerRadius = 10
             bottomAdLoadingLabel.textColor = lightThemeBlack
             
-            topAdView.adUnitID = "ca-app-pub-6294253616632635/1695791404"
+            //topAdView.adUnitID = "ca-app-pub-6294253616632635/1695791404"
+            topAdView.adUnitID = "ca-app-pub-3940256099942544/6300978111"
             topAdView.rootViewController = self
             topAdView.load(GADRequest())
             
-            bottomAdView.adUnitID = "ca-app-pub-6294253616632635/1695791404"
+            //bottomAdView.adUnitID = "ca-app-pub-6294253616632635/1695791404"
+            bottomAdView.adUnitID = "ca-app-pub-3940256099942544/6300978111"
             bottomAdView.rootViewController = self //bottom ad view is loaded later depending on number of assignments
         }else{
             topAdViewContainer.removeFromSuperview()

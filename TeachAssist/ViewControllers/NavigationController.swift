@@ -23,7 +23,7 @@ class NavigationController: UINavigationController {
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         if(lightThemeEnabled){
-            return .`default`
+            return .default
         }else{
             return .lightContent
         }

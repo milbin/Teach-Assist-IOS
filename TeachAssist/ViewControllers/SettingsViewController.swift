@@ -41,9 +41,10 @@ class SettingsViewController: UIViewController {
                 self.navigationController?.navigationBar.barTintColor = lightThemeWhite
                 navigationItem.backBarButtonItem?.tintColor = lightThemeBlack
                 navigationController!.navigationBar.barStyle = UIBarStyle.black
-                self.view.backgroundColor = lightThemeWhite
+                
                 
             }
+            self.view.backgroundColor = lightThemeWhite
         }
         
         //get all currently active products form the store
@@ -58,16 +59,6 @@ class SettingsViewController: UIViewController {
             }
             
         }
-        
-        //setup upgrade button
-        let gradientColors: [CGColor] = [lightThemeBlue.cgColor, lightThemePink.cgColor]
-        let gradientLayer: CAGradientLayer = CAGradientLayer()
-        gradientLayer.colors = gradientColors
-        gradientLayer.transform = CATransform3DMakeRotation(CGFloat.pi / 2, 0, 0, 1)
-        gradientLayer.frame = upgradeButton.bounds
-        gradientLayer.cornerRadius = 5
-        upgradeButton.layer.insertSublayer(gradientLayer, at: 0)
-        upgradeButton.setTitleColor(lightThemeBlack, for: .normal)
         
         if (Preferences.object(forKey: "isProUser") as? Bool) == true{
             upgradeButton.setTitle("Thank for your support!", for: .normal)
@@ -88,6 +79,19 @@ class SettingsViewController: UIViewController {
         teachassistProDescLabel.textColor = lightThemeBlack
         
         
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        //setup upgrade button
+        let gradientColors: [CGColor] = [lightThemeBlue.cgColor, lightThemePink.cgColor]
+        let gradientLayer: CAGradientLayer = CAGradientLayer()
+        gradientLayer.colors = gradientColors
+        gradientLayer.transform = CATransform3DMakeRotation(CGFloat.pi / 2, 0, 0, 1)
+        gradientLayer.frame = upgradeButton.bounds
+        gradientLayer.cornerRadius = 5
+        upgradeButton.layer.insertSublayer(gradientLayer, at: 0)
+        upgradeButton.setTitleColor(lightThemeBlack, for: .normal)
     }
     
     @objc func OnUpgradeButtonPress(sender: UIButton) {

@@ -571,12 +571,12 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="qIB-wD-16u" firstAttribute="leading" secondItem="3Fv-Hq-HO9" secondAttribute="leading" constant="20" id="8MT-PW-dsn"/>
                                     <constraint firstItem="l1j-zp-6Tk" firstAttribute="leading" secondItem="3Fv-Hq-HO9" secondAttribute="leading" constant="20" id="NJW-D7-x3S"/>
                                     <constraint firstAttribute="height" constant="130" id="RIg-oz-viy"/>
                                     <constraint firstAttribute="bottom" secondItem="qIB-wD-16u" secondAttribute="bottom" constant="10" id="RsD-xa-apf"/>
                                     <constraint firstItem="MAo-BR-gQT" firstAttribute="top" secondItem="3Fv-Hq-HO9" secondAttribute="top" id="bcs-bh-pea"/>
-                                    <constraint firstAttribute="trailing" secondItem="qIB-wD-16u" secondAttribute="trailing" constant="20" id="leN-Vw-8I0"/>
+                                    <constraint firstAttribute="trailing" secondItem="qIB-wD-16u" secondAttribute="trailing" constant="20" id="nZU-S4-nLS"/>
+                                    <constraint firstItem="qIB-wD-16u" firstAttribute="leading" secondItem="3Fv-Hq-HO9" secondAttribute="leading" constant="20" id="u8b-a9-pBs"/>
                                     <constraint firstItem="l1j-zp-6Tk" firstAttribute="top" secondItem="MAo-BR-gQT" secondAttribute="bottom" constant="2" id="ulp-FY-Gqx"/>
                                     <constraint firstItem="MAo-BR-gQT" firstAttribute="centerX" secondItem="3Fv-Hq-HO9" secondAttribute="centerX" id="wEM-Fl-qcC"/>
                                     <constraint firstItem="l1j-zp-6Tk" firstAttribute="top" secondItem="MAo-BR-gQT" secondAttribute="bottom" constant="2" id="wTo-ZS-sja"/>

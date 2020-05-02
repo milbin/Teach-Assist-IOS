@@ -267,6 +267,7 @@ class TA{
     func GetMarks2(subjectNumber:Int) -> [String:Any]?{
         var sr = SendRequest()
         var params = ["student_id": self.studentID, "token":self.sessionToken, "subject_id":courses[subjectNumber]]
+        print(sessionToken)
         var cookieProps = [
             HTTPCookiePropertyKey.domain: "ta.yrdsb.ca",
             HTTPCookiePropertyKey.path: "/",

@@ -79,9 +79,16 @@ class SendRequest{
             switch response.result {
             case .success(let value):
                 resp.append(value)
-                let cookie = HTTPCookieStorage.shared.cookies!
-                resp.append(cookie[0].value)
-                resp.append(cookie[1].value)
+                let cookies = HTTPCookieStorage.shared.cookies!
+                for cookie in cookies{
+                    if cookie.name == "session_token"{
+                        resp.append(cookie.value)
+                    }else if cookie.name == "student_id"{
+                        resp.append(cookie.value)
+                    }
+                }
+                
+                
             case .failure(let error):
                 print(error)
             }

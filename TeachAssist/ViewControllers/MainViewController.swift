@@ -128,8 +128,8 @@ class MainViewController: UIViewController {
         }
         
         //setup Admob banner ad palcement
-        //adView.adUnitID = "ca-app-pub-3940256099942544/2934735716" //Admob test unit ID
-        adView.adUnitID = "ca-app-pub-6294253616632635/9795920506"
+        adView.adUnitID = "ca-app-pub-3940256099942544/6300978111" //Admob test unit ID
+        //adView.adUnitID = "ca-app-pub-6294253616632635/9795920506"
         adView.rootViewController = self
         print(ASIdentifierManager.shared().advertisingIdentifier)
         print("HERE")
@@ -139,12 +139,10 @@ class MainViewController: UIViewController {
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         if(lightThemeEnabled){
-            return .`default`
+            return .default
         }else{
             return .lightContent
-            
         }
-        
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
