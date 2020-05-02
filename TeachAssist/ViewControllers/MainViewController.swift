@@ -464,23 +464,20 @@ class MainViewController: UIViewController {
     }
     
     @objc func OnRefresh() {
-        print("refreshed")
-        
-        
-        var courseNumber = 0
-        for view in StackView.arrangedSubviews{
+    var courseNumber = 0
+        for view in self.StackView.arrangedSubviews{
             if courseNumber >= 0{
                 view.isHidden = true
                 view.removeFromSuperview()
-                StackViewHeight.constant -= 140
+                self.StackViewHeight.constant -= 140
             }
             courseNumber += 1
         }
-        hasViewStarted = false
-        hiddenCoursesBanner.isHidden = true
-        hiddenCoursesBannerHeight.constant = 0
-        StackView.layoutIfNeeded()
-        viewDidAppear(false)
+        self.hasViewStarted = false
+        self.hiddenCoursesBanner.isHidden = true
+        self.hiddenCoursesBannerHeight.constant = 0
+        self.StackView.layoutIfNeeded()
+        self.viewDidAppear(false)
         
     }
     

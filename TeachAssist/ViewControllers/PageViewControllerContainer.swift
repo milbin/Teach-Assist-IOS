@@ -50,7 +50,8 @@ class PageViewControllerContainer: UIViewController{
                 
             }
         }
-        
+        self.parent!.view.backgroundColor = lightThemeWhite
+        self.view.backgroundColor = lightThemeWhite
         pageIndicator.layer.borderWidth = 2
         pageIndicator.layer.cornerRadius = 8
         pageIndicator.layer.borderColor = unhighlightedTextColour.cgColor
@@ -71,11 +72,8 @@ class PageViewControllerContainer: UIViewController{
             make.bottom.equalTo(containerView.snp.bottom)
             make.leading.equalTo(containerView.snp.leading)
             make.trailing.equalTo(containerView.snp.trailing)
-            
         }
         //vc.view.frame = ...  // or, better, turn off `translatesAutoresizingMaskIntoConstraints` and then define constraints for this subview
         vc.didMove(toParent: self)
     }
-    
-    
 }

@@ -349,11 +349,14 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
         
         //only show bottom ad view if it is there are 5 or more assignments present and the use is not pro
         if (Preferences.object(forKey: "isProUser") as? Bool) != true{
-            if(assignmentList.count < 5){
-                bottomAdViewContainer.removeFromSuperview()
-                bottomAdView.removeFromSuperview()
-            }else{
-                bottomAdView.load(GADRequest())
+            if bottomAdView != nil && bottomAdView.superview != nil && bottomAdViewContainer != nil{
+                if(assignmentList.count < 5){
+                     bottomAdViewContainer.removeFromSuperview()
+                     bottomAdView.removeFromSuperview()
+                }else{
+                    print("LOADED AD")
+                    bottomAdView.load(GADRequest())
+                }
             }
         }
         AverageBar.startProgress(to: CGFloat(Mark!), duration: 1.8)
@@ -377,8 +380,6 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
                 assignment.layoutMargins.bottom = 5
             }
         }
-        
-        
     }
     
     @objc func OnEditButtonPress(sender: UIBarButtonItem){
