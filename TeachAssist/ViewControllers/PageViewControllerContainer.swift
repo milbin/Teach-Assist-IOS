@@ -52,6 +52,7 @@ class PageViewControllerContainer: UIViewController{
         }
         self.parent!.view.backgroundColor = lightThemeWhite
         self.view.backgroundColor = lightThemeWhite
+        self.containerView.backgroundColor = lightThemeWhite
         pageIndicator.layer.borderWidth = 2
         pageIndicator.layer.cornerRadius = 8
         pageIndicator.layer.borderColor = unhighlightedTextColour.cgColor

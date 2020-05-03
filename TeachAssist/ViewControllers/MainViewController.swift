@@ -145,7 +145,7 @@ class MainViewController: UIViewController {
         }
     }
     override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
+        super.viewDidAppear(animated)
         if hasViewStarted == true{
             return
         }
@@ -464,15 +464,15 @@ class MainViewController: UIViewController {
     }
     
     @objc func OnRefresh() {
-    var courseNumber = 0
-        for view in self.StackView.arrangedSubviews{
-            if courseNumber >= 0{
-                view.isHidden = true
-                view.removeFromSuperview()
-                self.StackViewHeight.constant -= 140
+        var courseNumber = 0
+            for view in self.StackView.arrangedSubviews{
+                if courseNumber >= 0{
+                    view.isHidden = true
+                    view.removeFromSuperview()
+                    self.StackViewHeight.constant -= 140
+                }
+                courseNumber += 1
             }
-            courseNumber += 1
-        }
         self.hasViewStarted = false
         self.hiddenCoursesBanner.isHidden = true
         self.hiddenCoursesBannerHeight.constant = 0
