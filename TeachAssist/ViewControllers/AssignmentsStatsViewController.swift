@@ -49,8 +49,9 @@ class AssignmentsStatsViewController: UIViewController{
         tLabel.textColor = lightThemeBlack
         cLabel.textColor = lightThemeBlack
         aLabel.textColor = lightThemeBlack
-        
-        
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         let response = (parent as! CourseInfoPageViewController).response
         if response != nil{
             if let dataEntries = generateChartData(response: response){
@@ -74,11 +75,15 @@ class AssignmentsStatsViewController: UIViewController{
         assignmentsSoFar["categories"] = response!["categories"]
         var dataEntries: [ChartDataEntry] = []
         let ta = TA()
+        if response!.count-2 < 0{
+            return nil
+        }
         for i in 0...response!.count-2 {
             assignmentsSoFar[String(i)] = response![String(i)]
             let averageSoFar = ta.CalculateCourseAverage(markParam: assignmentsSoFar, averageCategory: forCategory)/100.0
             if averageSoFar*100.0 != -1.0{
-                let dataEntry = ChartDataEntry(x: Double(i+1), y: averageSoFar)
+                //let dataEntry = ChartDataEntry(x: Double(i+1), y: averageSoFar)
+                let dataEntry = ChartDataEntry(x: Double(i+1), y: averageSoFar, data: "TEST")
                 dataEntries.append(dataEntry)
             }
         }
@@ -129,7 +134,7 @@ class AssignmentsStatsViewController: UIViewController{
         chart.getAxis(YAxis.AxisDependency.left).labelFont = UIFont(name: "Gilroy-Regular", size: 10)!
         
         chart.legend.enabled = false
-        chart.animate(xAxisDuration: 2, easingOption: .easeInCubic)
+        chart.animate(xAxisDuration: 0.4, easingOption: .easeInCubic)
         
     }
 }

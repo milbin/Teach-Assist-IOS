@@ -283,6 +283,8 @@ class MainViewController: UIViewController {
                     courseView.CourseName.text = "Spare"
                 }else if((course["course"]as! String).contains("COP")){
                     courseView.CourseName.text = "Co-op"
+                }else if((course["course"]as! String).contains("FIF")){
+                    courseView.CourseName.text = "French"
                 }else{
                     courseView.CourseName.text = (course["Course_Name"] as! String)
                 }

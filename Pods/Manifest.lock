@@ -7,7 +7,7 @@ PODS:
     - Fabric (~> 1.10.2)
   - DynamicBlurView (3.0.1)
   - Fabric (1.10.2)
-  - FBAudienceNetwork (5.6.0):
+  - FBAudienceNetwork (5.8.0):
     - FBSDKCoreKit/Basics (>= 5.6.0)
   - FBSDKCoreKit/Basics (6.5.1)
   - Firebase/Analytics (6.23.0):
@@ -65,9 +65,9 @@ PODS:
   - GoogleDataTransportCCTSupport (3.0.0):
     - GoogleDataTransport (~> 6.0)
     - nanopb (~> 0.3.901)
-  - GoogleMobileAdsMediationFacebook (5.6.0.0):
-    - FBAudienceNetwork (= 5.6.0)
-    - Google-Mobile-Ads-SDK (>= 7.51.0)
+  - GoogleMobileAdsMediationFacebook (5.8.0.2):
+    - FBAudienceNetwork (= 5.8.0)
+    - Google-Mobile-Ads-SDK (>= 7.58.0)
   - GoogleMobileAdsMediationMoPub (5.12.0.0):
     - Google-Mobile-Ads-SDK (>= 7.58.0)
     - mopub-ios-sdk/Core (= 5.12.0)
@@ -113,14 +113,14 @@ PODS:
   - UICircularProgressRing (6.5.0)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.0)
+  - Alamofire
   - Charts
   - Crashlytics
   - Fabric
   - Firebase/Analytics
   - Firebase/Auth
   - Google-Mobile-Ads-SDK
-  - GoogleMobileAdsMediationFacebook (~> 5.6.0.0)
+  - GoogleMobileAdsMediationFacebook
   - GoogleMobileAdsMediationMoPub
   - HTMLEntities (from `https://github.com/IBM-Swift/swift-html-entities.git`)
   - HTMLString (~> 4.0)
@@ -184,7 +184,7 @@ SPEC CHECKSUMS:
   Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
   DynamicBlurView: b1df5415f9bd31897549e5d7077e5ec120a4d636
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
-  FBAudienceNetwork: 1ea63543665445a3a5b4a059e8210a343b6ab3c1
+  FBAudienceNetwork: 98c125767300048ad46c756680644f4ecb7c4040
   FBSDKCoreKit: 3ecb604427e115bd90ff7fc62ee1e30ebd12285b
   Firebase: 585ae467b3edda6a5444e788fda6888f024d8d6f
   FirebaseAnalytics: 558f7a03d19de451093032c806f39d5f9dff096e
@@ -198,7 +198,7 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: 2253e99c1f22638cf234c059144660c338ad76c3
   GoogleDataTransport: 061fe7d9b476710e3cd8ea51e8e07d8b67c2b420
   GoogleDataTransportCCTSupport: 0f39025e8cf51f168711bd3fb773938d7e62ddb5
-  GoogleMobileAdsMediationFacebook: 2306b9822775e4ddb50c29fc758d6b45efcf6a72
+  GoogleMobileAdsMediationFacebook: 2a6c4e42acdcf342e8a7c39bc796cab088fdefe0
   GoogleMobileAdsMediationMoPub: 56a395e7459d7b70a1e58ae1f0e256dfe63a11ad
   GoogleUtilities: 39530bc0ad980530298e9c4af8549e991fd033b1
   GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
@@ -215,6 +215,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
   UICircularProgressRing: e6852e8f88e296cbbbe2720cccb55241acda6708
 
-PODFILE CHECKSUM: 83e861ebb73d4fe40dad47c61800722243885ddc
+PODFILE CHECKSUM: afe3be8d71768403bf530962d542ce0580c50e4a
 
 COCOAPODS: 1.9.1

@@ -6,7 +6,7 @@ target 'TeachAssist' do
   use_frameworks!
 
   # Pods for TeachAssist
-  pod 'Alamofire', '~> 4.0'
+  pod 'Alamofire'
   pod 'UICircularProgressRing'
   pod 'PureLayout', '~> 2.0.5'
   pod 'HTMLString', '~> 4.0'
@@ -21,7 +21,7 @@ target 'TeachAssist' do
   pod 'SwiftyJSON', '~> 4.0'
   pod 'Charts'
   pod 'Google-Mobile-Ads-SDK'
-  pod 'GoogleMobileAdsMediationFacebook', '~> 5.6.0.0'
+  pod 'GoogleMobileAdsMediationFacebook'
   pod 'GoogleMobileAdsMediationMoPub'
   pod 'SnapKit', '~> 5.0.0'
 

@@ -892,16 +892,16 @@
                                         </constraints>
                                         <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="10" bottom="14" trailing="10"/>
                                     </view>
-                                    <stackView clipsSubviews="YES" contentMode="top" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Wbi-ua-Tav">
-                                        <rect key="frame" x="0.0" y="610" width="375" height="0.0"/>
+                                    <stackView clipsSubviews="YES" contentMode="top" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Wbi-ua-Tav">
+                                        <rect key="frame" x="0.0" y="610" width="375" height="1"/>
                                         <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" id="FGj-np-CzG"/>
+                                            <constraint firstAttribute="height" priority="1" constant="1" id="EgM-uM-rAo"/>
                                         </constraints>
                                         <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="10" bottom="0.0" trailing="10"/>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IJ0-pZ-XLO">
-                                        <rect key="frame" x="10" y="620" width="355" height="260"/>
+                                        <rect key="frame" x="10" y="621" width="355" height="260"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading ad..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ple-oK-9lM">
                                                 <rect key="frame" x="136" y="122" width="83.5" height="16.5"/>
@@ -926,7 +926,7 @@
                                         </constraints>
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yKE-FW-LrY">
-                                        <rect key="frame" x="10" y="890" width="355" height="129"/>
+                                        <rect key="frame" x="10" y="891" width="355" height="129"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus" translatesAutoresizingMaskIntoConstraints="NO" id="wzy-3m-0RF">
                                                 <rect key="frame" x="162.5" y="54.5" width="30" height="30"/>
@@ -1279,7 +1279,6 @@
                         <outlet property="ObarAverageHeight" destination="Dto-aX-RSc" id="wOx-rg-7N5"/>
                         <outlet property="OmarkAverage" destination="S3J-CX-K3N" id="e2Y-8r-5rc"/>
                         <outlet property="StackView" destination="Wbi-ua-Tav" id="mcR-Hb-qaV"/>
-                        <outlet property="StackViewHeight" destination="FGj-np-CzG" id="i9F-Sd-A0Z"/>
                         <outlet property="TaverageLabel" destination="Fm1-Hg-odJ" id="gRu-d1-Vmz"/>
                         <outlet property="TaverageWeight" destination="mcu-M0-3EB" id="eez-zl-uLM"/>
                         <outlet property="TbarAverage" destination="TVI-xK-lDv" id="pPp-3J-l8I"/>

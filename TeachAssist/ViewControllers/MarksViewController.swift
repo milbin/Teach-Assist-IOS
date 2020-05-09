@@ -30,9 +30,7 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var StackView: UIStackView!
-    @IBOutlet weak var StackViewHeight: NSLayoutConstraint!
     @IBOutlet weak var AverageBar: UICircularProgressRing!
-    @IBOutlet weak var scrollViewBottom: NSLayoutConstraint!
     @IBOutlet weak var MarkBarView: UIView!
     
     @IBOutlet weak var KbarAverage: UIView!
@@ -275,15 +273,33 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
         }
         
         
-        scrollView.snp.makeConstraints { (make) -> Void in
+        /*scrollView.snp.makeConstraints { (make) -> Void in
             make.leading.equalTo(self.view.snp.leading)
-            make.trailing.equalTo(self.view.snp.trailing).offset(50)
-        }
-        
-        
+            make.trailing.equalTo(self.view.snp.trailing)//.offset(50)
+        }*/
+        loadAssignments()
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        //loadAssignments()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        if hasViewBeenLayedOut == false && response != nil{
+            hasViewBeenLayedOut = true
+            
+            for assignment in StackView.arrangedSubviews{
+                assignment.invalidateIntrinsicContentSize()
+                assignment.layoutMargins.top = 5
+                assignment.layoutMargins.bottom = 5
+            }
+        }
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        (parent as! CourseInfoPageViewController).response = response
+    }
+    private func loadAssignments(){
         response = ta!.GetMarks(subjectNumber: courseNumber!)
         let Preferences = UserDefaults.standard
         let username = Preferences.string(forKey: "username")
@@ -297,7 +313,7 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
                     self.OnRefresh()
                 }))
                 alert.addAction(UIAlertAction(title: "Back", style: .default, handler: { (action:UIAlertAction!) in
-                    _ = self.parent?.parent!.navigationController?.popViewController(animated: true)
+                    self.parent?.parent!.navigationController?.popViewController(animated: true)
                 }))
                 self.present(alert, animated: true)
                 return
@@ -318,7 +334,7 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
         
         for i in 0...(response!.count - 2){
             var assignmentWithFeedbackAndTitle = response![String(i)]! as! [String:Any]
-            var title = (assignmentWithFeedbackAndTitle["title"]! as! String).htmlUnescape()
+            let title = (assignmentWithFeedbackAndTitle["title"]! as! String).htmlUnescape()
             var feedback = (assignmentWithFeedbackAndTitle["feedback"] as? String)
             if feedback == nil{
                 feedback = ""
@@ -328,7 +344,7 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
             assignmentWithFeedbackAndTitle.removeValue(forKey: "title")
             assignmentWithFeedbackAndTitle.removeValue(forKey: "feedback")
             for category in assignmentWithFeedbackAndTitle{
-                var value = (category.value as! [String:String?])
+                let value = (category.value as! [String:String?])
                 if value["mark"] == nil{
                     assignmentWithFeedbackAndTitle[category.key] = nil
                 }else if value["outOf"] == nil{
@@ -341,7 +357,7 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
                     assignmentWithFeedbackAndTitle[category.key] = value as! [String:String]
                 }
             }
-            var assignment = assignmentWithFeedbackAndTitle as! [String:[String:String]]
+            let assignment = assignmentWithFeedbackAndTitle as! [String:[String:String]]
             if(!assignmentsHaveBeenAdded){ //to resolve the bug where assignemnts get added twice because the system calls this method when the user swips back
                 addAssignmentToStackview(assignment: assignment, feedback: feedback, title: title)
             }
@@ -367,18 +383,6 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
         }
         if(!assignmentsHaveBeenAdded){
             assignmentsHaveBeenAdded = true
-        }
-    }
-    
-    override func viewDidLayoutSubviews() {
-        if hasViewBeenLayedOut == false && response != nil{
-            hasViewBeenLayedOut = true
-            
-            for assignment in StackView.arrangedSubviews{
-                assignment.invalidateIntrinsicContentSize()
-                assignment.layoutMargins.top = 5
-                assignment.layoutMargins.bottom = 5
-            }
         }
     }
     
@@ -408,9 +412,11 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
         view?.removeFromSuperview()
         UpdateMarkBars()
         
-        StackViewHeight.constant -= 135
+        //StackViewHeight.constant -= 135
         
     }
+    
+    //MARK: Assignment Add Button
     @objc func OnAddAssignmentButtonPress(gesture: UIGestureRecognizer) {
         if(!self.addAssignmentAdvancedButton.isSelected){
             UIView.animate(withDuration: 0.1, animations: {
@@ -668,8 +674,7 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
         print("ASSIGNMENT SELECTED")
         let view = gesture.view! as! AssignmentView
         
-        
-        if view.toggleState(newHeight: 270){
+        if view.toggleState(){ //will expand
             
             view.centerXConstraint.isActive = true
             view.centerAverageConstraint.isActive = true
@@ -713,7 +718,7 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
                 view.ABar.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
                 view.OBar.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
             })
-            StackViewHeight.constant += 270
+            //StackViewHeight.constant += 270
         }else{
             
             view.centerXConstraint.isActive = false
@@ -757,23 +762,17 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
                 view.CBar.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
                 view.ABar.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
                 view.OBar.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 5)
-                self.StackViewHeight.constant -= 270
+                //self.StackViewHeight.constant -= 270
             }, completion: {(finished: Bool) in
 
                 
             })
             
         }
-        
-        
-        
-        
-        
-        
     }
     
     
-    
+    //MARK: OnRefresh
     @objc func OnRefresh() {
         print("refreshed")
         for view in StackView.arrangedSubviews{
@@ -781,7 +780,7 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
             view.removeFromSuperview()
         }
         assignmentsHaveBeenAdded = false
-        StackViewHeight.constant = 0
+        //StackViewHeight.constant = 0
         StackView.layoutIfNeeded()
         AverageBar.startProgress(to: 0.0, duration: 0)
         viewDidAppear(true)
@@ -791,7 +790,7 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
     }
     
     func addAssignmentToStackview(assignment:[String:[String:String]], feedback:String?, title:String?){
-        var assignmentView = AssignmentView(frame: CGRect(x: 0, y: 0, width: 350, height: 129))
+        let assignmentView = AssignmentView(frame: CGRect(x: 0, y: 0, width: 350, height: 129))
         
         assignmentView.AssignmentTitle.text = title
         
@@ -843,7 +842,7 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
         }else{
             assignmentView.AssignmentMark.text =  average + "%"
         }
-        StackViewHeight.constant = StackViewHeight.constant + 135
+        //StackViewHeight.constant = StackViewHeight.constant + 135
         if(lightThemeEnabled){
             assignmentView.contentView.backgroundColor = lightThemeWhite
             assignmentView.KBar.backgroundColor = self.lightThemeGreen
@@ -1082,13 +1081,6 @@ class MarksViewController: UIViewController, UITextFieldDelegate {
     @objc func doneButtonTapped() {
         self.view.endEditing(true)
     }
-    
-    
-    
-    
-    
-    
-    
     
 }
 

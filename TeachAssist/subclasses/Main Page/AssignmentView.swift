@@ -66,8 +66,7 @@ class AssignmentView: UIView {
     @IBOutlet weak var feedback: UITextView!
     @IBOutlet weak var centerAverageConstraint: NSLayoutConstraint!
     @IBOutlet weak var centerXConstraint: NSLayoutConstraint!
-    var height = 129
-    
+    let originalHeight = 129
     
     
     
@@ -124,28 +123,38 @@ class AssignmentView: UIView {
     }
     
     override var intrinsicContentSize: CGSize {
-        return CGSize(width: 355, height: height)
+        return CGSize(width: 355, height: originalHeight)
     }
     
     
-    func toggleState(newHeight:Int) -> Bool{
-        if height == 129{
-            height += newHeight
+    func toggleState() -> Bool{
+        if contentView.frame.size.height == CGFloat(originalHeight){
+            contentView.snp.removeConstraints()
+            contentView.snp.makeConstraints { (make) in
+                make.height.equalTo(399)
+                make.top.equalToSuperview()
+                make.bottom.equalToSuperview()
+                make.leading.equalToSuperview()
+                make.trailing.equalToSuperview()
+            }
             UIView.animate(withDuration: 0.1, animations: {
-                self.invalidateIntrinsicContentSize()
-                self.contentView.heightAnchor.constraint(equalToConstant: CGFloat(self.height))
-                self.contentView.frame = CGRect(x: self.contentView.frame.minX, y: self.contentView.frame.minY, width: self.contentView.frame.width, height: CGFloat(self.height))
+                self.contentView.layoutIfNeeded()
                 
             })
             return true
         }else{
-            height = 129
+            contentView.snp.removeConstraints()
+            contentView.snp.makeConstraints { (make) in
+                make.height.equalTo(originalHeight)
+                make.top.equalToSuperview()
+                make.bottom.equalToSuperview()
+                make.leading.equalToSuperview()
+                make.trailing.equalToSuperview()
+            }
             UIView.animate(withDuration: 0.1, animations: {
-                self.contentView.heightAnchor.constraint(equalToConstant: CGFloat(self.height))
-                self.contentView.frame = CGRect(x: self.contentView.frame.minX, y: self.contentView.frame.minY, width: self.contentView.frame.width, height: CGFloat(self.height))
+                self.contentView.layoutIfNeeded()
                 
             })
-            self.invalidateIntrinsicContentSize()
             return false
         }
     }

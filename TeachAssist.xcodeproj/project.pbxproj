@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -38,7 +38,7 @@
 		6EDFB06422204DFE00640F87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6EDFB06322204DFD00640F87 /* Assets.xcassets */; };
 		6EE67E5E220DD8EE00010826 /* SendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE67E5D220DD8EE00010826 /* SendRequest.swift */; };
 		6EF07E042210E58D00FFBFF4 /* TA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF07E032210E58D00FFBFF4 /* TA.swift */; };
-		9239385AA64616E1B8E3E74E /* Pods_TeachAssistUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03354D7619574F9CCC590845 /* Pods_TeachAssistUITests.framework */; };
+		BE259AAC11293767B21FD226 /* Pods_TeachAssistUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CED0BC7B68B30E6D5A37BCC2 /* Pods_TeachAssistUITests.framework */; };
 		EA007A4622270D6A00AD7AFE /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA007A4422270D6900AD7AFE /* Login.storyboard */; };
 		EA007A48222712ED00AD7AFE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA007A47222712ED00AD7AFE /* LoginViewController.swift */; };
 		EA007A4C2227175C00AD7AFE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA007A4B2227175C00AD7AFE /* Main.storyboard */; };
@@ -92,7 +92,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		03354D7619574F9CCC590845 /* Pods_TeachAssistUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeachAssistUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A90BB8A520323AB984A5D9F /* Pods-TeachAssistUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeachAssistUITests.debug.xcconfig"; path = "Target Support Files/Pods-TeachAssistUITests/Pods-TeachAssistUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		3B40AF8D5A1C73EAD6B88FB0 /* Pods-TeachAssistUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeachAssistUITests.release.xcconfig"; path = "Target Support Files/Pods-TeachAssistUITests/Pods-TeachAssistUITests.release.xcconfig"; sourceTree = "<group>"; };
 		47137CD6E298E9EC5CB9BD3F /* Pods_TeachAssistTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeachAssistTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,9 +119,11 @@
 		6EDFB06322204DFD00640F87 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6EE67E5D220DD8EE00010826 /* SendRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendRequest.swift; sourceTree = "<group>"; };
 		6EF07E032210E58D00FFBFF4 /* TA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TA.swift; sourceTree = "<group>"; };
+		9CD807326D6E28EBF30815EE /* Pods-TeachAssist-TeachAssistUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeachAssist-TeachAssistUITests.release.xcconfig"; path = "Target Support Files/Pods-TeachAssist-TeachAssistUITests/Pods-TeachAssist-TeachAssistUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A127481DF967806D06F03D41 /* Pods-TeachAssist.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeachAssist.release.xcconfig"; path = "Target Support Files/Pods-TeachAssist/Pods-TeachAssist.release.xcconfig"; sourceTree = "<group>"; };
 		AE1A38F650013D017870018A /* Pods-TeachAssistTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeachAssistTests.debug.xcconfig"; path = "Target Support Files/Pods-TeachAssistTests/Pods-TeachAssistTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B7AAB10ABED2B591E51C0500 /* Pods_TeachAssist.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeachAssist.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CED0BC7B68B30E6D5A37BCC2 /* Pods_TeachAssistUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeachAssistUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA007A4522270D6900AD7AFE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
 		EA007A47222712ED00AD7AFE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EA007A4B2227175C00AD7AFE /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -162,6 +163,7 @@
 		EAE7AF6F22693FC00056BC9A /* AssignmentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AssignmentView.xib; sourceTree = "<group>"; };
 		EAE7AF71226A2DBA0056BC9A /* AssignmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentView.swift; sourceTree = "<group>"; };
 		EAE7B980243CF474007C68A3 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		EF5A18315416FD5276C23AB3 /* Pods-TeachAssist-TeachAssistUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeachAssist-TeachAssistUITests.debug.xcconfig"; path = "Target Support Files/Pods-TeachAssist-TeachAssistUITests/Pods-TeachAssist-TeachAssistUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,7 +188,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9239385AA64616E1B8E3E74E /* Pods_TeachAssistUITests.framework in Frameworks */,
+				BE259AAC11293767B21FD226 /* Pods_TeachAssistUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,6 +204,8 @@
 				6B5D7FEB90AFB5F4E7EAEF5B /* Pods-TeachAssistTests.release.xcconfig */,
 				0A90BB8A520323AB984A5D9F /* Pods-TeachAssistUITests.debug.xcconfig */,
 				3B40AF8D5A1C73EAD6B88FB0 /* Pods-TeachAssistUITests.release.xcconfig */,
+				EF5A18315416FD5276C23AB3 /* Pods-TeachAssist-TeachAssistUITests.debug.xcconfig */,
+				9CD807326D6E28EBF30815EE /* Pods-TeachAssist-TeachAssistUITests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -234,7 +238,7 @@
 				EA7B4FA72296008100B79BC4 /* KYDrawerController.framework */,
 				B7AAB10ABED2B591E51C0500 /* Pods_TeachAssist.framework */,
 				47137CD6E298E9EC5CB9BD3F /* Pods_TeachAssistTests.framework */,
-				03354D7619574F9CCC590845 /* Pods_TeachAssistUITests.framework */,
+				CED0BC7B68B30E6D5A37BCC2 /* Pods_TeachAssistUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -385,7 +389,7 @@
 				6E449D0C2204A26E00C0F0AC /* Frameworks */,
 				6E449D0D2204A26E00C0F0AC /* Resources */,
 				EA4A34272294BCA80092084B /* ShellScript */,
-				270F86EFF17B8E9309981D2E /* [CP] Embed Pods Frameworks */,
+				AAC84BC4958BE96F024AF130 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -548,23 +552,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		270F86EFF17B8E9309981D2E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TeachAssist/Pods-TeachAssist-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TeachAssist/Pods-TeachAssist-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TeachAssist/Pods-TeachAssist-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		6A0A2B15A296FD096590F3C1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -585,6 +572,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AAC84BC4958BE96F024AF130 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TeachAssist/Pods-TeachAssist-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TeachAssist/Pods-TeachAssist-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TeachAssist/Pods-TeachAssist-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AD3176F9E2A8261D391374D5 /* [CP] Check Pods Manifest.lock */ = {
@@ -864,7 +868,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Teachassist.TeachAssist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -902,7 +906,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Teachassist.TeachAssist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
