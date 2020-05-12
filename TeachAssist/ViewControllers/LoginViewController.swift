@@ -31,6 +31,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         //check for light theme
         let Preferences = UserDefaults.standard
         let currentPreferenceExists = Preferences.object(forKey: "LightThemeEnabled")
+        
         if currentPreferenceExists != nil{ //preference does exist
             lightThemeEnabled = Preferences.bool(forKey: "LightThemeEnabled")
             if(lightThemeEnabled){

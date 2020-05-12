@@ -54,7 +54,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 ])
         }
         
-
+        let currentPreferenceExists = Preferences.object(forKey: "LightThemeEnabled")
+        if currentPreferenceExists == nil{
+            Preferences.set(true, forKey: "LightThemeEnabled")
+            Preferences.synchronize()
+            if #available(iOS 13.0, *) {
+                window?.overrideUserInterfaceStyle = .light
+            }
+        }else{
+            if #available(iOS 13.0, *) {
+                let lightThemeEnabled = Preferences.bool(forKey: "LightThemeEnabled")
+                if lightThemeEnabled{
+                    window?.overrideUserInterfaceStyle = .light
+                }else{
+                    window?.overrideUserInterfaceStyle = .dark
+                }
+            }
+        }
         
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -63,6 +79,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let drawerController     = KYDrawerController(drawerDirection: .left, drawerWidth: 300)
         drawerController.mainViewController = mainViewController
         drawerController.drawerViewController = drawerViewController
+        drawerController.preferredStatusBarStyle
         
         if(username != nil && password != nil && username != "" && password != ""){ //if credentals are alredy stored go straight to main view
             window?.rootViewController = drawerController

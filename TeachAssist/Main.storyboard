@@ -211,6 +211,7 @@
                         <constraints>
                             <constraint firstItem="DYD-hs-CUM" firstAttribute="top" secondItem="EQN-BI-Fbj" secondAttribute="top" id="AFL-Zd-PrV"/>
                             <constraint firstItem="DYD-hs-CUM" firstAttribute="leading" secondItem="i1I-sV-Ga4" secondAttribute="leading" id="BkD-zk-GsL"/>
+                            <constraint firstItem="jvV-wf-tPB" firstAttribute="width" secondItem="EQN-BI-Fbj" secondAttribute="width" id="CCN-dH-BgD"/>
                             <constraint firstItem="jvV-wf-tPB" firstAttribute="leading" secondItem="i1I-sV-Ga4" secondAttribute="leading" id="FX6-Ia-dr1"/>
                             <constraint firstItem="i1I-sV-Ga4" firstAttribute="trailing" secondItem="jvV-wf-tPB" secondAttribute="trailing" id="aJM-n1-bng"/>
                             <constraint firstItem="i1I-sV-Ga4" firstAttribute="bottom" secondItem="jvV-wf-tPB" secondAttribute="bottom" id="ae3-MZ-jwl"/>
@@ -486,7 +487,7 @@
         <scene sceneID="rov-sy-LHB">
             <objects>
                 <navigationController storyboardIdentifier="MainView" id="iTw-tJ-WJD" customClass="NavigationController" customModule="TeachAssist" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="PKf-Zi-J22">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="PKf-Zi-J22">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -510,7 +511,7 @@
             <objects>
                 <tableViewController id="hWi-X5-Suv" customClass="SettingsTableViewController" customModule="TeachAssist" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="xAl-wE-lh1">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="493"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="453"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
@@ -545,22 +546,25 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Fv-Hq-HO9">
-                                <rect key="frame" x="0.0" y="493" width="375" height="130"/>
+                                <rect key="frame" x="0.0" y="453" width="375" height="170"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Teachassist Pro" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MAo-BR-gQT">
-                                        <rect key="frame" x="102" y="0.0" width="171" height="29.5"/>
+                                        <rect key="frame" x="102" y="0.0" width="171" height="27"/>
                                         <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="24"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pleae consider supporting us by upgrading to Teachassist Pro. This will remove ads forever and give you a small perk ;)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l1j-zp-6Tk">
-                                        <rect key="frame" x="20" y="31.5" width="335" height="28"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please consider supporting us by upgrading in order to remove ads forever!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l1j-zp-6Tk">
+                                        <rect key="frame" x="20" y="29" width="335" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="Dhh-S2-8h9"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qIB-wD-16u">
-                                        <rect key="frame" x="20" y="80" width="335" height="40"/>
+                                        <rect key="frame" x="20" y="85" width="335" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="YID-g1-UCr"/>
                                         </constraints>
@@ -569,12 +573,25 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C5W-hd-DjG">
+                                        <rect key="frame" x="129" y="130" width="117" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="yBE-94-4Ef"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy" pointSize="14"/>
+                                        <state key="normal" title="Restore Purchases">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="l1j-zp-6Tk" firstAttribute="leading" secondItem="3Fv-Hq-HO9" secondAttribute="leading" constant="20" id="NJW-D7-x3S"/>
-                                    <constraint firstAttribute="height" constant="130" id="RIg-oz-viy"/>
-                                    <constraint firstAttribute="bottom" secondItem="qIB-wD-16u" secondAttribute="bottom" constant="10" id="RsD-xa-apf"/>
+                                    <constraint firstItem="C5W-hd-DjG" firstAttribute="centerX" secondItem="3Fv-Hq-HO9" secondAttribute="centerX" id="Q12-mx-mS9"/>
+                                    <constraint firstAttribute="height" constant="170" id="RIg-oz-viy"/>
+                                    <constraint firstItem="qIB-wD-16u" firstAttribute="top" secondItem="l1j-zp-6Tk" secondAttribute="bottom" constant="16" id="UAG-Zj-lUO"/>
                                     <constraint firstItem="MAo-BR-gQT" firstAttribute="top" secondItem="3Fv-Hq-HO9" secondAttribute="top" id="bcs-bh-pea"/>
+                                    <constraint firstItem="C5W-hd-DjG" firstAttribute="top" secondItem="qIB-wD-16u" secondAttribute="bottom" constant="5" id="dSd-eH-zdD"/>
+                                    <constraint firstAttribute="bottom" secondItem="C5W-hd-DjG" secondAttribute="bottom" id="kel-HM-rcH"/>
                                     <constraint firstAttribute="trailing" secondItem="qIB-wD-16u" secondAttribute="trailing" constant="20" id="nZU-S4-nLS"/>
                                     <constraint firstItem="qIB-wD-16u" firstAttribute="leading" secondItem="3Fv-Hq-HO9" secondAttribute="leading" constant="20" id="u8b-a9-pBs"/>
                                     <constraint firstItem="l1j-zp-6Tk" firstAttribute="top" secondItem="MAo-BR-gQT" secondAttribute="bottom" constant="2" id="ulp-FY-Gqx"/>
@@ -584,7 +601,7 @@
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sjj-mx-9ri">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="493"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="453"/>
                                 <connections>
                                     <segue destination="hWi-X5-Suv" kind="embed" id="nii-5x-Iz0"/>
                                 </connections>
@@ -603,6 +620,7 @@
                         <viewLayoutGuide key="safeArea" id="e56-me-Fbm"/>
                     </view>
                     <connections>
+                        <outlet property="restorePurchasesButton" destination="C5W-hd-DjG" id="5WW-0N-fiQ"/>
                         <outlet property="teachassistProDescLabel" destination="l1j-zp-6Tk" id="EF9-js-eLN"/>
                         <outlet property="teachassistProLabel" destination="MAo-BR-gQT" id="95f-un-kVD"/>
                         <outlet property="upgradeButton" destination="qIB-wD-16u" id="wgd-DE-Dp8"/>
@@ -1341,100 +1359,132 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Average" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AkQ-QG-uCV">
-                                <rect key="frame" x="135.5" y="0.0" width="104" height="17"/>
-                                <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="14"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5I4-w2-elX" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="17" width="375" height="200"/>
-                                <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <scrollView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FCN-3X-gO7">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fQC-Y7-nB6">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Average" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AkQ-QG-uCV">
+                                                <rect key="frame" x="135.5" y="20" width="104" height="17"/>
+                                                <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5I4-w2-elX" customClass="LineChartView" customModule="Charts">
+                                                <rect key="frame" x="0.0" y="37" width="375" height="200"/>
+                                                <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="200" id="h3z-Nb-beG"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Knowledge" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="spf-X1-00s">
+                                                <rect key="frame" x="55" y="245" width="73" height="17"/>
+                                                <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thinking" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NNg-v7-6hY">
+                                                <rect key="frame" x="256.5" y="245" width="55" height="17"/>
+                                                <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ol-DQ-Dz4" customClass="LineChartView" customModule="Charts">
+                                                <rect key="frame" x="0.0" y="267" width="182.5" height="160"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="160" id="ZbU-MF-URC"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mJh-LT-VNY" customClass="LineChartView" customModule="Charts">
+                                                <rect key="frame" x="192.5" y="267" width="182.5" height="160"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="160" id="gBB-ri-D48"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k6M-0L-O3n" customClass="LineChartView" customModule="Charts">
+                                                <rect key="frame" x="0.0" y="457" width="182.5" height="160"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="160" id="DOl-J0-M2C"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ARa-CT-xJg" customClass="LineChartView" customModule="Charts">
+                                                <rect key="frame" x="192.5" y="457" width="182.5" height="160"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="160" id="gK3-rF-8dF"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Application" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qgd-YL-htX">
+                                                <rect key="frame" x="246" y="435" width="75.5" height="17"/>
+                                                <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Communication" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tVj-Cb-tbQ">
+                                                <rect key="frame" x="39.5" y="435" width="103.5" height="17"/>
+                                                <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="ARa-CT-xJg" secondAttribute="trailing" id="0Fm-c2-LvT"/>
+                                            <constraint firstItem="mJh-LT-VNY" firstAttribute="top" secondItem="NNg-v7-6hY" secondAttribute="bottom" constant="5" id="1sH-Gh-eWD"/>
+                                            <constraint firstItem="AkQ-QG-uCV" firstAttribute="centerX" secondItem="fQC-Y7-nB6" secondAttribute="centerX" id="2dY-RO-FnF"/>
+                                            <constraint firstAttribute="height" priority="1" constant="667" id="313-Yt-Sfg"/>
+                                            <constraint firstItem="5I4-w2-elX" firstAttribute="leading" secondItem="fQC-Y7-nB6" secondAttribute="leading" id="4En-6c-JDN"/>
+                                            <constraint firstItem="NNg-v7-6hY" firstAttribute="top" secondItem="5I4-w2-elX" secondAttribute="bottom" constant="8" id="Crw-sB-vsu"/>
+                                            <constraint firstAttribute="trailing" secondItem="5I4-w2-elX" secondAttribute="trailing" id="Dkw-aR-mmr"/>
+                                            <constraint firstItem="ARa-CT-xJg" firstAttribute="leading" secondItem="k6M-0L-O3n" secondAttribute="trailing" constant="10" id="ElT-0C-EIT"/>
+                                            <constraint firstItem="Qgd-YL-htX" firstAttribute="top" secondItem="mJh-LT-VNY" secondAttribute="bottom" constant="8" id="FVu-Nj-WSi"/>
+                                            <constraint firstItem="4ol-DQ-Dz4" firstAttribute="leading" secondItem="fQC-Y7-nB6" secondAttribute="leading" id="GRE-LW-Plo"/>
+                                            <constraint firstItem="5I4-w2-elX" firstAttribute="top" secondItem="AkQ-QG-uCV" secondAttribute="bottom" id="OFZ-vk-tYz"/>
+                                            <constraint firstItem="spf-X1-00s" firstAttribute="top" secondItem="5I4-w2-elX" secondAttribute="bottom" constant="8" id="QWI-KJ-mSt"/>
+                                            <constraint firstItem="4ol-DQ-Dz4" firstAttribute="centerX" secondItem="spf-X1-00s" secondAttribute="centerX" id="QjM-6D-2Je"/>
+                                            <constraint firstAttribute="trailing" secondItem="mJh-LT-VNY" secondAttribute="trailing" id="SgR-8u-wCg"/>
+                                            <constraint firstItem="AkQ-QG-uCV" firstAttribute="top" secondItem="fQC-Y7-nB6" secondAttribute="top" constant="20" id="ceu-1d-wqB"/>
+                                            <constraint firstItem="mJh-LT-VNY" firstAttribute="width" secondItem="4ol-DQ-Dz4" secondAttribute="width" id="cfg-GF-uGk"/>
+                                            <constraint firstItem="k6M-0L-O3n" firstAttribute="leading" secondItem="fQC-Y7-nB6" secondAttribute="leading" id="cjm-MJ-iT7"/>
+                                            <constraint firstItem="ARa-CT-xJg" firstAttribute="width" secondItem="k6M-0L-O3n" secondAttribute="width" id="dnK-1D-WQT"/>
+                                            <constraint firstItem="ARa-CT-xJg" firstAttribute="top" secondItem="Qgd-YL-htX" secondAttribute="bottom" constant="5" id="eR4-7x-gNr"/>
+                                            <constraint firstItem="tVj-Cb-tbQ" firstAttribute="top" secondItem="4ol-DQ-Dz4" secondAttribute="bottom" constant="8" id="ev7-TL-Btb"/>
+                                            <constraint firstItem="ARa-CT-xJg" firstAttribute="centerX" secondItem="Qgd-YL-htX" secondAttribute="centerX" id="fDq-Y9-lyF"/>
+                                            <constraint firstItem="k6M-0L-O3n" firstAttribute="top" secondItem="tVj-Cb-tbQ" secondAttribute="bottom" constant="5" id="s1Q-5O-gPQ"/>
+                                            <constraint firstItem="k6M-0L-O3n" firstAttribute="centerX" secondItem="tVj-Cb-tbQ" secondAttribute="centerX" id="s3V-x4-hz4"/>
+                                            <constraint firstItem="mJh-LT-VNY" firstAttribute="leading" secondItem="4ol-DQ-Dz4" secondAttribute="trailing" constant="10" id="sCe-uu-cZa"/>
+                                            <constraint firstItem="ARa-CT-xJg" firstAttribute="width" secondItem="k6M-0L-O3n" secondAttribute="width" id="uke-kW-eAE"/>
+                                            <constraint firstItem="NNg-v7-6hY" firstAttribute="centerX" secondItem="mJh-LT-VNY" secondAttribute="centerX" id="uuW-Kc-jv7"/>
+                                            <constraint firstItem="4ol-DQ-Dz4" firstAttribute="top" secondItem="spf-X1-00s" secondAttribute="bottom" constant="5" id="yuA-nn-n8a"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="h3z-Nb-beG"/>
+                                    <constraint firstAttribute="trailing" secondItem="fQC-Y7-nB6" secondAttribute="trailing" id="18f-6a-4Xl"/>
+                                    <constraint firstAttribute="bottom" secondItem="fQC-Y7-nB6" secondAttribute="bottom" constant="100" id="Tgk-iH-7ag"/>
+                                    <constraint firstItem="fQC-Y7-nB6" firstAttribute="centerY" secondItem="FCN-3X-gO7" secondAttribute="centerY" id="aE6-rb-xED"/>
+                                    <constraint firstItem="fQC-Y7-nB6" firstAttribute="top" secondItem="FCN-3X-gO7" secondAttribute="top" id="arn-MX-CSf"/>
+                                    <constraint firstItem="fQC-Y7-nB6" firstAttribute="centerX" secondItem="FCN-3X-gO7" secondAttribute="centerX" id="nza-eb-M1G"/>
+                                    <constraint firstItem="fQC-Y7-nB6" firstAttribute="leading" secondItem="FCN-3X-gO7" secondAttribute="leading" id="suI-rh-KsK"/>
                                 </constraints>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Knowledge" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="spf-X1-00s">
-                                <rect key="frame" x="55" y="225" width="73" height="17"/>
-                                <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="14"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thinking" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NNg-v7-6hY">
-                                <rect key="frame" x="256.5" y="225" width="55" height="17"/>
-                                <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="14"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ol-DQ-Dz4" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="247" width="182.5" height="160"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="160" id="ZbU-MF-URC"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mJh-LT-VNY" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="192.5" y="247" width="182.5" height="160"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="160" id="gBB-ri-D48"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k6M-0L-O3n" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="437" width="182.5" height="160"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="160" id="DOl-J0-M2C"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ARa-CT-xJg" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="192.5" y="437" width="182.5" height="160"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="160" id="gK3-rF-8dF"/>
-                                </constraints>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Application" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qgd-YL-htX">
-                                <rect key="frame" x="246" y="415" width="75.5" height="17"/>
-                                <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="14"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Communication" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tVj-Cb-tbQ">
-                                <rect key="frame" x="39.5" y="415" width="103.5" height="17"/>
-                                <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy" pointSize="14"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <viewLayoutGuide key="contentLayoutGuide" id="B2W-jX-EuZ"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="zGy-y1-xLh"/>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="spf-X1-00s" firstAttribute="top" secondItem="5I4-w2-elX" secondAttribute="bottom" constant="8" id="27Y-eu-Gan"/>
-                            <constraint firstItem="5I4-w2-elX" firstAttribute="leading" secondItem="PGJ-DE-pkV" secondAttribute="leading" id="2CY-aA-so5"/>
-                            <constraint firstItem="mJh-LT-VNY" firstAttribute="trailing" secondItem="PGJ-DE-pkV" secondAttribute="trailing" id="36Q-gV-q31"/>
-                            <constraint firstItem="k6M-0L-O3n" firstAttribute="centerX" secondItem="tVj-Cb-tbQ" secondAttribute="centerX" id="46H-tu-QGa"/>
-                            <constraint firstItem="k6M-0L-O3n" firstAttribute="leading" secondItem="e0M-eK-H0L" secondAttribute="leading" id="5fI-nM-M99"/>
-                            <constraint firstItem="4ol-DQ-Dz4" firstAttribute="leading" secondItem="e0M-eK-H0L" secondAttribute="leading" id="5hh-6F-CIq"/>
-                            <constraint firstItem="ARa-CT-xJg" firstAttribute="leading" secondItem="k6M-0L-O3n" secondAttribute="trailing" constant="10" id="5yN-W6-pvV"/>
-                            <constraint firstItem="tVj-Cb-tbQ" firstAttribute="top" secondItem="4ol-DQ-Dz4" secondAttribute="bottom" constant="8" id="Bqp-Wx-e8e"/>
-                            <constraint firstItem="ARa-CT-xJg" firstAttribute="centerX" secondItem="Qgd-YL-htX" secondAttribute="centerX" id="Eir-Wn-F9l"/>
-                            <constraint firstItem="NNg-v7-6hY" firstAttribute="top" secondItem="5I4-w2-elX" secondAttribute="bottom" constant="8" id="Eog-Af-D94"/>
-                            <constraint firstItem="ARa-CT-xJg" firstAttribute="width" secondItem="k6M-0L-O3n" secondAttribute="width" id="K4c-lL-Lc4"/>
-                            <constraint firstItem="PGJ-DE-pkV" firstAttribute="trailing" secondItem="ARa-CT-xJg" secondAttribute="trailing" id="KOr-bZ-EGa"/>
-                            <constraint firstItem="mJh-LT-VNY" firstAttribute="leading" secondItem="4ol-DQ-Dz4" secondAttribute="trailing" constant="10" id="LA9-lg-pRj"/>
-                            <constraint firstItem="AkQ-QG-uCV" firstAttribute="centerX" secondItem="e0M-eK-H0L" secondAttribute="centerX" id="PB6-46-hKs"/>
-                            <constraint firstItem="ARa-CT-xJg" firstAttribute="top" secondItem="Qgd-YL-htX" secondAttribute="bottom" constant="5" id="QpT-3p-Ql3"/>
-                            <constraint firstItem="k6M-0L-O3n" firstAttribute="top" secondItem="tVj-Cb-tbQ" secondAttribute="bottom" constant="5" id="Rha-nF-ql1"/>
-                            <constraint firstItem="ARa-CT-xJg" firstAttribute="width" secondItem="k6M-0L-O3n" secondAttribute="width" id="acE-nO-L8y"/>
-                            <constraint firstItem="PGJ-DE-pkV" firstAttribute="trailing" secondItem="5I4-w2-elX" secondAttribute="trailing" id="b3M-9M-g2v"/>
-                            <constraint firstItem="5I4-w2-elX" firstAttribute="top" secondItem="AkQ-QG-uCV" secondAttribute="bottom" id="dy9-Dd-a2d"/>
-                            <constraint firstItem="AkQ-QG-uCV" firstAttribute="top" secondItem="PGJ-DE-pkV" secondAttribute="top" id="gtM-hR-5ew"/>
-                            <constraint firstItem="4ol-DQ-Dz4" firstAttribute="centerX" secondItem="spf-X1-00s" secondAttribute="centerX" id="jHl-wS-heR"/>
-                            <constraint firstItem="Qgd-YL-htX" firstAttribute="top" secondItem="mJh-LT-VNY" secondAttribute="bottom" constant="8" id="jf8-5J-XMc"/>
-                            <constraint firstItem="mJh-LT-VNY" firstAttribute="width" secondItem="4ol-DQ-Dz4" secondAttribute="width" id="kbm-6m-CNC"/>
-                            <constraint firstItem="NNg-v7-6hY" firstAttribute="centerX" secondItem="mJh-LT-VNY" secondAttribute="centerX" id="lf6-Gc-YRG"/>
-                            <constraint firstItem="mJh-LT-VNY" firstAttribute="top" secondItem="NNg-v7-6hY" secondAttribute="bottom" constant="5" id="pwo-7L-WXp"/>
-                            <constraint firstItem="4ol-DQ-Dz4" firstAttribute="top" secondItem="spf-X1-00s" secondAttribute="bottom" constant="5" id="sRk-9i-26W"/>
+                            <constraint firstAttribute="trailing" secondItem="FCN-3X-gO7" secondAttribute="trailing" id="2st-Ee-p1z"/>
+                            <constraint firstItem="FCN-3X-gO7" firstAttribute="leading" secondItem="e0M-eK-H0L" secondAttribute="leading" id="8sP-cf-YYI"/>
+                            <constraint firstItem="FCN-3X-gO7" firstAttribute="top" secondItem="e0M-eK-H0L" secondAttribute="top" id="Jgg-dp-Oc6"/>
+                            <constraint firstItem="PGJ-DE-pkV" firstAttribute="bottom" secondItem="FCN-3X-gO7" secondAttribute="bottom" id="U2d-du-YjC"/>
+                            <constraint firstItem="FCN-3X-gO7" firstAttribute="width" secondItem="e0M-eK-H0L" secondAttribute="width" id="sLQ-MH-wD0"/>
+                            <constraint firstItem="fQC-Y7-nB6" firstAttribute="width" secondItem="e0M-eK-H0L" secondAttribute="width" id="tw4-2p-6bn"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PGJ-DE-pkV"/>
                     </view>

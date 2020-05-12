@@ -23,6 +23,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var upgradeButton: UIButton!
     @IBOutlet weak var teachassistProLabel: UILabel!
     @IBOutlet weak var teachassistProDescLabel: UILabel!
+    @IBOutlet weak var restorePurchasesButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         //check for light theme
@@ -41,23 +42,19 @@ class SettingsViewController: UIViewController {
                 self.navigationController?.navigationBar.barTintColor = lightThemeWhite
                 navigationItem.backBarButtonItem?.tintColor = lightThemeBlack
                 navigationController!.navigationBar.barStyle = UIBarStyle.black
-                
-                
             }
-            self.view.backgroundColor = lightThemeWhite
         }
+
+        self.view.backgroundColor = lightThemeWhite
         
         //get all currently active products form the store
         PaidProducts.store.requestProducts{ [weak self] success, products in
             guard let self = self else { return }
             if success {
                 self.products = products!
-                print(products)
-                print("HERE")
             }else{
                 print("Failed to get products from the app store!")
             }
-            
         }
         
         if (Preferences.object(forKey: "isProUser") as? Bool) == true{
@@ -66,11 +63,12 @@ class SettingsViewController: UIViewController {
             teachassistProDescLabel.isHidden = true
         }else{
             upgradeButton.addTarget(self, action: #selector(OnUpgradeButtonPress), for: .touchUpInside)
+            restorePurchasesButton.addTarget(self, action: #selector(onRestoreButtonPressed), for: .touchUpInside)
         }
         
         //debug remove pro, COMMENT OUT IN PRODUCTION
-        Preferences.set(false, forKey: "isProUser")
-        Preferences.synchronize()
+        //Preferences.set(false, forKey: "isProUser")
+        //Preferences.synchronize()
         
         
         //setup Ta pro labels
@@ -92,6 +90,8 @@ class SettingsViewController: UIViewController {
         gradientLayer.cornerRadius = 5
         upgradeButton.layer.insertSublayer(gradientLayer, at: 0)
         upgradeButton.setTitleColor(lightThemeBlack, for: .normal)
+        
+        restorePurchasesButton.setTitleColor(lightThemeBlack, for: .normal)
     }
     
     @objc func OnUpgradeButtonPress(sender: UIButton) {
@@ -132,17 +132,55 @@ class SettingsViewController: UIViewController {
         }
         
     }
-    
-    public func makeUserPro(){ //should be called in the IAB helper file after the purchase is succesfully completed
-        let Preferences = UserDefaults.standard
-        Preferences.set(true, forKey: "isProUser")
-        Preferences.synchronize()
-        
-        upgradeButton.setTitle("Thank for your support!", for: .normal)
-        teachassistProLabel.isHidden = true
-        teachassistProDescLabel.isHidden = true
-        print("USER IS NOW PRO")
-    }
+    @objc func onRestoreButtonPressed(sender: UIButton) {
+           if IAPHelper.canMakePayments(){
+               if products.count >= 1{
+                   let removeAdsProduct = products[0]
+                   let priceFormatter = NumberFormatter()
+                   priceFormatter.formatterBehavior = .behavior10_4
+                   priceFormatter.numberStyle = .currency
+                   priceFormatter.locale = removeAdsProduct.priceLocale
+                   if PaidProducts.store.isProductPurchased(removeAdsProduct.productIdentifier){
+                       makeUserPro()
+                       let alert = UIAlertController(title: "Your purchase has been restored!", message: "Thank you!", preferredStyle: .alert)
+                       alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action:UIAlertAction!) in
+                       }))
+                       self.present(alert, animated: true)
+                   }else{
+                       let price = priceFormatter.string(from: removeAdsProduct.price)
+                       let alert = UIAlertController(title: "You have not yet purchased this item", message: "Would you like to remove ads for \(price!)?", preferredStyle: .alert)
+                       alert.addAction(UIAlertAction(title: "Buy", style: .default, handler: { (action:UIAlertAction!) in
+                           PaidProducts.store.buyProduct(removeAdsProduct)
+                       }))
+                       alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action:UIAlertAction!) in
+                       }))
+                       self.present(alert, animated: true)
+                   }
+               }else{
+                   let alert = UIAlertController(title: "Could not connect to Apple", message: "Please check your internet connection and try again.", preferredStyle: .alert)
+                   alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action:UIAlertAction!) in
+                   }))
+                   self.present(alert, animated: true)
+               }
+           }else{
+               let alert = UIAlertController(title: "In App Purchases Disabled", message: "Please check your parental controls and try again.", preferredStyle: .alert)
+               alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action:UIAlertAction!) in
+               }))
+               self.present(alert, animated: true)
+           }
+           
+       }
+       
+       public func makeUserPro(){ //should be called in the IAB helper file after the purchase is succesfully completed
+           let Preferences = UserDefaults.standard
+           Preferences.set(true, forKey: "isProUser")
+           Preferences.synchronize()
+           
+           upgradeButton.setTitle("Thank for your support!", for: .normal)
+           teachassistProLabel.isHidden = true
+           teachassistProDescLabel.isHidden = true
+           print("USER IS NOW PRO")
+       }
     
     
 }

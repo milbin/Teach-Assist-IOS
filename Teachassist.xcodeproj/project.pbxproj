@@ -472,7 +472,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 6E449D0A2204A26E00C0F0AC /* Build configuration list for PBXProject "TeachAssist" */;
+			buildConfigurationList = 6E449D0A2204A26E00C0F0AC /* Build configuration list for PBXProject "Teachassist" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -781,7 +781,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -836,7 +836,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -854,17 +854,17 @@
 				CODE_SIGN_ENTITLEMENTS = TeachAssist/TeachAssist.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 40;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 763X9XATXX;
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = TeachAssist/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2.8;
+				MARKETING_VERSION = 2.5.3;
 				PRODUCT_BUNDLE_IDENTIFIER = Teachassist.TeachAssist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -881,7 +881,7 @@
 				CODE_SIGN_ENTITLEMENTS = TeachAssist/TeachAssist.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 40;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 763X9XATXX;
 				ENABLE_BITCODE = YES;
@@ -897,12 +897,12 @@
 					"\"${PODS_ROOT}/Fabric/iOS\"",
 				);
 				INFOPLIST_FILE = TeachAssist/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2.8;
+				MARKETING_VERSION = 2.5.3;
 				PRODUCT_BUNDLE_IDENTIFIER = Teachassist.TeachAssist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -996,7 +996,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6E449D0A2204A26E00C0F0AC /* Build configuration list for PBXProject "TeachAssist" */ = {
+		6E449D0A2204A26E00C0F0AC /* Build configuration list for PBXProject "Teachassist" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6E449D352204A27200C0F0AC /* Debug */,

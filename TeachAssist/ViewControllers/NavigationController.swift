@@ -20,6 +20,8 @@ class NavigationController: UINavigationController {
                 
             }
         }
+
+        setNeedsStatusBarAppearanceUpdate()
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         if(lightThemeEnabled){

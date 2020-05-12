@@ -56,6 +56,8 @@
 			</dict>
 		</array>
 	</dict>
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-6294253616632635~3008873077</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIAppFonts</key>
@@ -82,8 +84,6 @@
 	<array>
 		<string>armv7</string>
 	</array>
-	<key>UIStatusBarStyle</key>
-	<string>UIStatusBarStyleDefault</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -97,8 +97,6 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
-	<key>GADApplicationIdentifier</key>
-	<string>ca-app-pub-6294253616632635~3008873077</string>
 	<key>supportsAlternateIcon</key>
 	<string>YES</string>
 </dict>

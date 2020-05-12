@@ -69,6 +69,7 @@ class MainViewController: UIViewController {
                 navigationController?.navigationBar.titleTextAttributes = textAttributes
                 self.AverageBar.outerRingColor = lightThemeLightBlack
                 self.AverageBar.innerRingColor = lightThemeBlue
+            }else{
             }
         }
         scrollView.backgroundColor = lightThemeWhite
@@ -128,8 +129,8 @@ class MainViewController: UIViewController {
         }
         
         //setup Admob banner ad palcement
-        adView.adUnitID = "ca-app-pub-3940256099942544/6300978111" //Admob test unit ID
-        //adView.adUnitID = "ca-app-pub-6294253616632635/9795920506"
+        //adView.adUnitID = "ca-app-pub-3940256099942544/6300978111" //Admob test unit ID
+        adView.adUnitID = "ca-app-pub-6294253616632635/9795920506"
         adView.rootViewController = self
         print(ASIdentifierManager.shared().advertisingIdentifier)
         print("HERE")
@@ -137,6 +138,8 @@ class MainViewController: UIViewController {
         
         
     }
+    
+    //For some reason this does not work, only settings the info.plist properties of user interface style and statusbar style work
     override var preferredStatusBarStyle: UIStatusBarStyle {
         if(lightThemeEnabled){
             return .default
@@ -350,8 +353,8 @@ class MainViewController: UIViewController {
         Preferences.set("true", forKey: "release notes 2.2.8")
         let title = "A message from the developers"
         let message = """
-            Unfortunately, we've decided that the next step in improving our app is to show banner ads. It's a sad day in the history of Teachassist.
-            \n On the bright side, we wanted to soften the blow with a couple of new features: offline mode, and a statistics view. We also have a couple of other features that should arrive in the near future.
+            Unfortunately, we've decided that the next step in improving our app is to show banner ads. After all, uni tuition ain't free.
+            \n On the bright side, we wanted to soften the blow with a new feature: the statistics view which will allow you to see the progression of your marks over time. We also have a couple of other features that should arrive in the near future.
             \n But for those of you who can't stand this development, we've included an option to remove all ads for $2.79.
             \n Please accept our condolences, and we hope you enjoy :)
             """

@@ -117,7 +117,6 @@ extension CourseInfoPageViewController: UIPageViewControllerDataSource {
 extension CourseInfoPageViewController: UIPageViewControllerDelegate {
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool){
         if completed {
-            print(pageViewController.viewControllers)
             if previousViewControllers.first == myViewControllers[0]{
                 scroll(right: true)
             }else if previousViewControllers.first == myViewControllers[1] && pageViewController.viewControllers?.first != previousViewControllers.first{

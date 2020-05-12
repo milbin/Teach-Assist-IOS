@@ -152,9 +152,9 @@ extension IAPHelper: SKPaymentTransactionObserver {
             let localizedDescription = transaction.error?.localizedDescription,
             transactionError.code != SKError.paymentCancelled.rawValue {
             print("Transaction Error: \(localizedDescription)")
-            let alert = UIAlertController(title: "Transaction Error!", message: localizedDescription, preferredStyle: .alert)
+            let alert = UIAlertController(title: "Transaction Error", message: localizedDescription, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action:UIAlertAction!) in
-                self.makeUserPro()
+                //self.makeUserPro()
             }))
             alert.show()
         }
