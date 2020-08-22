@@ -40,14 +40,11 @@
         <title>Static Image Resource</title>\
         <meta name=\"viewport\" content=\"initial-scale=1.0, maximum-scale=1.0, user-scalable=no\">\
         <style type=\"text/css\">\
-            html, body { margin: 0; padding: 0; overflow: hidden; }\
-            #content { width: %.0fpx; height: %.0fpx; }\
+            html, body { margin: 0; padding: 0; }\
         </style>\
     </head>\
     <body scrolling=\"no\">\
-        <div id=\"content\">\
-            <img src=\"%@\">\
-        </div>\
+        <img width=\"%.fpx\" height=\"%.fpx\" src=\"%@\">\
     </body>\
 </html>";
             return [NSString stringWithFormat:staticImageResourceFormat,

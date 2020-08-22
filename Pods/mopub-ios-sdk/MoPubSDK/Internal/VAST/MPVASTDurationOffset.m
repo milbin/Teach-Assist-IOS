@@ -38,7 +38,7 @@
     }
 
     if (self.type == MPVASTDurationOffsetTypeAbsolute) {
-        return [MPVASTStringUtilities timeIntervalFromString:self.offset];
+        return [MPVASTStringUtilities timeIntervalFromDurationString:self.offset];
     } else if (self.type == MPVASTDurationOffsetTypePercentage) {
         NSInteger percentage = [MPVASTStringUtilities percentageFromString:self.offset];
         return duration * percentage / 100.0f;

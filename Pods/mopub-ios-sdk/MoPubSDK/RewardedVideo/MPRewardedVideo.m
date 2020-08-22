@@ -14,7 +14,6 @@
 #import "MPRewardedVideoAdManager.h"
 #import "MPRewardedVideoError.h"
 #import "MPRewardedVideoConnection.h"
-#import "MPRewardedVideoCustomEvent.h"
 #import "MoPub+Utility.h"
 
 static MPRewardedVideo *gSharedInstance = nil;
@@ -151,12 +150,21 @@ static MPRewardedVideo *gSharedInstance = nil;
     return [adManager hasAdAvailable];
 }
 
-+ (NSArray *)availableRewardsForAdUnitID:(NSString *)adUnitID
++ (NSArray<MPRewardedVideoReward *> *)availableRewardsForAdUnitID:(NSString *)adUnitID
 {
     MPRewardedVideo *sharedInstance = [[self class] sharedInstance];
     MPRewardedVideoAdManager *adManager = sharedInstance.rewardedVideoAdManagers[adUnitID];
 
-    return adManager.availableRewards;
+    if (adManager.availableRewards == nil) {
+        return nil;
+    }
+    else {
+        NSMutableArray<MPRewardedVideoReward *> *rewards = [NSMutableArray new];
+        for (MPReward *reward in adManager.availableRewards) {
+            [rewards addObject:[MPRewardedVideoReward rewardWithReward:reward]];
+        }
+        return rewards;
+    }
 }
 
 + (MPRewardedVideoReward *)selectedRewardForAdUnitID:(NSString *)adUnitID
@@ -164,7 +172,7 @@ static MPRewardedVideo *gSharedInstance = nil;
     MPRewardedVideo *sharedInstance = [[self class] sharedInstance];
     MPRewardedVideoAdManager *adManager = sharedInstance.rewardedVideoAdManagers[adUnitID];
 
-    return adManager.selectedReward;
+    return [MPRewardedVideoReward rewardWithReward:adManager.selectedReward];
 }
 
 + (void)presentRewardedVideoAdForAdUnitID:(NSString *)adUnitID fromViewController:(UIViewController *)viewController withReward:(MPRewardedVideoReward *)reward customData:(NSString *)customData
@@ -276,16 +284,16 @@ static MPRewardedVideo *gSharedInstance = nil;
         [delegate rewardedVideoAdDidDisappearForAdUnitID:manager.adUnitId];
     }
 
-    // Since multiple ad units may be attached to the same network, we should notify the custom events (which should then notify the application)
+    // Since multiple ad units may be attached to the same network, we should notify the adapters (which should then notify the application)
     // that their ads may not be available anymore since another ad unit might have "played" their ad. We go through and notify all ad managers
     // that are of the type of ad that is playing now.
-    Class customEventClass = manager.customEventClass;
+    Class adapterClass = manager.adapterClass;
 
     for (id key in self.rewardedVideoAdManagers) {
         MPRewardedVideoAdManager *adManager = self.rewardedVideoAdManagers[key];
 
-        if (adManager != manager && adManager.customEventClass == customEventClass) {
-            [adManager handleAdPlayedForCustomEventNetwork];
+        if (adManager != manager && adManager.adapterClass == adapterClass) {
+            [adManager handleAdPlayedForAdapterNetwork];
         }
     }
 }
@@ -318,11 +326,12 @@ static MPRewardedVideo *gSharedInstance = nil;
     }
 }
 
-- (void)rewardedVideoShouldRewardUserForAdManager:(MPRewardedVideoAdManager *)manager reward:(MPRewardedVideoReward *)reward
+- (void)rewardedVideoShouldRewardUserForAdManager:(MPRewardedVideoAdManager *)manager reward:(MPReward *)reward
 {
     id<MPRewardedVideoDelegate> delegate = [self.delegateTable objectForKey:manager.adUnitId];
     if ([delegate respondsToSelector:@selector(rewardedVideoAdShouldRewardForAdUnitID:reward:)]) {
-        [delegate rewardedVideoAdShouldRewardForAdUnitID:manager.adUnitId reward:reward];
+        [delegate rewardedVideoAdShouldRewardForAdUnitID:manager.adUnitId
+                                                  reward:[MPRewardedVideoReward rewardWithReward:reward]];
     }
 }
 

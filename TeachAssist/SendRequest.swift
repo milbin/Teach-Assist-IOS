@@ -18,7 +18,7 @@ class SendRequest{
         var resp:[[String:Any]]?
         var notificationResp:[String:Any]?
         
-        Alamofire.request(url, method:.post, parameters:params, encoding:JSONEncoding.default).responseJSON(queue: DispatchQueue.global(qos: .default)) { response in
+        AF.request(url, method:.post, parameters:params, encoding:JSONEncoding.default).responseJSON(queue: DispatchQueue.global(qos: .default)) { response in
             switch response.result {
             case .success(let value):
                 resp = value as? [[String:Any]]
@@ -46,12 +46,12 @@ class SendRequest{
     }
     
     func Send(url:String, parameters:Dictionary<String, String>)->String?{
-        print("sending request")
+        //print("sending request")
         let semaphore = DispatchSemaphore(value: 0)
         //var request = AF.request(url, method:.post, parameters:params, encoding:JSONEncoding.default)
         var resp:String?
         
-        Alamofire.request(url, method:.post, parameters:parameters).responseString(queue: DispatchQueue.global(qos: .default)) { response in
+        AF.request(url, method:.post, parameters:parameters).responseString(queue: DispatchQueue.global(qos: .default)) { response in
             switch response.result {
             case .success(let value):
                 resp = value
@@ -68,14 +68,14 @@ class SendRequest{
         return resp!
     }
     func SendWithCookies(url:String, parameters:Dictionary<String, String>, cookies:HTTPCookie?)->[String?]?{
-        print("sending request")
+        //print("sending request")
         let semaphore = DispatchSemaphore(value: 0)
         var resp:[String?] = [String?]()
         if(cookies != nil){
             HTTPCookieStorage.shared.setCookie(cookies!)
         }
         
-        Alamofire.request(url, method:.post, parameters:parameters).responseString(queue: DispatchQueue.global(qos: .default)) { response in
+        AF.request(url, method:.post, parameters:parameters).responseString(queue: DispatchQueue.global(qos: .default)) { response in
             switch response.result {
             case .success(let value):
                 resp.append(value)

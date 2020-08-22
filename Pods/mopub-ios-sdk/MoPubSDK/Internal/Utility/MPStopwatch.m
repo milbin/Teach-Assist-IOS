@@ -41,7 +41,15 @@ static const NSTimeInterval kStopwatchStep = 0.1; // 100ms interval
 
     // Reset internal state and spin up a new timer.
     self.duration = 0.0;
-    self.timer = [MPTimer timerWithTimeInterval:kStopwatchStep target:self selector:@selector(onTimerFired) repeats:YES runLoopMode:NSRunLoopCommonModes];
+
+    __typeof__(self) __weak weakSelf = self;
+    self.timer = [MPTimer timerWithTimeInterval:kStopwatchStep
+                                        repeats:YES
+                                    runLoopMode:NSRunLoopCommonModes
+                                          block:^(MPTimer * _Nonnull timer) {
+        __typeof__(self) strongSelf = weakSelf;
+        strongSelf.duration += kStopwatchStep;
+    }];
 
     // Start the countup timer.
     [self.timer scheduleNow];
@@ -59,10 +67,6 @@ static const NSTimeInterval kStopwatchStep = 0.1; // 100ms interval
     self.timer = nil;
 
     return self.duration;
-}
-
-- (void)onTimerFired {
-    self.duration += kStopwatchStep;
 }
 
 @end

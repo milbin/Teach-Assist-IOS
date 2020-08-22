@@ -14,6 +14,8 @@
 #import "UIColor+MPAdditions.h"
 #import "UIView+MPAdditions.h"
 
+// A static value that stores its own pointer.
+// It means nothing on its own, which makes it rather perfect for <NSKeyValueObserving>
 static void * KVOContext = &KVOContext;
 
 static NSString * const kProgressBarFillColor = @"#FFCC4D";
@@ -52,25 +54,19 @@ NSTimeInterval const kPlayTimeTolerance = 0.1;
 @implementation MPVideoPlayerView
 
 - (void)dealloc {
-    [self.player pause]; // just in case the player session does not stop in time
-    [self.player removeTimeObserver: self.progressBarTimeObserver];
-    [self.player removeTimeObserver: self.progressTrackingTimeObserver];
-    [self.player removeTimeObserver: self.boundaryTrackingTimeObserver];
-    [self.player removeTimeObserver: self.industryIconShowTimeObserver];
-    [self.player removeTimeObserver: self.industryIconHideTimeObserver];
-    [self.notificationCenter removeObserver:self];
-    [self.notificationCenter removeObserver:self.endTimeObserverToken];
-    [self.notificationCenter removeObserver:self.audioSessionInterruptionObserverToken];
-
-    // Note: disable KVO for the layer before `[self.player replaceCurrentItemWithPlayerItem:nil];`
-    // otherwise app will crash because the progress bar would have been deallocated.
-    [self.playerLayer removeObserver:self forKeyPath:NSStringFromSelector(@selector(videoRect))];
-
-    // Audio session might be messed up without setting current item to nil.
-    // Note: remove current item from KVO first to avoid crash!
-    [self.player.currentItem removeObserver:self forKeyPath:NSStringFromSelector(@selector(duration))];
-    [self.player replaceCurrentItemWithPlayerItem:nil];
+    [self stopVideo];
 }
+
+#pragma mark - Overrides
+
+/**
+ Use `AVPlayerLayer` instead of `CALayer` for the backing layer.
+ */
++ (Class)layerClass {
+    return [AVPlayerLayer class];
+}
+
+#pragma mark - Properties
 
 - (NSTimeInterval)videoDuration {
     return CMTimeGetSeconds(self.player.currentItem.duration);
@@ -78,6 +74,30 @@ NSTimeInterval const kPlayTimeTolerance = 0.1;
 
 - (NSTimeInterval)videoProgress {
     return CMTimeGetSeconds(self.player.currentTime);
+}
+
+- (float)videoVolume {
+    return self.player.volume;
+}
+
+#pragma mark - AVPlayerLayer and AVPlayer Accessors
+
+/**
+ A helper for saving type casting effort.
+ */
+- (AVPlayerLayer *)playerLayer {
+    return (AVPlayerLayer *)self.layer;
+}
+
+/**
+ A helper for easier player access.
+ */
+- (AVPlayer * _Nullable)player {
+    return self.playerLayer.player;
+}
+
+- (void)setPlayer:(AVPlayer * _Nullable)player {
+    self.playerLayer.player = player;
 }
 
 #pragma mark - MPVideoPlayer
@@ -102,7 +122,7 @@ NSTimeInterval const kPlayTimeTolerance = 0.1;
     [self setUpProgressBar];
 }
 
-- (void)play {
+- (void)playVideo {
     if (self.hasStartedPlaying == NO) {
         self.hasStartedPlaying = YES;
 
@@ -116,17 +136,75 @@ NSTimeInterval const kPlayTimeTolerance = 0.1;
     [self.player play];
 }
 
-- (void)pause {
+- (void)pauseVideo {
     [self.player pause];
+}
+
+- (void)stopVideo {
+    // No video player instance
+    if (self.player == nil) {
+        return;
+    }
+
+    // No video has been loaded, so there is nothing to tear down.
+    if (!self.didLoadVideo) {
+        return;
+    }
+
+    // Pause the video first to stop playback just in case the player session does not stop in time
+    [self.player pause];
+
+    // Remove all event and notification observers that were setup in `loadVideo`.
+    [self.player removeTimeObserver: self.progressBarTimeObserver];
+    [self.player removeTimeObserver: self.progressTrackingTimeObserver];
+    [self.player removeTimeObserver: self.boundaryTrackingTimeObserver];
+    [self.player removeTimeObserver: self.industryIconShowTimeObserver];
+    [self.player removeTimeObserver: self.industryIconHideTimeObserver];
+    [self.notificationCenter removeObserver:self];
+    [self.notificationCenter removeObserver:self.endTimeObserverToken];
+    [self.notificationCenter removeObserver:self.audioSessionInterruptionObserverToken];
+
+    // Note: disable KVO for the layer before `[self.player replaceCurrentItemWithPlayerItem:nil];`
+    // otherwise app will crash because the progress bar would have been deallocated.
+    @try {
+        [self.playerLayer removeObserver:self forKeyPath:NSStringFromSelector(@selector(videoRect))];
+    }
+    @catch (NSException * __unused exception) {
+        // Removing the KVO observer failed and resulted in this exception.
+        // This means that a KVO observer was not registered yet, such
+        // as `loadVideo` not being called at all.
+        // Swallow this exception.
+        MPLogWarn(@"Attempting to remove KVO observer for `videoRect` that was not registered");
+    }
+
+    // Audio session might be messed up without setting current item to nil.
+    // Note: remove current item from KVO first to avoid crash!
+    @try {
+        [self.player.currentItem removeObserver:self forKeyPath:NSStringFromSelector(@selector(duration))];
+    }
+    @catch (NSException * __unused exception) {
+        // Removing the KVO observer failed and resulted in this exception.
+        // This means that a KVO observer was not registered yet, such
+        // as `loadVideo` not being called at all.
+        // Swallow this exception.
+        MPLogWarn(@"Attempting to remove KVO observer for `duration` that was not registered");
+    }
+
+    [self.player replaceCurrentItemWithPlayerItem:nil];
+
+    // AVPlayer doesn't have a stop method, but we can fake one by
+    // `nil`ing out the player. This also ensures that video playback cannot
+    // be resumed after being stopped.
+    self.player = nil;
 }
 
 - (void)enableAppLifeCycleEventObservationForAutoPlayPause {
     [self.notificationCenter addObserver:self
-                                selector:@selector(pause)
+                                selector:@selector(handleBackgroundNotification:)
                                     name:UIApplicationDidEnterBackgroundNotification
                                   object:nil];
     [self.notificationCenter addObserver:self
-                                selector:@selector(play)
+                                selector:@selector(handleForegroundNotification:)
                                     name:UIApplicationWillEnterForegroundNotification
                                   object:nil];
     self.isAutoPlayPauseEnabled = YES;
@@ -143,27 +221,6 @@ NSTimeInterval const kPlayTimeTolerance = 0.1;
 }
 
 #pragma mark - Private Methods
-
-/**
- Use `AVPlayerLayer` instead of `CALayer` for the backing layer.
- */
-+ (Class)layerClass {
-    return [AVPlayerLayer class];
-}
-
-/**
- A helper for saving type casting effort.
- */
-- (AVPlayerLayer *)playerLayer {
-    return (AVPlayerLayer *)self.layer;
-}
-
-/**
- A helper for easier player access.
- */
-- (AVPlayer *)player {
-    return self.playerLayer.player;
-}
 
 /**
  A helper for setting up the @c player of @c playerLayer. Call this during init only.
@@ -193,7 +250,7 @@ NSTimeInterval const kPlayTimeTolerance = 0.1;
         return;
     }
 
-    // KVO for porgress bar layout
+    // KVO for progress bar layout
     [self.playerLayer addObserver:self
                        forKeyPath:NSStringFromSelector(@selector(videoRect))
                           options:0
@@ -305,13 +362,18 @@ NSTimeInterval const kPlayTimeTolerance = 0.1;
         [checkpoints addObject:[NSValue valueWithCMTime:CMTimeMakeWithSeconds(time, kPreferredTimescale)]];
     }
 
-    // if `checkpoints` is empty, `addBoundaryTimeObserverForTimes:queue:usingBlock:` will crash
+    // `addBoundaryTimeObserverForTimes:queue:usingBlock:` will crash if
+    // given an empty array of times to observe.
     if (checkpoints.count == 0) {
         return;
     }
 
+    // `addBoundaryTimeObserverForTimes` has undefined behavior with concurrent queue obtained
+    // from `dispatch_get_global_queue`, thus use the main queue here since it's serial.
     __weak __typeof__(self) weakSelf = self;
-    void (^observationHandler)(void) = ^void() {
+    self.progressTrackingTimeObserver = [self.player addBoundaryTimeObserverForTimes:checkpoints
+                                                                               queue:dispatch_get_main_queue()
+                                                                          usingBlock:^{
         __typeof__(self) strongSelf = weakSelf;
         if (strongSelf == nil) {
             return;
@@ -320,13 +382,7 @@ NSTimeInterval const kPlayTimeTolerance = 0.1;
         [strongSelf.delegate videoPlayerView:strongSelf
                    videoDidReachProgressTime:CMTimeGetSeconds(strongSelf.player.currentTime)
                                     duration:CMTimeGetSeconds(strongSelf.player.currentItem.duration)];
-    };
-
-    // `addBoundaryTimeObserverForTimes` has undefined behavior with concurrent queue obtained
-    // from `dispatch_get_global_queue`, thus use the main queue here since it's serial.
-    self.progressTrackingTimeObserver = [self.player addBoundaryTimeObserverForTimes:checkpoints
-                                                                               queue:dispatch_get_main_queue()
-                                                                          usingBlock:observationHandler];
+    }];
 }
 
 /**
@@ -335,6 +391,11 @@ NSTimeInterval const kPlayTimeTolerance = 0.1;
 - (void)observeBoundaryTimeForTracking {
     if (self.boundaryTrackingTimeObserver) {
         MPLogDebug(@"Player boundary time has been observed");
+        return;
+    }
+
+    // There is no player, so there is no point in observing.
+    if (self.player == nil) {
         return;
     }
 
@@ -353,8 +414,13 @@ NSTimeInterval const kPlayTimeTolerance = 0.1;
                                         [NSValue valueWithCMTime:halfTime],
                                         [NSValue valueWithCMTime:thirdQuarterTime]];
 
+    // `addBoundaryTimeObserverForTimes` has undefined behavior with concurrent queue obtained
+    // from `dispatch_get_global_queue`, thus use the main queue here since it's serial.
+    // `checkpoints` will always be non-empty, so there is no need for a `checkpoints.count > 0` check.
     __weak __typeof__(self) weakSelf = self;
-    void (^observationHandler)(void) = ^void() {
+    self.boundaryTrackingTimeObserver = [self.player addBoundaryTimeObserverForTimes:checkpoints
+                                                                               queue:dispatch_get_main_queue()
+                                                                          usingBlock:^{
         __typeof__(self) strongSelf = weakSelf;
         if (strongSelf == nil) {
             return;
@@ -368,36 +434,37 @@ NSTimeInterval const kPlayTimeTolerance = 0.1;
         [strongSelf.delegate videoPlayerView:strongSelf
                    videoDidReachProgressTime:CMTimeGetSeconds(strongSelf.player.currentTime)
                                     duration:durationInSeconds];
-    };
-
-    // `addBoundaryTimeObserverForTimes` has undefined behavior with concurrent queue obtained
-    // from `dispatch_get_global_queue`, thus use the main queue here since it's serial.
-    self.boundaryTrackingTimeObserver = [self.player addBoundaryTimeObserverForTimes:checkpoints
-                                                                               queue:dispatch_get_main_queue()
-                                                                          usingBlock:observationHandler];
-    self.endTimeObserverToken
-    = [self.notificationCenter
-       addObserverForName:AVPlayerItemDidPlayToEndTimeNotification
-       object:self.player.currentItem
-       queue:NSOperationQueue.mainQueue
-       usingBlock:^(NSNotification *notification) {
-        weakSelf.didPlayToEndTime = YES;
-        [weakSelf.delegate videoPlayerViewDidCompleteVideo:weakSelf duration:durationInSeconds];
     }];
 
-    self.audioSessionInterruptionObserverToken
-    = [self.notificationCenter
-       addObserverForName:AVAudioSessionInterruptionNotification
-       object:nil
-       queue:NSOperationQueue.mainQueue
-       usingBlock:^(NSNotification *notification) {
+    self.endTimeObserverToken = [self.notificationCenter addObserverForName:AVPlayerItemDidPlayToEndTimeNotification
+                                                                     object:self.player.currentItem
+                                                                      queue:NSOperationQueue.mainQueue
+                                                                 usingBlock:^(NSNotification *notification) {
+        __typeof__(self) strongSelf = weakSelf;
+        if (strongSelf == nil) {
+            return;
+        }
+
+        strongSelf.didPlayToEndTime = YES;
+        [strongSelf.delegate videoPlayerViewDidCompleteVideo:strongSelf duration:durationInSeconds];
+    }];
+
+    self.audioSessionInterruptionObserverToken = [self.notificationCenter addObserverForName:AVAudioSessionInterruptionNotification
+                                                                                      object:nil
+                                                                                       queue:NSOperationQueue.mainQueue
+                                                                                  usingBlock:^(NSNotification *notification) {
+        __typeof__(self) strongSelf = weakSelf;
+        if (strongSelf == nil) {
+            return;
+        }
+
         NSNumber *interruptionType = [notification.userInfo valueForKey:AVAudioSessionInterruptionTypeKey];
-        if (weakSelf.isAutoPlayPauseEnabled
-            && weakSelf.didPlayToEndTime == NO
+        if (strongSelf.isAutoPlayPauseEnabled
+            && strongSelf.didPlayToEndTime == NO
             && interruptionType.unsignedIntegerValue == AVAudioSessionInterruptionTypeEnded) {
             // After an interruption (such as a phone call), we don't want the player to remain paused
             // because we don't offer a Play button, and potentially no Skip nor Close in some cases.
-            [weakSelf play];
+            [strongSelf playVideo];
         }
     }];
 }
@@ -442,34 +509,48 @@ NSTimeInterval const kPlayTimeTolerance = 0.1;
         }
     }
 
-    __weak __typeof__(self) weakSelf = self;
-    __block NSUInteger iconIndex = 0;
-    void (^showIconHandler)(void) = ^void() {
-        __typeof__(self) strongSelf = weakSelf;
-        if (strongSelf == nil || iconIndex >= sortedIndustryIcons.count) {
-            return;
-        }
-
-        [strongSelf.delegate videoPlayerView:strongSelf showIndustryIcon:sortedIndustryIcons[iconIndex]];
-        iconIndex++;
-    };
-
-    void (^hideIconHandler)(void) = ^void() {
-        __typeof__(self) strongSelf = weakSelf;
-        if (strongSelf == nil) {
-            return;
-        }
-        [strongSelf.delegate videoPlayerViewHideIndustryIcon:strongSelf];
-    };
-
-    // `addBoundaryTimeObserverForTimes` has undefined behavior with concurrent queue obtained
+    // `addBoundaryTimeObserverForTimes:queue:usingBlock:` has undefined behavior with concurrent queue obtained
     // from `dispatch_get_global_queue`, thus use the main queue here since it's serial.
-    self.industryIconShowTimeObserver = [self.player addBoundaryTimeObserverForTimes:showIconCheckpoints
-                                                                               queue:dispatch_get_main_queue()
-                                                                          usingBlock:showIconHandler];
-    self.industryIconHideTimeObserver = [self.player addBoundaryTimeObserverForTimes:hideIconCheckpoints
-                                                                               queue:dispatch_get_main_queue()
-                                                                          usingBlock:hideIconHandler];
+    // Additionally, `addBoundaryTimeObserverForTimes:queue:usingBlock:` will crash if given an empty
+    // array of times to observe.
+    if (showIconCheckpoints.count > 0) {
+        __weak __typeof__(self) weakSelf = self;
+        __block NSUInteger iconIndex = 0;
+        self.industryIconShowTimeObserver = [self.player addBoundaryTimeObserverForTimes:showIconCheckpoints
+                                                                                   queue:dispatch_get_main_queue()
+                                                                              usingBlock:^{
+            __typeof__(self) strongSelf = weakSelf;
+            if (strongSelf == nil || iconIndex >= sortedIndustryIcons.count) {
+                return;
+            }
+
+            [strongSelf.delegate videoPlayerView:strongSelf showIndustryIcon:sortedIndustryIcons[iconIndex]];
+            iconIndex++;
+        }];
+    }
+
+    if (hideIconCheckpoints.count > 0) {
+        __weak __typeof__(self) weakSelf = self;
+        self.industryIconHideTimeObserver = [self.player addBoundaryTimeObserverForTimes:hideIconCheckpoints
+                                                                                   queue:dispatch_get_main_queue()
+                                                                              usingBlock:^{
+            __typeof__(self) strongSelf = weakSelf;
+            if (strongSelf == nil) {
+                return;
+            }
+            [strongSelf.delegate videoPlayerViewHideIndustryIcon:strongSelf];
+        }];
+    }
+}
+
+#pragma mark - Notification Handlers
+
+- (void)handleBackgroundNotification:(NSNotification *)notification {
+    [self pauseVideo];
+}
+
+- (void)handleForegroundNotification:(NSNotification *)notification {
+    [self playVideo];
 }
 
 @end

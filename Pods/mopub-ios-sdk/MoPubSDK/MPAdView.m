@@ -11,7 +11,7 @@
 #import "MPAdTargeting.h"
 #import "MPBannerAdManager.h"
 #import "MPBannerAdManagerDelegate.h"
-#import "MPClosableView.h"
+#import "MPAdContainerView.h"
 #import "MPCoreInstanceProvider.h"
 #import "MPError.h"
 #import "MPGlobal.h"
@@ -97,8 +97,8 @@
 
 - (CGSize)adContentViewSize
 {
-    // MPClosableView represents an MRAID ad.
-    if (!self.adContentView || [self.adContentView isKindOfClass:[MPClosableView class]]) {
+    // MPAdContainerView represents an MRAID ad.
+    if (!self.adContentView || [self.adContentView isKindOfClass:[MPAdContainerView class]]) {
         return [MPAdView sizeForContainer:self adSize:self.maxAdSize adUnitId:self.adUnitId];
     } else {
         return self.adContentView.bounds.size;

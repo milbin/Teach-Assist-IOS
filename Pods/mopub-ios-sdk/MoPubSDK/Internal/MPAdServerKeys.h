@@ -103,7 +103,7 @@ extern NSString * const kDialogHTMLKey;
 extern NSString * const kCustomerIdKey;
 extern NSString * const kRewardedCurrencyNameKey;
 extern NSString * const kRewardedCurrencyAmountKey;
-extern NSString * const kRewardedCustomEventNameKey;
+extern NSString * const kRewardedAdapterClassNameKey;
 extern NSString * const kRewardedCustomDataKey;
 
 #pragma mark - Impression Level Revenue Data Keys

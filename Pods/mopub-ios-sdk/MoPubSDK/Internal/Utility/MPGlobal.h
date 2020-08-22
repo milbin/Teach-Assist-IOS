@@ -33,7 +33,7 @@ typedef NS_ENUM(NSUInteger, MPInterstitialCloseButtonStyle) {
     MPInterstitialCloseButtonStyleAlwaysVisible,
     MPInterstitialCloseButtonStyleAlwaysHidden,
     MPInterstitialCloseButtonStyleAdControlled,
-};
+} __deprecated_enum_msg("This is not used any more since 5.12.");
 
 typedef NS_ENUM(NSUInteger, MPInterstitialOrientationType) {
     MPInterstitialOrientationTypePortrait,

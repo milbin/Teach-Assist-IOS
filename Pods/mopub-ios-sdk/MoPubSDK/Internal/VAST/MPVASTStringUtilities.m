@@ -20,27 +20,21 @@ static NSRegularExpression *durationRegex;
 
 @implementation MPVASTStringUtilities
 
-+ (double)doubleFromString:(NSString *)string
-{
-    static NSNumberFormatter *formatter = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        formatter = [[NSNumberFormatter alloc] init];
-        formatter.numberStyle = NSNumberFormatterDecimalStyle;
-    });
+#pragma mark - VAST Percentages
 
-    return [[formatter numberFromString:string] doubleValue];
-}
-
-+ (BOOL)stringRepresentsNonNegativePercentage:(NSString *)string
-{
++ (BOOL)stringRepresentsNonNegativePercentage:(NSString * _Nullable)string {
     dispatch_once(&percentageRegexOnceToken, ^{
         percentageRegex = [NSRegularExpression regularExpressionWithPattern:kPercentageRegexString options:0 error:nil];
     });
+
+    // No string, fast fail
+    if (string.length == 0) {
+        return NO;
+    }
 
     NSArray *matches = [percentageRegex matchesInString:string options:0 range:NSMakeRange(0, [string length])];
 
-    if (![matches count]) {
+    if (matches.count == 0) {
         return NO;
     }
 
@@ -48,34 +42,19 @@ static NSRegularExpression *durationRegex;
     return (match.range.location != NSNotFound);
 }
 
-+ (BOOL)stringRepresentsNonNegativeDuration:(NSString *)string
-{
-    dispatch_once(&durationRegexOnceToken, ^{
-        durationRegex = [NSRegularExpression regularExpressionWithPattern:kDurationRegexString options:0 error:nil];
-    });
 
-    NSArray *matches = [durationRegex matchesInString:string options:0 range:NSMakeRange(0, [string length])];
 
-    if (![matches count]) {
-        return NO;
-    }
-
-    NSTextCheckingResult *match = matches[0];
-    return (match.range.location != NSNotFound);
-}
-
-+ (NSInteger)percentageFromString:(NSString *)string
-{
++ (NSInteger)percentageFromString:(NSString * _Nullable)string {
     dispatch_once(&percentageRegexOnceToken, ^{
         percentageRegex = [NSRegularExpression regularExpressionWithPattern:kPercentageRegexString options:0 error:nil];
     });
 
-    if (![string length]) {
+    if (string.length == 0) {
         return 0;
     }
 
     NSArray *matches = [percentageRegex matchesInString:string options:0 range:NSMakeRange(0, [string length])];
-    if ([matches count]) {
+    if (matches.count > 0) {
         NSTextCheckingResult *match = matches[0];
         if (match.range.location == NSNotFound) {
             return 0;
@@ -87,19 +66,40 @@ static NSRegularExpression *durationRegex;
     }
 }
 
-+ (NSTimeInterval)timeIntervalFromString:(NSString *)string
-{
+#pragma mark - VAST Duration
+
++ (BOOL)stringRepresentsNonNegativeDuration:(NSString * _Nullable)string {
     dispatch_once(&durationRegexOnceToken, ^{
         durationRegex = [NSRegularExpression regularExpressionWithPattern:kDurationRegexString options:0 error:nil];
     });
 
-    if (![string length]) {
+    // No string, fast fail
+    if (string.length == 0) {
+        return NO;
+    }
+
+    NSArray *matches = [durationRegex matchesInString:string options:0 range:NSMakeRange(0, [string length])];
+
+    if (matches.count == 0) {
+        return NO;
+    }
+
+    NSTextCheckingResult *match = matches[0];
+    return (match.range.location != NSNotFound);
+}
+
++ (NSTimeInterval)timeIntervalFromDurationString:(NSString * _Nullable)string {
+    dispatch_once(&durationRegexOnceToken, ^{
+        durationRegex = [NSRegularExpression regularExpressionWithPattern:kDurationRegexString options:0 error:nil];
+    });
+
+    if (string.length == 0) {
         return 0;
     }
 
     NSArray *matches = [durationRegex matchesInString:string options:0 range:NSMakeRange(0, [string length])];
 
-    if (![matches count]) {
+    if (matches.count == 0) {
         return 0;
     }
 
@@ -131,8 +131,7 @@ static NSRegularExpression *durationRegex;
     return hours * 60 * 60 + minutes * 60 + seconds;
 }
 
-+ (NSString *)stringFromTimeInterval:(NSTimeInterval)timeInterval
-{
++ (NSString *)durationStringFromTimeInterval:(NSTimeInterval)timeInterval {
     if (timeInterval < 0) {
         return @"00:00:00.000";
     }

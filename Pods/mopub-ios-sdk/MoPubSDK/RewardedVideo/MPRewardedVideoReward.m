@@ -13,27 +13,13 @@ NSInteger const kMPRewardedVideoRewardCurrencyAmountUnspecified = 0;
 
 @implementation MPRewardedVideoReward
 
-- (instancetype)initWithCurrencyType:(NSString *)currencyType amount:(NSNumber *)amount
-{
-    if (self = [super init]) {
-        _currencyType = currencyType;
-        _amount = amount;
++ (MPRewardedVideoReward *)rewardWithReward:(MPReward *)reward {
+    if (reward == nil) {
+        return nil; // watch out for unit test failure is this case is removed
     }
-
-    return self;
-}
-
-- (instancetype)initWithCurrencyAmount:(NSNumber *)amount
-{
-    return [self initWithCurrencyType:kMPRewardedVideoRewardCurrencyTypeUnspecified amount:amount];
-}
-
-- (NSString *)description {
-    NSString * message = nil;
-    if (self.amount != nil && self.currencyType != nil) {
-        message = [NSString stringWithFormat:@"%@ %@", self.amount, self.currencyType];
+    else {
+        return [[MPRewardedVideoReward alloc] initWithCurrencyType:reward.currencyType amount:reward.amount];
     }
-    return message;
 }
 
 @end

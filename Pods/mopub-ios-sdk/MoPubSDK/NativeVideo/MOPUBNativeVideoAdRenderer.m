@@ -392,11 +392,14 @@ static const CGFloat kAutoPlayTimerInterval = 0.25f;
             [self.adView bringSubviewToFront:self.adView.nativeVideoView];
 
             if (!self.autoPlayTimer) {
+                __typeof__(self) __weak weakSelf = self;
                 self.autoPlayTimer = [MPTimer timerWithTimeInterval:kAutoPlayTimerInterval
-                                                             target:self
-                                                           selector:@selector(tick:)
                                                             repeats:YES
-                                                        runLoopMode:NSRunLoopCommonModes];
+                                                        runLoopMode:NSRunLoopCommonModes
+                                                              block:^(MPTimer * _Nonnull timer) {
+                    __typeof__(self) strongSelf = weakSelf;
+                    [strongSelf tick:timer];
+                }];
                 [self.autoPlayTimer scheduleNow];
             }
         }

@@ -8,10 +8,12 @@
 
 #import "MPVASTConstant.h"
 
+NSString * const kMPVASTErrorDomain = @"com.mopub.VASTError";
+
 NSTimeInterval const kVASTMinimumDurationOfSkippableVideo = 15;
 NSTimeInterval const kVASTVideoOffsetToShowSkipButtonForSkippableVideo = 5;
+NSTimeInterval const kVASTDefaultVideoOffsetToShowSkipButtonForRewardedVideo = 30;
 
 NSString * const kVASTDefaultCallToActionButtonTitle = @"Learn More";
-NSString * const kVASTDefaultSkipButtonTitle = @"Skip";
 NSString * const kVASTMoPubCTATextKey = @"MoPubCtaText";
 NSString * const kVASTAdTextKey = @"text";

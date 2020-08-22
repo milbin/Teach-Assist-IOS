@@ -10,7 +10,8 @@
 
 #import "MPAdServerCommunicator.h"
 #import "MPAdServerURLBuilder.h"
-#import "MPRewardedVideoAdapter.h"
+#import "MPFullscreenAdAdapter+MPAdAdapter.h"
+#import "MPFullscreenAdAdapter+Private.h"
 #import "MPCoreInstanceProvider.h"
 #import "MPRewardedVideoError.h"
 #import "MPLogging.h"
@@ -20,9 +21,9 @@
 #import "NSDate+MPAdditions.h"
 #import "NSError+MPAdditions.h"
 
-@interface MPRewardedVideoAdManager () <MPAdServerCommunicatorDelegate, MPRewardedVideoAdapterDelegate>
+@interface MPRewardedVideoAdManager () <MPAdServerCommunicatorDelegate>
 
-@property (nonatomic, strong) MPRewardedVideoAdapter *adapter;
+@property (nonatomic, strong) MPFullscreenAdAdapter *adapter;
 @property (nonatomic, strong) MPAdServerCommunicator *communicator;
 @property (nonatomic, strong) MPAdConfiguration *configuration;
 @property (nonatomic, strong) NSMutableArray<MPAdConfiguration *> *remainingConfigurations;
@@ -33,6 +34,16 @@
 @property (nonatomic, strong) MPStopwatch *loadStopwatch;
 
 @end
+
+#pragma mark -
+
+@interface MPRewardedVideoAdManager (MPAdAdapterDelegate) <
+    MPAdAdapterFullscreenEventDelegate,
+    MPAdAdapterRewardEventDelegate
+>
+@end
+
+#pragma mark -
 
 @implementation MPRewardedVideoAdManager
 
@@ -53,19 +64,19 @@
     [_communicator cancel];
 }
 
-- (NSArray *)availableRewards
+- (NSArray<MPReward *> *)availableRewards
 {
     return self.configuration.availableRewards;
 }
 
-- (MPRewardedVideoReward *)selectedReward
+- (MPReward *)selectedReward
 {
     return self.configuration.selectedReward;
 }
 
-- (Class)customEventClass
+- (Class)adapterClass
 {
-    return self.configuration.customEventClass;
+    return self.configuration.adapterClass;
 }
 
 - (BOOL)hasAdAvailable
@@ -102,7 +113,7 @@
     }
 }
 
-- (void)presentRewardedVideoAdFromViewController:(UIViewController *)viewController withReward:(MPRewardedVideoReward *)reward customData:(NSString *)customData
+- (void)presentRewardedVideoAdFromViewController:(UIViewController *)viewController withReward:(MPReward *)reward customData:(NSString *)customData
 {
     MPLogAdEvent(MPLogEvent.adShowAttempt, self.adUnitId);
 
@@ -125,7 +136,7 @@
     if (reward == nil) {
         // Only a single currency; It should automatically select the only currency available.
         if (self.availableRewards.count == 1) {
-            MPRewardedVideoReward * defaultReward = self.availableRewards[0];
+            MPReward *defaultReward = self.availableRewards[0];
             self.configuration.selectedReward = defaultReward;
         }
         // Unspecified rewards in a multicurrency situation are not allowed.
@@ -149,14 +160,15 @@
         }
     }
 
-    [self.adapter presentRewardedVideoFromViewController:viewController customData:customData];
+    self.adapter.customData = customData;
+    [self.adapter presentAdFromViewController:viewController];
 }
 
-- (void)handleAdPlayedForCustomEventNetwork
+- (void)handleAdPlayedForAdapterNetwork
 {
     // We only need to notify the backing ad network if the ad is marked ready for display.
     if (self.ready) {
-        [self.adapter handleAdPlayedForCustomEventNetwork];
+        [self.adapter handleDidPlayAd];
     }
 }
 
@@ -201,16 +213,17 @@
     // Start the stopwatch for the adapter load.
     [self.loadStopwatch start];
 
-    MPRewardedVideoAdapter *adapter = [[MPRewardedVideoAdapter alloc] initWithDelegate:self];
-
-    if (adapter == nil) {
-        NSError *error = [NSError errorWithDomain:MoPubRewardedVideoAdsSDKDomain code:MPRewardedVideoAdErrorUnknown userInfo:nil];
-        [self rewardedVideoDidFailToLoadForAdapter:nil error:error];
-        return;
+    NSObject *object = [configuration.adapterClass new];
+    if ([object isKindOfClass:MPFullscreenAdAdapter.class]) {
+        MPFullscreenAdAdapter *adapter = (MPFullscreenAdAdapter *)object;
+        self.adapter = adapter;
+        adapter.adapterDelegate = self;
+        [adapter getAdWithConfiguration:configuration targeting:self.targeting];
     }
-
-    self.adapter = adapter;
-    [self.adapter getAdWithConfiguration:configuration targeting:self.targeting];
+    else { // unrecognized ad adapter
+        NSError *error = [NSError errorWithDomain:MoPubRewardedVideoAdsSDKDomain code:MPRewardedVideoAdErrorUnknown userInfo:nil];
+        [self adapter:nil didFailToLoadAdWithError:error];
+    }
 }
 
 #pragma mark - MPAdServerCommunicatorDelegate
@@ -244,7 +257,11 @@
     return YES;
 }
 
-#pragma mark - MPRewardedVideoAdapterDelegate
+@end
+
+#pragma mark -
+
+@implementation MPRewardedVideoAdManager (MPAdAdapterDelegate)
 
 - (id<MPMediationSettingsProtocol>)instanceMediationSettingsForClass:(Class)aClass
 {
@@ -257,23 +274,7 @@
     return nil;
 }
 
-- (void)rewardedVideoDidLoadForAdapter:(MPRewardedVideoAdapter *)adapter
-{
-    self.remainingConfigurations = nil;
-    self.ready = YES;
-    self.loading = NO;
-
-    // Record the end of the adapter load and send off the fire and forget after-load-url tracker.
-    // Start the stopwatch for the adapter load.
-    NSTimeInterval duration = [self.loadStopwatch stop];
-    [self.communicator sendAfterLoadUrlWithConfiguration:self.configuration adapterLoadDuration:duration adapterLoadResult:MPAfterLoadResultAdLoaded];
-
-    MPLogAdEvent(MPLogEvent.adDidLoad, self.adUnitId);
-    [self.delegate rewardedVideoDidLoadForAdManager:self];
-}
-
-- (void)rewardedVideoDidFailToLoadForAdapter:(MPRewardedVideoAdapter *)adapter error:(NSError *)error
-{
+- (void)adapter:(id<MPAdAdapter> _Nullable)adapter didFailToLoadAdWithError:(NSError * _Nullable)error {
     // Record the end of the adapter load and send off the fire and forget after-load-url tracker
     // with the appropriate error code result.
     NSTimeInterval duration = [self.loadStopwatch stop];
@@ -306,16 +307,7 @@
     }
 }
 
-- (void)rewardedVideoDidExpireForAdapter:(MPRewardedVideoAdapter *)adapter
-{
-    self.ready = NO;
-
-    MPLogAdEvent([MPLogEvent adExpiredWithTimeInterval:MPConstants.adsExpirationInterval], self.adUnitId);
-    [self.delegate rewardedVideoDidExpireForAdManager:self];
-}
-
-- (void)rewardedVideoDidFailToPlayForAdapter:(MPRewardedVideoAdapter *)adapter error:(NSError *)error
-{
+- (void)adapter:(id<MPAdAdapter> _Nullable)adapter didFailToPlayAdWithError:(NSError *)error {
     // Playback of the rewarded video failed; reset the internal played state
     // so that a new rewarded video ad can be loaded.
     self.ready = NO;
@@ -325,64 +317,65 @@
     [self.delegate rewardedVideoDidFailToPlayForAdManager:self error:error];
 }
 
-- (void)rewardedVideoWillAppearForAdapter:(MPRewardedVideoAdapter *)adapter
-{
-    MPLogAdEvent(MPLogEvent.adWillAppear, self.adUnitId);
-    [self.delegate rewardedVideoWillAppearForAdManager:self];
+- (void)adAdapter:(id<MPAdAdapter>)adapter handleFullscreenAdEvent:(MPFullscreenAdEvent)fullscreenAdEvent {
+    switch (fullscreenAdEvent) {
+        case MPFullscreenAdEventDidLoad:
+            self.remainingConfigurations = nil;
+            self.ready = YES;
+            self.loading = NO;
+
+            // Record the end of the adapter load and send off the fire and forget after-load-url tracker.
+            // Start the stopwatch for the adapter load.
+            NSTimeInterval duration = [self.loadStopwatch stop];
+            [self.communicator sendAfterLoadUrlWithConfiguration:self.configuration
+                                             adapterLoadDuration:duration
+                                               adapterLoadResult:MPAfterLoadResultAdLoaded];
+
+            MPLogAdEvent(MPLogEvent.adDidLoad, self.adUnitId);
+            [self.delegate rewardedVideoDidLoadForAdManager:self];
+            break;
+        case MPFullscreenAdEventDidExpire:
+            self.ready = NO;
+            MPLogAdEvent([MPLogEvent adExpiredWithTimeInterval:MPConstants.adsExpirationInterval], self.adUnitId);
+            [self.delegate rewardedVideoDidExpireForAdManager:self];
+            break;
+        case MPFullscreenAdEventWillAppear:
+            MPLogAdEvent(MPLogEvent.adWillAppear, self.adUnitId);
+            [self.delegate rewardedVideoWillAppearForAdManager:self];
+            break;
+        case MPFullscreenAdEventDidAppear:
+            MPLogAdEvent(MPLogEvent.adDidAppear, self.adUnitId);
+            [self.delegate rewardedVideoDidAppearForAdManager:self];
+            break;
+        case MPFullscreenAdEventWillDisappear:
+            MPLogAdEvent(MPLogEvent.adWillDisappear, self.adUnitId);
+            [self.delegate rewardedVideoWillDisappearForAdManager:self];
+            break;
+        case MPFullscreenAdEventDidDisappear:
+            // Successful playback of the rewarded video; reset the internal played state.
+            self.ready = NO;
+            self.playedAd = YES;
+            MPLogAdEvent(MPLogEvent.adDidDisappear, self.adUnitId);
+            [self.delegate rewardedVideoDidDisappearForAdManager:self];
+            break;
+        case MPFullscreenAdEventDidReceiveTap:
+            MPLogAdEvent(MPLogEvent.adWillPresentModal, self.adUnitId);
+            [self.delegate rewardedVideoDidReceiveTapEventForAdManager:self];
+            break;
+        case MPFullscreenAdEventWillLeaveApplication:
+            MPLogAdEvent(MPLogEvent.adWillLeaveApplication, self.adUnitId);
+            [self.delegate rewardedVideoWillLeaveApplicationForAdManager:self];
+            break;
+    }
 }
 
-- (void)rewardedVideoDidAppearForAdapter:(MPRewardedVideoAdapter *)adapter
-{
-    MPLogAdEvent(MPLogEvent.adDidAppear, self.adUnitId);
-    [self.delegate rewardedVideoDidAppearForAdManager:self];
-}
-
-- (void)rewardedVideoWillDisappearForAdapter:(MPRewardedVideoAdapter *)adapter
-{
-    MPLogAdEvent(MPLogEvent.adWillDisappear, self.adUnitId);
-    [self.delegate rewardedVideoWillDisappearForAdManager:self];
-}
-
-- (void)rewardedVideoDidDisappearForAdapter:(MPRewardedVideoAdapter *)adapter
-{
-    // Successful playback of the rewarded video; reset the internal played state.
-    self.ready = NO;
-    self.playedAd = YES;
-
-    MPLogAdEvent(MPLogEvent.adDidDisappear, self.adUnitId);
-    [self.delegate rewardedVideoDidDisappearForAdManager:self];
-}
-
-- (void)rewardedVideoDidReceiveTapEventForAdapter:(MPRewardedVideoAdapter *)adapter
-{
-    MPLogAdEvent(MPLogEvent.adWillPresentModal, self.adUnitId);
-    [self.delegate rewardedVideoDidReceiveTapEventForAdManager:self];
-}
-
-- (void)rewardedVideoDidReceiveImpressionEventForAdapter:(MPRewardedVideoAdapter *)adapter {
+- (void)adDidReceiveImpressionEventForAdapter:(id<MPAdAdapter>)adapter {
     [self.delegate rewardedVideoAdManager:self didReceiveImpressionEventWithImpressionData:self.configuration.impressionData];
 }
 
-- (void)rewardedVideoWillLeaveApplicationForAdapter:(MPRewardedVideoAdapter *)adapter
-{
-    MPLogAdEvent(MPLogEvent.adWillLeaveApplication, self.adUnitId);
-    [self.delegate rewardedVideoWillLeaveApplicationForAdManager:self];
-}
-
-- (void)rewardedVideoShouldRewardUserForAdapter:(MPRewardedVideoAdapter *)adapter reward:(MPRewardedVideoReward *)reward
-{
+- (void)adShouldRewardUserForAdapter:(id<MPAdAdapter>)adapter reward:(MPReward *)reward {
     MPLogAdEvent([MPLogEvent adShouldRewardUserWithReward:reward], self.adUnitId);
     [self.delegate rewardedVideoShouldRewardUserForAdManager:self reward:reward];
-}
-
-- (NSString *)rewardedVideoAdUnitId
-{
-    return self.adUnitId;
-}
-
-- (NSString *)rewardedVideoCustomerId
-{
-    return self.customerId;
 }
 
 @end

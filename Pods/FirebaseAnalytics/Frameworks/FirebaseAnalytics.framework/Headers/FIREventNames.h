@@ -246,6 +246,15 @@ static NSString *const kFIREventPurchaseRefund NS_SWIFT_NAME(AnalyticsEventPurch
 static NSString *const kFIREventRemoveFromCart NS_SWIFT_NAME(AnalyticsEventRemoveFromCart) =
     @"remove_from_cart";
 
+/// Screen View event. This event signifies a screen view. Use this when a screen transition occurs.
+/// This event can be logged irrespective of whether automatic screen tracking is enabled. Params:
+///
+/// <ul>
+///     <li>@c kFIRParameterScreenClass (NSString) (optional)</li>
+///     <li>@c kFIRParameterScreenName (NSString) (optional)</li>
+/// </ul>
+static NSString *const kFIREventScreenView NS_SWIFT_NAME(AnalyticsEventScreenView) = @"screen_view";
+
 /// Search event. Apps that support search features can use this event to contextualize search
 /// operations by supplying the appropriate, corresponding parameters. This event can help you
 /// identify the most popular content in your app. Params:
@@ -274,7 +283,6 @@ static NSString *const kFIREventSearch NS_SWIFT_NAME(AnalyticsEventSearch) = @"s
 ///     <li>@c kFIRParameterContentType (NSString)</li>
 ///     <li>@c kFIRParameterItemID (NSString)</li>
 /// </ul>
-/// <b>This constant has been deprecated. Use @c kFIREventSelectItem constant instead.</b>
 static NSString *const kFIREventSelectContent NS_SWIFT_NAME(AnalyticsEventSelectContent) =
     @"select_content";
 
@@ -367,7 +375,6 @@ static NSString *const kFIREventViewItemList NS_SWIFT_NAME(AnalyticsEventViewIte
 /// <ul>
 ///     <li>@c kFIRParameterSearchTerm (NSString)</li>
 /// </ul>
-/// <b>This constant has been deprecated.</b>
 static NSString *const kFIREventViewSearchResults NS_SWIFT_NAME(AnalyticsEventViewSearchResults) =
     @"view_search_results";
 

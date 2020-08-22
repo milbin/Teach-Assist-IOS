@@ -6,11 +6,8 @@
 //  http://www.mopub.com/legal/sdk-license-agreement/
 //
 
-#import "MPBannerCustomEvent.h"
-#import "MPPrivateBannerCustomEventDelegate.h"
+#import "MPInlineAdAdapter.h"
 
-@interface MPMRAIDBannerCustomEvent : MPBannerCustomEvent
-
-@property (nonatomic, weak) id<MPPrivateBannerCustomEventDelegate> delegate;
+@interface MPMRAIDBannerCustomEvent : MPInlineAdAdapter
 
 @end

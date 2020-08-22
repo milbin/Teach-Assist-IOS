@@ -106,11 +106,11 @@ static NSString * const MPAVPlayerItemLoadErrorTemplate = @"Loading player item 
     // does not always report accurately.
     if (_playbackTimer == nil) {
         // Add timer to main run loop with common modes to allow the timer to tick while user is scrolling.
-        _playbackTimer = [MPTimer timerWithTimeInterval:kAvPlayerTimerInterval
-                                                 target:self
-                                               selector:@selector(timerTick)
-                                                repeats:YES
-                                            runLoopMode:NSRunLoopCommonModes];
+        __typeof__(self) __weak weakSelf = self;
+        _playbackTimer = [MPTimer timerWithTimeInterval:kAvPlayerTimerInterval repeats:YES runLoopMode:NSRunLoopCommonModes block:^(MPTimer * _Nonnull timer) {
+            __typeof__(self) strongSelf = weakSelf;
+            [strongSelf timerTick];
+        }];
         [_playbackTimer scheduleNow];
         _lastContinuousPlaybackCMTime = kCMTimeZero;
 

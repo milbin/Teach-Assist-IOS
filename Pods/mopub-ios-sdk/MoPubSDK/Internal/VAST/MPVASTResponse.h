@@ -21,10 +21,27 @@
 #import "MPVASTTrackingEvent.h"
 #import "MPVASTWrapper.h"
 
-@interface MPVASTResponse : MPVASTModel
+NS_ASSUME_NONNULL_BEGIN
 
-@property (nonatomic, readonly) NSArray *ads;
-@property (nonatomic, readonly) NSArray *errorURLs;
-@property (nonatomic, copy, readonly) NSString *version;
+/**
+ VAST ad response representing the root of the VAST document.
+ */
+@interface MPVASTResponse : MPVASTModel
+/**
+ Available ads.
+ */
+@property (nonatomic, nullable, readonly) NSArray<MPVASTAd *> *ads;
+
+/**
+ Error tracking URLs to fire upon receiving a "no ad" response.
+ */
+@property (nonatomic, nullable, readonly) NSArray<NSURL *> *errorURLs;
+
+/**
+ VAST document version.
+ */
+@property (nonatomic, nullable, copy, readonly) NSString *version;
 
 @end
+
+NS_ASSUME_NONNULL_END

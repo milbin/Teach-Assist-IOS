@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=utf-8">
+	<meta name="viewport" content="user-scalable=false,width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0" />
+	<meta name="mobileoptimized" content="320" />
+	<meta name="HandheldFriendly" content="true" />
+		<title>YRDSB teachassist login</title>
+		<link rel="icon" type="image/png" href="images/favicon.png">
+		<link href="teacher.css" rel="stylesheet" media="screen">
+		<style type="text/css">
+		<!--
+		.style1 {font-size: x-small}
+			.pageborder {
+			border:0px;
+			background-color:#b8dbfb;
+			margin-left:auto;
+			margin-right:auto;
+			width:810px;
+			height:450px;
+			top:50%;
+			left:50%;
+			margin-top:-290px;
+			margin-left:-410px;
+			text-align:left;
+			position:absolute;
+		}
+		-->
+		</style>
+
+<script type="text/javascript" src="../highslide/highslide/highslide-with-html.js"></script>
+<link rel="stylesheet" type="text/css" href="../highslide/highslide/highslide.css" />
+<script type="text/javascript">
+hs.graphicsDir = '../highslide/highslide/graphics/';
+hs.outlineType = 'rounded-white';
+hs.wrapperClassName = 'draggable-header';
+</script>
+
+
+	</head>
+
+<!-- //:::: //-->	<body bgcolor="#b8dbfb">
+		<div align="center">
+		<!--div class="pageborder"-->
+<script language="Javascript">
+	var st = top.location.href;
+	if (st.indexOf('adminFrame') > 0) {
+		top.location.href = 'index.php?error_message=3';
+	}
+</script>
+<p>
+		<table border="0" cellpadding="0" cellspacing="0" width="380">
+			<!--tr><td colspan="3" align="center" valign="bottom"><a href="3million.html" onclick="return hs.htmlExpand(this, { objectType: 'ajax', headingText: 'Celebrating a Milestone!'})"><img src="images/3millionplus.jpg" border="0"></a></td></tr-->
+			<tr><td colspan="3" align="center"><img src="YRDSB-sm.jpg"></td></tr>
+			<tr height="16">
+				<td bgcolor="#DDEEDD" height="16">&nbsp;</td>
+				<td bgcolor="#DDEEDD" height="16">&nbsp;</td>
+				<td height="16" width="16" align="right"><img src="corner-tr.gif" width="16" height="16"></td>
+			</tr>
+			<tr>
+				<td align="center" bgcolor="#DDEEDD">&nbsp;</td>
+				<td align="center" bgcolor="#DDEEDD">
+					
+					<img src="images/teachassist-title2.jpg" width="300" height="150">
+					<div class="green_border_message box" style="width: 60%">
+
+
+					<table cellpadding="0" cellspacing="0">
+						<tr>
+							<td align="center" bgcolor="#ffffff">
+								<h2><font color="red">Invalid Login</font></h2>
+								<form action="index.php" method="post" name="loginForm" id="loginForm" target="_top">
+								<input type="hidden" name="subject_id" value="0">
+
+								<table border="0" cellspacing="1" cellpadding="1">
+									<tr>
+										<td>User&nbsp;name</td>
+										<td><input type="text" name="username" size="10" border="0"></td>
+									</tr>
+									<tr>
+										<td>Password</td>
+										<td><input type="password" name="password" size="10" border="0"></td>
+									</tr>
+								</table>
+								<div align="center">
+									<input type="submit" name="submit" value="Login" border="0">
+								</div>
+								</form>
+								<script language="JavaScript" type="text/JavaScript">
+<!--
+document.loginForm.username.focus();
+//-->
+								</script>
+							</td>
+						</tr>
+					</table>
+					</div>
+<p>&nbsp;
+				</td>
+				<td align="center" bgcolor="#DDEEDD">&nbsp;</td>
+			</tr>
+			<tr>
+				<td align="center" bgcolor="#EEFFEE"></td>
+				<td align="center" bgcolor="#EEFFEE">
+					<table border="0" cellpadding="10" cellspacing="0">
+						<tr><td>
+<p>
+						<h1>Welcome to YRDSB <i>teachassist</i></h1>
+					<!--div id="fade2">welcome to <i><b>teach</b>assist</i></div><br>
+							<i>...log in to read more</i-->
+						Please log in with your <b>YRDSB</b> provided user name and password.
+<p>&nbsp;
+<p>
+<hr>
+<font size="-2">
+By logging in, I agree to use this Board technology in accordance with the Appropriate Use of Technology Policy and Procedure and abide by Board policies, procedures and directives.
+<p>
+<b><font color="red">Warning:</font> Property of YRDSB. For exclusive use by YRDSB staff and students. Unauthorized access prohibited.</b>
+</font>
+						</td></tr>
+					</table>
+				</td>
+				<td align="center" bgcolor="#EEFFEE"></td>
+			</tr>
+			<tr height="16">
+				<td height="16" width="16"><img src="corner-bl.gif" width="16" height="16"></td>
+				<td bgcolor="#EEFFEE" height="16"></td>
+				<td bgcolor="#EEFFEE" height="16"></td>
+			</tr>
+			<tr>
+				<td colspan="3" align="right"><br>
+
+					copyright &copy; 2020 <a href="http://www.yrdsb.edu.on.ca" target="_blank"><i>YRDSB</i></a> &amp; <a href="http://www.teachassist.ca" target="_blank"><b><i><font color="#066006">teach</font><font color="#039700">assist foundation</font></i></b></a>
+<br><font color="#a8cbeb"></font>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

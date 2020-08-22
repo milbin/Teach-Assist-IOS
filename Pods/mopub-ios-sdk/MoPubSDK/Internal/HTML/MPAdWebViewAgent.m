@@ -36,11 +36,9 @@
 @property (nonatomic, strong) MPUserInteractionGestureRecognizer *userInteractionRecognizer;
 @property (nonatomic, assign) CGRect frame;
 @property (nonatomic, strong, readwrite) MPViewabilityTracker *viewabilityTracker;
-@property (nonatomic, assign) BOOL didFireClickImpression;
 
 - (void)performActionForMoPubSpecificURL:(NSURL *)URL;
 - (BOOL)shouldIntercept:(NSURL *)URL navigationType:(WKNavigationType)navigationType;
-- (void)interceptURL:(NSURL *)URL;
 
 @end
 
@@ -55,7 +53,6 @@
         self.destinationDisplayAgent = [MPAdDestinationDisplayAgent agentWithDelegate:self];
         self.delegate = delegate;
         self.shouldHandleRequests = YES;
-        self.didFireClickImpression = NO;
 
         self.userInteractionRecognizer = [[MPUserInteractionGestureRecognizer alloc] initWithTarget:self action:@selector(handleInteraction:)];
         self.userInteractionRecognizer.cancelsTouchesInView = NO;
@@ -131,7 +128,7 @@
 {
     switch (event) {
         case MPAdWebViewEventAdDidAppear:
-            // For banner, viewability tracker is handled in @c MPBannerCustomEventAdapter (not here).
+            // For banner, viewability tracker is handled in @c MPInlineAdAdapterAdapter (not here).
             // For interstitial (handled here), we start tracking viewability if it's not started during adView initialization.
             if ([self isInterstitialAd]) {
                 [self startViewabilityTracker];
@@ -260,17 +257,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 
 - (void)interceptURL:(NSURL *)URL
 {
-    NSURL *redirectedURL = URL;
-    if (self.configuration.clickTrackingURL && !self.didFireClickImpression) {
-        self.didFireClickImpression = YES; // fire click impression only once
-
-        NSString *path = [NSString stringWithFormat:@"%@&r=%@",
-                          self.configuration.clickTrackingURL.absoluteString,
-                          [[URL absoluteString] mp_URLEncodedString]];
-        redirectedURL = [NSURL URLWithString:path];
-    }
-
-    [self.destinationDisplayAgent displayDestinationForURL:redirectedURL];
+    [self.delegate adWebViewAgentDidReceiveTap:self]; // click tracking is delegated to upstream
+    [self.destinationDisplayAgent displayDestinationForURL:URL];
 }
 
 #pragma mark - Utility

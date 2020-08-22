@@ -103,7 +103,7 @@ NSString * const kDialogHTMLKey                       = @"dialog_html";
 NSString * const kCustomerIdKey                       = @"customer_id";
 NSString * const kRewardedCurrencyNameKey             = @"rcn";
 NSString * const kRewardedCurrencyAmountKey           = @"rca";
-NSString * const kRewardedCustomEventNameKey          = @"cec";
+NSString * const kRewardedAdapterClassNameKey         = @"cec";
 NSString * const kRewardedCustomDataKey               = @"rcd";
 
 #pragma mark - Impression Level Revenue Data Keys

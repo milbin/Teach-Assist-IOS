@@ -114,14 +114,14 @@ static NSString * const kPublisherEnteredAdUnitIdStorageKey = @"com.mopub.mopub-
 - (void)initializeSdkWithConfiguration:(MPMoPubConfiguration *)configuration
                             completion:(void(^_Nullable)(void))completionBlock
 {
-    if (@available(iOS 9, *)) {
+    if (@available(iOS 10, *)) {
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
             [self setSdkWithConfiguration:configuration completion:completionBlock];
         });
     } else {
-        MPLogEvent([MPLogEvent error:[NSError sdkMinimumOsVersion:9] message:nil]);
-        NSAssert(false, @"MoPub SDK requires iOS 9 and up");
+        MPLogEvent([MPLogEvent error:[NSError sdkMinimumOsVersion:10] message:nil]);
+        NSAssert(false, @"MoPub SDK requires iOS 10 and up");
     }
 }
 

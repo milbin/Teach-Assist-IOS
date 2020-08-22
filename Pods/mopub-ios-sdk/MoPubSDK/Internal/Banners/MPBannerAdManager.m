@@ -16,7 +16,6 @@
 #import "MPConstants.h"
 #import "MPLogging.h"
 #import "MPStopwatch.h"
-#import "MPBannerCustomEventAdapter.h"
 #import "NSMutableArray+MPAdditions.h"
 #import "NSDate+MPAdditions.h"
 #import "NSError+MPAdditions.h"
@@ -24,8 +23,8 @@
 @interface MPBannerAdManager ()
 
 @property (nonatomic, strong) MPAdServerCommunicator *communicator;
-@property (nonatomic, strong) MPBaseBannerAdapter *onscreenAdapter;
-@property (nonatomic, strong) MPBaseBannerAdapter *requestingAdapter;
+@property (nonatomic, strong) MPInlineAdAdapter *onscreenAdapter;
+@property (nonatomic, strong) MPInlineAdAdapter *requestingAdapter;
 @property (nonatomic, strong) UIView *requestingAdapterAdContentView;
 @property (nonatomic, strong) MPAdConfiguration *requestingConfiguration;
 @property (nonatomic, strong) MPAdTargeting *targeting;
@@ -81,11 +80,6 @@
     [self.communicator setDelegate:nil];
 
     [self.refreshTimer invalidate];
-
-    [self.onscreenAdapter unregisterDelegate];
-
-    [self.requestingAdapter unregisterDelegate];
-
 }
 
 - (BOOL)loading
@@ -164,7 +158,6 @@
     URL = [URL copy]; //if this is the URL from the requestingConfiguration, it's about to die...
     // Cancel the current request/requesting adapter
     self.requestingConfiguration = nil;
-    [self.requestingAdapter unregisterDelegate];
     self.requestingAdapter = nil;
     self.requestingAdapterAdContentView = nil;
 
@@ -197,10 +190,12 @@
     NSTimeInterval timeInterval = self.requestingConfiguration ? self.requestingConfiguration.refreshInterval : DEFAULT_BANNER_REFRESH_INTERVAL;
 
     if (self.automaticallyRefreshesContents && timeInterval > 0) {
-        self.refreshTimer = [MPTimer timerWithTimeInterval:timeInterval
-                                                    target:self
-                                                  selector:@selector(refreshTimerDidFire)
-                                                   repeats:NO];
+        __typeof__(self) __weak weakSelf = self;
+        self.refreshTimer = [MPTimer timerWithTimeInterval:timeInterval repeats:NO block:^(MPTimer * _Nonnull timer) {
+            __typeof__(self) strongSelf = weakSelf;
+            [strongSelf refreshTimerDidFire];
+        }];
+
         [self.refreshTimer scheduleNow];
         MPLogDebug(@"Scheduled the autorefresh timer to fire in %.1f seconds (%p).", timeInterval, self.refreshTimer);
     }
@@ -236,14 +231,29 @@
     // Start the stopwatch for the adapter load.
     [self.loadStopwatch start];
 
-    self.requestingAdapter = [[MPBannerCustomEventAdapter alloc] initWithConfiguration:configuration
-                                                                              delegate:self];
+    if (configuration.adapterClass == nil) {
+        [self adapter:nil didFailToLoadAdWithError:nil];
+        return;
+    }
+
+    Class<MPAdAdapter> adapterClass = (Class<MPAdAdapter>)(configuration.adapterClass);
+    id<MPAdAdapter> adapter = [[adapterClass class] new];
+
+    if (![adapter isKindOfClass:[MPInlineAdAdapter class]]) {
+        [self adapter:nil didFailToLoadAdWithError:nil];
+        return;
+    }
+
+    self.requestingAdapter = (MPInlineAdAdapter *)adapter;
     if (self.requestingAdapter == nil) {
         [self adapter:nil didFailToLoadAdWithError:nil];
         return;
     }
 
-    [self.requestingAdapter _getAdWithConfiguration:configuration targeting:self.targeting containerSize:self.delegate.containerSize];
+    self.requestingAdapter.adUnitId = self.adUnitId;
+    self.requestingAdapter.adapterDelegate = self;
+
+    [self.requestingAdapter getAdWithConfiguration:configuration targeting:self.targeting];
 }
 
 #pragma mark - <MPAdServerCommunicatorDelegate>
@@ -284,16 +294,6 @@
 
 #pragma mark - <MPBannerAdapterDelegate>
 
-- (MPAdView *)banner
-{
-    return [self.delegate banner];
-}
-
-- (id<MPAdViewDelegate>)bannerDelegate
-{
-    return [self.delegate bannerDelegate];
-}
-
 - (UIViewController *)viewControllerForPresentingModalView
 {
     return [self.delegate viewControllerForPresentingModalView];
@@ -304,11 +304,6 @@
     return [self.delegate allowedNativeAdsOrientation];
 }
 
-- (CLLocation *)location
-{
-    return nil;
-}
-
 - (BOOL)requestingAdapterIsReadyToBePresented
 {
     return !!self.requestingAdapterAdContentView;
@@ -317,23 +312,45 @@
 - (void)presentRequestingAdapter
 {
     if (!self.adActionInProgress && self.requestingAdapterIsReadyToBePresented) {
-        [self.onscreenAdapter unregisterDelegate];
         self.onscreenAdapter = self.requestingAdapter;
         self.requestingAdapter = nil;
 
         [self.onscreenAdapter rotateToOrientation:self.currentOrientation];
         [self.delegate managerDidLoadAd:self.requestingAdapterAdContentView];
-        [self.onscreenAdapter didDisplayAd];
+        [self.onscreenAdapter didPresentInlineAd];
 
         self.requestingAdapterAdContentView = nil;
     }
 }
 
-- (void)adapter:(MPBaseBannerAdapter *)adapter didFinishLoadingAd:(UIView *)ad
+- (void)adAdapter:(id<MPAdAdapter>)adapter handleInlineAdEvent:(MPInlineAdEvent)inlineAdEvent {
+    switch (inlineAdEvent) {
+        case MPInlineAdEventUserActionWillBegin:
+            [self userActionWillBeginForAdapter:adapter];
+            break;
+        case MPInlineAdEventUserActionDidEnd:
+            [self userActionDidFinishForAdapter:adapter];
+            break;
+        case MPInlineAdEventWillLeaveApplication:
+            [self userWillLeaveApplicationFromAdapter:adapter];
+            break;
+        case MPInlineAdEventWillExpand:
+            [self adWillExpandForAdapter:adapter];
+            break;
+        case MPInlineAdEventDidCollapse:
+            [self adDidCollapseForAdapter:adapter];
+            break;
+        default:
+            NSAssert(NO, @"Should not reach this point");
+            break;
+    }
+}
+
+- (void)inlineAdAdapter:(id<MPAdAdapter>)adapter didLoadAdWithAdView:(UIView *)adView
 {
     if (self.requestingAdapter == adapter) {
         self.remainingConfigurations = nil;
-        self.requestingAdapterAdContentView = ad;
+        self.requestingAdapterAdContentView = adView;
 
         // Record the end of the adapter load and send off the fire and forget after-load-url tracker.
         NSTimeInterval duration = [self.loadStopwatch stop];
@@ -344,7 +361,7 @@
     }
 }
 
-- (void)adapter:(MPBaseBannerAdapter *)adapter didFailToLoadAdWithError:(NSError *)error
+- (void)adapter:(id<MPAdAdapter>)adapter didFailToLoadAdWithError:(NSError *)error
 {
     // Record the end of the adapter load and send off the fire and forget after-load-url tracker
     // with the appropriate error code result.
@@ -376,7 +393,6 @@
         // 1) remove it
         // 2) and note that there can't possibly be a modal on display any more
         [self.delegate invalidateContentView];
-        [self.onscreenAdapter unregisterDelegate];
         self.onscreenAdapter = nil;
         if (self.adActionInProgress) {
             [self.delegate userActionDidFinish];
@@ -390,7 +406,11 @@
     }
 }
 
-- (void)adapterDidTrackImpressionForAd:(MPBaseBannerAdapter *)adapter {
+- (void)adapter:(id<MPAdAdapter>)adapter didFailToPlayAdWithError:(NSError *)error {
+    [self adapter:adapter didFailToLoadAdWithError:error];
+}
+
+- (void)adDidReceiveImpressionEventForAdapter:(id<MPAdAdapter>)adapter {
     if (self.onscreenAdapter == adapter) {
         [self scheduleRefreshTimer];
     }
@@ -398,7 +418,7 @@
     [self.delegate impressionDidFireWithImpressionData:self.requestingConfiguration.impressionData];
 }
 
-- (void)userActionWillBeginForAdapter:(MPBaseBannerAdapter *)adapter
+- (void)userActionWillBeginForAdapter:(id<MPAdAdapter>)adapter
 {
     if (self.onscreenAdapter == adapter) {
         self.adActionInProgress = YES;
@@ -409,7 +429,7 @@
     }
 }
 
-- (void)userActionDidFinishForAdapter:(MPBaseBannerAdapter *)adapter
+- (void)userActionDidFinishForAdapter:(id<MPAdAdapter>)adapter
 {
     if (self.onscreenAdapter == adapter) {
         MPLogAdEvent(MPLogEvent.adDidDismissModal, self.delegate.banner.adUnitId);
@@ -420,7 +440,7 @@
     }
 }
 
-- (void)userWillLeaveApplicationFromAdapter:(MPBaseBannerAdapter *)adapter
+- (void)userWillLeaveApplicationFromAdapter:(id<MPAdAdapter>)adapter
 {
     if (self.onscreenAdapter == adapter) {
         MPLogAdEvent(MPLogEvent.adTapped, self.delegate.banner.adUnitId);
@@ -429,14 +449,14 @@
     }
 }
 
-- (void)adWillExpandForAdapter:(MPBaseBannerAdapter *)adapter
+- (void)adWillExpandForAdapter:(id<MPAdAdapter>)adapter
 {
     // While the banner ad is in an expanded state, the refresh timer should be paused
     // since the user is interacting with the ad experience.
     [self pauseRefreshTimer];
 }
 
-- (void)adDidCollapseForAdapter:(MPBaseBannerAdapter *)adapter
+- (void)adDidCollapseForAdapter:(id<MPAdAdapter>)adapter
 {
     // Once the banner ad is collapsed back into its default state, the refresh timer
     // should be resumed to queue up the next ad.

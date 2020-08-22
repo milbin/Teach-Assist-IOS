@@ -13,11 +13,15 @@
 static NSTimeInterval const kCountdownTimerInterval = 0.05; // internal timer firing frequency in seconds
 static CGFloat const kTimerStartAngle = -M_PI * 0.5; // 12 o'clock position
 static CGFloat const kOneCycle = M_PI * 2;
-static CGFloat const kRingWidth = 3;
+static CGFloat const kRingWidth = 3; // The width of the ring is not accounted to the view size.
 static CGFloat const kRingRadius = 16;
-static CGFloat const kRingPadding = 8;
+static CGFloat const kRingPadding = 9;
 static NSString * const kAnimationKey = @"Timer";
 
+/*
+ (kRingRadius + kRingPadding) * 2 = (16 + 9) * 2 = 50, which is the same dimension as MRAID close event
+ region. See MRAID spec https://www.iab.com/wp-content/uploads/2015/08/IAB_MRAID_v2_FINAL.pdf, page 31.
+ */
 @interface MPCountdownTimerView()
 
 @property (nonatomic, copy) void(^completionBlock)(BOOL);
@@ -145,10 +149,11 @@ static NSString * const kAnimationKey = @"Timer";
     [self.animatingRingLayer addAnimation:animation forKey:kAnimationKey];
 
     // Fire the timer
-    self.timer = [MPTimer timerWithTimeInterval:kCountdownTimerInterval
-                                         target:self
-                                       selector:@selector(onTimerUpdate:)
-                                        repeats:YES];
+    __typeof__(self) __weak weakSelf = self;
+    self.timer = [MPTimer timerWithTimeInterval:kCountdownTimerInterval repeats:YES block:^(MPTimer * _Nonnull timer) {
+        __typeof__(self) strongSelf = weakSelf;
+        [strongSelf onTimerUpdate:timer];
+    }];
     [self.timer scheduleNow];
 
     MPLogInfo(@"MPCountdownTimerView started");

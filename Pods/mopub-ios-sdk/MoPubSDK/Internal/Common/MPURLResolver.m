@@ -67,9 +67,6 @@ static NSString * const kRedirectURLQueryStringKey = @"r";
 
     if (info) {
         [self safeInvokeAndNilCompletionBlock:info error:nil];
-    } else if ([self shouldOpenWithInAppWebBrowser]) {
-        info = [MPURLActionInfo infoWithURL:self.originalURL webViewBaseURL:self.currentURL];
-        [self safeInvokeAndNilCompletionBlock:info error:nil];
     } else if (error) {
         [self safeInvokeAndNilCompletionBlock:nil error:error];
     } else {

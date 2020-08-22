@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 #import "MPImpressionData.h"
 
+@class MPReward;
 @class MPRewardedVideoReward;
 @class CLLocation;
 @protocol MPRewardedVideoDelegate;
@@ -196,7 +197,7 @@
 + (BOOL)hasAdAvailableForAdUnitID:(NSString *)adUnitID;
 
 /**
- * Returns an array of rewards that are available for the given ad unit ID.
+ * Returns an array of @c MPRewardedVideoReward that are available for the given ad unit ID.
  */
 + (NSArray *)availableRewardsForAdUnitID:(NSString *)adUnitID;
 
@@ -282,6 +283,9 @@
 /**
  * This method is called when a rewarded video ad has appeared.
  *
+ * Your implementation of this method should pause any application activity that requires user
+ * interaction.
+ *
  * @param adUnitID The ad unit ID of the ad associated with the event.
  */
 - (void)rewardedVideoAdDidAppearForAdUnitID:(NSString *)adUnitID;
@@ -295,6 +299,9 @@
 
 /**
  * This method is called when a rewarded video ad has been dismissed.
+ *
+ * Your implementation of this method should resume any application activity that was paused
+ * prior to the interstitial being presented on-screen.
  *
  * @param adUnitID The ad unit ID of the ad associated with the event.
  */

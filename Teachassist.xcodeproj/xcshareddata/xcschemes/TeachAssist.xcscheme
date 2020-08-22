@@ -17,7 +17,7 @@
                BlueprintIdentifier = "6E449D0E2204A26E00C0F0AC"
                BuildableName = "TeachAssist.app"
                BlueprintName = "TeachAssist"
-               ReferencedContainer = "container:TeachAssist.xcodeproj">
+               ReferencedContainer = "container:Teachassist.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -27,6 +27,15 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "6E449D0E2204A26E00C0F0AC"
+            BuildableName = "TeachAssist.app"
+            BlueprintName = "TeachAssist"
+            ReferencedContainer = "container:Teachassist.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <Testables>
          <TestableReference
             skipped = "NO">
@@ -35,7 +44,7 @@
                BlueprintIdentifier = "6E449D222204A27200C0F0AC"
                BuildableName = "TeachAssistTests.xctest"
                BlueprintName = "TeachAssistTests"
-               ReferencedContainer = "container:TeachAssist.xcodeproj">
+               ReferencedContainer = "container:Teachassist.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -45,21 +54,10 @@
                BlueprintIdentifier = "6E449D2D2204A27200C0F0AC"
                BuildableName = "TeachAssistUITests.xctest"
                BlueprintName = "TeachAssistUITests"
-               ReferencedContainer = "container:TeachAssist.xcodeproj">
+               ReferencedContainer = "container:Teachassist.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6E449D0E2204A26E00C0F0AC"
-            BuildableName = "TeachAssist.app"
-            BlueprintName = "TeachAssist"
-            ReferencedContainer = "container:TeachAssist.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -78,7 +76,7 @@
             BlueprintIdentifier = "6E449D0E2204A26E00C0F0AC"
             BuildableName = "TeachAssist.app"
             BlueprintName = "TeachAssist"
-            ReferencedContainer = "container:TeachAssist.xcodeproj">
+            ReferencedContainer = "container:Teachassist.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <CommandLineArguments>
@@ -87,13 +85,6 @@
             isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
-      <AdditionalOptions>
-         <AdditionalOption
-            key = "NSZombieEnabled"
-            value = "YES"
-            isEnabled = "YES">
-         </AdditionalOption>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -108,7 +99,7 @@
             BlueprintIdentifier = "6E449D0E2204A26E00C0F0AC"
             BuildableName = "TeachAssist.app"
             BlueprintName = "TeachAssist"
-            ReferencedContainer = "container:TeachAssist.xcodeproj">
+            ReferencedContainer = "container:Teachassist.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

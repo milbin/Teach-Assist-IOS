@@ -17,4 +17,9 @@
  */
 + (NSBundle *)resourceBundleForClass:(Class)aClass;
 
+/**
+ The resource bundle of MoPub SDK.
+ */
++ (NSBundle *)mopubResourceBundle;
+
 @end

@@ -11,7 +11,7 @@
 #import "MPBLogLevel.h"
 
 @protocol MPAdapterConfiguration;
-@class MPRewardedVideoReward;
+@class MPReward;
 @class MPURLRequest;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -88,7 +88,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)adDidAppear;
 + (instancetype)adWillDisappear;
 + (instancetype)adDidDisappear;
-+ (instancetype)adShouldRewardUserWithReward:(MPRewardedVideoReward *)reward;
++ (instancetype)adShouldRewardUserWithReward:(MPReward *)reward;
 + (instancetype)adWillLeaveApplication;
 @end
 

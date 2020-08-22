@@ -6,6 +6,7 @@
 //  http://www.mopub.com/legal/sdk-license-agreement/
 //
 
+#import "MPInlineAdAdapter+MPAdAdapter.h"
 #import "MPMRAIDBannerCustomEvent.h"
 #import "MPLogging.h"
 #import "MPAdConfiguration.h"
@@ -22,15 +23,11 @@
 
 @implementation MPMRAIDBannerCustomEvent
 
-// Explicitly `@synthesize` here to fix a "-Wobjc-property-synthesis" warning because super class `delegate` is
-// `id<MPBannerCustomEventDelegate>` and this `delegate` is `id<MPPrivateInterstitialCustomEventDelegate>`
-@synthesize delegate;
-
-- (void)requestAdWithSize:(CGSize)size customEventInfo:(NSDictionary *)info adMarkup:(NSString *)adMarkup
+- (void)requestAdWithSize:(CGSize)size adapterInfo:(NSDictionary *)info adMarkup:(NSString *)adMarkup
 {
-    MPAdConfiguration *configuration = self.delegate.configuration;
+    MPAdConfiguration *configuration = self.configuration;
 
-    MPLogAdEvent([MPLogEvent adLoadAttemptForAdapter:NSStringFromClass(configuration.customEventClass) dspCreativeId:configuration.dspCreativeId dspName:nil], self.adUnitId);
+    MPLogAdEvent([MPLogEvent adLoadAttemptForAdapter:NSStringFromClass(configuration.adapterClass) dspCreativeId:configuration.dspCreativeId dspName:nil], self.adUnitId);
 
     CGRect adViewFrame = CGRectZero;
     if ([configuration hasPreferredSize]) {
@@ -46,35 +43,33 @@
 }
 
 #pragma mark - MRControllerDelegate
-
-- (NSString *)adUnitId
+- (UIViewController *)viewControllerForPresentingMRAIDModalView
 {
-    return [self.delegate adUnitId];
+    return [self.delegate inlineAdAdapterViewControllerForPresentingModalView:self];
 }
 
-- (UIViewController *)viewControllerForPresentingModalView
-{
-    return [self.delegate viewControllerForPresentingModalView];
-}
-
-- (void)adDidLoad:(UIView *)adView
+- (void)mraidAdDidLoad:(MPAdContainerView *)adView
 {
     MPLogAdEvent([MPLogEvent adLoadSuccessForAdapter:NSStringFromClass(self.class)], self.adUnitId);
-    [self.delegate bannerCustomEvent:self didLoadAd:adView];
+    [self.delegate inlineAdAdapter:self didLoadAdWithAdView:adView];
 }
 
-- (void)adDidFailToLoad:(UIView *)adView
+- (void)mraidAdDidFailToLoad:(MPAdContainerView *)adView
 {
-    NSString * message = [NSString stringWithFormat:@"Failed to load creative:\n%@", self.delegate.configuration.adResponseHTMLString];
+    NSString * message = [NSString stringWithFormat:@"Failed to load creative:\n%@", self.configuration.adResponseHTMLString];
     NSError * error = [NSError errorWithCode:MOPUBErrorAdapterFailedToLoadAd localizedDescription:message];
 
     MPLogAdEvent([MPLogEvent adLoadFailedForAdapter:NSStringFromClass(self.class) error:error], self.adUnitId);
-    [self.delegate bannerCustomEvent:self didFailToLoadAdWithError:error];
+    [self.delegate inlineAdAdapter:self didFailToLoadAdWithError:error];
 }
 
-- (void)adDidReceiveClickthrough:(NSURL *)url
+- (void)mraidAdDidReceiveClickthrough:(NSURL *)url
 {
-    [self.delegate trackClick];
+    [self.delegate inlineAdAdapterDidTrackClick:self];
+}
+
+- (void)mraidAdWillLeaveApplication {
+    [self.delegate inlineAdAdapterWillLeaveApplication:self];
 }
 
 - (void)closeButtonPressed
@@ -82,14 +77,14 @@
     //don't care
 }
 
-- (void)appShouldSuspendForAd:(UIView *)adView
+- (void)appShouldSuspendForMRAIDAd:(MPAdContainerView *)adView
 {
-    [self.delegate bannerCustomEventWillBeginAction:self];
+    [self.delegate inlineAdAdapterWillBeginUserAction:self];
 }
 
-- (void)appShouldResumeFromAd:(UIView *)adView
+- (void)appShouldResumeFromMRAIDAd:(MPAdContainerView *)adView
 {
-    [self.delegate bannerCustomEventDidFinishAction:self];
+    [self.delegate inlineAdAdapterDidEndUserAction:self];
 }
 
 - (void)trackImpressionsIncludedInMarkup
@@ -102,18 +97,14 @@
     [self.mraidController startViewabilityTracking];
 }
 
-- (void)adWillExpand:(UIView *)adView
+- (void)mraidAdWillExpand:(MPAdContainerView *)adView
 {
-    if ([self.delegate respondsToSelector:@selector(bannerCustomEventWillExpandAd:)]) {
-        [self.delegate bannerCustomEventWillExpandAd:self];
-    }
+    [self.delegate inlineAdAdapterWillExpand:self];
 }
 
-- (void)adDidCollapse:(UIView *)adView
+- (void)mraidAdDidCollapse:(MPAdContainerView *)adView
 {
-    if ([self.delegate respondsToSelector:@selector(bannerCustomEventDidCollapseAd:)]) {
-        [self.delegate bannerCustomEventDidCollapseAd:self];
-    }
+    [self.delegate inlineAdAdapterDidCollapse:self];
 }
 
 @end

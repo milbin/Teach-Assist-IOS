@@ -8,21 +8,13 @@
 
 #import "MPVASTResponse.h"
 
-@interface MPVASTResponse ()
-
-@property (nonatomic) NSArray *ads;
-@property (nonatomic) NSArray *errorURLs;
-@property (nonatomic, copy) NSString *version;
-
-@end
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
 @implementation MPVASTResponse
 
-+ (NSDictionary *)modelMap
-{
+#pragma mark - MPVASTModel
+
++ (NSDictionary<NSString *, id> *)modelMap {
     return @{@"ads":        @[@"VAST.Ad", MPParseArrayOf(MPParseClass([MPVASTAd class]))],
+             @"errorURLs":  @[@"VAST.Error.text", MPParseArrayOf(MPParseURLFromString())],
              @"version":    @"VAST.version"};
 }
 

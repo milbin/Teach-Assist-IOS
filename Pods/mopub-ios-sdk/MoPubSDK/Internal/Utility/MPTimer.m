@@ -13,89 +13,118 @@
 @interface MPTimer ()
 
 @property (nonatomic, assign) NSTimeInterval timeInterval;
-@property (nonatomic, strong) NSTimer *timer; // lazily created in `scheduleNow`
+@property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, assign) BOOL isRepeatingTimer;
 @property (nonatomic, assign) BOOL isCountdownActive;
 
-@property (nonatomic, weak) id target;
-@property (nonatomic, assign) SEL selector;
+@property (nonatomic, copy) void(^timerCallbackBlock)(MPTimer *timer);
+
+// Access to `NSTimer` is not thread-safe by default, so we will gate access
+// to it using GCD to allow concurrent reads, but synchronous writes.
+@property (nonatomic, strong) dispatch_queue_t syncQueue;
 
 @end
 
 @implementation MPTimer
 
-+ (MPTimer *)timerWithTimeInterval:(NSTimeInterval)seconds
-                            target:(id)target
-                          selector:(SEL)aSelector
-                           repeats:(BOOL)repeats
-                       runLoopMode:(NSString *)runLoopMode
-{
-    MPTimer *timer = [[MPTimer alloc] init];
-    timer.target = target;
-    timer.selector = aSelector;
-    timer.isCountdownActive = NO;
-    timer.isRepeatingTimer = repeats;
-    timer.timeInterval = seconds;
+- (instancetype)initWithTimeInterval:(NSTimeInterval)seconds
+                             repeats:(BOOL)repeats
+                         runLoopMode:(NSString *)runLoopMode
+                               block:(void(^)(MPTimer *timer))block {
+    if (self = [super init]) {
+        // Dispatch queue used to gate multithreaded access.
+        _syncQueue = dispatch_queue_create("com.mopub.mopub-ios-sdk.mptimer.queue", DISPATCH_QUEUE_CONCURRENT);
 
-    // Initialize the internal `NSTimer`, but set its fire date in the far future.
-    // `scheduleNow` will handle the firing of the timer.
-    timer.timer = [NSTimer timerWithTimeInterval:seconds
-                                          target:timer
-                                        selector:@selector(timerDidFire)
-                                        userInfo:nil
-                                         repeats:repeats];
-    [timer.timer setFireDate:NSDate.distantFuture];
+        // Initialize internal state
+        _isCountdownActive = NO;
+        _isRepeatingTimer = repeats;
+        _timerCallbackBlock = block;
+        _timeInterval = seconds;
 
-    // Runloop scheduling must be performed on the main thread. To prevent
-    // a potential deadlock, scheduling to the main thread will be asynchronous
-    // on the next main thread run loop.
-    void (^mainThreadOperation)(void) = ^void(void) {
-        [NSRunLoop.mainRunLoop addTimer:timer.timer forMode:runLoopMode];
-    };
+        // Initialize the internal `NSTimer`, but set its fire date in the far future.
+        // `scheduleNow` will handle the firing of the timer.
+        __typeof__(self) __weak weakSelf = self;
+        _timer = [NSTimer timerWithTimeInterval:seconds repeats:repeats block:^(NSTimer * _Nonnull nsTimer) {
+            __typeof__(self) strongSelf = weakSelf;
 
-    if ([NSThread isMainThread]) {
-        mainThreadOperation();
-    } else {
-        dispatch_async(dispatch_get_main_queue(), mainThreadOperation);
+            // This is the last block to fire.
+            if (!strongSelf.isRepeatingTimer) {
+                strongSelf.isCountdownActive = NO;
+                [nsTimer invalidate];
+            }
+
+            // Extra validation for the timer callback block.
+            if (strongSelf.timerCallbackBlock == nil) {
+                MPLogDebug(@"%s `timerCallbackBlock` is unexpectedly nil. Return early to avoid crash.", __FUNCTION__);
+                return;
+            }
+
+            // Forward the callback along
+            strongSelf.timerCallbackBlock(self);
+        }];
+        [_timer setFireDate:NSDate.distantFuture];
+
+        // Runloop scheduling must be performed on the main thread. To prevent
+        // a potential deadlock, scheduling to the main thread will be asynchronous
+        // on the next main thread run loop.
+        void (^mainThreadOperation)(void) = ^void(void) {
+            // `nil` check should be performed here in case of the situation where
+            // the timer is created on a background thread, the runloop scheduling block
+            // is then scheduled to run on main thread, but before the block can
+            // process, a timer invalidation event occurs which invalidates the underlying
+            // `NSTimer` and set it to `nil`.
+            __typeof__(self) strongSelf = weakSelf;
+            if (strongSelf.timer != nil) {
+                [NSRunLoop.mainRunLoop addTimer:strongSelf.timer forMode:runLoopMode];
+            }
+        };
+
+        if ([NSThread isMainThread]) {
+            mainThreadOperation();
+        } else {
+            dispatch_async(dispatch_get_main_queue(), mainThreadOperation);
+        }
     }
 
-    return timer;
+    return self;
 }
 
 + (MPTimer *)timerWithTimeInterval:(NSTimeInterval)seconds
-                            target:(id)target
-                          selector:(SEL)aSelector
-                           repeats:(BOOL)repeats {
-    return [self timerWithTimeInterval:seconds
-                                target:target
-                              selector:aSelector
-                               repeats:repeats
-                           runLoopMode:NSDefaultRunLoopMode];
+                           repeats:(BOOL)repeats
+                       runLoopMode:(NSString *)runLoopMode
+                             block:(void(^)(MPTimer *timer))block {
+    return [[MPTimer alloc] initWithTimeInterval:seconds repeats:repeats runLoopMode:runLoopMode block:block];
 }
 
-- (void)dealloc
-{
-    [self.timer invalidate];
++ (MPTimer *)timerWithTimeInterval:(NSTimeInterval)seconds
+                           repeats:(BOOL)repeats
+                             block:(void(^)(MPTimer *timer))block {
+    return [[MPTimer alloc] initWithTimeInterval:seconds repeats:repeats runLoopMode:NSDefaultRunLoopMode block:block];
 }
 
-- (BOOL)isValid
-{
-    return [self.timer isValid];
+- (void)dealloc {
+    [_timer invalidate];
+    _timer = nil;
 }
 
-- (void)invalidate
-{
-    @synchronized (self) {
-        self.target = nil;
-        self.selector = nil;
+- (BOOL)isValid {
+    __block BOOL isValidValue = NO;
+    dispatch_sync(self.syncQueue, ^{
+        isValidValue = self.timer.isValid;
+    });
+
+    return isValidValue;
+}
+
+- (void)invalidate {
+    dispatch_barrier_sync(self.syncQueue, ^{
         [self.timer invalidate];
         self.timer = nil;
         self.isCountdownActive = NO;
-    }
+    });
 }
 
-- (void)scheduleNow
-{
+- (void)scheduleNow {
     /*
      Note: `MPLog` statements are commented out because during SDK init, the chain of calls
      `MPConsentManager.sharedManager` -> `newNextUpdateTimer` -> `MPTimer.scheduleNow` ->
@@ -104,26 +133,23 @@
      `MPConsentManager.sharedManager` in the same call stack. Uncomment the logs after
      `MPIdentityProvider` is refactored.
      */
-    @synchronized (self) {
-        if (![self.timer isValid]) {
-//                MPLogDebug(@"Could not schedule invalidated MPTimer (%p).", self);
+    dispatch_barrier_sync(self.syncQueue, ^{
+        if (!self.timer.isValid) {
             return;
         }
 
         if (self.isCountdownActive) {
-//                MPLogDebug(@"Tried to schedule an MPTimer (%p) that is already ticking.",self);
             return;
         }
 
         NSDate *newFireDate = [NSDate dateWithTimeInterval:self.timeInterval sinceDate:[NSDate date]];
         [self.timer setFireDate:newFireDate];
         self.isCountdownActive = YES;
-    }
+    });
 }
 
-- (void)pause
-{
-    @synchronized (self) {
+- (void)pause {
+    dispatch_barrier_sync(self.syncQueue, ^{
         if (!self.isCountdownActive) {
             MPLogDebug(@"No-op: tried to pause an MPTimer (%p) that was already paused.", self);
             return;
@@ -146,33 +172,11 @@
         // Pause the timer by setting its fire date far into the future.
         [self.timer setFireDate:[NSDate distantFuture]];
         self.isCountdownActive = NO;
-    }
+    });
 }
 
-- (void)resume
-{
+- (void)resume {
     [self scheduleNow];
-}
-
-#pragma mark - Private
-
-- (void)timerDidFire
-{
-    @synchronized (self) {
-        if (!self.isRepeatingTimer) {
-            self.isCountdownActive = NO; // this is the last firing
-        }
-
-        if (self.selector == nil) {
-            MPLogDebug(@"%s `selector` is unexpectedly nil. Return early to avoid crash.", __FUNCTION__);
-            return;
-        }
-
-        // use `objc_msgSend` to avoid the potential memory leak issue of `performSelector:`
-        typedef void (*Message)(id, SEL, id);
-        Message func = (Message)objc_msgSend;
-        func(self.target, self.selector, self);
-    }
 }
 
 @end
