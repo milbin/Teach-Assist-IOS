@@ -169,19 +169,19 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
 @implementation MPVASTCompanionAdView (MRControllerDelegate)
 
-- (UIViewController *)viewControllerForPresentingModalView {
+- (UIViewController *)viewControllerForPresentingMRAIDModalView {
     return self.delegate.viewControllerForPresentingModalMRAIDExpandedView;
 }
 
-- (void)appShouldSuspendForAd:(UIView *)adView {
-    // No op. It's the owner's (such as custom event) responsibility for handling app status changes
+- (void)appShouldSuspendForMRAIDAd:(MPAdContainerView *)adView {
+    // No op. It's the owner's (such as adapter) responsibility for handling app status changes
 }
 
-- (void)appShouldResumeFromAd:(UIView *)adView {
-    // No op. It's the owner's (such as custom event) responsibility for handling app status changes
+- (void)appShouldResumeFromMRAIDAd:(MPAdContainerView *)adView {
+    // No op. It's the owner's (such as adapter) responsibility for handling app status changes
 }
 
-- (void)adDidLoad:(UIView *)adView {
+- (void)mraidAdDidLoad:(MPAdContainerView *)adView {
     /*
      Note: Do not apply layout constrains on the ad view, otherwise the layout engine mighe be confused.
 
@@ -199,27 +199,31 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     [self.delegate companionAdView:self didTriggerEvent:MPVASTResourceViewEvent_DidLoadView];
 }
 
-- (void)adDidFailToLoad:(UIView *)adView {
+- (void)mraidAdDidFailToLoad:(MPAdContainerView *)adView {
     [self.delegate companionAdView:self didTriggerEvent:MPVASTResourceViewEvent_FailedToLoadView];
 }
 
-- (void)adWillClose:(UIView *)adView {
+- (void)mraidAdWillClose:(MPAdContainerView *)adView {
     [self.delegate companionAdViewRequestDismiss:self];
 }
 
-- (void)adDidClose:(UIView *)adView {
+- (void)mraidAdWillLeaveApplication {
+    // No op.
+}
+
+- (void)mraidAdDidClose:(MPAdContainerView *)adView {
     // No op. Let `adWillClose:` forward the dismiss request to the delegate
 }
 
-- (void)adDidReceiveClickthrough:(NSURL *)url {
+- (void)mraidAdDidReceiveClickthrough:(NSURL *)url {
     [self.delegate companionAdView:self didTriggerOverridingClickThrough:url];
 }
 
-- (void)adWillExpand:(UIView *)adView {
+- (void)mraidAdWillExpand:(MPAdContainerView *)adView {
     // No op. Unlike regular inline ads, companion ad is not refreshed automatically and thus no need to pause refresh timer.
 }
 
-- (void)adDidCollapse:(UIView *)adView {
+- (void)mraidAdDidCollapse:(MPAdContainerView *)adView {
     // No op. Unlike regular inline ads, companion ad is not refreshed automatically and thus no need to resume refresh timer.
 }
 

@@ -179,10 +179,11 @@ const NSTimeInterval kMPLocationUpdateInterval = 10.0 * 60.0;
     [self.locationManager startUpdatingLocation];
 
     [self.locationUpdateDurationTimer invalidate];
-    self.locationUpdateDurationTimer = [MPTimer timerWithTimeInterval:kMPLocationUpdateDuration
-                                                               target:self
-                                                             selector:@selector(currentLocationUpdateDidFinish)
-                                                              repeats:NO];
+    __typeof__(self) __weak weakSelf = self;
+    self.locationUpdateDurationTimer = [MPTimer timerWithTimeInterval:kMPLocationUpdateDuration repeats:NO block:^(MPTimer * _Nonnull timer) {
+        __typeof__(self) strongSelf = weakSelf;
+        [strongSelf currentLocationUpdateDidFinish];
+    }];
     [self.locationUpdateDurationTimer scheduleNow];
 }
 
@@ -199,10 +200,11 @@ const NSTimeInterval kMPLocationUpdateInterval = 10.0 * 60.0;
 {
     MPLogDebug(@"Next user location update due in %.1f seconds.", delay);
     [self.nextLocationUpdateTimer invalidate];
-    self.nextLocationUpdateTimer = [MPTimer timerWithTimeInterval:delay
-                                                           target:self
-                                                         selector:@selector(startRecurringLocationUpdates)
-                                                          repeats:NO];
+    __typeof__(self) __weak weakSelf = self;
+    self.nextLocationUpdateTimer = [MPTimer timerWithTimeInterval:delay repeats:NO block:^(MPTimer * _Nonnull timer) {
+        __typeof__(self) strongSelf = weakSelf;
+        [strongSelf startRecurringLocationUpdates];
+    }];
     [self.nextLocationUpdateTimer scheduleNow];
 }
 

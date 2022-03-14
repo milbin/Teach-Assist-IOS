@@ -9,11 +9,32 @@
 #import <Foundation/Foundation.h>
 #import "MPVASTModel.h"
 
+@class MPVASTCreative;
+
+NS_ASSUME_NONNULL_BEGIN
+
 @interface MPVASTInline : MPVASTModel
 
-@property (nonatomic, readonly) NSArray *creatives;
-@property (nonatomic, readonly) NSArray *errorURLs;
-@property (nonatomic, readonly) NSDictionary *extensions;
-@property (nonatomic, readonly) NSArray *impressionURLs;
+/**
+ Optional array of creatives associated with the inline ad.
+*/
+@property (nonatomic, nullable, readonly) NSArray<MPVASTCreative *> *creatives;
+
+/**
+ Optional array of error URLs.
+ */
+@property (nonatomic, nullable, readonly) NSArray<NSURL *> *errorURLs;
+
+/**
+ Optional extensions in the inline ad.
+*/
+@property (nonatomic, nullable, readonly) NSArray<NSDictionary *> *extensions;
+
+/**
+ Required impression URLs associated with the inline ad.
+*/
+@property (nonatomic, nullable, readonly) NSArray<NSURL *> *impressionURLs;
 
 @end
+
+NS_ASSUME_NONNULL_END

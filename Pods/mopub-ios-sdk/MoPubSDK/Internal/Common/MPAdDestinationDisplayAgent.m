@@ -293,10 +293,26 @@ static NSString * const kDisplayAgentErrorDomain = @"com.mopub.displayagent";
 
 #pragma mark - <SKStoreProductViewControllerDelegate>
 
+// Called when the user dismisses the store screen.
 - (void)productViewControllerDidFinish:(SKStoreProductViewController *)viewController
 {
     self.isLoadingDestination = NO;
-    [self hideModalAndNotifyDelegate];
+
+    // In `presentStoreKitControllerWithProductParameters:fallbackURL:` we specify that the
+    // `modalPresentationStyle` for `SKStoreProductViewController` should be `UIModalPresentationFullScreen`.
+    // However for notch-based devices, iOS will automatically decide to change the style to
+    // `UIModalPresentationOverFullScreen` which results in a paged modal over modal effect.
+    // As a consequence, dismissing `SKStoreProductViewController` using this style automatically
+    // removes `SKStoreProductViewController` and no futher action is needed.
+    UIModalPresentationStyle style = viewController.modalPresentationStyle;
+    if (style == UIModalPresentationOverFullScreen) {
+        [self.delegate displayAgentDidDismissModal];
+    }
+    // Fall back to our expected `UIModalPresentationFullScreen` behavior where we will need to
+    // explicitly dismiss `SKStoreProductViewController` before notifying the delegate.
+    else {
+        [self hideModalAndNotifyDelegate];
+    }
 }
 
 #pragma mark - <SFSafariViewControllerDelegate>

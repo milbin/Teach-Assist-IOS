@@ -1,9 +1,9 @@
 //
 //  MPNativeAdRendererImageHandler.m
-//  MoPubSDK
 //
-//  Created by Haoxin Li on 3/11/20.
-//  Copyright © 2020 MoPub. All rights reserved.
+//  Copyright 2018-2020 Twitter, Inc.
+//  Licensed under the MoPub SDK License Agreement
+//  http://www.mopub.com/legal/sdk-license-agreement/
 //
 
 #import "MPNativeAdRendererImageHandler.h"

@@ -98,7 +98,7 @@
  Both @c rewardType and @c rewardAmount must be present in order for them to be added.
  @param rewardAmount Optional reward amount to associate with the reward type.
  Both @c rewardType and @c rewardAmount must be present in order for them to be added.
- @param customEventName Optional name of the custom event class used to render the rewarded ad.
+ @param adapterClassName Optional name of the adapter class used to render the rewarded ad.
  @param additionalData Optional additional data passed in by the publisher to be sent back to
  their reward server.
  @return Expandeded URL if successful; otherwise @c nil.
@@ -107,7 +107,7 @@
                   withCustomerId:(NSString *)customerId
                       rewardType:(NSString *)rewardType
                     rewardAmount:(NSNumber *)rewardAmount
-                 customEventName:(NSString *)customEventName
+                adapterClassName:(NSString *)adapterClassName
                   additionalData:(NSString *)additionalData;
 
 @end

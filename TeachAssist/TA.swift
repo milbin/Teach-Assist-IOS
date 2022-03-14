@@ -134,6 +134,8 @@ class TA{
         let sr = SendRequest()
         var response = [NSMutableDictionary]()
         var httpResp = sr.SendWithCookies(url: "https://ta.yrdsb.ca/live/index.php?", parameters: ["subject_id":"0", "username":username, "password":password, "submit": "Login"], cookies:nil)
+        print("HERE")
+        print(httpResp)
         if httpResp != nil{
             self.studentID = httpResp![2]! as! String
             self.sessionToken = httpResp![1]! as! String
@@ -267,7 +269,7 @@ class TA{
     func GetMarks2(subjectNumber:Int) -> [String:Any]?{
         var sr = SendRequest()
         var params = ["student_id": self.studentID, "token":self.sessionToken, "subject_id":courses[subjectNumber]]
-        print(sessionToken)
+        //print(sessionToken)
         var cookieProps = [
             HTTPCookiePropertyKey.domain: "ta.yrdsb.ca",
             HTTPCookiePropertyKey.path: "/",

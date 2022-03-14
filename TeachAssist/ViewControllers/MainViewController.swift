@@ -10,12 +10,13 @@ import UIKit
 import UICircularProgressRing
 import KYDrawerController
 import UserNotifications
-import Crashlytics
+import FirebaseCrashlytics
 import PopupDialog
 import StoreKit
 import SwiftyJSON
 import GoogleMobileAds
 import AdSupport
+import AppTrackingTransparency
 
 class MainViewController: UIViewController {
     var courseList = [CourseView]()
@@ -132,11 +133,10 @@ class MainViewController: UIViewController {
         //adView.adUnitID = "ca-app-pub-3940256099942544/6300978111" //Admob test unit ID
         adView.adUnitID = "ca-app-pub-6294253616632635/9795920506"
         adView.rootViewController = self
-        print(ASIdentifierManager.shared().advertisingIdentifier)
-        print("HERE")
-
-        
-        
+        if #available(iOS 14, *) {
+            ATTrackingManager.requestTrackingAuthorization(completionHandler: { status in
+            })
+        }
     }
     
     //For some reason this does not work, only settings the info.plist properties of user interface style and statusbar style work
@@ -194,7 +194,7 @@ class MainViewController: UIViewController {
         //release notes popup dialog
         let firstLaunch = Preferences.string(forKey: "release notes 2.2.8")
         if(firstLaunch == nil){
-            showReleaseNotes()
+            //showReleaseNotes()
         }
         
         response = ta.GetTaData(username: username!, password: password!) ?? nil

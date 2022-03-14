@@ -10,15 +10,11 @@
 #import "MPAdConfiguration.h"
 #import "MPAdServerKeys.h"
 #import "MPConstants.h"
+#import "MPFullscreenAdAdapter.h"
 #import "MPHTMLBannerCustomEvent.h"
-#import "MPHTMLInterstitialCustomEvent.h"
 #import "MPLogging.h"
-#import "MPMoPubRewardedPlayableCustomEvent.h"
-#import "MPMoPubRewardedVideoCustomEvent.h"
 #import "MPMRAIDBannerCustomEvent.h"
-#import "MPMRAIDInterstitialCustomEvent.h"
-#import "MPRewardedVideoReward.h"
-#import "MPVASTInterstitialCustomEvent.h"
+#import "MPReward.h"
 #import "MPVASTTracking.h"
 #import "MPViewabilityTracker.h"
 #import "NSDictionary+MPAdditions.h"
@@ -95,6 +91,7 @@ NSString * const kAdTypeNativeVideo = @"json_video";
 NSString * const kAdTypeRewardedVideo = @"rewarded_video";
 NSString * const kAdTypeRewardedPlayable = @"rewarded_playable";
 NSString * const kAdTypeVAST = @"vast"; // a possible value of "x-fulladtype"
+NSString * const kAdTypeCustom = @"custom"; // do not overwrite "custom" ad type with full ad type
 
 // rewarded video
 NSString * const kRewardedVideoCurrencyNameMetadataKey = @"x-rewarded-video-currency-name";
@@ -103,7 +100,7 @@ NSString * const kRewardedVideoCompletionUrlMetadataKey = @"x-rewarded-video-com
 NSString * const kRewardedCurrenciesMetadataKey = @"x-rewarded-currencies";
 
 // rewarded playables
-NSString * const kRewardedPlayableDurationMetadataKey = @"x-rewarded-duration";
+NSString * const kRewardedDurationMetadataKey = @"x-rewarded-duration";
 NSString * const kRewardedPlayableRewardOnClickMetadataKey = @"x-should-reward-on-click";
 
 // vast video trackers
@@ -140,7 +137,7 @@ NSString * const kVASTClickabilityExperimentKey = @"vast-click-enabled";
 @interface MPAdConfiguration ()
 
 @property (nonatomic, copy) NSString *adResponseHTMLString;
-@property (nonatomic, strong, readwrite) NSArray<MPRewardedVideoReward *> *availableRewards;
+@property (nonatomic, strong, readwrite) NSArray<MPReward *> *availableRewards;
 @property (nonatomic) MOPUBDisplayAgentType clickthroughExperimentBrowserAgent;
 @property (nonatomic, strong) MOPUBExperimentProvider *experimentProvider;
 
@@ -201,19 +198,20 @@ NSString * const kVASTClickabilityExperimentKey = @"vast-click-enabled";
                                                      forKey:kNativeSDKParametersMetadataKey];
 
     self.orientationType = [self orientationTypeFromMetadata:metadata];
+    _vastPlayerVersion = [metadata mp_integerForKey:kVASTPlayerVersionKey];
 
     switch ([metadata mp_unsignedIntegerForKey:kVASTPlayerVersionKey]) {
         case MPVASTPlayerVersionNativePlayer:
-            self.customEventClass = [self setUpCustomEventClassFromMetadata:metadata
-                                                          vastPlayerVersion:MPVASTPlayerVersionNativePlayer];
+            self.adapterClass = [self setUpAdapterClassFromMetadata:metadata
+                                                  vastPlayerVersion:MPVASTPlayerVersionNativePlayer];
             break;
         default:
-            self.customEventClass = [self setUpCustomEventClassFromMetadata:metadata
-                                                          vastPlayerVersion:MPVASTPlayerVersionWebViewPlayer];
+            self.adapterClass = [self setUpAdapterClassFromMetadata:metadata
+                                                  vastPlayerVersion:MPVASTPlayerVersionWebViewPlayer];
             break;
     }
 
-    self.customEventClassData = [self customEventClassDataFromMetadata:metadata];
+    self.adapterClassData = [self adapterClassDataFromMetadata:metadata];
 
     self.dspCreativeId = [metadata objectForKey:kDspCreativeIdKey];
 
@@ -272,22 +270,21 @@ NSString * const kVASTClickabilityExperimentKey = @"vast-click-enabled";
         // In the event that the list of available currencies is empty, we will
         // follow the behavior from the single currency approach and create an unspecified reward.
         else {
-            MPRewardedVideoReward * defaultReward = [[MPRewardedVideoReward alloc] initWithCurrencyType:kMPRewardedVideoRewardCurrencyTypeUnspecified amount:@(kMPRewardedVideoRewardCurrencyAmountUnspecified)];
-            self.availableRewards = [NSArray arrayWithObject:defaultReward];
-            self.selectedReward = defaultReward;
+            self.availableRewards = [NSArray arrayWithObject:MPReward.unspecifiedReward];
+            self.selectedReward = MPReward.unspecifiedReward;
         }
     }
     // Multiple currencies are not available; attempt to process single currency
     // metadata.
     else {
-        NSString *currencyName = [metadata objectForKey:kRewardedVideoCurrencyNameMetadataKey] ?: kMPRewardedVideoRewardCurrencyTypeUnspecified;
+        NSString *currencyName = [metadata objectForKey:kRewardedVideoCurrencyNameMetadataKey] ?: kMPRewardCurrencyTypeUnspecified;
 
         NSNumber *currencyAmount = [self adAmountFromMetadata:metadata key:kRewardedVideoCurrencyAmountMetadataKey];
         if (currencyAmount.integerValue <= 0) {
-            currencyAmount = @(kMPRewardedVideoRewardCurrencyAmountUnspecified);
+            currencyAmount = @(kMPRewardCurrencyAmountUnspecified);
         }
 
-        MPRewardedVideoReward * reward = [[MPRewardedVideoReward alloc] initWithCurrencyType:currencyName amount:currencyAmount];
+        MPReward *reward = [[MPReward alloc] initWithCurrencyType:currencyName amount:currencyAmount];
         self.availableRewards = [NSArray arrayWithObject:reward];
         self.selectedReward = reward;
     }
@@ -295,7 +292,7 @@ NSString * const kVASTClickabilityExperimentKey = @"vast-click-enabled";
     self.rewardedVideoCompletionUrl = [metadata objectForKey:kRewardedVideoCompletionUrlMetadataKey];
 
     // rewarded playables
-    self.rewardedPlayableDuration = [self timeIntervalFromMetadata:metadata forKey:kRewardedPlayableDurationMetadataKey];
+    self.rewardedDuration = [self timeIntervalFromMetadata:metadata forKey:kRewardedDurationMetadataKey];
     self.rewardedPlayableShouldRewardOnClick = [[metadata objectForKey:kRewardedPlayableRewardOnClickMetadataKey] boolValue];
 
     // clickthrough experiment
@@ -323,51 +320,41 @@ NSString * const kVASTClickabilityExperimentKey = @"vast-click-enabled";
 /**
  Provided the metadata of an ad, return the class of corresponding custome event.
  */
-- (Class)setUpCustomEventClassFromMetadata:(NSDictionary *)metadata
-                         vastPlayerVersion:(MPVASTPlayerVersion)vastPlayerVersion
+- (Class)setUpAdapterClassFromMetadata:(NSDictionary *)metadata
+                     vastPlayerVersion:(MPVASTPlayerVersion)vastPlayerVersion
 {
-    NSDictionary *customEventTable;
+    NSDictionary *adapterTable;
     if (self.isFullscreenAd) {
-        Class rewardedVideoClass;
-        switch (vastPlayerVersion) {
-            case MPVASTPlayerVersionNativePlayer:
-                rewardedVideoClass = [MPVASTInterstitialCustomEvent class];
-                break;
-            default: // web view player
-                rewardedVideoClass = [MPMoPubRewardedVideoCustomEvent class];
-                break;
-        }
-
-        customEventTable = @{@"admob_full": @"MPGoogleAdMobInterstitialCustomEvent", // optional class
-        kAdTypeHtml: NSStringFromClass([MPHTMLInterstitialCustomEvent class]),
-        kAdTypeMraid: NSStringFromClass([MPMRAIDInterstitialCustomEvent class]),
-        kAdTypeRewardedVideo: NSStringFromClass(rewardedVideoClass),
-        kAdTypeRewardedPlayable: NSStringFromClass([MPMoPubRewardedPlayableCustomEvent class]),
-        kAdTypeVAST: NSStringFromClass([MPVASTInterstitialCustomEvent class])};
+        adapterTable = @{@"admob_full": @"MPGoogleAdMobInterstitialCustomEvent", // optional class
+        kAdTypeHtml: NSStringFromClass([MPFullscreenAdAdapter class]),
+        kAdTypeMraid: NSStringFromClass([MPFullscreenAdAdapter class]),
+        kAdTypeRewardedVideo: NSStringFromClass([MPFullscreenAdAdapter class]),
+        kAdTypeRewardedPlayable: NSStringFromClass([MPFullscreenAdAdapter class]),
+        kAdTypeVAST: NSStringFromClass([MPFullscreenAdAdapter class])};
     } else {
-        customEventTable = @{@"admob_native": @"MPGoogleAdMobBannerCustomEvent", // optional class
+        adapterTable = @{@"admob_native": @"MPGoogleAdMobBannerCustomEvent", // optional class
         kAdTypeHtml: NSStringFromClass([MPHTMLBannerCustomEvent class]),
         kAdTypeMraid: NSStringFromClass([MPMRAIDBannerCustomEvent class]),
         kAdTypeNativeVideo: @"MOPUBNativeVideoCustomEvent", // optional native class
         kAdTypeNative: @"MPMoPubNativeCustomEvent"};        // optional native class
     }
 
-    NSString *customEventClassName = metadata[kCustomEventClassNameMetadataKey];
-    if (customEventTable[self.adType]) {
-        customEventClassName = customEventTable[self.adType];
+    NSString *adapterClassName = metadata[kCustomEventClassNameMetadataKey];
+    if (adapterTable[self.adType]) {
+        adapterClassName = adapterTable[self.adType];
     }
 
-    Class customEventClass = NSClassFromString(customEventClassName);
-    if (customEventClassName && !customEventClass) {
-        MPLogInfo(@"Could not find custom event class named %@", customEventClassName);
+    Class adapterClass = NSClassFromString(adapterClassName);
+    if (adapterClassName && !adapterClass) {
+        MPLogInfo(@"Could not find adapter class named %@", adapterClassName);
     }
 
-    return customEventClass;
+    return adapterClass;
 }
 
-- (NSDictionary *)customEventClassDataFromMetadata:(NSDictionary *)metadata
+- (NSDictionary *)adapterClassDataFromMetadata:(NSDictionary *)metadata
 {
-    // Parse out custom event data if its present
+    // Parse out adapter data if its present
     NSDictionary *result = [self dictionaryFromMetadata:metadata forKey:kCustomEventClassDataMetadataKey];
     if (result != nil) {
         // Inject the unified ad unit format into the custom data so that
@@ -382,7 +369,7 @@ NSString * const kVASTClickabilityExperimentKey = @"vast-click-enabled";
             result = dictionary;
         }
     }
-    // No custom event data found; this is probably a native ad payload.
+    // No adapter data found; this is probably a native ad payload.
     else {
         result = [self dictionaryFromMetadata:metadata forKey:kNativeSDKParametersMetadataKey];
     }
@@ -395,10 +382,27 @@ NSString * const kVASTClickabilityExperimentKey = @"vast-click-enabled";
     return (self.preferredSize.width > 0 && self.preferredSize.height > 0);
 }
 
-- (BOOL)hasValidReward
+- (MPAdContentType)adContentType
 {
-    return (self.availableRewards.firstObject != nil
-            && [self.availableRewards.firstObject.currencyType isEqualToString:kMPRewardedVideoRewardCurrencyTypeUnspecified] == NO);
+    if ([self.adType isEqualToString:kAdTypeHtml]) {
+        return MPAdContentTypeWebNoMRAID;
+    }
+    else if ([self.adType isEqualToString:kAdTypeMraid]
+             || [self.adType isEqualToString:kAdTypeRewardedPlayable]
+             || [self.adType isEqualToString:kAdTypeRewardedVideo]) {
+        return MPAdContentTypeWebWithMRAID;
+    }
+    else if ([self.adType isEqualToString:kAdTypeVAST]) {
+        return MPAdContentTypeVideo;
+    }
+    else {
+        return MPAdContentTypeUndefined;
+    }
+}
+
+- (BOOL)hasValidRewardFromMoPubSDK
+{
+    return self.availableRewards.firstObject.isCurrencyTypeSpecified;
 }
 
 - (NSString *)adResponseHTMLString
@@ -462,14 +466,9 @@ NSString * const kVASTClickabilityExperimentKey = @"vast-click-enabled";
     return [self.metadataAdType isEqualToString:kAdTypeMraid];
 }
 
-- (BOOL)isMoVideo
+- (BOOL)isRewarded
 {
-    // Comparing using class name strings instead of `isKindOfClass:`. The isKindOfClass:`
-    // check fails because `self.customEventClass` was instantiated using reflection.
-    NSString *className = NSStringFromClass(self.customEventClass);
-    BOOL isMoVideoRewardedVideo = [className isEqualToString:@"MPMoPubRewardedVideoCustomEvent"];
-    BOOL isMoVideoRewardedPlayable = [className isEqualToString:@"MPMoPubRewardedPlayableCustomEvent"];
-    return isMoVideoRewardedVideo || isMoVideoRewardedPlayable;
+    return [self.format isEqualToString:kAdTypeRewardedVideo] || [self.format isEqualToString:kAdTypeRewardedPlayable];
 }
 
 #pragma mark - Private
@@ -501,8 +500,8 @@ NSString * const kVASTClickabilityExperimentKey = @"vast-click-enabled";
 {
     NSString *adTypeString = [metadata objectForKey:kAdTypeMetadataKey];
 
-    // override ad type if full ad type is provided
-    if ([adTypeString isEqualToString:kAdTypeInterstitial]
+    // override ad type if full ad type is provided, except for "custom" ad type
+    if ([adTypeString isEqualToString:kAdTypeCustom] == NO
         && [[metadata objectForKey:kFullAdTypeMetadataKey] isKindOfClass:[NSString class]]
         && ((NSString *)[metadata objectForKey:kFullAdTypeMetadataKey]).length > 0) {
         adTypeString = [metadata objectForKey:kFullAdTypeMetadataKey];
@@ -692,7 +691,7 @@ NSString * const kVASTClickabilityExperimentKey = @"vast-click-enabled";
     }
 }
 
-- (NSArray<MPRewardedVideoReward *> *)parseAvailableRewardsFromMetadata:(NSDictionary *)metadata {
+- (NSArray<MPReward *> *)parseAvailableRewardsFromMetadata:(NSDictionary *)metadata {
     // The X-Rewarded-Currencies Metadata key doesn't exist. This is probably
     // not a rewarded ad.
     NSDictionary * currencies = [metadata objectForKey:kRewardedCurrenciesMetadataKey];
@@ -711,10 +710,10 @@ NSString * const kVASTClickabilityExperimentKey = @"vast-click-enabled";
     // Parse the list of JSON rewards into objects.
     NSMutableArray * availableRewards = [NSMutableArray arrayWithCapacity:rewards.count];
     [rewards enumerateObjectsUsingBlock:^(NSDictionary * rewardDict, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSString * name = rewardDict[@"name"] ?: kMPRewardedVideoRewardCurrencyTypeUnspecified;
-        NSNumber * amount = rewardDict[@"amount"] ?: @(kMPRewardedVideoRewardCurrencyAmountUnspecified);
+        NSString * name = rewardDict[@"name"] ?: kMPRewardCurrencyTypeUnspecified;
+        NSNumber * amount = rewardDict[@"amount"] ?: @(kMPRewardCurrencyAmountUnspecified);
 
-        MPRewardedVideoReward * reward = [[MPRewardedVideoReward alloc] initWithCurrencyType:name amount:amount];
+        MPReward *reward = [[MPReward alloc] initWithCurrencyType:name amount:amount];
         [availableRewards addObject:reward];
     }];
 

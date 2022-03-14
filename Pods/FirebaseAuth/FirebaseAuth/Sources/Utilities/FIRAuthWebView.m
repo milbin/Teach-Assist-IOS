@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#include <TargetConditionals.h>
+#import <TargetConditionals.h>
 #if TARGET_OS_IOS
 
 #import "FirebaseAuth/Sources/Utilities/FIRAuthWebView.h"
@@ -83,7 +83,11 @@ NS_ASSUME_NONNULL_BEGIN
   if (@available(iOS 13.0, *)) {
     spinnerStyle = UIActivityIndicatorViewStyleMedium;
   } else {
+// iOS 13 deprecation
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     spinnerStyle = UIActivityIndicatorViewStyleGray;
+#pragma clang diagnostic pop
   }
 #else
   spinnerStyle = UIActivityIndicatorViewStyleGray;

@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString * keywords;
 
 /**
- Key-value pairs that are locally available to the custom event.
+ Key-value pairs that are locally available to the adapter.
  */
 @property (nullable, nonatomic, copy) NSDictionary * localExtras;
 

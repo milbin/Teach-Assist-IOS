@@ -26,38 +26,61 @@
  • HTMLResource: Describes a “snippet” of HTML code to be inserted directly within the publisher’s
     HTML page code.
  */
-@property (nonatomic, strong, readonly) NSArray<MPVASTResource *> *HTMLResources;
-@property (nonatomic, strong, readonly) NSArray<MPVASTResource *> *iframeResources;
-@property (nonatomic, strong, readonly) NSArray<MPVASTResource *> *staticResources;
+@property (nonatomic, nullable, strong, readonly) NSArray<MPVASTResource *> *HTMLResources;
+@property (nonatomic, nullable, strong, readonly) NSArray<MPVASTResource *> *iframeResources;
+@property (nonatomic, nullable, strong, readonly) NSArray<MPVASTResource *> *staticResources;
 
 @end
 
 @implementation MPVASTCompanionAd
 
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary
-{
+#pragma mark - MPVASTModel
+
+- (instancetype _Nullable)initWithDictionary:(NSDictionary<NSString *, id> * _Nullable)dictionary {
     self = [super initWithDictionary:dictionary];
     if (self) {
-        NSArray *trackingEvents = [self generateModelsFromDictionaryValue:dictionary[@"TrackingEvents"][@"Tracking"]
-                                                            modelProvider:^id(NSDictionary *dictionary) {
-                                                                return [[MPVASTTrackingEvent alloc] initWithDictionary:dictionary];
-                                                            }];
-        NSMutableDictionary *eventsDictionary = [NSMutableDictionary dictionary];
-        for (MPVASTTrackingEvent *event in trackingEvents) {
-            NSMutableArray *events = [eventsDictionary objectForKey:event.eventType];
-            if (!events) {
-                [eventsDictionary setObject:[NSMutableArray array] forKey:event.eventType];
-                events = [eventsDictionary objectForKey:event.eventType];
-            }
-            [events addObject:event];
-        }
-        _creativeViewTrackers = eventsDictionary[MPVideoEventCreativeView];
+        // Custom parsing to generate the array of `MPVideoEventCreativeView` trackers from
+        // the `TrackingEvents` element and children.
+        // In the event of a malformed `TrackingEvents` element, no trackers will be parsed.
+        id trackingEventsElement = dictionary[@"TrackingEvents"];
+        if (trackingEventsElement != nil && [trackingEventsElement isKindOfClass:[NSDictionary class]]) {
+            // Map the elements of TrackingEvents.Tracking into an array of `MPVASTTrackingEvent`.
+            NSDictionary *trackingEventsElementDictionary = (NSDictionary *)trackingEventsElement;
+            NSArray<MPVASTTrackingEvent *> *trackingEvents = [self generateModelsFromDictionaryValue:trackingEventsElementDictionary[@"Tracking"]
+                                                                                       modelProvider:^id(NSDictionary *dictionary) {
+                return [[MPVASTTrackingEvent alloc] initWithDictionary:dictionary];
+            }];
+
+            // Aggregate trackers that have the same `eventType` into an array in the
+            // tracking events table.
+            NSMutableDictionary<MPVideoEvent, NSMutableArray<MPVASTTrackingEvent *> *> *eventsDictionary = [NSMutableDictionary dictionary];
+            [trackingEvents enumerateObjectsUsingBlock:^(MPVASTTrackingEvent * _Nonnull event, NSUInteger idx, BOOL * _Nonnull stop) {
+                // Malformed `Tracking` element: no `event` attribute is present. Do not parse this item.
+                MPVideoEvent eventType = event.eventType;
+                if (eventType == nil) {
+                    return;
+                }
+
+                // Create a new array entry if one is not present.
+                NSMutableArray<MPVASTTrackingEvent *> *events = [eventsDictionary objectForKey:eventType];
+                if (events == nil) {
+                    events = [NSMutableArray array];
+                    [eventsDictionary setObject:events forKey:eventType];
+                }
+
+                // Add the entry
+                [events addObject:event];
+            }];
+
+            // We only care about the `MPVideoEventCreativeView` event. In the event
+            // that there isn't an entry, `_creativeViewTrackers` will be set to `nil`.
+            _creativeViewTrackers = eventsDictionary[MPVideoEventCreativeView];
+        } // End if
     }
     return self;
 }
 
-+ (NSDictionary *)modelMap
-{
++ (NSDictionary<NSString *, id> *)modelMap {
     return @{@"assetHeight":        @[@"assetHeight", MPParseNumberFromString(NSNumberFormatterDecimalStyle)],
              @"assetWidth":         @[@"assetWidth", MPParseNumberFromString(NSNumberFormatterDecimalStyle)],
              @"height":             @[@"height", MPParseNumberFromString(NSNumberFormatterDecimalStyle)],
@@ -72,6 +95,8 @@
              @"apiFramework":       @"apiFramework"
     };
 }
+
+#pragma mark - Companion Ad Display and Selection
 
 - (CGRect)safeAdViewBounds {
     return CGRectMake(0, 0, MAX(1, self.width), MAX(1, self.height));

@@ -629,7 +629,11 @@ static NSString * const kMacroReplaceLanguageCode = @"%%LANGUAGE%%";
  @return A new timer instance.
  */
 - (MPTimer * _Nonnull)newNextUpdateTimer {
-    MPTimer * timer = [MPTimer timerWithTimeInterval:self.syncFrequency target:self selector:@selector(onNextUpdateFiredWithTimer) repeats:YES];
+    __typeof__(self) __weak weakSelf = self;
+    MPTimer * timer = [MPTimer timerWithTimeInterval:self.syncFrequency repeats:YES block:^(MPTimer * _Nonnull timer) {
+        __typeof__(self) strongSelf = weakSelf;
+        [strongSelf onNextUpdateFiredWithTimer];
+    }];
     [timer scheduleNow];
     return timer;
 }

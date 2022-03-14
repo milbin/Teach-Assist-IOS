@@ -9,8 +9,7 @@
 import UIKit
 import KYDrawerController
 import UserNotifications
-import Fabric
-import Crashlytics
+import FirebaseCrashlytics
 import Firebase
 import IQKeyboardManagerSwift
 import GoogleMobileAds
@@ -32,7 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         //initialize fabric
-        Fabric.with([Crashlytics.self])
         IQKeyboardManager.shared.enable = true //enable smart keyboard location so that it dosnt block edittext
         //UIApplication.shared.statusBarStyle = .lightContent //sets the time and battery wifi etc to light so its easier to see on the dark background
         
@@ -182,10 +180,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func logUser(username:String, password:String) {
         // TODO: Use the current user's information
         // You can call any combination of these three methods
-        Crashlytics.sharedInstance().setUserIdentifier(username)
-        Crashlytics.sharedInstance().setUserName(username)
-        //Crashlytics.sharedInstance().setValue(password, forKey: "password")
-        CLSLogv(password, getVaList(["password"]))
+        Crashlytics.crashlytics().setUserID(username)
+        Crashlytics.crashlytics().log(password)
 
     }
 

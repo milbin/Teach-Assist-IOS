@@ -35,6 +35,8 @@
 		6E449D152204A26E00C0F0AC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E449D142204A26E00C0F0AC /* MainViewController.swift */; };
 		6E449D282204A27200C0F0AC /* TeachAssistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E449D272204A27200C0F0AC /* TeachAssistTests.swift */; };
 		6E449D332204A27200C0F0AC /* TeachAssistUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E449D322204A27200C0F0AC /* TeachAssistUITests.swift */; };
+		6EACDC8424A7BC130093A93F /* GetAllUserMarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EACDC8324A7BC130093A93F /* GetAllUserMarks.swift */; };
+		6EACDC8624A7C9B20093A93F /* userDatabase.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6EACDC8524A7C9B20093A93F /* userDatabase.txt */; };
 		6EDFB06422204DFE00640F87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6EDFB06322204DFD00640F87 /* Assets.xcassets */; };
 		6EE67E5E220DD8EE00010826 /* SendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE67E5D220DD8EE00010826 /* SendRequest.swift */; };
 		6EF07E042210E58D00FFBFF4 /* TA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF07E032210E58D00FFBFF4 /* TA.swift */; };
@@ -116,6 +118,8 @@
 		6E449D2E2204A27200C0F0AC /* TeachAssistUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeachAssistUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E449D322204A27200C0F0AC /* TeachAssistUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachAssistUITests.swift; sourceTree = "<group>"; };
 		6E449D342204A27200C0F0AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6EACDC8324A7BC130093A93F /* GetAllUserMarks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllUserMarks.swift; sourceTree = "<group>"; };
+		6EACDC8524A7C9B20093A93F /* userDatabase.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = userDatabase.txt; sourceTree = "<group>"; };
 		6EDFB06322204DFD00640F87 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6EE67E5D220DD8EE00010826 /* SendRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendRequest.swift; sourceTree = "<group>"; };
 		6EF07E032210E58D00FFBFF4 /* TA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TA.swift; sourceTree = "<group>"; };
@@ -246,6 +250,7 @@
 		6E449D062204A26E00C0F0AC = {
 			isa = PBXGroup;
 			children = (
+				6EACDC8524A7C9B20093A93F /* userDatabase.txt */,
 				6E449D112204A26E00C0F0AC /* TeachAssist */,
 				6E449D262204A27200C0F0AC /* TeachAssistTests */,
 				6E449D312204A27200C0F0AC /* TeachAssistUITests */,
@@ -287,6 +292,7 @@
 				EA83B72C237A5444008424AE /* userCourses.json */,
 				EA5BCF0F237CD6A900BD8E4D /* userAssignments.json */,
 				49598E8D235F7CF40014D749 /* fonts */,
+				6EACDC8324A7BC130093A93F /* GetAllUserMarks.swift */,
 			);
 			path = TeachAssist;
 			sourceTree = "<group>";
@@ -513,6 +519,7 @@
 				499BB5742362AC79003ED59F /* Gilroy-ExtraBold.ttf in Resources */,
 				49598EA3235F7D2D0014D749 /* sandstone.otf in Resources */,
 				49598EA0235F7D290014D749 /* sandstone_bold.otf in Resources */,
+				6EACDC8624A7C9B20093A93F /* userDatabase.txt in Resources */,
 				EA3624AB223DD149009E392D /* CourseView.xib in Resources */,
 				EAE7AF7022693FC00056BC9A /* AssignmentView.xib in Resources */,
 				49598EA7235F89B70014D749 /* Eczar-Bold.ttf in Resources */,
@@ -651,7 +658,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" 81fde084e84196db0444d4ffb986fbb8d95655bf  9885377410a71ac533eea17a94f75306be236c39108b16d5fd2cf360fb832449\n\n";
+			shellScript = "
+";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -672,6 +680,7 @@
 				EA96E205229F441B006CA3E5 /* auth.swift in Sources */,
 				EAB209262220E6B7000686B3 /* CheckboxButton.swift in Sources */,
 				6EE67E5E220DD8EE00010826 /* SendRequest.swift in Sources */,
+				6EACDC8424A7BC130093A93F /* GetAllUserMarks.swift in Sources */,
 				EAB209232220E519000686B3 /* LoginButton.swift in Sources */,
 				EAE7B981243CF474007C68A3 /* SettingsViewController.swift in Sources */,
 				EA2A93BC222A15D900C4100E /* CourseViewController.swift in Sources */,
@@ -864,11 +873,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.5.3;
+				MARKETING_VERSION = 2.5.5;
 				PRODUCT_BUNDLE_IDENTIFIER = Teachassist.TeachAssist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -894,7 +903,6 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/PureLayout\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/UICircularProgressRing\"",
 					"\"${PODS_ROOT}/Crashlytics/iOS\"",
-					"\"${PODS_ROOT}/Fabric/iOS\"",
 				);
 				INFOPLIST_FILE = TeachAssist/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -902,11 +910,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.5.3;
+				MARKETING_VERSION = 2.5.5;
 				PRODUCT_BUNDLE_IDENTIFIER = Teachassist.TeachAssist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

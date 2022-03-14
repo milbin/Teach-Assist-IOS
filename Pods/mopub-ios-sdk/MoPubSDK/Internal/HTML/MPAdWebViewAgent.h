@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "MPAdDestinationDisplayAgent.h"
 #import "MPWebView.h"
+#import "MPViewabilityTracker.h"
 
 enum {
     MPAdWebViewEventAdDidAppear     = 0,
@@ -49,5 +50,6 @@ typedef NSUInteger MPAdWebViewEvent;
 - (void)adActionWillBegin:(MPWebView *)ad;
 - (void)adActionWillLeaveApplication:(MPWebView *)ad;
 - (void)adActionDidFinish:(MPWebView *)ad;
+- (void)adWebViewAgentDidReceiveTap:(MPAdWebViewAgent *)aAdWebViewAgent;
 
 @end

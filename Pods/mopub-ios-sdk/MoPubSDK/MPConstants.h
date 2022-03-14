@@ -14,7 +14,7 @@
 #define MP_SERVER_VERSION           @"8"
 #define MP_REWARDED_API_VERSION     @"1"
 #define MP_BUNDLE_IDENTIFIER        @"com.mopub.mopub"
-#define MP_SDK_VERSION              @"5.12.0"
+#define MP_SDK_VERSION              @"5.13.1"
 
 // Sizing constants.
 extern CGSize const MOPUB_BANNER_SIZE __attribute__((deprecated("Use kMPPresetMaxAdSizeMatchFrame, kMPPresetMaxAdSizeMatchFrame, kMPPresetMaxAdSize50Height, kMPPresetMaxAdSizeBanner90Height, kMPPresetMaxAdSize90Height, kMPPresetMaxAdSize250Height, kMPPresetMaxAdSize280Height, or a custom maximum desired ad area instead")));
@@ -40,8 +40,7 @@ extern CGFloat const kMPFlexibleAdSize;
 #define MINIMUM_REFRESH_INTERVAL            10.0
 #define DEFAULT_BANNER_REFRESH_INTERVAL     60    // seconds
 #define BANNER_TIMEOUT_INTERVAL             10    // seconds
-#define INTERSTITIAL_TIMEOUT_INTERVAL       30    // seconds
-#define REWARDED_VIDEO_TIMEOUT_INTERVAL     30    // seconds
+#define FULLSCREEN_TIMEOUT_INTERVAL         30    // seconds
 #define NATIVE_TIMEOUT_INTERVAL             10    // seconds
 #define MOPUB_ADS_EXPIRATION_INTERVAL       14400 // 4 hours converted to seconds
 

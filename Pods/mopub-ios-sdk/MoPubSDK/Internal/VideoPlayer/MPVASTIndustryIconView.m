@@ -24,6 +24,9 @@
     self = [super init];
     if (self) {
         self.resourceViewDelegate = self;
+
+        // Industry icons support transparency.
+        self.backgroundColor = UIColor.clearColor;
     }
     return self;
 }

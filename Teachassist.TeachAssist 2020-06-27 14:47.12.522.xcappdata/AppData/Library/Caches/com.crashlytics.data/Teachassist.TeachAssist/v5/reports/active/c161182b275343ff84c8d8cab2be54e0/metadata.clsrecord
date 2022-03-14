@@ -1,0 +1,4 @@
+{"identity":{"generator":"Crashlytics iOS SDK/4.0.0","display_version":"4.0.0","build_version":"4.0.0","started_at":1593283595,"session_id":"c161182b275343ff84c8d8cab2be54e0","install_id":"5A41B1DE-F361-419E-B107-AEC33275CF46","beta_token":null,"absolute_log_timestamps":true}}
+{"host":{"model":"iPhone11,8","machine":"N841AP","os_build_version":"17F80","os_display_version":"13.5.1","platform":"ios","locale":"en_CA"}}
+{"application":{"bundle_id":"Teachassist.TeachAssist","custom_bundle_id":null,"build_version":"1","display_version":"2.5.4","extension_id":null}}
+{"executable":{"architecture":"arm64","uuid":"0007676cfa513aa283cf58e68306cd62","base":4331274240,"size":7159808,"encrypted":false,"minimum_sdk_version":"11.0.0","built_sdk_version":"13.5.0"}}

@@ -24,12 +24,14 @@
 
 #include <signal.h>
 
+#import "FBSDKBasicUtility.h"
 #import "FBSDKLibAnalyzer.h"
+#import "FBSDKTypeUtility.h"
 
 #define FBSDK_MAX_CRASH_LOGS 5
 #define FBSDK_CRASH_PATH_NAME @"instrument"
 #ifndef FBSDK_VERSION_STRING
-#define FBSDK_VERSION_STRING @"6.5.1"
+#define FBSDK_VERSION_STRING @"7.1.1"
 #endif
 
 static NSUncaughtExceptionHandler *previousExceptionHandler = NULL;
@@ -86,7 +88,7 @@ void FBSDKSignalHandler(int signal);
   for (NSDictionary<NSString *, id> *crashLog in processedCrashLogs) {
     NSArray<NSString *> *callstack = crashLog[kFBSDKCallstack];
     if ([self callstack:callstack containsPrefix:prefixList]) {
-      [crashLogs addObject:crashLog];
+      [FBSDKTypeUtility array:crashLogs addObject:crashLog];
     }
   }
   return crashLogs;
@@ -231,15 +233,15 @@ void FBSDKSignalHandler(int sig)
     if (!data) {
       continue;
     }
-    NSDictionary<NSString *, id> *methodMapping  = [NSJSONSerialization JSONObjectWithData:data
+    NSDictionary<NSString *, id> *methodMapping  = [FBSDKTypeUtility JSONObjectWithData:data
                                                                                    options:kNilOptions
                                                                                      error:nil];
     NSArray<NSString *> *symbolicatedCallstack = [FBSDKLibAnalyzer symbolicateCallstack:callstack methodMapping:methodMapping];
     NSMutableDictionary<NSString *, id> *symbolicatedCrashLog = [NSMutableDictionary dictionaryWithDictionary:crashLog];
     if (symbolicatedCallstack) {
-      [symbolicatedCrashLog setObject:symbolicatedCallstack forKey:kFBSDKCallstack];
+      [FBSDKTypeUtility dictionary:symbolicatedCrashLog setObject:symbolicatedCallstack forKey:kFBSDKCallstack];
       [symbolicatedCrashLog removeObjectForKey:kFBSDKMappingTableIdentifier];
-      [processedCrashLogs addObject:symbolicatedCrashLog];
+      [FBSDKTypeUtility array:processedCrashLogs addObject:symbolicatedCrashLog];
     }
   }
   return processedCrashLogs;
@@ -254,15 +256,15 @@ void FBSDKSignalHandler(int sig)
   NSMutableArray<NSDictionary<NSString *, id> *> *crashLogArray = [NSMutableArray array];
 
   for (NSUInteger i = 0; i < MIN(fileNames.count, FBSDK_MAX_CRASH_LOGS); i++) {
-    NSData *data = [self loadCrashLog:fileNames[i]];
+    NSData *data = [self loadCrashLog:[FBSDKTypeUtility array:fileNames objectAtIndex:i]];
     if (!data) {
       continue;
     }
-    NSDictionary<NSString *, id>* crashLog = [NSJSONSerialization JSONObjectWithData:data
+    NSDictionary<NSString *, id>* crashLog = [FBSDKTypeUtility JSONObjectWithData:data
                                                                              options:kNilOptions
                                                                                error:nil];
     if (crashLog) {
-      [crashLogArray addObject:crashLog];
+      [FBSDKTypeUtility array:crashLogArray addObject:crashLog];
     }
   }
   return [crashLogArray copy];
@@ -279,8 +281,8 @@ void FBSDKSignalHandler(int sig)
 
   for (NSUInteger i = 0; i < files.count; i++) {
     // remove all crash related files except for the current mapping table
-    if ([files[i] hasPrefix:@"crash_"] && ![files[i] containsString:mappingTableIdentifier]) {
-      [[NSFileManager defaultManager] removeItemAtPath:[directoryPath stringByAppendingPathComponent:files[i]] error:nil];
+    if ([[FBSDKTypeUtility array:files objectAtIndex:i] hasPrefix:@"crash_"] && ![[FBSDKTypeUtility array:files objectAtIndex:i] containsString:mappingTableIdentifier]) {
+      [[NSFileManager defaultManager] removeItemAtPath:[directoryPath stringByAppendingPathComponent:[FBSDKTypeUtility array:files objectAtIndex:i]] error:nil];
     }
   }
 }
@@ -291,7 +293,7 @@ void FBSDKSignalHandler(int sig)
 
   for (NSString *fileName in files) {
     if ([fileName hasPrefix:@"crash_log_"] && [fileName hasSuffix:@".json"]) {
-      [fileNames addObject:fileName];
+      [FBSDKTypeUtility array:fileNames addObject:fileName];
     }
   }
 
@@ -303,21 +305,21 @@ void FBSDKSignalHandler(int sig)
   NSMutableDictionary<NSString *, id> *completeCrashLog = [NSMutableDictionary dictionaryWithDictionary:crashLog];
   NSString *currentTimestamp = [NSString stringWithFormat:@"%.0lf", [[NSDate date] timeIntervalSince1970]];
 
-  [completeCrashLog setObject:currentTimestamp forKey:kFBSDKCrashTimestamp];
-  [completeCrashLog setObject:mappingTableIdentifier forKey:kFBSDKMappingTableIdentifier];
+  [FBSDKTypeUtility dictionary:completeCrashLog setObject:currentTimestamp forKey:kFBSDKCrashTimestamp];
+  [FBSDKTypeUtility dictionary:completeCrashLog setObject:mappingTableIdentifier forKey:kFBSDKMappingTableIdentifier];
 
   NSBundle *mainBundle = [NSBundle mainBundle];
   NSString *version = [mainBundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
   NSString *build = [mainBundle objectForInfoDictionaryKey:@"CFBundleVersion"];
-  [completeCrashLog setObject:[NSString stringWithFormat:@"%@(%@)", version, build] forKey:kFBSDKAppVersion];
+  [FBSDKTypeUtility dictionary:completeCrashLog setObject:[NSString stringWithFormat:@"%@(%@)", version, build] forKey:kFBSDKAppVersion];
 
   struct utsname systemInfo;
   uname(&systemInfo);
-  [completeCrashLog setObject:@(systemInfo.machine) forKey:kFBSDKDeviceModel];
+  [FBSDKTypeUtility dictionary:completeCrashLog setObject:@(systemInfo.machine) forKey:kFBSDKDeviceModel];
 
-  [completeCrashLog setObject:[UIDevice currentDevice].systemVersion forKey:kFBSDKDeviceOSVersion];
+  [FBSDKTypeUtility dictionary:completeCrashLog setObject:[UIDevice currentDevice].systemVersion forKey:kFBSDKDeviceOSVersion];
 
-  NSData *data = [NSJSONSerialization dataWithJSONObject:completeCrashLog options:0 error:nil];
+  NSData *data = [FBSDKTypeUtility dataWithJSONObject:completeCrashLog options:0 error:nil];
 
   [data writeToFile:[self getPathToCrashFile:currentTimestamp]
          atomically:YES];
@@ -332,7 +334,7 @@ void FBSDKSignalHandler(int sig)
   NSDictionary<NSString *, NSString *> *methodMapping = [FBSDKLibAnalyzer getMethodsTable:observer.prefixes
                                                                                frameworks:observer.frameworks];
   if (methodMapping.count > 0){
-    NSData *data = [NSJSONSerialization dataWithJSONObject:methodMapping options:0 error:nil];
+    NSData *data = [FBSDKTypeUtility dataWithJSONObject:methodMapping options:0 error:nil];
     [data writeToFile:[self getPathToLibDataFile:mappingTableIdentifier]
                     atomically:YES];
   }
@@ -340,7 +342,7 @@ void FBSDKSignalHandler(int sig)
 
 + (nullable NSData *)loadLibData:(NSDictionary<NSString *, id> *)crashLog
 {
-  NSString *identifier = [crashLog objectForKey:kFBSDKMappingTableIdentifier];
+  NSString *identifier = [FBSDKTypeUtility dictionary:crashLog objectForKey:kFBSDKMappingTableIdentifier ofType:NSObject.class];
   return [NSData dataWithContentsOfFile:[self getPathToLibDataFile:identifier] options:NSDataReadingMappedIfSafe error:nil];
 }
 

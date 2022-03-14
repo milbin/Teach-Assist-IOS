@@ -41,6 +41,7 @@ typedef enum {
     MOPUBErrorVideoPlayerFailedToPlay,
     MOPUBErrorNoHTMLToLoad,
     MOPUBErrorNoHTMLUrlToLoad,
+    MOPUBErrorInlineNoViewGivenWhenAdLoaded,
 } MOPUBErrorCode;
 
 @interface NSError (MoPub)

@@ -46,7 +46,7 @@ NSString * const kNSErrorDomain = @"com.mopub.iossdk";
 }
 
 + (instancetype)customEventClass:(Class)customEventClass doesNotInheritFrom:(Class)baseClass {
-    NSString * description = [NSString stringWithFormat:@"%@ is an invalid custom event class because it does not extend %@", NSStringFromClass(customEventClass), NSStringFromClass(baseClass)];
+    NSString * description = [NSString stringWithFormat:@"%@ is an invalid adapter class because it does not extend %@", NSStringFromClass(customEventClass), NSStringFromClass(baseClass)];
     return [NSError errorWithCode:MOPUBErrorInvalidCustomEventClass localizedDescription:description];
 }
 

@@ -1,0 +1,319 @@
+<html>
+<head>
+<link href='https://fonts.googleapis.com/css?family=Alfa+Slab+One|Roboto:700,400,300|Roboto+Condensed|Roboto+Slab' rel='stylesheet' type='text/css'>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Student Report for 350064481</title>
+	<meta name="viewport" content="user-scalable=false,width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0" />
+	<meta name="mobileoptimized" content="320" />
+	<meta name="HandheldFriendly" content="true" />
+<link href="style.css" rel="stylesheet" media="screen">
+<style type="text/css">
+<!--
+h1 {font-family:'Alfa Slab One', Arial, serif; font-weight:400; font-size:72pt;}
+h2 {font-family:'Alfa Slab One', Arial, serif; font-weight:400; font-size:32pt;}
+p {font-family:'Roboto', Arial, serif; font-weight:300; color:#000000; }
+td {font-family:'Roboto', Arial, serif; font-weight:400; color:#000000; }
+th {font-family:'Roboto', Arial, serif; font-weight:700; color:#000000; }
+.style1 {font-size: xx-small}
+.style2 {font-size: x-small}
+-->
+</style>
+</head>
+<body bgcolor="#e7ffe7">
+	<div align="center">
+		<div class="green_border_message box">
+			<div align="center">
+				<p align="left"><a href="listReports.php?student_id=162850">&lt; back to course listing</a> </p>
+				<div align="center">
+					<h3>350064481 in</h3>
+					<h2>PPL1O9-03</h2>
+				</div>
+			</div>
+		</div>
+    <!--
+ -->
+		<br>
+		<div class="green_border_message box">
+			<div align="center">
+			<table width="60%" border="1" cellpadding="3" cellspacing="0">
+				<tr>
+					<td colspan="2">Legend</td>
+				</tr>
+				<tr>
+					<td bgcolor="#ffaaaa">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td><p>This item is not used in the calculation of the mark. </p>
+					<p>This item has not been handed in <strong>OR </strong>it may not have been marked yet by the teacher.</p>
+					<p> Please note all assignments for the course are listed here, and may not reflect all the assignments that are to be marked for all students.</p></td>
+				</tr>
+				<tr>
+					<td bgcolor="#999999">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td>This item has been listed as a <b>No Mark</b> and has been omitted from the calculation of the mark.
+					<!--The actual marked achieved will the negative of the amount shown in the column.--></td>
+				</tr>
+			</table>  
+			<p align="center">&nbsp;</p>
+			<div align="center">
+				<table border="1" cellpadding="3" cellspacing="0" width="100%">
+					<tr>
+						<th>Assignment</th>
+						<td bgcolor="ffffaa"><b>Knowledge / Understanding</b></td>
+						<td bgcolor="c0fea4"><b>Thinking</b></td>
+						<td bgcolor="afafff"><b>Communication</b></td>
+						<td bgcolor="ffd490"><b>Application</b></td>
+					</tr>
+					<tr>
+						<td rowspan="2">Handball Unit Participation</td>
+						<td bgcolor="ffffaa" align="center">
+							</td>
+						<td bgcolor="c0fea4" align="center">
+							</td>
+						<td bgcolor="afafff" align="center">
+							</td>
+						<td bgcolor="ffd490" align="center">
+							<table border="1" cellspacing="0" celpadding="5">
+								<tr>
+									<td bgcolor="ffd490" align="center" id="e,5871467">87 / 100 = 87%										<br>
+										<font size="-2">weight=1</font>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="4" bgcolor="white">
+&nbsp;
+							</td>
+						</tr>
+					<tr>
+						<td rowspan="2">Basketball Unit Participation</td>
+						<td bgcolor="ffffaa" align="center">
+							</td>
+						<td bgcolor="c0fea4" align="center">
+							</td>
+						<td bgcolor="afafff" align="center">
+							</td>
+						<td bgcolor="ffd490" align="center">
+							<table border="1" cellspacing="0" celpadding="5">
+								<tr>
+									<td bgcolor="ffd490" align="center" id="e,5947343">84 / 100 = 84%										<br>
+										<font size="-2">weight=1</font>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="4" bgcolor="white">
+&nbsp;
+							</td>
+						</tr>
+					<tr>
+						<td rowspan="2">New Food Technologies</td>
+						<td bgcolor="ffffaa" align="center">
+							<table border="1" cellspacing="0" celpadding="5">
+								<tr>
+									<td bgcolor="ffffaa" align="center" id="e,6143619">8 / 10 = 80%										<br>
+										<font size="-2">weight=1</font>
+										</td>
+									</tr>
+								</table>
+							</td>
+						<td bgcolor="c0fea4" align="center">
+							<table border="1" cellspacing="0" celpadding="5">
+								<tr>
+									<td bgcolor="c0fea4" align="center" id="e,6143620">8 / 10 = 80%										<br>
+										<font size="-2">weight=1</font>
+										</td>
+									</tr>
+								</table>
+							</td>
+						<td bgcolor="afafff" align="center">
+							<table border="1" cellspacing="0" celpadding="5">
+								<tr>
+									<td bgcolor="afafff" align="center" id="e,6143621">8 / 10 = 80%										<br>
+										<font size="-2">weight=1</font>
+										</td>
+									</tr>
+								</table>
+							</td>
+						<td bgcolor="ffd490" align="center">
+							</td>
+						</tr>
+						<tr>
+							<td colspan="4" bgcolor="white">
+&nbsp;
+							</td>
+						</tr>
+					<tr>
+						<td rowspan="2">Badminton Circuit Card</td>
+						<td bgcolor="ffffaa" align="center">
+							<table border="1" cellspacing="0" celpadding="5">
+								<tr>
+									<td bgcolor="ffffaa" align="center" id="e,6143747">4 / 5 = 80%										<br>
+										<font size="-2">weight=1</font>
+										</td>
+									</tr>
+								</table>
+							</td>
+						<td bgcolor="c0fea4" align="center">
+							</td>
+						<td bgcolor="afafff" align="center">
+							<table border="1" cellspacing="0" celpadding="5">
+								<tr>
+									<td bgcolor="afafff" align="center" id="e,6143748">4 / 5 = 80%										<br>
+										<font size="-2">weight=1</font>
+										</td>
+									</tr>
+								</table>
+							</td>
+						<td bgcolor="ffd490" align="center">
+							<table border="1" cellspacing="0" celpadding="5">
+								<tr>
+									<td bgcolor="ffd490" align="center" id="e,6143749">8 / 10 = 80%										<br>
+										<font size="-2">weight=1</font>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="4" bgcolor="white">
+&nbsp;
+							</td>
+						</tr>
+					<tr>
+						<td rowspan="2">Final Course Assessment</td>
+						<td bgcolor="ffffaa" align="center">
+							</td>
+						<td bgcolor="c0fea4" align="center">
+							</td>
+						<td bgcolor="afafff" align="center">
+							</td>
+						<td bgcolor="ffd490" align="center">
+							<table border="1" cellspacing="0" celpadding="5">
+								<tr>
+									<td bgcolor="ffd490" align="center" id="e,6143809">8 / 10 = 80%										<br>
+										<font size="-2">weight=1</font>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="4" bgcolor="white">
+&nbsp;
+							</td>
+						</tr>
+					</table>
+					<hr>
+
+					<table width="90%">
+						<tr><th colspan="1"><h2>Analysis/Trends</h2></th></tr>
+						<!--tr>
+							<th>Category</th>
+							<th>Assessment For Learning</th>
+							<th>Assessment Of Learning</th>
+						</tr-->
+						<tr bgcolor="ffffaa">
+							<td><h3>Knowledge/Understanding</h3>
+							<img src="../plot.php?x=300&y=150&&title=K/U for">
+&nbsp;
+							<img src="../plot.php?x=300&y=150&v[]=0.8&v[]=0.8&&title=K/U of"></td>
+						</tr>
+						<tr bgcolor="c0fea4">
+							<td><h3>Thinking</h3>
+							<img src="../plot.php?x=300&y=150&&title=T for">
+&nbsp;
+							<img src="../plot.php?x=300&y=150&v[]=0.8&&title=T of"></td>
+						</tr>
+						<tr bgcolor="afafff">
+							<td><h3>Communication</h3>
+							<img src="../plot.php?x=300&y=150&&title=C for">
+&nbsp;
+							<img src="../plot.php?x=300&y=150&v[]=0.8&v[]=0.8&&title=C of"></td>
+						</tr>
+						<tr bgcolor="ffd490">
+							<td><h3>Application</h3>
+							<img src="../plot.php?x=300&y=150&&title=A for">
+&nbsp;
+							<img src="../plot.php?x=300&y=150&v[]=0.87&v[]=0.84&v[]=0.8&v[]=0.8&&title=A of"></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		<br>
+		<div class="green_border_message box">
+			<div align="center">
+
+			<table border="0" cellpadding="10" cellspacing="0" width="50%">
+				<tr bgcolor="#336633">
+					<td align="right">
+						<div style="font-family:'Alfa Slab One', Arial, serif;font-weight:400;font-size:64pt;color:#eeeeee;"> 81.6%</div>
+					</td><td>
+						<div style="font-family:'Roboto Condensed', Arial serif; font-weight:300;font-size:24pt;color:#eeeeee;">Term</div>
+					</td>
+				</tr>
+
+			<table border="0" cellpadding="5">
+				<tr>
+					<td>
+						<table border="1" cellpadding="3" cellspacing="0">
+							<tr>
+								<th>Category</th>
+								<th>Weighting</th>
+								<th>Course Weighting</th>
+								<th>Student Achievement</th>
+							</tr>
+							<tr bgcolor="#ffffaa">
+								<td>Knowledge/Understanding</td>
+								<td align="right">14.3%</td>
+								<td align="right">10%</td>
+								<td align="right">80%</td>
+							</tr>
+							<tr bgcolor="#c0fea4">
+								<td>Thinking</td>
+								<td align="right">14.3%</td>
+								<td align="right">10%</td>
+								<td align="right">80%</td>
+							</tr>
+							<tr bgcolor="#afafff">
+								<td>Communication</td>
+								<td align="right">14.3%</td>
+								<td align="right">10%</td>
+								<td align="right">80%</td>
+							</tr>
+							<tr bgcolor="#ffd490">
+								<td>Application</td>
+								<td align="right">57.1%</td>
+								<td align="right">40%</td>
+								<td align="right">82.8%</td>
+							</tr>
+							<tr bgcolor="#eeeeee">
+								<td>Other</td>
+								<td align="right">0%</td>
+								<td align="right">0%</td>
+								<td align="right">0%</td>
+							</tr>
+							<tr bgcolor="#cccccc">
+								<td colspan="2">Final/Culminating</td>
+								<td align="right">30%</td>
+								<td align="right">0%</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+			<table>
+				<tr>
+					<td><img src="../arcs2.php?x=300&y=300&k=0.1&t=0.1&c=0.1&a=0.4&n=0&f=.3&kv=0.8&tv=0.8&cv=0.8&av=0.8275&nv=0&fv=0"> </td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+	<p><span class="style1">report generated on 2020/06/27 14:47</span></p>
+	<hr>
+	<p class="style1" align="center"><span class="style2">copyright &copy; 2020 <a href="http://www.teachassist.ca" target="_blank"><b><i><font color="#066006">teach</font><font color="#039700">assist foundation</font></i></b></a></span></p>
+</body>
+</html>

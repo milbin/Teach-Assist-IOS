@@ -13,6 +13,9 @@
 #import "MPVASTConstant.h"
 #import "MPVASTTracking.h"
 
+// MoPub extensions have type `MoPub`
+static NSString *const kMoPubExtensionType = @"MoPub";
+
 /**
  This is a private data object that represents an ad candidate for display.
  */
@@ -30,62 +33,69 @@
 @implementation MPVideoPlaybackCandidate
 @end // this data object should have empty implementation
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
 
+/**
+ Category to provide write access to select `MPVASTLinearAd` properties. This is used by
+ `playbackCandidatesFromVASTResponse:` during the Wrapper merging process.
+ */
 @interface MPVASTLinearAd (MPVideoConfig)
 
-@property (nonatomic, strong) NSArray *clickTrackingURLs;
-@property (nonatomic, strong) NSArray *customClickURLs;
-@property (nonatomic, strong) NSArray *industryIcons;
-@property (nonatomic, strong) NSDictionary *trackingEvents;
+@property (nonatomic, nullable, strong, readwrite) NSArray<NSURL *> *clickTrackingURLs;
+@property (nonatomic, nullable, strong, readwrite) NSArray<NSURL *> *customClickURLs;
+@property (nonatomic, nullable, strong, readwrite) NSArray<MPVASTIndustryIcon *> *industryIcons;
+@property (nonatomic, nullable, strong, readwrite) NSDictionary<MPVideoEvent, NSArray<MPVASTTrackingEvent *> *> *trackingEvents;
 
 @end
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
 
 @interface MPVideoConfig ()
-@property (nonatomic, strong) MPVASTDurationOffset *skipOffset;
+/**
+ Companion ads to be shown once the video has completed playback or is skipped.
+ */
 @property (nonatomic, strong) NSArray<MPVASTCompanionAd *> *companionAds;
+
+/**
+ The minimum amount of time (in seconds) that needs to elapse before the VAST video can be skipped by
+ the user. If no skip offset is specified, the VAST video is immediately skippable.
+*/
+@property (nonatomic, strong) MPVASTDurationOffset *skipOffset;
+
+/**
+ VAST video Event trackers for the Linear playback candidate.
+ */
 @property (nonatomic, strong) NSDictionary<MPVideoEvent, NSArray<MPVASTTrackingEvent *> *> *trackingEventTable;
 @end
 
 @implementation MPVideoConfig
 
-#pragma mark - Public
+#pragma mark - Initialization
 
-- (MPVASTDurationOffset *)skipOffset {
-    // If the video is rewarded, do not use the skip offset for countdown timer purposes
-    if (self.isRewarded) {
-        return nil;
-    } else {
-        return _skipOffset;
-    }
-}
-
-- (instancetype)initWithVASTResponse:(MPVASTResponse *)response additionalTrackers:(NSDictionary *)additionalTrackers
-{
-    self = [super init];
-    if (self) {
+- (instancetype)initWithVASTResponse:(MPVASTResponse * _Nullable)response
+                  additionalTrackers:(NSDictionary<MPVideoEvent, NSArray<MPVASTTrackingEvent *> *> * _Nullable)additionalTrackers {
+    if (self = [super init]) {
         [self commonInit:response additionalTrackers:additionalTrackers];
     }
     return self;
 }
 
-- (NSArray<MPVASTTrackingEvent *> *)trackingEventsForKey:(MPVideoEvent)key {
-    return self.trackingEventTable[key];
-}
-
-#pragma mark - Private
-
-- (void)commonInit:(MPVASTResponse *)response additionalTrackers:(NSDictionary *)additionalTrackers
-{
-    NSArray<MPVideoPlaybackCandidate *> *candidates = [self playbackCandidatesFromVASTResponse:response];
-
-    if (candidates.count == 0) {
+- (void)commonInit:(MPVASTResponse * _Nullable)response
+additionalTrackers:(NSDictionary<MPVideoEvent, NSArray<MPVASTTrackingEvent *> *> * _Nullable)additionalTrackers {
+    // No response, don't continue further.
+    if (response == nil) {
+        MPLogWarn(@"No VAST response specified");
         return;
     }
 
-    MPVideoPlaybackCandidate *candidate = candidates[0];
+    // Find all of the Linear ad candidates in the VAST response, and choose the first one
+    // since MoPub currently does not support Ad Pods.
+    NSArray<MPVideoPlaybackCandidate *> *candidates = [self playbackCandidatesFromVASTResponse:response];
+    MPVideoPlaybackCandidate *candidate = candidates.firstObject;
+    if (candidate == nil) {
+        MPLogWarn(@"VAST response contained no Linear ads");
+        return;
+    }
 
     // obtain from linear ad
     _mediaFiles = candidate.linearAd.mediaFiles;
@@ -101,52 +111,39 @@
         _callToActionButtonTitle = kVASTDefaultCallToActionButtonTitle;
     }
 
-    // set up the tracking event table
-    NSMutableDictionary<MPVideoEvent, NSArray<MPVASTTrackingEvent *> *> *table
-    = [NSMutableDictionary dictionaryWithDictionary:candidate.linearAd.trackingEvents];
-    for (MPVideoEvent name in @[MPVideoEventStart,
-                                MPVideoEventFirstQuartile,
-                                MPVideoEventMidpoint,
-                                MPVideoEventThirdQuartile,
-                                MPVideoEventComplete]) {
-        table[name] = [self mergeTrackersOfName:name
-                               originalTrackers:table
-                             additionalTrackers:additionalTrackers];
-    }
-
-    NSMutableDictionary<MPVideoEvent, NSArray<NSURL *> *> *eventVsURLs = [NSMutableDictionary new];
-    if (candidate.linearAd.clickTrackingURLs.count > 0) {
-        eventVsURLs[MPVideoEventClick] = candidate.linearAd.clickTrackingURLs;
-    }
-    if (candidate.errorURLs.count > 0) {
-        eventVsURLs[MPVideoEventError] = candidate.errorURLs;
-    }
-    if (candidate.impressionURLs.count > 0) {
-        eventVsURLs[MPVideoEventImpression] = candidate.impressionURLs;
-    }
-
-    for (MPVideoEvent event in eventVsURLs.allKeys) {
-        NSMutableArray<MPVASTTrackingEvent *> *trackingEvents = [NSMutableArray new];
-        for (NSURL *url in eventVsURLs[event]) {
-            [trackingEvents addObject:[[MPVASTTrackingEvent alloc] initWithEventType:event
-                                                                                 url:url
-                                                                      progressOffset:nil]];
-        }
-        table[event] = trackingEvents;
-    }
-
-    self.trackingEventTable = [NSDictionary dictionaryWithDictionary:table];
+    // Setup event tracker table
+    self.trackingEventTable = [self trackingEventsFromCandidate:candidate additionalTrackers:additionalTrackers];
 }
 
-- (NSArray<MPVideoPlaybackCandidate *> *)playbackCandidatesFromVASTResponse:(MPVASTResponse *)response
-{
+#pragma mark - Properties
+
+- (MPVASTDurationOffset * _Nullable)skipOffset {
+    // If the video is rewarded, do not use the skip offset for countdown timer purposes
+    if (self.isRewardExpected) {
+        return nil;
+    } else {
+        return _skipOffset;
+    }
+}
+
+#pragma mark - Playback Candidates
+
+/**
+ Aggregates all of the Linear ads in the VAST response, which are candidates for playback.
+ @param response VAST response to parse.
+ @return An array of playback candidates, or an empty array if none are found.
+ @note This method performs infix recursion.
+ */
+- (NSArray<MPVideoPlaybackCandidate *> *)playbackCandidatesFromVASTResponse:(MPVASTResponse *)response {
+    // Result
     NSMutableArray<MPVideoPlaybackCandidate *> *candidates = [NSMutableArray array];
 
     for (MPVASTAd *ad in response.ads) {
-        if (ad.inlineAd) {
+        // BASE CASE: Inline ads do not require further recursive unwrapping and merging.
+        if (ad.inlineAd != nil) {
             MPVASTInline *inlineAd = ad.inlineAd;
             MPVideoPlaybackCandidate *candidate = [[MPVideoPlaybackCandidate alloc] init];
-            candidate.callToActionButtonTitle = [self extensionFromInlineAd:inlineAd forKey:kVASTMoPubCTATextKey][kVASTAdTextKey];
+            candidate.callToActionButtonTitle = [self moPubExtensionFromInlineAd:inlineAd forKey:kVASTMoPubCTATextKey][kVASTAdTextKey];
 
             for (MPVASTCreative *creative in inlineAd.creatives) {
                 if (creative.linearAd && [creative.linearAd.mediaFiles count]) {
@@ -165,19 +162,74 @@
                     candidate.companionAds = [NSArray arrayWithArray:companionAds];
                 }
             }
-        } else if (ad.wrapper) {
+        }
+        // RECURSIVE CASE: Wrapper ads require the wrapper contents to be merged with the resulting
+        // Inline ad candidates.
+        else if (ad.wrapper != nil) {
             NSArray<MPVideoPlaybackCandidate *> *candidatesFromWrapper = [self playbackCandidatesFromVASTResponse:ad.wrapper.wrappedVASTResponse];
 
             // Merge any wrapper-level tracking URLs into each of the candidates.
             for (MPVideoPlaybackCandidate *candidate in candidatesFromWrapper) {
-                candidate.errorURLs = [candidate.errorURLs arrayByAddingObjectsFromArray:ad.wrapper.errorURLs];
-                candidate.impressionURLs = [candidate.impressionURLs arrayByAddingObjectsFromArray:ad.wrapper.impressionURLs];
+                // Merge error URLs
+                candidate.errorURLs = ({
+                    NSArray<NSURL *> *candidateErrorURLs = candidate.errorURLs ?: @[];
+                    NSArray<NSURL *> *wrapperErrorURLs = ad.wrapper.errorURLs ?: @[];
+                    NSArray<NSURL *> *mergedErrorURLs = [candidateErrorURLs arrayByAddingObjectsFromArray:wrapperErrorURLs];
 
-                candidate.linearAd.trackingEvents = [self dictionaryByMergingTrackingDictionaries:@[candidate.linearAd.trackingEvents, [self trackingEventsFromWrapper:ad.wrapper]]];
-                candidate.linearAd.clickTrackingURLs = [candidate.linearAd.clickTrackingURLs arrayByAddingObjectsFromArray:[self clickTrackingURLsFromWrapper:ad.wrapper]];
-                candidate.linearAd.customClickURLs = [candidate.linearAd.customClickURLs arrayByAddingObjectsFromArray:[self customClickURLsFromWrapper:ad.wrapper]];
-                candidate.linearAd.industryIcons = [candidate.linearAd.industryIcons arrayByAddingObjectsFromArray:[self industryIconsFromWrapper:ad.wrapper]];
-            }
+                    // Set the merged error URLs if there are any, otherwise `nil`.
+                    mergedErrorURLs.count > 0 ? mergedErrorURLs : nil;
+                });
+
+                // Merge impression URLs
+                candidate.impressionURLs = ({
+                    NSArray<NSURL *> *candidateImpressionURLs = candidate.impressionURLs ?: @[];
+                    NSArray<NSURL *> *wrapperImpressionURLs = ad.wrapper.impressionURLs ?: @[];
+                    NSArray<NSURL *> *mergedImpressionURLs = [candidateImpressionURLs arrayByAddingObjectsFromArray:wrapperImpressionURLs];
+
+                    // Set the merged impression URLs if there are any, otherwise `nil`.
+                    mergedImpressionURLs.count > 0 ? mergedImpressionURLs : nil;
+                });
+
+                // Merge tracking events
+                candidate.linearAd.trackingEvents = ({
+                    NSDictionary<MPVideoEvent, NSArray<MPVASTTrackingEvent *> *> *linearTrackingEvents = candidate.linearAd.trackingEvents ?: @{};
+                    NSDictionary<MPVideoEvent, NSArray<MPVASTTrackingEvent *> *> *wrapperTrackingEvents = [self trackingEventsFromWrapper:ad.wrapper];
+                    NSDictionary<MPVideoEvent, NSArray<MPVASTTrackingEvent *> *> *mergedTrackingEvents = [self dictionaryByMergingTrackingDictionaries:@[linearTrackingEvents, wrapperTrackingEvents]];
+
+                    // Set the merged trackers if there are any, otherwise `nil`.
+                    mergedTrackingEvents.count > 0 ? mergedTrackingEvents : nil;
+                });
+
+                // Merge click trackers
+                candidate.linearAd.clickTrackingURLs = ({
+                    NSArray<NSURL *> *linearClickTrackingUrls = candidate.linearAd.clickTrackingURLs ?: @[];
+                    NSArray<NSURL *> *wrapperClickTrackingUrls = [self clickTrackingURLsFromWrapper:ad.wrapper];
+                    NSArray<NSURL *> *mergedClickTrackingUrls = [linearClickTrackingUrls arrayByAddingObjectsFromArray:wrapperClickTrackingUrls];
+
+                    // Set the merged click trackers if there are any, otherwise `nil`.
+                    mergedClickTrackingUrls.count > 0 ? mergedClickTrackingUrls : nil;
+                });
+
+                // Merge custom click URLs
+                candidate.linearAd.customClickURLs = ({
+                    NSArray<NSURL *> *linearCustomClickUrls = candidate.linearAd.customClickURLs ?: @[];
+                    NSArray<NSURL *> *wrapperCustomClickUrls = [self customClickURLsFromWrapper:ad.wrapper];
+                    NSArray<NSURL *> *mergedCustomClickUrls = [linearCustomClickUrls arrayByAddingObjectsFromArray:wrapperCustomClickUrls];
+
+                    // Set the merged custom click URLs if there are any, otherwise `nil`.
+                    mergedCustomClickUrls.count > 0 ? mergedCustomClickUrls : nil;
+                });
+
+                // Merge industry icons
+                candidate.linearAd.industryIcons = ({
+                    NSArray<MPVASTIndustryIcon *> *linearIndustryIcons = candidate.linearAd.industryIcons ?: @[];
+                    NSArray<MPVASTIndustryIcon *> *wrapperIndustryIcons = [self industryIconsFromWrapper:ad.wrapper];
+                    NSArray<MPVASTIndustryIcon *> *mergedIndustryIcons = [linearIndustryIcons arrayByAddingObjectsFromArray:wrapperIndustryIcons];
+
+                    // Set the merged industry icons if there are any, otherwise `nil`.
+                    mergedIndustryIcons.count > 0 ? mergedIndustryIcons : nil;
+                });
+            } // end for
 
             [candidates addObjectsFromArray:candidatesFromWrapper];
         }
@@ -186,108 +238,96 @@
     return candidates;
 }
 
-- (NSDictionary *)trackingEventsFromWrapper:(MPVASTWrapper *)wrapper
-{
-    NSMutableArray *trackingEventDictionaries = [NSMutableArray array];
+#pragma mark - Event Trackers
 
-    for (MPVASTCreative *creative in wrapper.creatives) {
-        [trackingEventDictionaries addObject:creative.linearAd.trackingEvents];
-    }
-
-    return [self dictionaryByMergingTrackingDictionaries:trackingEventDictionaries];
+- (NSArray<MPVASTTrackingEvent *> * _Nullable)trackingEventsForKey:(MPVideoEvent)key {
+    return self.trackingEventTable[key];
 }
 
-- (NSArray *)clickTrackingURLsFromWrapper:(MPVASTWrapper *)wrapper
-{
-    NSMutableArray *clickTrackingURLs = [NSMutableArray array];
-    for (MPVASTCreative *creative in wrapper.creatives) {
-        [clickTrackingURLs addObjectsFromArray:creative.linearAd.clickTrackingURLs];
+/**
+ Generates an event tracker table from the specified video playback candidate and table of additional trackers.
+ @param candidate Linear ad playback candidate.
+ @param additionalTrackers Additional trackers to include in the playback candidate's trackers.
+ @return An event tracker table. Note that this table can be empty.
+ */
+- (NSDictionary<MPVideoEvent, NSArray<MPVASTTrackingEvent *> *> *)trackingEventsFromCandidate:(MPVideoPlaybackCandidate *)candidate
+                                                                           additionalTrackers:(NSDictionary<MPVideoEvent, NSArray<MPVASTTrackingEvent *> *> * _Nullable)additionalTrackers {
+    // Results
+    NSMutableDictionary<MPVideoEvent, NSArray<MPVASTTrackingEvent *> *> *eventTable = [NSMutableDictionary dictionary];
+
+    // Candidate already has tracking events, merge them.
+    NSDictionary<MPVideoEvent, NSArray<MPVASTTrackingEvent *> *> *candidateTrackingEvents = candidate.linearAd.trackingEvents;
+    if (candidateTrackingEvents != nil) {
+        [eventTable addEntriesFromDictionary:candidateTrackingEvents];
     }
 
-    return clickTrackingURLs;
-}
-
-- (NSArray *)customClickURLsFromWrapper:(MPVASTWrapper *)wrapper
-{
-    NSMutableArray *customClickURLs = [NSMutableArray array];
-    for (MPVASTCreative *creative in wrapper.creatives) {
-        [customClickURLs addObjectsFromArray:creative.linearAd.customClickURLs];
+    // Merge the quartile trackers from the additional trackers with the existing
+    // set of quartile trackers.
+    for (MPVideoEvent name in @[MPVideoEventStart,
+                                MPVideoEventFirstQuartile,
+                                MPVideoEventMidpoint,
+                                MPVideoEventThirdQuartile,
+                                MPVideoEventComplete]) {
+        eventTable[name] = [self mergeTrackersOfName:name sourceTrackers:eventTable additionalTrackers:additionalTrackers];
     }
 
-    return customClickURLs;
-}
-
-- (NSArray *)industryIconsFromWrapper:(MPVASTWrapper *)wrapper
-{
-    NSMutableArray *industryIcons = [NSMutableArray array];
-    for (MPVASTCreative *creative in wrapper.creatives) {
-        [industryIcons addObjectsFromArray:creative.linearAd.industryIcons];
+    // Add Click, Error, and Impression tracking URLs
+    NSMutableDictionary<MPVideoEvent, NSArray<NSURL *> *> *eventVsURLs = [NSMutableDictionary new];
+    if (candidate.linearAd.clickTrackingURLs.count > 0) {
+        eventVsURLs[MPVideoEventClick] = candidate.linearAd.clickTrackingURLs;
+    }
+    if (candidate.errorURLs.count > 0) {
+        eventVsURLs[MPVideoEventError] = candidate.errorURLs;
+    }
+    if (candidate.impressionURLs.count > 0) {
+        eventVsURLs[MPVideoEventImpression] = candidate.impressionURLs;
     }
 
-    return industryIcons;
-}
-
-- (NSDictionary *)extensionFromInlineAd:(MPVASTInline *)inlineAd forKey:(NSString *)key
-{
-    NSDictionary *extensions = inlineAd.extensions;
-    id extensionObject = [extensions objectForKey:@"Extension"];
-
-    if ([extensionObject isKindOfClass:[NSDictionary class]]) {
-        // Case 1: "Extensions" element with only one "Extension" child.
-        NSDictionary *extensionChildNode = extensionObject;
-        id extension = [self firstObjectForKey:key inDictionary:extensionChildNode];
-        if ([extension isKindOfClass:[NSDictionary class]]) {
-            return extension;
-        }
-    } else if ([extensionObject isKindOfClass:[NSArray class]]) {
-        // Case 2: "Extensions" element with multiple "Extension" children.
-        NSArray *extensionChildNodes = extensionObject;
-        for (id node in extensionChildNodes) {
-            if (![node isKindOfClass:[NSDictionary class]]) {
-                continue;
+    [eventVsURLs enumerateKeysAndObjectsUsingBlock:^(MPVideoEvent _Nonnull event, NSArray<NSURL *> * _Nonnull urls, BOOL * _Nonnull stop) {
+        NSMutableArray<MPVASTTrackingEvent *> *trackingEvents = [NSMutableArray new];
+        [urls enumerateObjectsUsingBlock:^(NSURL * _Nonnull url, NSUInteger idx, BOOL * _Nonnull stop) {
+            MPVASTTrackingEvent *trackingEvent = [[MPVASTTrackingEvent alloc] initWithEventType:event url:url progressOffset:nil];
+            if (trackingEvent != nil) {
+                [trackingEvents addObject:trackingEvent];
             }
+        }];
 
-            id extension = [self firstObjectForKey:key inDictionary:node];
-            if ([extension isKindOfClass:[NSDictionary class]]) {
-                return extension;
-            }
-        }
-    }
+        // Set the tracking event table entry.
+        eventTable[event] = trackingEvents;
+    }];
 
-    return nil;
+    return eventTable;
 }
 
-// When dealing with VAST, we will often have dictionaries where a key can map either to a single
-// value or an array of values. For example, the dictionary containing VAST extensions might contain
-// one or more <Extension> nodes. This method is useful when we simply want the first value matching
-// a given key. It is equivalent to calling [dictionary objectForKey:key] when the key maps to a
-// single value. When the key maps to an NSArray, it returns the first value in the array.
-- (id)firstObjectForKey:(NSString *)key inDictionary:(NSDictionary *)dictionary
-{
-    id value = [dictionary objectForKey:key];
-    if ([value isKindOfClass:[NSArray class]]) {
-        return [value firstObject];
-    } else {
-        return value;
+/**
+ Merges the specified trackers from the source table with the additional trackers table.
+ @param trackerName Tracking event to merge.
+ @param sourceTrackers Source trackers table.
+ @param additionalTrackers Additional trackers table.
+ @return The merged trackers or an empty array if there were no trackers to merge.
+ */
+- (NSArray<MPVASTTrackingEvent *> *)mergeTrackersOfName:(MPVideoEvent)trackerName
+                                         sourceTrackers:(NSDictionary<NSString *, NSArray<MPVASTTrackingEvent *> *> * _Nullable)sourceTrackers
+                                     additionalTrackers:(NSDictionary<NSString *, NSArray<MPVASTTrackingEvent *> *> * _Nullable)additionalTrackers {
+    // Ensure that the working set of original trackers is non-nil and
+    // is a valid array.
+    NSArray<MPVASTTrackingEvent *> *source = sourceTrackers[trackerName];
+    if (source == nil || [source isKindOfClass:[NSArray class]] == false) {
+        source = @[];
     }
-}
 
-- (NSArray<MPVASTTrackingEvent *> *)mergeTrackersOfName:(NSString *)trackerName
-                                       originalTrackers:(NSDictionary<NSString *, NSArray<MPVASTTrackingEvent *> *> *)originalTrackers
-                                     additionalTrackers:(NSDictionary<NSString *, NSArray<MPVASTTrackingEvent *> *> *)additionalTrackers {
-    NSArray<MPVASTTrackingEvent *> *original = originalTrackers[trackerName];
+    // Validate that there are additional trackers for the specified `trackerName`
+    // and that they are an array. Otherwise, there is no need to perform a merge.
     NSArray<MPVASTTrackingEvent *> *additional = additionalTrackers[trackerName];
-    if (original == nil || [original isKindOfClass:[NSArray class]] == false) {
-        original = @[];
+    if (additional == nil || [additional isKindOfClass:[NSArray class]] == false) {
+        return source;
     }
-    if ([additional isKindOfClass:[NSArray class]] == false) {
-        return original;
-    }
-    return [original arrayByAddingObjectsFromArray:additional];
+
+    // Merge the trackers
+    return [source arrayByAddingObjectsFromArray:additional];
 }
 
-- (NSDictionary *)dictionaryByMergingTrackingDictionaries:(NSArray *)dictionaries
-{
+- (NSDictionary *)dictionaryByMergingTrackingDictionaries:(NSArray *)dictionaries {
     NSMutableDictionary *mergedDictionary = [NSMutableDictionary dictionary];
     for (NSDictionary *dictionary in dictionaries) {
         for (NSString *key in [dictionary allKeys]) {
@@ -305,6 +345,154 @@
         }
     }
     return mergedDictionary;
+}
+
+#pragma mark - Wrapper Extraction
+
+/**
+ Retrieves the merged set of tracking events across all Linear creatives in the Wrapper.
+ @param wrapper VAST Wrapper object to extract the tracking event information.
+ @return The merged tracking event table, or an empty dictionary.
+ */
+- (NSDictionary<MPVideoEvent, NSArray<MPVASTTrackingEvent *> *> *)trackingEventsFromWrapper:(MPVASTWrapper * _Nullable)wrapper {
+    // Result
+    NSMutableArray *trackingEventDictionaries = [NSMutableArray array];
+
+    // No wrapper, give back an empty dictionary.
+    if (wrapper == nil) {
+        return @{};
+    }
+
+    for (MPVASTCreative *creative in wrapper.creatives) {
+        // It's possible for the `linearAd` and `trackingEvents` to be `nil`, so check before adding to avoid crashing.
+        NSDictionary<MPVideoEvent, NSArray<MPVASTTrackingEvent *> *> *trackingEvents = creative.linearAd.trackingEvents;
+        if (trackingEvents != nil) {
+            [trackingEventDictionaries addObject:trackingEvents];
+        }
+    }
+
+    return [self dictionaryByMergingTrackingDictionaries:trackingEventDictionaries];
+}
+
+/**
+ Retrieves all of the Click tracking URLs across all Linear creatives in the Wrapper.
+ @param wrapper VAST Wrapper object to extract the click tracking URLs.
+ @return An array of all Click tracking URLs, or empty.
+ */
+- (NSArray<NSURL *> *)clickTrackingURLsFromWrapper:(MPVASTWrapper * _Nullable)wrapper {
+    // Result
+    NSMutableArray<NSURL *> *clickTrackingURLs = [NSMutableArray array];
+
+    // No wrapper, give back an empty array.
+    if (wrapper == nil) {
+        return clickTrackingURLs;
+    }
+
+    for (MPVASTCreative *creative in wrapper.creatives) {
+        NSArray<NSURL *> *urls = creative.linearAd.clickTrackingURLs;
+        if (urls != nil) {
+            [clickTrackingURLs addObjectsFromArray:urls];
+        }
+    }
+
+    return clickTrackingURLs;
+}
+
+/**
+ Retrieves all of the Custom Click URLs across all Linear creatives in the Wrapper.
+ @param wrapper VAST Wrapper object to extract the custom click URLs.
+ @return An array of all Custom Click URLs, or empty.
+*/
+- (NSArray<NSURL *> *)customClickURLsFromWrapper:(MPVASTWrapper * _Nullable)wrapper {
+    // Result
+    NSMutableArray<NSURL *> *customClickURLs = [NSMutableArray array];
+
+    // No wrapper, give back an empty array.
+    if (wrapper == nil) {
+        return customClickURLs;
+    }
+
+    for (MPVASTCreative *creative in wrapper.creatives) {
+        NSArray<NSURL *> *urls = creative.linearAd.customClickURLs;
+        if (urls != nil) {
+            [customClickURLs addObjectsFromArray:urls];
+        }
+    }
+
+    return customClickURLs;
+}
+
+/**
+ Retrieves all of the Industry Icons across all Linear creatives in the Wrapper.
+ @param wrapper VAST Wrapper object to extract the Industry Icons.
+ @return An array of all Industry Icons, or empty.
+*/
+- (NSArray<MPVASTIndustryIcon *> *)industryIconsFromWrapper:(MPVASTWrapper * _Nullable)wrapper {
+    // Result
+    NSMutableArray<MPVASTIndustryIcon *> *industryIcons = [NSMutableArray array];
+
+    // No wrapper, give back an empty array.
+    if (wrapper == nil) {
+        return industryIcons;
+    }
+
+    for (MPVASTCreative *creative in wrapper.creatives) {
+        NSArray<MPVASTIndustryIcon *> *icons = creative.linearAd.industryIcons;
+        if (icons != nil) {
+            [industryIcons addObjectsFromArray:icons];
+        }
+    }
+
+    return industryIcons;
+}
+
+#pragma mark - MoPub Extension
+
+/**
+ Retrieves the specified MoPub Extension value from an Inline element.
+ @param inlineAd The Inline ad to fetch the MoPub extension from.
+ @param key The MoPub extension name.
+ @return A dictionary of key-value pairs that was associated with the MoPub Extension; otherwise `nil`.
+ */
+- (NSDictionary * _Nullable)moPubExtensionFromInlineAd:(MPVASTInline * _Nullable)inlineAd forKey:(NSString *)key {
+    // No Inline ad.
+    if (inlineAd == nil) {
+        return nil;
+    }
+
+    // Search through all of the extension nodes, looking for `type == MoPub`
+    for (id node in inlineAd.extensions) {
+        if (![node isKindOfClass:[NSDictionary class]]) {
+            continue;
+        }
+
+        NSDictionary *nodeDictionary = (NSDictionary *)node;
+        NSString *type = nodeDictionary[@"type"];
+        id extension = [self firstObjectForKey:key inDictionary:nodeDictionary];
+
+        // Found the extension
+        if ([type isEqualToString:kMoPubExtensionType] &&
+            [extension isKindOfClass:[NSDictionary class]] &&
+            extension != nil) {
+            return extension;
+        }
+    };
+
+    return nil;
+}
+
+// When dealing with VAST, we will often have dictionaries where a key can map either to a single
+// value or an array of values. For example, the dictionary containing VAST extensions might contain
+// one or more <Extension> nodes. This method is useful when we simply want the first value matching
+// a given key. It is equivalent to calling [dictionary objectForKey:key] when the key maps to a
+// single value. When the key maps to an NSArray, it returns the first value in the array.
+- (id)firstObjectForKey:(NSString *)key inDictionary:(NSDictionary *)dictionary {
+    id value = [dictionary objectForKey:key];
+    if ([value isKindOfClass:[NSArray class]]) {
+        return [value firstObject];
+    } else {
+        return value;
+    }
 }
 
 @end

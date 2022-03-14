@@ -257,7 +257,7 @@ static MPEngineInfo * _engineInfo = nil;
 {
     BOOL isMRAIDEnabled = [[MPCoreInstanceProvider sharedProvider] isMraidJavascriptAvailable] &&
                           NSClassFromString(@"MPMRAIDBannerCustomEvent") != Nil &&
-                          NSClassFromString(@"MPMRAIDInterstitialCustomEvent") != Nil;
+                          NSClassFromString(@"MPFullscreenAdAdapter") != Nil;
     return isMRAIDEnabled ? @"1" : nil;
 }
 
@@ -480,7 +480,7 @@ static MPEngineInfo * _engineInfo = nil;
                   withCustomerId:(NSString *)customerId
                       rewardType:(NSString *)rewardType
                     rewardAmount:(NSNumber *)rewardAmount
-                 customEventName:(NSString *)customEventName
+                adapterClassName:(NSString *)adapterClassName
                   additionalData:(NSString *)additionalData {
 
     NSURLComponents * components = [NSURLComponents componentsWithString:sourceUrl];
@@ -505,9 +505,9 @@ static MPEngineInfo * _engineInfo = nil;
         postData[kRewardedCurrencyAmountKey] = [NSString stringWithFormat:@"%i", rewardAmount.intValue];
     }
 
-    // OPTIONAL: Rewarded custom event name
-    if (customEventName != nil) {
-        postData[kRewardedCustomEventNameKey] = customEventName;
+    // OPTIONAL: Rewarded adapter name
+    if (adapterClassName != nil) {
+        postData[kRewardedAdapterClassNameKey] = adapterClassName;
     }
 
     // OPTIONAL: Additional publisher data

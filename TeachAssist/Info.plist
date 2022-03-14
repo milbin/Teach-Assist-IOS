@@ -60,6 +60,8 @@
 	<string>ca-app-pub-6294253616632635~3008873077</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>This identifier will be used to deliver personalized ads to you. Disallowing it will not reduce the number of ads served.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>sandstone_regular.otf</string>

@@ -1,0 +1,211 @@
+<html>
+<head>
+<link href='https://fonts.googleapis.com/css?family=Alfa+Slab+One|Roboto:700,400,300|Roboto+Condensed|Roboto+Slab' rel='stylesheet' type='text/css'>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Student Reports</title>
+	<meta name="viewport" content="user-scalable=false,width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0" />
+	<meta name="mobileoptimized" content="320" />
+	<meta name="HandheldFriendly" content="true" />
+<link href="style.css" rel="stylesheet" media="screen">
+<script type="text/javascript">
+function validate_required(field,alerttxt) {
+	with (field) {
+		if (value==null||value=="") {
+			alert(alerttxt);return false;}
+		else {return true}
+	}
+}
+
+
+function validate_form(thisform) {
+	with (thisform) {
+		if (validate_required(confirm,"Checkbox must be checked in order to request a change of password")==false) {
+			confirm.focus();return false;
+		}
+	}
+}
+
+
+
+var digitsOnly = /[1234567890]/g;
+var floatOnly = /[0-9\.]/g;
+var alphaOnly = /[A-Za-z]/g;
+var alphaNumeric= /^\w+$/g;
+
+function restrictCharacters(myfield, e, restrictionType) { 
+	if (!e) var e = window.event;
+	if (e.keyCode) code = e.keyCode; 
+	else if (e.which) code = e.which; 
+	var character = String.fromCharCode(code);
+
+	// if they pressed esc... remove focus from field...
+	if (code==27) { myfield.blur(); return false; }
+	if (code != 8 && code != 9) {
+	if (character.match(restrictionType)) {
+		return true;
+	} else {
+		return false;
+	}
+	}
+}
+</script>
+
+	<script language="JavaScript" src="../../tigra/calendar_db.js"></script>
+	<link rel="stylesheet" href="../../tigra/calendar.css">
+</head>
+
+<body bgcolor="#e7ffe7">
+
+
+<div align="center">
+
+
+
+<div class="green_border_message box">
+<table border="0" width="100%">
+<tr>
+<td>
+	<h1>Student Reports for 348865676 </h1>
+</td>
+<td align="right">
+	<a href="logout.php" class="button_red"><font color="white">log&nbsp;out</font></a>
+</td>
+</tr>
+</table>
+</div>
+<div class="green_border_message box">
+      Courses listed with a <b>current mark</b> have reports that are available for viewing.</p>
+<p>Click on the <b>current mark</b> to view that specific report.</p>
+        <div align="center">
+          <table width="85%" border="0" cellspacing="0" cellpadding="5">
+            <tr>
+	      <th>Course Name</th>
+		<th>Date</th>
+              <th>Mark</th>
+            </tr>
+            
+            
+     	<tr bgcolor="#ddffff">
+		<td>
+SNC1D1-09 : Science			<br>
+			Block: 1  - rm. 122 
+		</td>
+		<td width="30%" align="center">
+			2020-02-03 ~ 
+			2020-06-26		</td>
+			<!--td></td-->
+		<td align="right">
+<span style="background:red;color:white;padding:5px;">FINAL MARK: 85%</span>&nbsp;<a href="viewReport.php?subject_id=341614&student_id=163887"> current mark =  84.8%</a>		</td>
+	</tr>
+	<tr bgcolor="#eeffff">
+		<td>
+ENG1D1-05 : English			<br>
+			Block: 2  - rm. 248 
+		</td>
+		<td width="30%" align="center">
+			2020-02-03 ~ 
+			2020-06-26		</td>
+			<!--td></td-->
+		<td align="right">
+<span style="background:red;color:white;padding:5px;">FINAL MARK: 75%</span>&nbsp;<a href="viewReport.php?subject_id=317152&student_id=163887"> current mark =  74.4%</a>		</td>
+	</tr>
+	<tr bgcolor="#ddffff">
+		<td>
+FSF1D1-05 : French			<br>
+			Block: 3  - rm. 221 
+		</td>
+		<td width="30%" align="center">
+			2020-02-03 ~ 
+			2020-06-26		</td>
+			<!--td></td-->
+		<td align="right">
+<span style="background:red;color:white;padding:5px;">FINAL MARK: 69%</span>&nbsp;Please see teacher for current status regarding achievement in the course		</td>
+	</tr>
+	<tr bgcolor="#eeffff">
+		<td>
+PPL1O9-04 : Healthy Active Living Education			<br>
+			Block: 4  - rm. GYMC 
+		</td>
+		<td width="30%" align="center">
+			2020-02-03 ~ 
+			2020-06-26		</td>
+			<!--td></td-->
+		<td align="right">
+<span style="background:red;color:white;padding:5px;">FINAL MARK: 95%</span>&nbsp;<a href="viewReport.php?subject_id=317078&student_id=163887">Click Here</a>		</td>
+	</tr>
+                  </table>
+      </div>        <p align="center">&nbsp;</p></td>
+</div>
+<hr>
+<div class="red_border_message box">
+<h2>Maple High School</h2>
+<h3>Calendar</h3>
+<div class="blue_border_message box">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr> 
+		<td bgcolor="#fc2323">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+     <td valign="top" bgcolor="#dddddd"><i>yesterday</i><br><b>Fri., June 26, 2020</b> </td>
+     <td valign="top" bgcolor="#ff9999"><i>today</i><br><b>Sat., June 27, 2020</b> </td>
+     <td valign="top" bgcolor="#eeeeee"><i>tomorrow</i><br><b>Sun., June 28, 2020</b> </td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<p>
+<a href="calendar_full.php?school_id=14" target="_blank">Full Year Calendar</a>
+</div>
+<hr>
+
+<h3>Appointment Bookings</h3>
+<div class="blue_border_message box">
+No appointments today<hr>
+<form name="dateForm_14" action="bookAppointment.php" method="get">
+<input type="hidden" name="school_id" value="14">
+<input type="hidden" name="student_id" value="163887">
+Book Appointment for the date <input type="text" name="inputDate" value="2020-06-27" readonly size="10" />
+<script language="JavaScript">
+	var o_cal_14 = new tcal ({
+		'formname' : 'dateForm_14',
+		'controlname' : 'inputDate'
+	});
+
+	o_cal_14.a_tpl.yearscroll = false;
+</script>
+</form>
+</div>
+<p>
+<hr>
+<div class="yellow_message box" style="display:inline-block; width:300px;">
+<b>Customize Password</b>
+<p>Don't like your random or default password? Fill in the following form to customize your password. Please note, the only allowable characters are UPPER and lower case letters, and numbers. <b>No special characters!</b> There's a limit of 15 characters for the password.
+<hr>
+<p><b>NOTE</b>: this is only for your teachassist password. This will not change your YRDSB assigned password.
+<hr>
+<form method="post" action="changePassword.php">
+<input type="hidden" name="student_id" value="163887">
+<table border="0">
+<tr><td>current password</td><td> <input type="password" name="old_password" onkeypress="return restrictCharacters(this,event,alphaNumeric); " maxlength="15"> </td></tr>
+<tr><td>New password</td><td><input type="password" name="new_password" onkeypress="return restrictCharacters(this,event,alphaNumeric); " maxlength="15"></td></tr>
+<tr><td>New password again</td><td><input type="password" name="new_password_again" onkeypress="return restrictCharacters(this,event,alphaNumeric); " maxlength="15"></td></tr>
+</table>
+<input type="submit" name="submit" value="change password">
+</form>
+</div>
+<div class="blue_border_message box" style="display:inline-block;width: 300px;">
+<a href="mi.php?student_id=163887" target="_blank"><img src="mi-small.jpg" alt="Multiple Intelligences" width="150" height="92" align="right" border="0"><h2>What Are Your Strengths?</h2></a>
+            <p>Click on the following link to take a quick survey to find out <a href="mi.php?student_id=163887" target="_blank">your preferred Learning Style</a>.</p>
+<p>&nbsp;</p>
+</div>
+</div>
+
+
+
+
+  <hr>
+<p align="center"><span class="style1">copyright &copy; 2020  <a href="http://www.teachassist.ca" target="_blank"><b><i><font color="#066006">teach</font><font color="#039700">assist foundation</font></i></b></a></span></p>
+
+</body>
+</html>

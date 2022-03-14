@@ -34,7 +34,7 @@ const NSTimeInterval kMPVASTMacroProcessorUnknownTimeOffset = -1;
     }
 
     if (timeOffset >= 0) {
-        NSString *timeOffsetString = [MPVASTStringUtilities stringFromTimeInterval:timeOffset];
+        NSString *timeOffsetString = [MPVASTStringUtilities durationStringFromTimeInterval:timeOffset];
         [URLString replaceOccurrencesOfString:@"[CONTENTPLAYHEAD]" withString:timeOffsetString options:0 range:NSMakeRange(0, [URLString length])];
         [URLString replaceOccurrencesOfString:@"%5BCONTENTPLAYHEAD%5D" withString:timeOffsetString options:0 range:NSMakeRange(0, [URLString length])];
     }

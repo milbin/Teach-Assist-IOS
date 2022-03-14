@@ -9,15 +9,45 @@
 #import <Foundation/Foundation.h>
 #import "MPVASTModel.h"
 
+@class MPVASTCreative;
 @class MPVASTResponse;
+
+NS_ASSUME_NONNULL_BEGIN
 
 @interface MPVASTWrapper : MPVASTModel
 
-@property (nonatomic, readonly) NSArray *creatives;
-@property (nonatomic, readonly) NSArray *errorURLs;
-@property (nonatomic, readonly) NSArray *extensions;
-@property (nonatomic, readonly) NSArray *impressionURLs;
-@property (nonatomic, copy, readonly) NSURL *VASTAdTagURI;
-@property (nonatomic, readonly) MPVASTResponse *wrappedVASTResponse;
+/**
+ Optional array of creatives associated with the wrapper.
+ */
+@property (nonatomic, nullable, readonly) NSArray<MPVASTCreative *> *creatives;
+
+/**
+ Optional array of error URLs.
+ */
+@property (nonatomic, nullable, readonly) NSArray<NSURL *> *errorURLs;
+
+/**
+ Optional extensions in the wrapper.
+ */
+@property (nonatomic, nullable, readonly) NSArray<NSDictionary *> *extensions;
+
+/**
+ Required impression URLs associated with the wrapper.
+ */
+@property (nonatomic, nullable, readonly) NSArray<NSURL *> *impressionURLs;
+
+/**
+ Required URL of the next VAST response to fetch.
+ */
+@property (nonatomic, nullable, readonly) NSURL *VASTAdTagURI;
+
+#pragma mark - Unwrapped VAST Response
+
+/**
+ The result of attempting to unwrap this VAST wrapper.
+ */
+@property (nonatomic, nullable, readonly) MPVASTResponse *wrappedVASTResponse;
 
 @end
+
+NS_ASSUME_NONNULL_END

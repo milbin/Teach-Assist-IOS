@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "MPAdServerCommunicator.h"
-#import "MPBaseBannerAdapter.h"
+#import "MPInlineAdAdapter+MPAdAdapter.h"
 
 @class MPAdTargeting;
 
 @protocol MPBannerAdManagerDelegate;
 
-@interface MPBannerAdManager : NSObject <MPAdServerCommunicatorDelegate, MPBannerAdapterDelegate>
+@interface MPBannerAdManager : NSObject <MPAdServerCommunicatorDelegate, MPAdAdapterInlineEventDelegate>
 
 @property (nonatomic, weak) id<MPBannerAdManagerDelegate> delegate;
 @property (nonatomic, readonly) BOOL isMraidAd;

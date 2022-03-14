@@ -148,20 +148,20 @@ static NSString * const kNativeAdErrorDomain = @"com.mopub.NativeAd";
 
 - (void)getAdWithConfiguration:(MPAdConfiguration *)configuration
 {
-    if (configuration.customEventClass) {
-        MPLogInfo(@"Looking for custom event class named %@.", configuration.customEventClass);
+    if (configuration.adapterClass) {
+        MPLogInfo(@"Looking for custom event class named %@.", configuration.adapterClass);
     }
 
      [self startTimeoutTimer];
 
     // For MoPub native ads, set the classData to be the adResponseData
-    if ((configuration.customEventClass == [MPMoPubNativeCustomEvent class]) || (configuration.customEventClass == [MOPUBNativeVideoCustomEvent class])) {
+    if ((configuration.adapterClass == [MPMoPubNativeCustomEvent class]) || (configuration.adapterClass == [MOPUBNativeVideoCustomEvent class])) {
         NSError *error;
         NSMutableDictionary *classData = [NSJSONSerialization mp_JSONObjectWithData:configuration.adResponseData
                                                                             options:0
                                                                    clearNullObjects:YES
                                                                               error:&error];
-        if (configuration.customEventClass == [MOPUBNativeVideoCustomEvent class]) {
+        if (configuration.adapterClass == [MOPUBNativeVideoCustomEvent class]) {
             classData[kNativeAdConfigKey] = [[MOPUBNativeVideoAdConfigValues alloc] initWithPlayVisiblePercent:configuration.nativeVideoPlayVisiblePercent
                                                                                            pauseVisiblePercent:configuration.nativeVideoPauseVisiblePercent
                                                                                     impressionMinVisiblePixels:configuration.nativeImpressionMinVisiblePixels
@@ -169,7 +169,7 @@ static NSString * const kNativeAdErrorDomain = @"com.mopub.NativeAd";
                                                                                    impressionMinVisibleSeconds:configuration.nativeImpressionMinVisibleTimeInterval
                                                                                               maxBufferingTime:configuration.nativeVideoMaxBufferingTime
                                                                                                       trackers:configuration.vastVideoTrackers];
-        } else if (configuration.customEventClass == [MPMoPubNativeCustomEvent class]) {
+        } else if (configuration.adapterClass == [MPMoPubNativeCustomEvent class]) {
             classData[kNativeAdConfigKey] = [[MPNativeAdConfigValues alloc] initWithImpressionMinVisiblePixels:configuration.nativeImpressionMinVisiblePixels
                                                                                    impressionMinVisiblePercent:configuration.nativeImpressionMinVisiblePercent
                                                                                    impressionMinVisibleSeconds:configuration.nativeImpressionMinVisibleTimeInterval];
@@ -181,11 +181,11 @@ static NSString * const kNativeAdErrorDomain = @"com.mopub.NativeAd";
         classData[kNativeAdDspName] = nil; // Placeholder for future feature
         classData[kNativeAdDspCreativeId] = configuration.dspCreativeId;
 
-        configuration.customEventClassData = classData;
+        configuration.adapterClassData = classData;
     }
 
     // See if we have a renderer that we can use for the custom event now so we can fail early.
-    NSString *customEventClassName = NSStringFromClass(configuration.customEventClass);
+    NSString *customEventClassName = NSStringFromClass(configuration.adapterClass);
     MPNativeAdRendererConfiguration *customEventRendererConfig = nil;
 
     for (MPNativeAdRendererConfiguration *rendererConfig in self.rendererConfigurations) {
@@ -198,7 +198,7 @@ static NSString * const kNativeAdErrorDomain = @"com.mopub.NativeAd";
     }
 
     if (customEventRendererConfig == nil) {
-        NSString * noRendererErrorMessage = [NSString stringWithFormat:@"Could not find renderer configuration for custom event class: %@", NSStringFromClass(configuration.customEventClass)];
+        NSString * noRendererErrorMessage = [NSString stringWithFormat:@"Could not find renderer configuration for custom event class: %@", NSStringFromClass(configuration.adapterClass)];
         NSError * noRendererError = [NSError errorWithCode:MOPUBErrorNoRenderer localizedDescription:noRendererErrorMessage];
         MPLogEvent([MPLogEvent error:noRendererError message:nil]);
 
@@ -208,9 +208,9 @@ static NSString * const kNativeAdErrorDomain = @"com.mopub.NativeAd";
     // Create a renderer from the config.
     self.customEventRenderer = [[customEventRendererConfig.rendererClass alloc] initWithRendererSettings:customEventRendererConfig.rendererSettings];
 
-    MPNativeCustomEvent *customEvent = [[configuration.customEventClass alloc] init];
+    MPNativeCustomEvent *customEvent = [[configuration.adapterClass alloc] init];
     if (![customEvent isKindOfClass:[MPNativeCustomEvent class]]) {
-        NSString * invalidCustomEventErrorMessage = [NSString stringWithFormat:@"Custom Event Class: %@ does not extend MPNativeCustomEvent", NSStringFromClass(configuration.customEventClass)];
+        NSString * invalidCustomEventErrorMessage = [NSString stringWithFormat:@"Custom Event Class: %@ does not extend MPNativeCustomEvent", NSStringFromClass(configuration.adapterClass)];
         NSError * invalidCustomEventError = [NSError errorWithCode:MOPUBErrorNoRenderer localizedDescription:invalidCustomEventErrorMessage];
         MPLogEvent([MPLogEvent error:invalidCustomEventError message:nil]);
 
@@ -221,7 +221,7 @@ static NSString * const kNativeAdErrorDomain = @"com.mopub.NativeAd";
     customEvent.localExtras = self.targeting.localExtras;
     self.nativeCustomEvent = customEvent;
 
-    [self.nativeCustomEvent requestAdWithCustomEventInfo:configuration.customEventClassData adMarkup:configuration.advancedBidPayload];
+    [self.nativeCustomEvent requestAdWithCustomEventInfo:configuration.adapterClassData adMarkup:configuration.advancedBidPayload];
 }
 
 - (void)failAdRequest {
@@ -373,10 +373,11 @@ static NSString * const kNativeAdErrorDomain = @"com.mopub.NativeAd";
     NSTimeInterval timeInterval = (self.adConfiguration && self.adConfiguration.adTimeoutInterval >= 0) ? self.adConfiguration.adTimeoutInterval : NATIVE_TIMEOUT_INTERVAL;
 
     if (timeInterval > 0) {
-        self.timeoutTimer = [MPTimer timerWithTimeInterval:timeInterval
-                                                    target:self
-                                                  selector:@selector(timeout)
-                                                   repeats:NO];
+        __typeof__(self) __weak weakSelf = self;
+        self.timeoutTimer = [MPTimer timerWithTimeInterval:timeInterval repeats:NO block:^(MPTimer * _Nonnull timer) {
+            __typeof__(self) strongSelf = weakSelf;
+            [strongSelf timeout];
+        }];
         [self.timeoutTimer scheduleNow];
     }
 }

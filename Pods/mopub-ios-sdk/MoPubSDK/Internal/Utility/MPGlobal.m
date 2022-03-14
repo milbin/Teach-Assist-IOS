@@ -11,6 +11,7 @@
 #import "MPLogging.h"
 #import "NSURL+MPAdditions.h"
 #import "MoPub.h"
+#import "NSBundle+MPAdditions.h"
 #import <CommonCrypto/CommonDigest.h>
 
 #import <sys/types.h>
@@ -187,17 +188,9 @@ BOOL MPViewIntersectsParentWindowWithPercent(UIView *view, CGFloat percentVisibl
 
 NSString *MPResourcePathForResource(NSString *resourceName)
 {
-    if ([[NSBundle mainBundle] pathForResource:@"MoPub" ofType:@"bundle"] != nil) {
-        return [@"MoPub.bundle" stringByAppendingPathComponent:resourceName];
-    }
-    else {
-        // When using open source or cocoapods (on ios 8 and above), we can rely on the MoPub class
-        // living in the same bundle/framework as the assets.
-        // We can use pathForResource on ios 8 and above to succesfully load resources.
-        NSBundle *resourceBundle = [NSBundle bundleForClass:[MoPub class]];
-        NSString *resourcePath = [resourceBundle pathForResource:resourceName ofType:nil];
-        return resourcePath;
-    }
+    NSBundle *resourceBundle = NSBundle.mopubResourceBundle;
+    NSString *resourcePath = [resourceBundle pathForResource:resourceName ofType:nil];
+    return resourcePath;
 }
 
 NSArray *MPConvertStringArrayToURLArray(NSArray *strArray)

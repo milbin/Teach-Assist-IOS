@@ -21,15 +21,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) BOOL isCountdownActive;
 
 + (MPTimer *)timerWithTimeInterval:(NSTimeInterval)seconds
-                            target:(id)target
-                          selector:(SEL)aSelector
                            repeats:(BOOL)repeats
-                       runLoopMode:(NSString *)runLoopMode;
+                       runLoopMode:(NSString *)runLoopMode
+                             block:(void(^)(MPTimer *timer))block;
 
 + (MPTimer *)timerWithTimeInterval:(NSTimeInterval)seconds
-                            target:(id)target
-                          selector:(SEL)aSelector
-                           repeats:(BOOL)repeats;
+                           repeats:(BOOL)repeats
+                             block:(void(^)(MPTimer *timer))block;
 
 - (BOOL)isValid;
 - (void)invalidate;

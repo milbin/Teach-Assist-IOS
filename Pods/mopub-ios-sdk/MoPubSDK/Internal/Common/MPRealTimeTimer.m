@@ -65,11 +65,15 @@
 }
 
 - (void)setTimerWithCurrentTimeInterval {
+    __typeof__(self) __weak weakSelf = self;
     self.timer = [MPTimer timerWithTimeInterval:self.currentTimeInterval
-                                         target:self
-                                       selector:@selector(fire)
                                         repeats:NO
-                                    runLoopMode:NSRunLoopCommonModes];
+                                    runLoopMode:NSRunLoopCommonModes
+                                          block:^(MPTimer * _Nonnull timer) {
+        __typeof__(self) strongSelf = weakSelf;
+        [strongSelf fire];
+    }];
+
     [self.timer scheduleNow];
     if (!self.fireDate) {
         self.fireDate = [NSDate dateWithTimeIntervalSinceNow:self.currentTimeInterval];

@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-#include <TargetConditionals.h>
+#import <TargetConditionals.h>
 #if !TARGET_OS_OSX
 
-#import <GoogleUtilities/GULAppEnvironmentUtil.h>
 #import <UIKit/UIKit.h>
+#import "GoogleUtilities/Environment/Private/GULAppEnvironmentUtil.h"
 
 #import "FirebaseAuth/Sources/Utilities/FIRAuthDefaultUIDelegate.h"
 
@@ -92,7 +92,11 @@ NS_ASSUME_NONNULL_BEGIN
     }
   } else {
     UIApplication *application = [applicationClass sharedApplication];
+// iOS 13 deprecation
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     topViewController = application.keyWindow.rootViewController;
+#pragma clang diagnostic pop
   }
 #else
   UIApplication *application = [applicationClass sharedApplication];

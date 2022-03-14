@@ -8,7 +8,7 @@
 
 #import "MPLogEvent.h"
 #import "MPAdapterConfiguration.h"
-#import "MPRewardedVideoReward.h"
+#import "MPReward.h"
 #import "MPURLRequest.h"
 #import "NSString+MPConsentStatus.h"
 
@@ -123,7 +123,7 @@
     return [[MPLogEvent alloc] initWithMessage:message];
 }
 
-+ (instancetype)adShouldRewardUserWithReward:(MPRewardedVideoReward *)reward {
++ (instancetype)adShouldRewardUserWithReward:(MPReward *)reward {
     NSString * message = [NSString stringWithFormat:@"Should rewarded user with %@ %@", reward.amount, reward.currencyType];
     return [[MPLogEvent alloc] initWithMessage:message];
 }
@@ -147,7 +147,7 @@
 }
 
 + (instancetype)adLoadSuccessForAdapter:(NSString *)name {
-    NSString * message = [NSString stringWithFormat:@"Adapter %@ sucessfully loaded ad", name];
+    NSString * message = [NSString stringWithFormat:@"Adapter %@ successfully loaded ad", name];
     return [[MPLogEvent alloc] initWithMessage:message];
 }
 
@@ -162,7 +162,7 @@
 }
 
 + (instancetype)adShowSuccessForAdapter:(NSString *)name {
-    NSString * message = [NSString stringWithFormat:@"Adapter %@ sucessfully showed ad", name];
+    NSString * message = [NSString stringWithFormat:@"Adapter %@ successfully showed ad", name];
     return [[MPLogEvent alloc] initWithMessage:message];
 }
 

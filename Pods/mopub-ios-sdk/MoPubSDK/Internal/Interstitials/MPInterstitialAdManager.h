@@ -7,13 +7,11 @@
 //
 
 #import "MPAdServerCommunicator.h"
-#import "MPBaseInterstitialAdapter.h"
 
 @class MPAdTargeting;
 @protocol MPInterstitialAdManagerDelegate;
 
-@interface MPInterstitialAdManager : NSObject <MPAdServerCommunicatorDelegate,
-    MPInterstitialAdapterDelegate>
+@interface MPInterstitialAdManager : NSObject <MPAdServerCommunicatorDelegate>
 
 @property (nonatomic, weak) id<MPInterstitialAdManagerDelegate> delegate;
 @property (nonatomic, assign, readonly) BOOL ready;

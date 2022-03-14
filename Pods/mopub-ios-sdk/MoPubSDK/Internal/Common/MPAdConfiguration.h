@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MPAdViewConstant.h"
 #import "MPGlobal.h"
 #import "MPImpressionData.h"
 #import "MPVideoEvent.h"
 
-@class MPRewardedVideoReward;
+@class MPReward;
 @class MPVASTTrackingEvent;
 
 typedef NS_ENUM(NSUInteger, MPAfterLoadResult) {
@@ -48,7 +49,7 @@ extern NSString * const kRewardedVideoCurrencyNameMetadataKey;
 extern NSString * const kRewardedVideoCurrencyAmountMetadataKey;
 extern NSString * const kRewardedVideoCompletionUrlMetadataKey;
 extern NSString * const kRewardedCurrenciesMetadataKey;
-extern NSString * const kRewardedPlayableDurationMetadataKey;
+extern NSString * const kRewardedDurationMetadataKey;
 extern NSString * const kRewardedPlayableRewardOnClickMetadataKey;
 extern NSString * const kImpressionDataMetadataKey;
 extern NSString * const kVASTVideoTrackersMetadataKey;
@@ -64,6 +65,7 @@ extern NSString * const kAdTypeNative;
 extern NSString * const kAdTypeNativeVideo;
 extern NSString * const kAdTypeRewardedVideo;
 extern NSString * const kAdTypeRewardedPlayable;
+extern NSString * const kAdTypeVAST;
 
 extern NSString * const kClickthroughExperimentBrowserAgent;
 
@@ -90,8 +92,8 @@ extern NSString * const kBannerImpressionMinPixelMetadataKey;
 @property (nonatomic, assign) NSTimeInterval adTimeoutInterval;
 @property (nonatomic, copy) NSData *adResponseData;
 @property (nonatomic, strong) NSDictionary *nativeSDKParameters;
-@property (nonatomic, assign) Class customEventClass;
-@property (nonatomic, strong) NSDictionary *customEventClassData;
+@property (nonatomic, assign) Class adapterClass;
+@property (nonatomic, strong) NSDictionary *adapterClassData;
 @property (nonatomic, assign) MPInterstitialOrientationType orientationType;
 @property (nonatomic, copy) NSString *dspCreativeId;
 @property (nonatomic, assign) BOOL precacheRequired;
@@ -106,15 +108,15 @@ extern NSString * const kBannerImpressionMinPixelMetadataKey;
 @property (nonatomic, assign) NSTimeInterval nativeImpressionMinVisibleTimeInterval;
 @property (nonatomic, assign) NSTimeInterval nativeVideoMaxBufferingTime;
 @property (nonatomic) NSDictionary<MPVideoEvent, NSArray<MPVASTTrackingEvent *> *> *vastVideoTrackers;
-@property (nonatomic, readonly) NSArray<MPRewardedVideoReward *> *availableRewards;
-@property (nonatomic, strong) MPRewardedVideoReward *selectedReward;
+@property (nonatomic, readonly) NSArray<MPReward *> *availableRewards;
+@property (nonatomic, strong) MPReward *selectedReward;
 @property (nonatomic, copy) NSString *rewardedVideoCompletionUrl;
-@property (nonatomic, assign) NSTimeInterval rewardedPlayableDuration;
+@property (nonatomic, assign) NSTimeInterval rewardedDuration;
 @property (nonatomic, assign) BOOL rewardedPlayableShouldRewardOnClick;
 @property (nonatomic, copy) NSString *advancedBidPayload;
 @property (nonatomic, strong) MPImpressionData *impressionData;
 @property (nonatomic, assign) BOOL enableEarlyClickthroughForNonRewardedVideo;
-@property (nonatomic, readonly) BOOL isMoVideo;
+
 /**
  MRAID `useCustomClose()` functionality is available for use.
  */
@@ -125,16 +127,34 @@ extern NSString * const kBannerImpressionMinPixelMetadataKey;
  */
 @property (nonatomic, copy) NSString *format;
 
+/**
+ The ad is capable of rewarding users.
+ */
+@property (nonatomic, readonly) BOOL isRewarded;
+
+/**
+ Indicates the VAST video player version meant to render this ad.
+ */
+@property (nonatomic, readonly) NSInteger vastPlayerVersion;
+
 // viewable impression tracking
 @property (nonatomic) NSTimeInterval impressionMinVisibleTimeInSec;
 @property (nonatomic) CGFloat impressionMinVisiblePixels;
 
 /**
  When there is no actual reward, `availableRewards` contains a default reward with the type
- `kMPRewardedVideoRewardCurrencyTypeUnspecified`, thus we cannot simply count the array size
- of `availableRewards` to tell whether there is a valid reward.
+ `kMPRewardCurrencyTypeUnspecified`, thus we cannot simply count the array size of `availableRewards`
+ to tell whether there is a valid reward. For historical reason, this default reward exist even for
+ non-rewarded ads.
+
+ Note: This indicator is only for ads to be presented by the MoPub SDK, not for 3rd party mediation
+ SDK's. This is because ad response might not provide the reward info upfront, but the ad still
+ expect to receive reward info eventually from 3rd party mediation SDK when the ad finishes showing.
+ As a result, we cannot rely on the presence of the reward info to decide whether an ad expected;
+ instead, we should check the ad type for the reward expectation. The name
+ @c hasValidRewardFromMoPubSDK implies the reward might come from a 3rd party SDK.
  */
-@property (nonatomic, readonly) BOOL hasValidReward;
+@property (nonatomic, readonly) BOOL hasValidRewardFromMoPubSDK;
 
 - (instancetype)initWithMetadata:(NSDictionary *)metadata data:(NSData *)data isFullscreenAd:(BOOL)isFullscreenAd;
 
@@ -142,6 +162,7 @@ extern NSString * const kBannerImpressionMinPixelMetadataKey;
 - (instancetype)init NS_UNAVAILABLE;
 
 - (BOOL)hasPreferredSize;
+- (MPAdContentType)adContentType;
 - (NSString *)adResponseHTMLString;
 - (NSArray <NSURL *> *)afterLoadUrlsWithLoadDuration:(NSTimeInterval)duration loadResult:(MPAfterLoadResult)result;
 
